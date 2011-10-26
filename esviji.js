@@ -16,7 +16,7 @@ var theGame = {
   currentPieces: [],
   maxAvailablePieces: 0,
   nbPieces: 0,
-  level: 10,
+  level: 0,
   
   init: function init() {
     theGame.board = Raphael(document.body, 320, 480);
@@ -56,10 +56,15 @@ var theGame = {
     
     // add rocks in the middle after level 10
     if (theGame.level > 10) {
-      for(z = 1; z <= Math.floor(theGame.level / 5); z++) {
+      nbRocks = Math.floor((theGame.level - 5) / 5);
+      positionedRocks = 0;
+      while (positionedRocks < nbRocks) {
         rock_x = 1 + Math.floor(Math.random() * 6);
         rock_y = 1 + Math.floor(Math.random() * 6);
-        pieces[rock_x][rock_y] = theGame.ROCK;
+        if (pieces[rock_x][rock_y] != theGame.ROCK) {
+          pieces[rock_x][rock_y] = theGame.ROCK;
+          positionedRocks++;
+        }
       }
     }
     return pieces;
