@@ -19,17 +19,19 @@ var theGame = {
   level: 10,
   
   init: function init() {
-    theGame.board = Raphael('board', 320, 480);
+    theGame.board = Raphael(document.body, 320, 480);
 
     var border = theGame.board.rect(0.5, 0.5, 319, 479),
-        header = theGame.board.path('M 0 0 l 0 235 l 200 -200 l 120 0 l 0 -35 z');
+        header = theGame.board.path('M 0 0 l 0 235 l 200 -200 l 120 0 l 0 -35 z'),
+        title = theGame.board.print(0, 40, "esviji", theGame.board.getFont('ChewyRegular'), 60),
+        score = theGame.board.print(220, 20, "score: 0", theGame.board.getFont('ChewyRegular'), 20);
 
     header.attr({
       'fill': '#9999cc',
       'stroke': '#666699',
       'stroke-width': 1
     });
-    
+
     theGame.maxAvailablePieces = theGame.themes[theGame.theme].regularPieces.length;
     
     theGame.nextLevel();
