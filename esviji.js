@@ -14,6 +14,7 @@ var esviji = {
     }
   },
   currentPieces: [],
+  drawnCurrentPieces: [],
   validPieces: [],
   currentPiece: 0,
   currentPosX: 9,
@@ -22,6 +23,9 @@ var esviji = {
   nbPieces: 0,
   level: 0,
   score: 0,
+  scoreThisTurn: 0,
+  drawnScore: null,
+  lives: 10,
   
   init: function init() {
     esviji.board = Raphael(document.body, 320, 480);
@@ -29,8 +33,9 @@ var esviji = {
     var border = esviji.board.rect(0.5, 0.5, 319, 479),
         header = esviji.board.path('M 0 0 l 0 225 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 120 0 l 0 -50 z'),
         title = esviji.board.print(0, 40, "esviji", esviji.board.getFont('ChewyRegular'), 60),
-        copyright = esviji.board.print(10, 70, "(c) Nicolas Hoizey", esviji.board.getFont('ChewyRegular'), 9),
-        score = esviji.board.print(220, 25, "score: 0", esviji.board.getFont('ChewyRegular'), 25);
+        copyright = esviji.board.print(10, 70, "(c) Nicolas Hoizey", esviji.board.getFont('ChewyRegular'), 9);
+        
+    esviji.drawnScore = esviji.board.print(220, 25, "score: 0", esviji.board.getFont('ChewyRegular'), 25);
 
     header.attr({
       'fill': '#9999cc',
@@ -43,7 +48,7 @@ var esviji = {
     
   play: function play() {
     esviji.nextLevel();
-    esviji.getNewPiece();
+    esviji.startNewTurn();
     /*
     esviji.playUserChoice();
     while (esviji.validPieces.length > 0) {
@@ -70,84 +75,99 @@ var esviji = {
     return 480 - 35 * y;
   },
   
-  getNewPiece: function getNewPiece() {
+  startNewTurn: function startNewTurn() {
     esviji.currentPosX = 9;
     esviji.currentPosY = 8;
+    esviji.scoreThisTurn = 0;
+    esviji.currentDirX = -1;
+    esviji.currentDirY = 0;
     esviji.getValidPieces();
-    esviji.currentPiece = esviji.validPieces[Math.floor(Math.random() * esviji.validPieces.length)];
-    pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].regularPieces[esviji.currentPiece - 1] + '.svg';
-    esviji.drawnCurrentPiece = esviji.board.image(pieceFile, esviji.xToCoord(esviji.currentPosX), esviji.yToCoord(esviji.currentPosY), 30, 30);
-    esviji.drawnCurrentPiece.drag(function(dx, dy) {
-      console.log('during drag: dy = ' + dy + ' / yBeforeDrag + dy = ' + (yBeforeDrag + dy));
-      this.attr({
-        x: esviji.xToCoord(9),
-        y: Math.min(Math.max(yBeforeDrag + dy, esviji.yToCoord(12)), esviji.yToCoord(1))
-      });
-    }, function () {
-      xBeforeDrag = this.attr('x');
-      yBeforeDrag = this.attr('y');
-      console.log('before drag: x=' + xBeforeDrag + ' / y=' + yBeforeDrag);
-    }, function () {
-      yAfterDrag = this.attr('y');
-      diff = 1000; 
-      for (i = 1; i <= 12; i++) {
-        thisDiff = Math.abs(yAfterDrag - esviji.yToCoord(i));
-        if (thisDiff < diff) {
-          diff = thisDiff;
-          esviji.currentPosY = i;
-        }
+    if (esviji.validPieces.length == 0) {
+      // TODO: end of a level
+    } else {
+      if (esviji.validPieces.indexOf(esviji.currentPiece) == -1) {
+        esviji.lives--;
+        console.log(esviji.lives + ' lives left');
+        esviji.currentPiece = esviji.validPieces[Math.floor(Math.random() * esviji.validPieces.length)];
       }
-      console.log('after drag: y = ' + esviji.currentPosY);
-      esviji.drawnCurrentPiece.animate({'y': esviji.yToCoord(esviji.currentPosY)}, 500, 'bounce');
-    });
+      pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].regularPieces[esviji.currentPiece - 1] + '.svg';
+      esviji.drawnCurrentPiece = esviji.board.image(pieceFile, esviji.xToCoord(esviji.currentPosX), esviji.yToCoord(esviji.currentPosY), 30, 30);
+      esviji.drawnCurrentPiece.drag(function(dx, dy) {
+        this.attr({
+          x: esviji.xToCoord(9),
+          y: Math.min(Math.max(yBeforeDrag + dy, esviji.yToCoord(12)), esviji.yToCoord(1))
+        });
+      }, function () {
+        xBeforeDrag = this.attr('x');
+        yBeforeDrag = this.attr('y');
+      }, function () {
+        yAfterDrag = this.attr('y');
+        diff = 1000; 
+        for (i = 1; i <= 12; i++) {
+          thisDiff = Math.abs(yAfterDrag - esviji.yToCoord(i));
+          if (thisDiff < diff) {
+            diff = thisDiff;
+            esviji.currentPosY = i;
+          }
+        }
+        esviji.drawnCurrentPiece.animate({'y': esviji.yToCoord(esviji.currentPosY)}, 500, 'bounce', esviji.playUserChoice);
+      });
+    }
   },
   
   playUserChoice: function playUserChoice () {
     var stopped = false;
-
-    esviji.currentDirX = -1;
-    esviji.currentDirY = 0;
-
-    while (!stopped) {
-      if (esviji.currentPosY == 1 && esviji.currentDirY == -1) {
-        stopped = true;
+    if (esviji.currentPosY == 1 && esviji.currentDirY == -1) {
+      stopped = true;
+    } else {
+      if (esviji.currentPosX == 1 && esviji.currentDirX == -1) {
+        esviji.currentDirX = 0;
+        esviji.currentDirY = -1;
       } else {
-        if (esviji.currentPosX == 1 && esviji.currentDirX == -1) {
-          esviji.currentDirX = 0;
-          esviji.currentDirY = -1;
-        } else {
-          nextPiece = esviji.currentPieces[esviji.currentPosX + esviji.currentDirX][esviji.currentPosY + esviji.currentDirY];
-          if (nextPiece == esviji.ROCK) {
-            if (esviji.currentDirX == -1) {
-              esviji.currentDirX = 0;
-              esviji.currentDirY = -1;
-            } else {
-              stopped = true;
-            }
+        nextPiece = esviji.currentPieces[esviji.currentPosX + esviji.currentDirX][esviji.currentPosY + esviji.currentDirY];
+        if (nextPiece == esviji.ROCK) {
+          if (esviji.currentDirX == -1) {
+            esviji.currentDirX = 0;
+            esviji.currentDirY = -1;
           } else {
-            if (nextPiece == esviji.EMPTY) {
-              esviji.moveOnce();
+            stopped = true;
+          }
+        } else {
+          if (nextPiece == esviji.EMPTY) {
+            esviji.currentPosX += esviji.currentDirX;
+            esviji.currentPosY += esviji.currentDirY;
+          } else {
+            if (nextPiece == esviji.currentPiece) {
+              esviji.currentPosX += esviji.currentDirX;
+              esviji.currentPosY += esviji.currentDirY;
+              esviji.currentPieces[esviji.currentPosX][esviji.currentPosY] = esviji.EMPTY;
+              esviji.drawnCurrentPieces[esviji.currentPosX][esviji.currentPosY].remove();
+              esviji.scoreThisTurn++;
             } else {
-              if (nextPiece == esviji.currentPiece) {
-                esviji.moveOnce();
-              } else {
+              if (esviji.scoreThisTurn > 0) {
                 esviji.currentPiece = nextPiece;
-                stopped = true;
               }
+              stopped = true;
             }
           }
         }
       }
     }
+    if (!stopped) {
+      esviji.drawnCurrentPiece.animate({'x': esviji.xToCoord(esviji.currentPosX), 'y': esviji.yToCoord(esviji.currentPosY)}, 500, 'linear', esviji.playUserChoice);
+    } else {
+      // TODO: more pieces at once = more points
+      esviji.score += esviji.scoreThisTurn;
+      esviji.drawnScore.remove();
+      esviji.drawnScore = esviji.board.print(220, 25, 'score: ' + esviji.score, esviji.board.getFont('ChewyRegular'), 25);
+      esviji.drawnCurrentPiece.remove();
+      esviji.makePiecesFall();
+      esviji.startNewTurn();
+    }
   },
   
-  moveOnce: function moveOnce() {
-    esviji.currentPosX += esviji.currentDirX;
-    esviji.currentPosY += esviji.currentDirY;
-    piece_x = esviji.currentPosX * 35 - 30;
-    piece_y = 480 - 35 * esviji.currentPosY;
-    anim = Raphael.animation({'x': piece_x, 'y': piece_y}, 1000, 'linear');
-    esviji.drawnCurrentPiece.animate(anim.delay(1000));
+  makePiecesFall: function makePiecesFall() {
+  
   },
   
   initPieces: function initPieces() {
@@ -188,7 +208,9 @@ var esviji = {
   },
   
   drawPieces: function drawPieces() {
+    esviji.drawnCurrentPieces = [];
     for(x = 1; x <= 6; x++) {
+      esviji.drawnCurrentPieces[x] = [];
       for (y = 1; y <= 6; y++) {
         if (esviji.currentPieces[x][y] != esviji.EMPTY) {
           if (esviji.currentPieces[x][y] == esviji.ROCK) {
@@ -198,8 +220,8 @@ var esviji = {
           }
           piece_x = x * 35 - 30;
           piece_y = 480 - 35 * y;
-          drawnPiece = esviji.board.image(pieceFile, piece_x, -30, 30, 30);
-          drawnPiece.animate({'y': piece_y}, 2000, 'bounce');
+          esviji.drawnCurrentPieces[x][y] = esviji.board.image(pieceFile, piece_x, -30, 30, 30);
+          esviji.drawnCurrentPieces[x][y].animate({'y': piece_y}, 2000, 'bounce');
         }
       }
     }
