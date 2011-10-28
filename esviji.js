@@ -44,8 +44,8 @@ var esviji = {
   play: function play() {
     esviji.nextLevel();
     esviji.getNewPiece();
-    esviji.playUserChoice();
     /*
+    esviji.playUserChoice();
     while (esviji.validPieces.length > 0) {
       esviji.waitForUser();
       esviji.playUserChoice();
@@ -62,15 +62,44 @@ var esviji = {
     esviji.drawPieces();
   },
   
+  xToCoord: function xToCoord(x) {
+    return x * 35 - 30;
+  },
+
+  yToCoord: function yToCoord(y) {
+    return 480 - 35 * y;
+  },
+  
   getNewPiece: function getNewPiece() {
     esviji.currentPosX = 9;
     esviji.currentPosY = 8;
     esviji.getValidPieces();
     esviji.currentPiece = esviji.validPieces[Math.floor(Math.random() * esviji.validPieces.length)];
     pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].regularPieces[esviji.currentPiece - 1] + '.svg';
-    piece_x = esviji.currentPosX * 35 - 30;
-    piece_y = 480 - 35 * esviji.currentPosY;
-    esviji.drawnCurrentPiece = esviji.board.image(pieceFile, piece_x, piece_y, 30, 30);
+    esviji.drawnCurrentPiece = esviji.board.image(pieceFile, esviji.xToCoord(esviji.currentPosX), esviji.yToCoord(esviji.currentPosY), 30, 30);
+    esviji.drawnCurrentPiece.drag(function(dx, dy) {
+      console.log('during drag: dy = ' + dy + ' / yBeforeDrag + dy = ' + (yBeforeDrag + dy));
+      this.attr({
+        x: esviji.xToCoord(9),
+        y: Math.min(Math.max(yBeforeDrag + dy, esviji.yToCoord(12)), esviji.yToCoord(1))
+      });
+    }, function () {
+      xBeforeDrag = this.attr('x');
+      yBeforeDrag = this.attr('y');
+      console.log('before drag: x=' + xBeforeDrag + ' / y=' + yBeforeDrag);
+    }, function () {
+      yAfterDrag = this.attr('y');
+      diff = 1000; 
+      for (i = 1; i <= 12; i++) {
+        thisDiff = Math.abs(yAfterDrag - esviji.yToCoord(i));
+        if (thisDiff < diff) {
+          diff = thisDiff;
+          esviji.currentPosY = i;
+        }
+      }
+      console.log('after drag: y = ' + esviji.currentPosY);
+      esviji.drawnCurrentPiece.animate({'y': esviji.yToCoord(esviji.currentPosY)}, 500, 'bounce');
+    });
   },
   
   playUserChoice: function playUserChoice () {
