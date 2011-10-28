@@ -1,8 +1,8 @@
 window.onload = function(){
-  theGame.run();
+  esviji.run();
 }
 
-var theGame = {
+var esviji = {
   EMPTY: 0,
   ROCK: -1,
   board: null,
@@ -24,13 +24,13 @@ var theGame = {
   score: 0,
   
   init: function init() {
-    theGame.board = Raphael(document.body, 320, 480);
+    esviji.board = Raphael(document.body, 320, 480);
 
-    var border = theGame.board.rect(0.5, 0.5, 319, 479),
-        header = theGame.board.path('M 0 0 l 0 225 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 120 0 l 0 -50 z'),
-        title = theGame.board.print(0, 40, "esviji", theGame.board.getFont('ChewyRegular'), 60),
-        copyright = theGame.board.print(10, 70, "(c) Nicolas Hoizey", theGame.board.getFont('ChewyRegular'), 9),
-        score = theGame.board.print(220, 25, "score: 0", theGame.board.getFont('ChewyRegular'), 25);
+    var border = esviji.board.rect(0.5, 0.5, 319, 479),
+        header = esviji.board.path('M 0 0 l 0 225 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 120 0 l 0 -50 z'),
+        title = esviji.board.print(0, 40, "esviji", esviji.board.getFont('ChewyRegular'), 60),
+        copyright = esviji.board.print(10, 70, "(c) Nicolas Hoizey", esviji.board.getFont('ChewyRegular'), 9),
+        score = esviji.board.print(220, 25, "score: 0", esviji.board.getFont('ChewyRegular'), 25);
 
     header.attr({
       'fill': '#9999cc',
@@ -38,66 +38,71 @@ var theGame = {
       'stroke-width': 1
     });
 
-    theGame.maxAvailablePieces = theGame.themes[theGame.theme].regularPieces.length;
+    esviji.maxAvailablePieces = esviji.themes[esviji.theme].regularPieces.length;
   },
     
   play: function play() {
-    theGame.nextLevel();
-    theGame.playUserChoice();
+    esviji.nextLevel();
+    esviji.getNewPiece();
+    esviji.playUserChoice();
     /*
-    while (theGame.validPieces.length > 0) {
-      theGame.waitForUser();
-      theGame.playUserChoice();
+    while (esviji.validPieces.length > 0) {
+      esviji.waitForUser();
+      esviji.playUserChoice();
     }
-    theGame.play();
+    esviji.play();
     */
   },
     
   nextLevel: function nextLevel() {
-    theGame.level++;
-    theGame.nbPieces = Math.min(theGame.maxAvailablePieces, Math.floor(5 + (theGame.level / 5)));
+    esviji.level++;
+    esviji.nbPieces = Math.min(esviji.maxAvailablePieces, Math.floor(5 + (esviji.level / 5)));
 
-    theGame.initPieces();
-    theGame.drawPieces();
-
-    theGame.getValidPieces();
-    theGame.currentPiece = theGame.validPieces[Math.floor(Math.random() * theGame.validPieces.length)];
-    pieceFile = 'themes/' + theGame.theme + '/' + theGame.themes[theGame.theme].regularPieces[theGame.currentPiece - 1] + '.svg';
-    piece_x = theGame.currentPosX * 35 - 30;
-    piece_y = 480 - 35 * theGame.currentPosY;
-    theGame.drawnCurrentPiece = theGame.board.image(pieceFile, piece_x, piece_y, 30, 30);
+    esviji.initPieces();
+    esviji.drawPieces();
+  },
+  
+  getNewPiece: function getNewPiece() {
+    esviji.currentPosX = 9;
+    esviji.currentPosY = 8;
+    esviji.getValidPieces();
+    esviji.currentPiece = esviji.validPieces[Math.floor(Math.random() * esviji.validPieces.length)];
+    pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].regularPieces[esviji.currentPiece - 1] + '.svg';
+    piece_x = esviji.currentPosX * 35 - 30;
+    piece_y = 480 - 35 * esviji.currentPosY;
+    esviji.drawnCurrentPiece = esviji.board.image(pieceFile, piece_x, piece_y, 30, 30);
   },
   
   playUserChoice: function playUserChoice () {
     var stopped = false;
 
-    theGame.currentDirX = -1;
-    theGame.currentDirY = 0;
+    esviji.currentDirX = -1;
+    esviji.currentDirY = 0;
 
     while (!stopped) {
-      if (theGame.currentPosY == 1 && theGame.currentDirY == -1) {
+      if (esviji.currentPosY == 1 && esviji.currentDirY == -1) {
         stopped = true;
       } else {
-        if (theGame.currentPosX == 1 && theGame.currentDirX == -1) {
-          theGame.currentDirX = 0;
-          theGame.currentDirY = -1;
+        if (esviji.currentPosX == 1 && esviji.currentDirX == -1) {
+          esviji.currentDirX = 0;
+          esviji.currentDirY = -1;
         } else {
-          nextPiece = theGame.currentPieces[theGame.currentPosX + theGame.currentDirX][theGame.currentPosY + theGame.currentDirY];
-          if (nextPiece == theGame.ROCK) {
-            if (theGame.currentDirX == -1) {
-              theGame.currentDirX = 0;
-              theGame.currentDirY = -1;
+          nextPiece = esviji.currentPieces[esviji.currentPosX + esviji.currentDirX][esviji.currentPosY + esviji.currentDirY];
+          if (nextPiece == esviji.ROCK) {
+            if (esviji.currentDirX == -1) {
+              esviji.currentDirX = 0;
+              esviji.currentDirY = -1;
             } else {
               stopped = true;
             }
           } else {
-            if (nextPiece == theGame.EMPTY) {
-              theGame.moveOnce();
+            if (nextPiece == esviji.EMPTY) {
+              esviji.moveOnce();
             } else {
-              if (nextPiece == theGame.currentPiece) {
-                theGame.moveOnce();
+              if (nextPiece == esviji.currentPiece) {
+                esviji.moveOnce();
               } else {
-                theGame.currentPiece = nextPiece;
+                esviji.currentPiece = nextPiece;
                 stopped = true;
               }
             }
@@ -108,45 +113,45 @@ var theGame = {
   },
   
   moveOnce: function moveOnce() {
-    theGame.currentPosX += theGame.currentDirX;
-    theGame.currentPosY += theGame.currentDirY;
-    piece_x = theGame.currentPosX * 35 - 30;
-    piece_y = 480 - 35 * theGame.currentPosY;
+    esviji.currentPosX += esviji.currentDirX;
+    esviji.currentPosY += esviji.currentDirY;
+    piece_x = esviji.currentPosX * 35 - 30;
+    piece_y = 480 - 35 * esviji.currentPosY;
     anim = Raphael.animation({'x': piece_x, 'y': piece_y}, 1000, 'linear');
-    theGame.drawnCurrentPiece.animate(anim.delay(1000));
+    esviji.drawnCurrentPiece.animate(anim.delay(1000));
   },
   
   initPieces: function initPieces() {
-    theGame.currentPieces = [];
+    esviji.currentPieces = [];
         
     for(x = 1; x <= 8; x++) {
-      theGame.currentPieces[x] = [];
+      esviji.currentPieces[x] = [];
       for (y = 1; y <= 12; y++) {
         if (x > 6) {
-          theGame.currentPieces[x][y] = theGame.EMPTY;
+          esviji.currentPieces[x][y] = esviji.EMPTY;
         } else {
           if (y > 6) {
             if (y - 6 > x) {
-              theGame.currentPieces[x][y] = theGame.ROCK;
+              esviji.currentPieces[x][y] = esviji.ROCK;
             } else {
-              theGame.currentPieces[x][y] = theGame.EMPTY;
+              esviji.currentPieces[x][y] = esviji.EMPTY;
             }
           } else {
-            theGame.currentPieces[x][y] = 1 + Math.floor(Math.random() * theGame.nbPieces);
+            esviji.currentPieces[x][y] = 1 + Math.floor(Math.random() * esviji.nbPieces);
           }
         }
       }
     }
     
     // add rocks in the middle after level 10
-    if (theGame.level > 10) {
-      nbRocks = Math.floor((theGame.level - 5) / 5);
+    if (esviji.level > 10) {
+      nbRocks = Math.floor((esviji.level - 5) / 5);
       positionedRocks = 0;
       while (positionedRocks < nbRocks) {
         rock_x = 1 + Math.floor(Math.random() * 6);
         rock_y = 1 + Math.floor(Math.random() * 6);
-        if (theGame.currentPieces[rock_x][rock_y] != theGame.ROCK) {
-          theGame.currentPieces[rock_x][rock_y] = theGame.ROCK;
+        if (esviji.currentPieces[rock_x][rock_y] != esviji.ROCK) {
+          esviji.currentPieces[rock_x][rock_y] = esviji.ROCK;
           positionedRocks++;
         }
       }
@@ -156,15 +161,15 @@ var theGame = {
   drawPieces: function drawPieces() {
     for(x = 1; x <= 6; x++) {
       for (y = 1; y <= 6; y++) {
-        if (theGame.currentPieces[x][y] != theGame.EMPTY) {
-          if (theGame.currentPieces[x][y] == theGame.ROCK) {
-            pieceFile = 'themes/' + theGame.theme + '/' + theGame.themes[theGame.theme].rock + '.svg';
+        if (esviji.currentPieces[x][y] != esviji.EMPTY) {
+          if (esviji.currentPieces[x][y] == esviji.ROCK) {
+            pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].rock + '.svg';
           } else {
-            pieceFile = 'themes/' + theGame.theme + '/' + theGame.themes[theGame.theme].regularPieces[theGame.currentPieces[x][y] - 1] + '.svg';
+            pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].regularPieces[esviji.currentPieces[x][y] - 1] + '.svg';
           }
           piece_x = x * 35 - 30;
           piece_y = 480 - 35 * y;
-          drawnPiece = theGame.board.image(pieceFile, piece_x, -30, 30, 30);
+          drawnPiece = esviji.board.image(pieceFile, piece_x, -30, 30, 30);
           drawnPiece.animate({'y': piece_y}, 2000, 'bounce');
         }
       }
@@ -174,7 +179,7 @@ var theGame = {
   getValidPieces: function getValidPieces() {
     var x, y, dir_x, dir_y, found;
 
-    theGame.validPieces = [];
+    esviji.validPieces = [];
     
     for (y_start = 1; y_start <= 12; y_start++) {
       x = 9;
@@ -190,8 +195,8 @@ var theGame = {
             dir_x = 0;
             dir_y = -1;
           } else {
-            nextPiece = theGame.currentPieces[x + dir_x][y + dir_y];
-            if (nextPiece == theGame.ROCK) {
+            nextPiece = esviji.currentPieces[x + dir_x][y + dir_y];
+            if (nextPiece == esviji.ROCK) {
               if (dir_x == -1) {
                 dir_x = 0;
                 dir_y = -1;
@@ -199,12 +204,12 @@ var theGame = {
                 found = true;
               }
             } else {
-              if (nextPiece == theGame.EMPTY) {
+              if (nextPiece == esviji.EMPTY) {
                 x += dir_x;
                 y += dir_y;
               } else {
-                if (theGame.validPieces.indexOf(nextPiece) == -1) {
-                  theGame.validPieces.push(nextPiece);
+                if (esviji.validPieces.indexOf(nextPiece) == -1) {
+                  esviji.validPieces.push(nextPiece);
                 }
                 found = true;
               }
@@ -216,7 +221,7 @@ var theGame = {
   },
   
   run: function run() {
-    theGame.init();
-    theGame.play();
+    esviji.init();
+    esviji.play();
   }
 }
