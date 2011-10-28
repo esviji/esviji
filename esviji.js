@@ -26,6 +26,7 @@ var esviji = {
   scoreThisTurn: 0,
   drawnScore: null,
   lives: 10,
+  drawnLevelAndLives: null,
   
   init: function init() {
     esviji.board = Raphael(document.body, 320, 480);
@@ -33,9 +34,10 @@ var esviji = {
     var border = esviji.board.rect(0.5, 0.5, 319, 479),
         header = esviji.board.path('M 0 0 l 0 225 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 120 0 l 0 -50 z'),
         title = esviji.board.print(0, 40, "esviji", esviji.board.getFont('ChewyRegular'), 60),
-        copyright = esviji.board.print(10, 70, "(c) Nicolas Hoizey", esviji.board.getFont('ChewyRegular'), 9);
+        copyright = esviji.board.print(10, 90, "(c) Nicolas Hoizey", esviji.board.getFont('ChewyRegular'), 14);
         
-    esviji.drawnScore = esviji.board.print(220, 25, "score: 0", esviji.board.getFont('ChewyRegular'), 25);
+    esviji.drawScore();
+    esviji.drawLevelAndLives();
 
     header.attr({
       'fill': '#9999cc',
@@ -46,25 +48,15 @@ var esviji = {
     esviji.maxAvailablePieces = esviji.themes[esviji.theme].regularPieces.length;
   },
     
-  play: function play() {
-    esviji.nextLevel();
-    esviji.startNewTurn();
-    /*
-    esviji.playUserChoice();
-    while (esviji.validPieces.length > 0) {
-      esviji.waitForUser();
-      esviji.playUserChoice();
-    }
-    esviji.play();
-    */
-  },
-    
   nextLevel: function nextLevel() {
     esviji.level++;
+    esviji.drawLevelAndLives();
     esviji.nbPieces = Math.min(esviji.maxAvailablePieces, Math.floor(5 + (esviji.level / 5)));
 
     esviji.initPieces();
     esviji.drawPieces();
+
+    esviji.startNewTurn();
   },
   
   xToCoord: function xToCoord(x) {
@@ -83,11 +75,11 @@ var esviji = {
     esviji.currentDirY = 0;
     esviji.getValidPieces();
     if (esviji.validPieces.length == 0) {
-      // TODO: end of a level
+      esviji.nextLevel();
     } else {
       if (esviji.validPieces.indexOf(esviji.currentPiece) == -1) {
         esviji.lives--;
-        console.log(esviji.lives + ' lives left');
+        esviji.drawLevelAndLives();
         esviji.currentPiece = esviji.validPieces[Math.floor(Math.random() * esviji.validPieces.length)];
       }
       pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].regularPieces[esviji.currentPiece - 1] + '.svg';
@@ -154,20 +146,34 @@ var esviji = {
       }
     }
     if (!stopped) {
-      esviji.drawnCurrentPiece.animate({'x': esviji.xToCoord(esviji.currentPosX), 'y': esviji.yToCoord(esviji.currentPosY)}, 500, 'linear', esviji.playUserChoice);
+      esviji.drawnCurrentPiece.animate({'x': esviji.xToCoord(esviji.currentPosX), 'y': esviji.yToCoord(esviji.currentPosY)}, 200, 'linear', esviji.playUserChoice);
     } else {
-      // TODO: more pieces at once = more points
-      esviji.score += esviji.scoreThisTurn;
-      esviji.drawnScore.remove();
-      esviji.drawnScore = esviji.board.print(220, 25, 'score: ' + esviji.score, esviji.board.getFont('ChewyRegular'), 25);
+      esviji.score += Math.pow(esviji.scoreThisTurn, 2);
+      esviji.drawScore();
       esviji.drawnCurrentPiece.remove();
       esviji.makePiecesFall();
       esviji.startNewTurn();
     }
   },
   
+  // TODO: only works when there is only one hole
   makePiecesFall: function makePiecesFall() {
-  
+    for(x = 1; x <= 6; x++) {
+      for (y = 1; y <= 5; y++) {
+        if (esviji.currentPieces[x][y] == esviji.EMPTY) {
+          for (z = y; z <= 5; z++) {
+            esviji.currentPieces[x][z] = esviji.currentPieces[x][z + 1];
+            esviji.currentPieces[x][z + 1] = esviji.EMPTY;
+            if (esviji.drawnCurrentPieces[x][z + 1] != null) {
+              esviji.drawnCurrentPieces[x][z] = esviji.drawnCurrentPieces[x][z + 1];
+              esviji.drawnCurrentPieces[x][z].animate({'y': esviji.yToCoord(z)}, 500, 'bounce');
+              esviji.drawnCurrentPieces[x][z + 1] = null;
+            }
+          }
+        }
+        
+      }
+    }
   },
   
   initPieces: function initPieces() {
@@ -271,8 +277,22 @@ var esviji = {
     } 
   },
   
+  drawScore: function drawScore() {
+    if (esviji.drawnScore != null) {
+      esviji.drawnScore.remove();
+    }
+    esviji.drawnScore = esviji.board.print(180, 16, "score: " + esviji.score, esviji.board.getFont('ChewyRegular'), 16);
+  },
+  
+  drawLevelAndLives: function drawLevelAndLives() {
+    if (esviji.drawnLevelAndLives != null) {
+      esviji.drawnLevelAndLives.remove();
+    }
+    esviji.drawnLevelAndLives = esviji.board.print(180, 36, 'level: ' + esviji.level + ' / lives: ' + esviji.lives, esviji.board.getFont('ChewyRegular'), 16);
+  },
+  
   run: function run() {
     esviji.init();
-    esviji.play();
+    esviji.nextLevel();
   }
 }
