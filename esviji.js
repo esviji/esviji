@@ -15,9 +15,13 @@ var theGame = {
   },
   currentPieces: [],
   validPieces: [],
+  currentPiece: 0,
+  currentPosX: 9,
+  currentPosY: 7,
   maxAvailablePieces: 0,
   nbPieces: 0,
   level: 0,
+  score: 0,
   
   init: function init() {
     theGame.board = Raphael(document.body, 320, 480);
@@ -35,23 +39,81 @@ var theGame = {
     });
 
     theGame.maxAvailablePieces = theGame.themes[theGame.theme].regularPieces.length;
+  },
     
+  play: function play() {
     theGame.nextLevel();
+    theGame.playUserChoice();
+    /*
+    while (theGame.validPieces.length > 0) {
+      theGame.waitForUser();
+      theGame.playUserChoice();
+    }
+    theGame.play();
+    */
   },
     
   nextLevel: function nextLevel() {
     theGame.level++;
     theGame.nbPieces = Math.min(theGame.maxAvailablePieces, Math.floor(5 + (theGame.level / 5)));
+
     theGame.initPieces();
     theGame.drawPieces();
-    
+
     theGame.getValidPieces();
-    console.log(theGame.validPieces);
     theGame.currentPiece = theGame.validPieces[Math.floor(Math.random() * theGame.validPieces.length)];
     pieceFile = 'themes/' + theGame.theme + '/' + theGame.themes[theGame.theme].regularPieces[theGame.currentPiece - 1] + '.svg';
-    piece_x = 9 * 35 - 30;
-    piece_y = 480 - 35 * 7;
-    drawnPiece = theGame.board.image(pieceFile, piece_x, piece_y, 30, 30);
+    piece_x = theGame.currentPosX * 35 - 30;
+    piece_y = 480 - 35 * theGame.currentPosY;
+    theGame.drawnCurrentPiece = theGame.board.image(pieceFile, piece_x, piece_y, 30, 30);
+  },
+  
+  playUserChoice: function playUserChoice () {
+    var stopped = false;
+
+    theGame.currentDirX = -1;
+    theGame.currentDirY = 0;
+
+    while (!stopped) {
+      if (theGame.currentPosY == 1 && theGame.currentDirY == -1) {
+        stopped = true;
+      } else {
+        if (theGame.currentPosX == 1 && theGame.currentDirX == -1) {
+          theGame.currentDirX = 0;
+          theGame.currentDirY = -1;
+        } else {
+          nextPiece = theGame.currentPieces[theGame.currentPosX + theGame.currentDirX][theGame.currentPosY + theGame.currentDirY];
+          if (nextPiece == theGame.ROCK) {
+            if (theGame.currentDirX == -1) {
+              theGame.currentDirX = 0;
+              theGame.currentDirY = -1;
+            } else {
+              stopped = true;
+            }
+          } else {
+            if (nextPiece == theGame.EMPTY) {
+              theGame.moveOnce();
+            } else {
+              if (nextPiece == theGame.currentPiece) {
+                theGame.moveOnce();
+              } else {
+                theGame.currentPiece = nextPiece;
+                stopped = true;
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  
+  moveOnce: function moveOnce() {
+    theGame.currentPosX += theGame.currentDirX;
+    theGame.currentPosY += theGame.currentDirY;
+    piece_x = theGame.currentPosX * 35 - 30;
+    piece_y = 480 - 35 * theGame.currentPosY;
+    anim = Raphael.animation({'x': piece_x, 'y': piece_y}, 1000, 'linear');
+    theGame.drawnCurrentPiece.animate(anim.delay(1000));
   },
   
   initPieces: function initPieces() {
@@ -155,5 +217,6 @@ var theGame = {
   
   run: function run() {
     theGame.init();
+    theGame.play();
   }
 }
