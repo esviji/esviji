@@ -29,7 +29,7 @@ var esviji = {
   drawnLevelAndLives: null,
   
   init: function init() {
-    esviji.board = Raphael(document.body, 320, 480);
+    esviji.board = Raphael('board', 320, 480);
 
     var border = esviji.board.rect(0.5, 0.5, 319, 479),
         header = esviji.board.path('M 0 0 l 0 225 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 120 0 l 0 -50 z'),
@@ -46,6 +46,7 @@ var esviji = {
     });
 
     esviji.maxAvailablePieces = esviji.themes[esviji.theme].regularPieces.length;
+    
   },
     
   nextLevel: function nextLevel() {
@@ -106,8 +107,9 @@ var esviji = {
             esviji.currentPosY = i;
           }
         }
-        esviji.drawnCurrentPiece.animate({'y': esviji.yToCoord(esviji.currentPosY)}, 500, 'bounce', esviji.playUserChoice);
+        esviji.drawnCurrentPiece.animate({'y': esviji.yToCoord(esviji.currentPosY)}, 500, 'elastic', esviji.playUserChoice);
       });
+      
     }
   },
   
@@ -150,7 +152,7 @@ var esviji = {
       }
     }
     if (!stopped) {
-      esviji.drawnCurrentPiece.animate({'x': esviji.xToCoord(esviji.currentPosX), 'y': esviji.yToCoord(esviji.currentPosY)}, 200, 'linear', esviji.playUserChoice);
+      esviji.drawnCurrentPiece.animate({'x': esviji.xToCoord(esviji.currentPosX), 'y': esviji.yToCoord(esviji.currentPosY), 'rotate': 360}, 200, 'linear', esviji.playUserChoice);
     } else {
       esviji.score += Math.pow(esviji.scoreThisTurn, 2);
       esviji.drawScore();
