@@ -80,6 +80,10 @@ var esviji = {
       if (esviji.validPieces.indexOf(esviji.currentPiece) == -1) {
         esviji.lives--;
         esviji.drawLevelAndLives();
+        if (esviji.lives == 0) {
+          gameOver = esviji.board.print(5, 220, "Game Over", esviji.board.getFont('ChewyRegular'), 64).attr({'fill': 'red', 'stroke': 'black', 'stroke-width': 2});
+          //TODO: really stop the game
+        }
         esviji.currentPiece = esviji.validPieces[Math.floor(Math.random() * esviji.validPieces.length)];
       }
       pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].regularPieces[esviji.currentPiece - 1] + '.svg';
