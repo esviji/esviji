@@ -81,7 +81,7 @@ var esviji = {
         esviji.lives--;
         esviji.drawLevelAndLives();
         if (esviji.lives == 0) {
-          gameOver = esviji.board.print(5, 220, "Game Over", esviji.board.getFont('ChewyRegular'), 64).attr({'fill': 'red', 'stroke': 'black', 'stroke-width': 2});
+          gameOver = esviji.board.print(5, 200, "Game Over", esviji.board.getFont('ChewyRegular'), 64).attr({'fill': 'red', 'stroke': 'black', 'stroke-width': 2});
           //TODO: really stop the game
         }
         esviji.currentPiece = esviji.validPieces[Math.floor(Math.random() * esviji.validPieces.length)];
@@ -160,12 +160,17 @@ var esviji = {
     }
   },
   
-  // TODO: only works when there is only one hole
   makePiecesFall: function makePiecesFall() {
+    var abovePieces;
+    
     for(x = 1; x <= 6; x++) {
       for (y = 1; y <= 5; y++) {
         if (esviji.currentPieces[x][y] == esviji.EMPTY) {
+          abovePieces = 0;
           for (z = y; z <= 5; z++) {
+            if (esviji.currentPieces[x][z + 1] != esviji.EMPTY) {
+              abovePieces++;
+            }
             esviji.currentPieces[x][z] = esviji.currentPieces[x][z + 1];
             esviji.currentPieces[x][z + 1] = esviji.EMPTY;
             if (esviji.drawnCurrentPieces[x][z + 1] != null) {
@@ -174,8 +179,10 @@ var esviji = {
               esviji.drawnCurrentPieces[x][z + 1] = null;
             }
           }
+          if (abovePieces > 0) {
+            y--;
+          }
         }
-        
       }
     }
   },
