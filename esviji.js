@@ -31,18 +31,23 @@ var esviji = {
   init: function init() {
     esviji.board = Raphael('board', 320, 480);
 
-    var border = esviji.board.rect(0.5, 0.5, 319, 479),
-        header = esviji.board.path('M 0 0 l 0 225 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 120 0 l 0 -50 z'),
-        title = esviji.board.print(0, 40, "esviji", esviji.board.getFont('ChewyRegular'), 60),
-        copyright = esviji.board.print(10, 90, "(c) Nicolas Hoizey", esviji.board.getFont('ChewyRegular'), 14);
+    var header = esviji.board.path('M 0 0 l 0 225 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 120 0 l 0 -50 z'),
+        title = esviji.board.print(0, 40, "esviji", esviji.board.getFont('ChewyRegular'), 60);
         
     esviji.drawScore();
-    esviji.drawLevelAndLives();
+    esviji.drawLevel();
+    esviji.drawLives();
 
     header.attr({
       'fill': '#9999cc',
       'stroke': '#666699',
-      'stroke-width': 1
+      'stroke-width': 2
+    });
+
+    title.attr({
+      'fill': '#666699',
+      'stroke': '#333366',
+      'stroke-width': 2
     });
 
     esviji.maxAvailablePieces = esviji.themes[esviji.theme].regularPieces.length;
@@ -51,7 +56,9 @@ var esviji = {
     
   nextLevel: function nextLevel() {
     esviji.level++;
-    esviji.drawLevelAndLives();
+    esviji.drawLevel();
+    esviji.lives++;
+    esviji.drawLives();
     esviji.nbPieces = Math.min(esviji.maxAvailablePieces, Math.floor(5 + (esviji.level / 5)));
 
     esviji.initPieces();
@@ -76,11 +83,12 @@ var esviji = {
     esviji.currentDirY = 0;
     esviji.getValidPieces();
     if (esviji.validPieces.length == 0) {
+      // TODO: can it really happen?
       esviji.nextLevel();
     } else {
       if (esviji.validPieces.indexOf(esviji.currentPiece) == -1) {
         esviji.lives--;
-        esviji.drawLevelAndLives();
+        esviji.drawLives();
         if (esviji.lives == 0) {
           gameOver = esviji.board.print(5, 200, "Game Over", esviji.board.getFont('ChewyRegular'), 64).attr({'fill': 'red', 'stroke': 'black', 'stroke-width': 2});
           //TODO: really stop the game
@@ -294,16 +302,26 @@ var esviji = {
     if (esviji.drawnScore != null) {
       esviji.drawnScore.remove();
     }
-    esviji.drawnScore = esviji.board.print(180, 16, "score: " + esviji.score, esviji.board.getFont('ChewyRegular'), 16);
+    esviji.drawnScore = esviji.board.print(170, 32, "score: " + esviji.score, esviji.board.getFont('ChewyRegular'), 28);
+    esviji.drawnScore.attr({'fill': '#333366'});
   },
   
-  drawLevelAndLives: function drawLevelAndLives() {
-    if (esviji.drawnLevelAndLives != null) {
-      esviji.drawnLevelAndLives.remove();
+  drawLevel: function drawLevel() {
+    if (esviji.drawnLevel != null) {
+      esviji.drawnLevel.remove();
     }
-    esviji.drawnLevelAndLives = esviji.board.print(180, 36, 'level: ' + esviji.level + ' / lives: ' + esviji.lives, esviji.board.getFont('ChewyRegular'), 16);
+    esviji.drawnLevel = esviji.board.print(10,100, 'level ' + esviji.level, esviji.board.getFont('ChewyRegular'), 20);
+    esviji.drawnLevel.attr({'fill': '#333366'});
   },
   
+  drawLives: function drawLives() {
+    if (esviji.drawnLives != null) {
+      esviji.drawnLives.remove();
+    }
+    esviji.drawnLives = esviji.board.print(10, 130, esviji.lives + ' lives', esviji.board.getFont('ChewyRegular'), 20);
+    esviji.drawnLives.attr({'fill': '#333366'});
+  },
+
   run: function run() {
     esviji.init();
     esviji.nextLevel();
