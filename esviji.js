@@ -302,7 +302,7 @@ var esviji = {
     if (esviji.drawnScore != null) {
       esviji.drawnScore.remove();
     }
-    esviji.drawnScore = esviji.board.print(170, 32, "score: " + esviji.score, esviji.board.getFont('ChewyRegular'), 28);
+    esviji.drawnScore = esviji.board.print(170, 28, "score: " + esviji.score, esviji.board.getFont('ChewyRegular'), 28);
     esviji.drawnScore.attr({'fill': '#333366'});
   },
   
