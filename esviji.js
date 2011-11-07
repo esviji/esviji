@@ -22,7 +22,7 @@ var esviji = {
   currentPosY: 7,
   maxAvailablePieces: 0,
   nbPieces: 0,
-  level: 0,
+  level: 10,
   score: 0,
   scoreThisTurn: 0,
   drawnScore: null,
@@ -32,7 +32,7 @@ var esviji = {
   init: function init() {
     esviji.board = Raphael('board', 320, 460);
 
-    var header = esviji.board.path('M 0 0 l 0 205 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 120 0 l 0 -30 z'),
+    var header = esviji.board.path('M 1 1 l 0 205 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 108 0 l 0 -30 z'),
         title = esviji.board.print(0, 40, "esviji", esviji.board.getFont('ChewyRegular'), 60);
         
     esviji.drawScore();
@@ -179,15 +179,19 @@ var esviji = {
         if (esviji.currentPieces[x][y] == esviji.EMPTY) {
           abovePieces = 0;
           for (z = y; z <= 5; z++) {
-            if (esviji.currentPieces[x][z + 1] != esviji.EMPTY) {
+            if (esviji.currentPieces[x][z + 1] != esviji.EMPTY && esviji.currentPieces[x][z + 1] != esviji.ROCK) {
               abovePieces++;
             }
-            esviji.currentPieces[x][z] = esviji.currentPieces[x][z + 1];
-            esviji.currentPieces[x][z + 1] = esviji.EMPTY;
-            if (esviji.drawnCurrentPieces[x][z + 1] != null) {
-              esviji.drawnCurrentPieces[x][z] = esviji.drawnCurrentPieces[x][z + 1];
-              esviji.drawnCurrentPieces[x][z].animate({'y': esviji.yToCoord(z)}, 500, 'bounce');
-              esviji.drawnCurrentPieces[x][z + 1] = null;
+            if (esviji.currentPieces[x][z + 1] == esviji.ROCK) {
+              z = 5;
+            } else {
+              esviji.currentPieces[x][z] = esviji.currentPieces[x][z + 1];
+              esviji.currentPieces[x][z + 1] = esviji.EMPTY;
+              if (esviji.drawnCurrentPieces[x][z + 1] != null) {
+                esviji.drawnCurrentPieces[x][z] = esviji.drawnCurrentPieces[x][z + 1];
+                esviji.drawnCurrentPieces[x][z].animate({'y': esviji.yToCoord(z)}, 500, 'bounce');
+                esviji.drawnCurrentPieces[x][z + 1] = null;
+              }
             }
           }
           if (abovePieces > 0) {
