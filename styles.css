@@ -6,7 +6,7 @@ body {
 
 #board {
   width: 320px;
-  height: 480px;
+  height: 460px;
   position: absolute;
   left: 50%; 
   top: 50%;

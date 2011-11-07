@@ -30,9 +30,9 @@ var esviji = {
   drawnLevelAndLives: null,
   
   init: function init() {
-    esviji.board = Raphael('board', 320, 480);
+    esviji.board = Raphael('board', 320, 460);
 
-    var header = esviji.board.path('M 0 0 l 0 225 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 120 0 l 0 -50 z'),
+    var header = esviji.board.path('M 0 0 l 0 205 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 120 0 l 0 -30 z'),
         title = esviji.board.print(0, 40, "esviji", esviji.board.getFont('ChewyRegular'), 60);
         
     esviji.drawScore();
@@ -73,7 +73,7 @@ var esviji = {
   },
 
   yToCoord: function yToCoord(y) {
-    return 480 - 35 * y;
+    return 460 - 35 * y;
   },
   
   startNewTurn: function startNewTurn() {
@@ -246,8 +246,8 @@ var esviji = {
           } else {
             pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].regularPieces[esviji.currentPieces[x][y] - 1] + '.svg';
           }
-          piece_x = x * 35 - 30;
-          piece_y = 480 - 35 * y;
+          piece_x = esviji.xToCoord(x);
+          piece_y = esviji.yToCoord(y);
           esviji.drawnCurrentPieces[x][y] = esviji.board.image(pieceFile, piece_x, -30, 30, 30);
           esviji.drawnCurrentPieces[x][y].animate({'y': piece_y}, 2000, 'bounce');
         }
@@ -303,7 +303,7 @@ var esviji = {
     if (esviji.drawnScore != null) {
       esviji.drawnScore.remove();
     }
-    esviji.drawnScore = esviji.board.print(170, 28, "score: " + esviji.score, esviji.board.getFont('ChewyRegular'), 28);
+    esviji.drawnScore = esviji.board.print(170, 18, "score: " + esviji.score, esviji.board.getFont('ChewyRegular'), 24);
     esviji.drawnScore.attr({'fill': '#333366'});
   },
   
@@ -311,7 +311,7 @@ var esviji = {
     if (esviji.drawnLevel != null) {
       esviji.drawnLevel.remove();
     }
-    esviji.drawnLevel = esviji.board.print(10,100, 'level ' + esviji.level, esviji.board.getFont('ChewyRegular'), 20);
+    esviji.drawnLevel = esviji.board.print(10,90, 'level ' + esviji.level, esviji.board.getFont('ChewyRegular'), 18);
     esviji.drawnLevel.attr({'fill': '#333366'});
   },
   
@@ -319,7 +319,7 @@ var esviji = {
     if (esviji.drawnLives != null) {
       esviji.drawnLives.remove();
     }
-    esviji.drawnLives = esviji.board.print(10, 130, esviji.lives + ' lives', esviji.board.getFont('ChewyRegular'), 20);
+    esviji.drawnLives = esviji.board.print(10, 120, esviji.lives + ' lives', esviji.board.getFont('ChewyRegular'), 18);
     esviji.drawnLives.attr({'fill': '#333366'});
   },
 
