@@ -22,7 +22,7 @@ var esviji = {
   currentPosY: 7,
   maxAvailablePieces: 0,
   nbPieces: 0,
-  level: 10,
+  level: 0,
   score: 0,
   scoreThisTurn: 0,
   drawnScore: null,
@@ -63,6 +63,7 @@ var esviji = {
     esviji.nbPieces = Math.min(esviji.maxAvailablePieces, Math.floor(5 + (esviji.level / 5)));
 
     esviji.initPieces();
+    esviji.erasePieces();
     esviji.drawPieces();
 
     esviji.startNewTurn();
@@ -84,7 +85,7 @@ var esviji = {
     esviji.currentDirY = 0;
     esviji.getValidPieces();
     if (esviji.validPieces.length == 0) {
-      // TODO: can it really happen?
+      // no more valid piece, end of the turn
       esviji.nextLevel();
     } else {
       if (esviji.validPieces.indexOf(esviji.currentPiece) == -1) {
@@ -254,6 +255,18 @@ var esviji = {
           piece_y = esviji.yToCoord(y);
           esviji.drawnCurrentPieces[x][y] = esviji.board.image(pieceFile, piece_x, -30, 30, 30);
           esviji.drawnCurrentPieces[x][y].animate({'y': piece_y}, 2000, 'bounce');
+        }
+      }
+    }
+  },
+
+  erasePieces: function erasePieces() {
+    for(x = 1; x <= 6; x++) {
+      if (esviji.drawnCurrentPieces[x] != undefined) {
+        for (y = 1; y <= 6; y++) {
+          if (esviji.drawnCurrentPieces[x][y] != null) {
+            esviji.drawnCurrentPieces[x][y].remove();
+          }
         }
       }
     }
