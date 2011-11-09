@@ -1,5 +1,4 @@
 window.onload = function(){
-  window.scrollTo(0, 1); // hide the URL bar?
   esviji.run();
 }
 
@@ -28,8 +27,12 @@ var esviji = {
   drawnScore: null,
   lives: 10,
   drawnLevelAndLives: null,
+  viewportWidth: 0,
+  viewportHeight: 0,
   
   init: function init() {
+    esviji.updateViewportSize();
+    
     esviji.board = Raphael('board', 320, 460);
 
     var header = esviji.board.path('M 1 1 l 0 205 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 108 0 l 0 -30 z'),
@@ -52,7 +55,17 @@ var esviji = {
     });
 
     esviji.maxAvailablePieces = esviji.themes[esviji.theme].regularPieces.length;
-    
+  },
+  
+  updateViewportSize: function updateViewportSize() {
+    // http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
+    var w = window,
+        d = document,
+        e = d.documentElement,
+        b = d.getElementsByTagName('body')[0];
+        
+    esviji.viewportWidth = w.innerWidth || e.clientWidth || b.clientWidth;
+    esviji.viewportHeight = w.innerHeight || e.clientHeight || b.clientHeight;
   },
     
   nextLevel: function nextLevel() {
