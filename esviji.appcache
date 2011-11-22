@@ -1,0 +1,18 @@
+CACHE MANIFEST
+# rev 0
+
+NETWORK:
+# resources you never want cached go here
+
+CACHE:
+# images
+
+
+# JavaScripts
+raphael-min.js
+esviji.js
+scale.raphael.js
+ChewyRegular_400.font.js
+
+# stylesheets
+styles.css
