@@ -3,6 +3,8 @@ window.onload = function(){
 }
 
 var esviji = {
+  VIEWPORT_WIDTH: 320,
+  VIEWPORT_HEIGHT: 460,
   EMPTY: 0,
   ROCK: -1,
   board: null,
@@ -31,9 +33,11 @@ var esviji = {
   viewportHeight: 0,
   
   init: function init() {
+    esviji.board = new ScaleRaphael('board', esviji.VIEWPORT_WIDTH, esviji.VIEWPORT_HEIGHT);
     esviji.updateViewportSize();
-    
-    esviji.board = Raphael('board', 320, 460);
+
+    var windowAddEvent = window.attachEvent || window.addEventListener;
+    windowAddEvent('onresize', esviji.updateViewportSize, false);
 
     var header = esviji.board.path('M 1 1 l 0 205 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 108 0 l 0 -30 z'),
         title = esviji.board.print(0, 40, "esviji", esviji.board.getFont('ChewyRegular'), 60);
@@ -66,8 +70,18 @@ var esviji = {
         
     esviji.viewportWidth = w.innerWidth || e.clientWidth || b.clientWidth;
     esviji.viewportHeight = w.innerHeight || e.clientHeight || b.clientHeight;
-  },
     
+    esviji.board.changeSize(esviji.viewportWidth, esviji.viewportHeight, true, false);
+  },
+  
+  scaledX: function scaledX(x) {
+    return x * esviji.VIEWPORT_WIDTH / esviji.board.width;
+  },
+  
+  scaledY: function scaledY(y) {
+    return y * esviji.VIEWPORT_HEIGHT / esviji.board.height;
+  },
+
   nextLevel: function nextLevel() {
     esviji.level++;
     esviji.drawLevel();
@@ -87,7 +101,7 @@ var esviji = {
   },
 
   yToCoord: function yToCoord(y) {
-    return 460 - 35 * y;
+    return esviji.VIEWPORT_HEIGHT - 35 * y;
   },
   
   startNewTurn: function startNewTurn() {
@@ -115,7 +129,7 @@ var esviji = {
       esviji.drawnCurrentPiece.drag(function(dx, dy) {
         this.attr({
           x: esviji.xToCoord(9),
-          y: Math.min(Math.max(yBeforeDrag + dy, esviji.yToCoord(12)), esviji.yToCoord(1))
+          y: Math.min(Math.max(yBeforeDrag + esviji.scaledY(dy), esviji.yToCoord(12)), esviji.yToCoord(1))
         });
       }, function () {
         xBeforeDrag = this.attr('x');
