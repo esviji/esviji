@@ -355,7 +355,7 @@ var esviji = {
     if (esviji.drawnLevel != null) {
       esviji.drawnLevel.remove();
     }
-    esviji.drawnLevel = esviji.board.print(10, 110, 'level ' + esviji.level, esviji.board.getFont('ChewyRegular'), 18);
+    esviji.drawnLevel = esviji.board.print(10, 110, 'level ' + esviji.level, esviji.board.getFont('ChewyRegular'), 20);
     esviji.drawnLevel.attr({'fill': '#333366'});
   },
   
@@ -363,7 +363,7 @@ var esviji = {
     if (esviji.drawnLives != null) {
       esviji.drawnLives.remove();
     }
-    esviji.drawnLives = esviji.board.print(10, 140, esviji.lives + ' lives', esviji.board.getFont('ChewyRegular'), 18);
+    esviji.drawnLives = esviji.board.print(10, 140, esviji.lives + ' lives', esviji.board.getFont('ChewyRegular'), 20);
     esviji.drawnLives.attr({'fill': '#333366'});
   },
 
