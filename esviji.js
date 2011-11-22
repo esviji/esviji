@@ -4,7 +4,7 @@ window.onload = function(){
 
 var esviji = {
   VIEWPORT_WIDTH: 320,
-  VIEWPORT_HEIGHT: 460,
+  VIEWPORT_HEIGHT: 480,
   EMPTY: 0,
   ROCK: -1,
   board: null,
@@ -39,8 +39,8 @@ var esviji = {
     var windowAddEvent = window.attachEvent || window.addEventListener;
     windowAddEvent('onresize', esviji.updateViewportSize, false);
 
-    var header = esviji.board.path('M 1 1 l 0 205 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 108 0 l 0 -30 z'),
-        title = esviji.board.print(0, 40, "esviji", esviji.board.getFont('ChewyRegular'), 60);
+    var header = esviji.board.path('M 1 21 l 0 205 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 108 0 l 0 -30 z'),
+        title = esviji.board.print(0, 60, "esviji", esviji.board.getFont('ChewyRegular'), 60);
         
     esviji.drawScore();
     esviji.drawLevel();
@@ -347,7 +347,7 @@ var esviji = {
     if (esviji.drawnScore != null) {
       esviji.drawnScore.remove();
     }
-    esviji.drawnScore = esviji.board.print(170, 18, "score: " + esviji.score, esviji.board.getFont('ChewyRegular'), 24);
+    esviji.drawnScore = esviji.board.print(170, 38, "score: " + esviji.score, esviji.board.getFont('ChewyRegular'), 24);
     esviji.drawnScore.attr({'fill': '#333366'});
   },
   
@@ -355,7 +355,7 @@ var esviji = {
     if (esviji.drawnLevel != null) {
       esviji.drawnLevel.remove();
     }
-    esviji.drawnLevel = esviji.board.print(10,90, 'level ' + esviji.level, esviji.board.getFont('ChewyRegular'), 18);
+    esviji.drawnLevel = esviji.board.print(10, 110, 'level ' + esviji.level, esviji.board.getFont('ChewyRegular'), 18);
     esviji.drawnLevel.attr({'fill': '#333366'});
   },
   
@@ -363,7 +363,7 @@ var esviji = {
     if (esviji.drawnLives != null) {
       esviji.drawnLives.remove();
     }
-    esviji.drawnLives = esviji.board.print(10, 120, esviji.lives + ' lives', esviji.board.getFont('ChewyRegular'), 18);
+    esviji.drawnLives = esviji.board.print(10, 140, esviji.lives + ' lives', esviji.board.getFont('ChewyRegular'), 18);
     esviji.drawnLives.attr({'fill': '#333366'});
   },
 
