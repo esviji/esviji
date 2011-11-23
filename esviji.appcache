@@ -1,9 +1,6 @@
 CACHE MANIFEST
 # rev 1
 
-NETWORK:
-# resources you never want cached go here
-
 CACHE:
 # images
 
