@@ -1,9 +1,22 @@
 CACHE MANIFEST
-# rev 1
+# rev 4
 
 CACHE:
 # images
-
+themes/metro/m1.svg
+themes/metro/m2.svg
+themes/metro/m3.svg
+themes/metro/m4.svg
+themes/metro/m5.svg
+themes/metro/m6.svg
+themes/metro/m7.svg
+themes/metro/m8.svg
+themes/metro/m9.svg
+themes/metro/m10.svg
+themes/metro/m11.svg
+themes/metro/m12.svg
+themes/metro/m13.svg
+themes/metro/m14.svg
 
 # JavaScripts
 raphael-min.js

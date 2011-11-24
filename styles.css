@@ -5,6 +5,10 @@ body {
 }
 
 #board {
-  background-color: #fff;
+  background-color: #999;
   border: 0;
+}
+
+#board svg {
+  background-color: #fff;
 }
