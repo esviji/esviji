@@ -39,13 +39,16 @@ var esviji = {
     var windowAddEvent = window.attachEvent || window.addEventListener;
     windowAddEvent('onresize', esviji.updateViewportSize, false);
 
-    var header = esviji.board.path('M 1 21 l 0 205 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 108 0 l 0 -30 z'),
+    var background = esviji.board.rect(1, 1, esviji.VIEWPORT_WIDTH, esviji.VIEWPORT_HEIGHT),
+        header = esviji.board.path('M 1 21 l 0 205 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 108 0 l 0 -30 z'),
         title = esviji.board.print(0, 60, "esviji", esviji.board.getFont('ChewyRegular'), 60);
         
     esviji.drawScore();
     esviji.drawLevel();
     esviji.drawLives();
 
+    background.attr({ 'fill': '#ffffff'});
+    
     header.attr({
       'fill': '#9999cc',
       'stroke': '#666699',
