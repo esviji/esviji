@@ -39,7 +39,7 @@ var esviji = {
     var windowAddEvent = window.attachEvent || window.addEventListener;
     windowAddEvent('onresize', esviji.updateViewportSize, false);
 
-    var background = esviji.board.rect(1, 1, esviji.VIEWPORT_WIDTH, esviji.VIEWPORT_HEIGHT),
+    var background = esviji.board.rect(1, 21, esviji.VIEWPORT_WIDTH - 1, esviji.VIEWPORT_HEIGHT - 1),
         header = esviji.board.path('M 1 21 l 0 205 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 0 -35 l 35 0 l 108 0 l 0 -30 z'),
         title = esviji.board.print(0, 60, "esviji", esviji.board.getFont('ChewyRegular'), 60);
         
@@ -47,18 +47,20 @@ var esviji = {
     esviji.drawLevel();
     esviji.drawLives();
 
-    background.attr({ 'fill': '#ffffff'});
+    background.attr({
+      'fill': '90-#ccc-#fff:50-#ddd',
+      'stroke-width': 0
+    });
     
     header.attr({
-      'fill': '#9999cc',
-      'stroke': '#666699',
-      'stroke-width': 2
+      'fill': '270-#bfd255-#8eb92a',
+      'stroke': '#8eb92a',
+      'stroke-width': 1
     });
 
     title.attr({
-      'fill': '#666699',
-      'stroke': '#333366',
-      'stroke-width': 2
+      'fill': '#46a800',
+      'stroke-width': 0
     });
 
     esviji.maxAvailablePieces = esviji.themes[esviji.theme].regularPieces.length;
@@ -351,7 +353,7 @@ var esviji = {
       esviji.drawnScore.remove();
     }
     esviji.drawnScore = esviji.board.print(170, 38, "score: " + esviji.score, esviji.board.getFont('ChewyRegular'), 24);
-    esviji.drawnScore.attr({'fill': '#333366'});
+    esviji.drawnScore.attr({'fill': '#eee', 'stroke': '#46a800', 'stroke-width': 1});
   },
   
   drawLevel: function drawLevel() {
@@ -359,7 +361,7 @@ var esviji = {
       esviji.drawnLevel.remove();
     }
     esviji.drawnLevel = esviji.board.print(10, 110, 'level ' + esviji.level, esviji.board.getFont('ChewyRegular'), 20);
-    esviji.drawnLevel.attr({'fill': '#333366'});
+    esviji.drawnLevel.attr({'fill': '#eee', 'stroke': '#46a800', 'stroke-width': 1});
   },
   
   drawLives: function drawLives() {
@@ -367,7 +369,7 @@ var esviji = {
       esviji.drawnLives.remove();
     }
     esviji.drawnLives = esviji.board.print(10, 140, esviji.lives + ' lives', esviji.board.getFont('ChewyRegular'), 20);
-    esviji.drawnLives.attr({'fill': '#333366'});
+    esviji.drawnLives.attr({'fill': '#eee', 'stroke': '#46a800', 'stroke-width': 1});
   },
 
   run: function run() {
