@@ -8,13 +8,66 @@ var esviji = {
   EMPTY: 0,
   ROCK: -1,
   board: null,
-  theme: 'metro',
-  themes: {
-    'metro': {
-      'rock': 'metro',
-      'regularPieces': ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13', 'm14']
+  pieces: [
+    {
+      'path': 'm 0 0 l 28 0 l 0 28 l -28 0 z',
+      'attr': {
+        'fill': '45-#900-#c00',
+        'stroke': '#900'
+      }
+    },
+    {
+      'path': 'm 14 0 l 14 14 l -14 14 l -14 -14 z',
+      'attr': {
+        'fill': '45-#090-#0c0',
+        'stroke': '#090'
+      }
+    },
+    {
+      'path': 'm 14 0 l 14 28 l -14 0 l -14 0 z',
+      'attr': {
+        'fill': '45-#009-#00c',
+        'stroke': '#009'
+      }
+    },
+    {
+      'path': 'm 0 0 l 14 0 l 14 0 l -14 28 z',
+      'attr': {
+        'fill': '45-#909-#c0c',
+        'stroke': '#909'
+      }
+    },
+    {
+      'path': 'm 10 0 l 18 0 l -10 28 l -18 0 z',
+      'attr': {
+        'fill': '#990',
+        'stroke': '#990'
+      }
+    },
+    {
+      'path': 'm 0 0 l 28 0 l -5 28 l -18 0 z',
+      'attr': {
+        'fill': '#099',
+        'stroke': '#099'
+      }
+    },
+    {
+      'path': 'm 0 10 l 28 -10 l 0 -18 l -28 -10 z',
+      'attr': {
+        'fill': '#999',
+        'stroke': '#999'
+      }
     }
-  },
+  ],
+  rocks: [
+    {
+      'path': 'm 0 0 l 28 28 l 0 -28 l -28 0 z',
+      'attr': {
+        'fill': '#666',
+        'stroke': '#333'
+      }
+    }
+  ],
   currentPieces: [],
   drawnCurrentPieces: [],
   validPieces: [],
@@ -44,16 +97,14 @@ var esviji = {
         title = esviji.board.print(0, 60, "esviji", esviji.board.getFont('ChewyRegular'), 60);
         
     esviji.drawScore();
-    esviji.drawLevel();
-    esviji.drawLives();
 
     background.attr({
-      'fill': '90-#ccc-#fff:50-#ddd',
+      'fill': '45-#ccc-#fff:50-#ddd',
       'stroke-width': 0
     });
     
     header.attr({
-      'fill': '270-#bfd255-#8eb92a',
+      'fill': '315-#bfd255-#8eb92a',
       'stroke': '#8eb92a',
       'stroke-width': 1
     });
@@ -63,7 +114,7 @@ var esviji = {
       'stroke-width': 0
     });
 
-    esviji.maxAvailablePieces = esviji.themes[esviji.theme].regularPieces.length;
+    esviji.maxAvailablePieces = esviji.pieces.length;
   },
   
   updateViewportSize: function updateViewportSize() {
@@ -129,9 +180,11 @@ var esviji = {
         }
         esviji.currentPiece = esviji.validPieces[Math.floor(Math.random() * esviji.validPieces.length)];
       }
-      pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].regularPieces[esviji.currentPiece - 1] + '.svg';
-      esviji.drawnCurrentPiece = esviji.board.image(pieceFile, esviji.xToCoord(esviji.currentPosX), esviji.yToCoord(esviji.currentPosY), 30, 30);
+      esviji.drawnCurrentPiece = esviji.board.path(esviji.pieces[esviji.currentPiece - 1]['path']);
+      esviji.drawnCurrentPiece.attr(esviji.pieces[esviji.currentPiece - 1]['attr']);
+      esviji.drawnCurrentPiece.translate(esviji.xToCoord(esviji.currentPosX), esviji.yToCoord(esviji.currentPosY));
       esviji.drawnCurrentPiece.drag(function(dx, dy) {
+console.log(dy);
         this.attr({
           x: esviji.xToCoord(9),
           y: Math.min(Math.max(yBeforeDrag + esviji.scaledY(dy), esviji.yToCoord(12)), esviji.yToCoord(1))
@@ -278,15 +331,19 @@ var esviji = {
       esviji.drawnCurrentPieces[x] = [];
       for (y = 1; y <= 6; y++) {
         if (esviji.currentPieces[x][y] != esviji.EMPTY) {
-          if (esviji.currentPieces[x][y] == esviji.ROCK) {
-            pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].rock + '.svg';
-          } else {
-            pieceFile = 'themes/' + esviji.theme + '/' + esviji.themes[esviji.theme].regularPieces[esviji.currentPieces[x][y] - 1] + '.svg';
-          }
           piece_x = esviji.xToCoord(x);
           piece_y = esviji.yToCoord(y);
-          esviji.drawnCurrentPieces[x][y] = esviji.board.image(pieceFile, piece_x, -30, 30, 30);
-          esviji.drawnCurrentPieces[x][y].animate({'y': piece_y}, 2000, 'bounce');
+          if (esviji.currentPieces[x][y] == esviji.ROCK) {
+            rockId = 1 + Math.floor(Math.random() * esviji.rocks.length)
+            esviji.drawnCurrentPieces[x][y] = esviji.board.path(esviji.rocks[rockId - 1]['path']); 
+            esviji.drawnCurrentPieces[x][y].attr(esviji.rocks[rockId - 1]['attr']);
+            
+          } else {
+            esviji.drawnCurrentPieces[x][y] = esviji.board.path(esviji.pieces[esviji.currentPieces[x][y] - 1]['path']); 
+            esviji.drawnCurrentPieces[x][y].attr(esviji.pieces[esviji.currentPieces[x][y] - 1]['attr']);
+          }
+          esviji.drawnCurrentPieces[x][y].translate(piece_x, piece_y);
+//          esviji.drawnCurrentPieces[x][y].animate({'y': piece_y}, 2000, 'bounce');
         }
       }
     }
@@ -353,7 +410,7 @@ var esviji = {
       esviji.drawnScore.remove();
     }
     esviji.drawnScore = esviji.board.print(170, 38, "score: " + esviji.score, esviji.board.getFont('ChewyRegular'), 24);
-    esviji.drawnScore.attr({'fill': '#eee', 'stroke': '#46a800', 'stroke-width': 1});
+    esviji.drawnScore.attr({'fill': '#46a800', 'stroke-width': 0});
   },
   
   drawLevel: function drawLevel() {
@@ -361,15 +418,19 @@ var esviji = {
       esviji.drawnLevel.remove();
     }
     esviji.drawnLevel = esviji.board.print(10, 110, 'level ' + esviji.level, esviji.board.getFont('ChewyRegular'), 20);
-    esviji.drawnLevel.attr({'fill': '#eee', 'stroke': '#46a800', 'stroke-width': 1});
+    esviji.drawnLevel.attr({'fill': '#46a800', 'stroke-width': 0});
   },
   
   drawLives: function drawLives() {
     if (esviji.drawnLives != null) {
-      esviji.drawnLives.remove();
+      esviji.drawnLives.animate({'fill': '#f00'}, 500, 'easeInOut', function() {
+        this.animate({'opacity': 0}, 500, 'easeInOut', function() {
+          this.remove();
+        })
+      });
     }
     esviji.drawnLives = esviji.board.print(10, 140, esviji.lives + ' lives', esviji.board.getFont('ChewyRegular'), 20);
-    esviji.drawnLives.attr({'fill': '#eee', 'stroke': '#46a800', 'stroke-width': 1});
+    esviji.drawnLives.attr({'fill': '#46a800', 'stroke-width': 0, 'opacity': 0}).animate({'opacity': 1}, 500, 'easeInOut');
   },
 
   run: function run() {
