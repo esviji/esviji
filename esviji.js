@@ -138,6 +138,10 @@ var esviji = {
     return y * esviji.VIEWPORT_HEIGHT / esviji.board.height;
   },
 
+  unScaledY: function unScaledY(y) {
+    return y * esviji.board.height / esviji.VIEWPORT_HEIGHT;
+  },
+
   nextLevel: function nextLevel() {
     esviji.level++;
     esviji.drawLevel();
@@ -184,17 +188,15 @@ var esviji = {
       esviji.drawnCurrentPiece.attr(esviji.pieces[esviji.currentPiece - 1]['attr']);
       esviji.drawnCurrentPiece.translate(esviji.xToCoord(esviji.currentPosX), esviji.yToCoord(esviji.currentPosY));
       esviji.drawnCurrentPiece.drag(function(dx, dy) {
-console.log(dy);
-        this.attr({
-          x: esviji.xToCoord(9),
-          y: Math.min(Math.max(yBeforeDrag + esviji.scaledY(dy), esviji.yToCoord(12)), esviji.yToCoord(1))
-        });
+        // Math.min(Math.max(esviji.scaledY(dy) - yBeforeDrag, esviji.yToCoord(12) - yBeforeDrag), esviji.yToCoord(1) - yBeforeDrag)
+        this.translate(0, esviji.scaledY(dy - yBeforeDrag));
+        yBeforeDrag = dy;
       }, function () {
-        xBeforeDrag = this.attr('x');
-        yBeforeDrag = this.attr('y');
+        xBeforeDrag = 0;
+        yBeforeDrag = 0;
       }, function () {
-        yAfterDrag = this.attr('y');
-        diff = 1000; 
+        yAfterDrag = yBeforeDrag;
+        diff = 1000;
         for (i = 1; i <= 12; i++) {
           thisDiff = Math.abs(yAfterDrag - esviji.yToCoord(i));
           if (thisDiff < diff) {
@@ -343,7 +345,6 @@ console.log(dy);
             esviji.drawnCurrentPieces[x][y].attr(esviji.pieces[esviji.currentPieces[x][y] - 1]['attr']);
           }
           esviji.drawnCurrentPieces[x][y].translate(piece_x, piece_y);
-//          esviji.drawnCurrentPieces[x][y].animate({'y': piece_y}, 2000, 'bounce');
         }
       }
     }
