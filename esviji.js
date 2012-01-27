@@ -65,7 +65,7 @@ ESVIJI.game = (function(){
         }
         currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
       }
-      drawnCurrentPiece = $('#board').append('<use xlink:href="#' + pieces[currentPiece - 1] + '" transform="translate(' + xToCoord(currentPosX) + ',' + yToCoord(currentPosY) + ')" />');
+      drawnCurrentPiece = drawPiece(xToCoord(currentPosX), yToCoord(currentPosY), pieces[currentPiece - 1]);
 //      drawnCurrentPiece.drag(function(dx, dy) {
         // Math.min(Math.max(scaledY(dy) - yBeforeDrag, yToCoord(12) - yBeforeDrag), yToCoord(1) - yBeforeDrag)
 //        this.translate(0, scaledY(dy - yBeforeDrag));
@@ -205,6 +205,16 @@ ESVIJI.game = (function(){
     }
   }
   
+  function drawPiece(x, y, pieceId) {
+    var piece = $(document.createElementNS("http://www.w3.org/2000/svg","use"))
+      .attr({
+        transform: "translate(" + x + "," + y + ")"
+      });
+    piece.get(0).setAttributeNS("http://www.w3.org/1999/xlink","href","#" + pieceId);
+    $("#board").append(piece);
+    return piece;
+  }
+  
   function drawPieces() {
     drawnCurrentPieces = [];
     for(x = 1; x <= 6; x++) {
@@ -215,15 +225,9 @@ ESVIJI.game = (function(){
           piece_y = yToCoord(y);
           if (currentPieces[x][y] == ROCK) {
             rockId = 1 + Math.floor(Math.random() * rocks.length)
-            drawnCurrentPieces[x][y] = $('#board').append('<use xlink:href="#' + rocks[rockId - 1] + '" transform="translate(' + piece_x + ',' + piece_y + ')" />');
+            drawnCurrentPieces[x][y] = drawPiece(piece_x, piece_y, rocks[rockId - 1]);
           } else {
-            var piece = $(document.createElementNS("http://www.w3.org/2000/svg","use"))
-                .attr({
-                    "xlink:href": "#" + pieces[currentPieces[x][y] - 1],
-                    transform: "translate(" + piece_x + "," + piece_y + ")"
-                });
-            $("#board").append(piece);
-            drawnCurrentPieces[x][y] = piece;
+            drawnCurrentPieces[x][y] = drawPiece(piece_x, piece_y, pieces[currentPieces[x][y] - 1]);
           }
         }
       }
