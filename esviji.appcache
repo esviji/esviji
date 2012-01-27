@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# rev 4
+# rev 5
 
 CACHE:
 # images
@@ -19,10 +19,7 @@ themes/metro/m13.svg
 themes/metro/m14.svg
 
 # JavaScripts
-raphael-min.js
 esviji.js
-scale.raphael.js
-ChewyRegular_400.font.js
 
 # stylesheets
 styles.css
