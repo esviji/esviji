@@ -1,5 +1,17 @@
+@font-face {
+    font-family: 'SansitaOneRegular';
+    src: url('font/sansitaone-webfont.eot');
+    src: url('font/sansitaone-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/sansitaone-webfont.woff') format('woff'),
+         url('font/sansitaone-webfont.ttf') format('truetype'),
+         url('font/sansitaone-webfont.svg#SansitaOneRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 html, body {
-  color:  #000;
+  color:  #fff;
   background-color: #999;
   margin: 0;
   padding: 0;
@@ -8,20 +20,42 @@ html, body {
   overflow: hidden;
 }
 
+#boardGradient stop.begin {
+  stop-color: #BB77AA;
+}
+
+#boardGradient stop.end {
+  stop-color: #880077;
+}
+
 #board {
   border: 0;
   width: 100%;
   height: 100%;
-  fill: #fff;
+}
+
+#topbarGradient stop.begin {
+  stop-color: #880077;
+}
+
+#topbarGradient stop.end {
+  stop-color: #550044;
 }
 
 #title {
-  font-size: 36px;
+  font-family: SansitaOneRegular;
+  font-size: 48px;
   text-anchor: end;
-  baseline-shift: -18px;
+  fill: #fff;
 }
 
 #score, #level, #lives {
+  font-family: SansitaOneRegular;
   font-size: 18px;
+  fill: #BB77AA;
+}
+
+#score tspan, #level tspan, #lives tspan {
+  fill: #fff;
 }
 
