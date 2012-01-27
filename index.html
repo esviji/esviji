@@ -1,15 +1,34 @@
 <!doctype html>
-<html manifes="./esviji.appcache">
+<html>
 <head>
-<title>esviji, an SVG game powered by Raphaël.js</title>
+<title>esviji, an HTML5/SVG/JavaScript game</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<link rel='stylesheet' media='all' href='styles.css' type='text/css' />
-<script type="text/javascript" src="raphael-min.js"></script>
-<script type="text/javascript" src="scale.raphael.js"></script>
-<script type="text/javascript" src="ChewyRegular_400.font.js"></script>
+<link rel="stylesheet" media="all" href="styles.css" type="text/css" />
+<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="esviji.js"></script>
 </head>
-<body><div id="board"></div></body>
+
+<body>
+<svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="board" viewBox="0 0 320 480" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <symbol id="piece1"><image xlink:href="themes/metro/m1.svg" width="32" height="32" /></symbol>
+    <symbol id="piece2"><image xlink:href="themes/metro/m2.svg" width="32" height="32" /></symbol>
+    <symbol id="piece3"><image xlink:href="themes/metro/m3.svg" width="32" height="32" /></symbol>
+    <symbol id="piece4"><image xlink:href="themes/metro/m4.svg" width="32" height="32" /></symbol>
+    <symbol id="piece5"><image xlink:href="themes/metro/m5.svg" width="32" height="32" /></symbol>
+    <symbol id="piece6"><image xlink:href="themes/metro/m6.svg" width="32" height="32" /></symbol>
+  </defs>
+
+  <rect id="board" x="0" y="0" width="320" height="480" />
+
+  <polygon id="background" points="0,0 0,224 32,224 32,190 64,190 64,158 96,158 96,126 128,126 128,94 160,94 160,62 320,62 320,0" style="stroke-width: 0; fill: #ccc;" />
+
+  <text id="title" x="315" y="36">esviji</text>
+  <text id="score" x="5" y="35">score: <tspan></tspan></text>
+  <text id="level" x="5" y="65">level: <tspan></tspan></text>
+  <text id="lives" x="5" y="95">lives: <tspan></tspan></text>
+</svg>
+</body>
 </html>
