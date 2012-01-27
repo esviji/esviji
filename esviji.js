@@ -291,15 +291,15 @@ ESVIJI.game = (function(){
   }
   
   function drawScore() {
-    $('#score tspan').text(score);
+    $('#score').text(score);
   }
   
   function drawLevel() {
-    $('#level tspan').text(level);
+    $('#level').text(level);
   }
   
   function drawLives() {
-    $('#lives tspan').text(lives);
+    $('#lives').text(lives);
   }
 
   return {
