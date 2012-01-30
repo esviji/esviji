@@ -9,9 +9,15 @@ ESVIJI.game = (function(){
     drawnCurrentPieces = [],
     validPieces = [],
     currentPiece = 0,
+    drawnCurrentPiece = null,
     currentPosX = 0,
     currentPosY = 0,
+    currentDirX = -1,
+    currentDirY = 0,
     dragged = false,
+    cursorY = 0,
+    cursorMinY = 0,
+    cursorMaxY = 0,
     maxAvailablePieces = 0,
     nbPieces = 0,
     level = 0,
@@ -20,6 +26,8 @@ ESVIJI.game = (function(){
     lives = 10;
     
   function init() {
+    cursorMinY = yToSvg(1);
+    cursorMaxY = yToSvg(13);
     maxAvailablePieces = pieces.length;
     drawScore();
     nextLevel();
@@ -39,20 +47,28 @@ ESVIJI.game = (function(){
     startNewTurn();
   }
   
-  function xToCoord(x) {
+  function xToSvg(x) {
     return (x - 1) * 32;
   }
 
-  function yToCoord(y) {
+  function yToSvg(y) {
     return 480 - 32 * y;
+  }
+  
+  function svgToY(coordY) {
+    return (480 - coordY) / 32;
+  }
+  
+  function pixelsToSvgY(coordY) {
+    return coordY * 480 / $(document).height();
   }
   
   function startNewTurn() {
     currentPosX = 10;
-    currentPosY = 8;
-    scoreThisTurn = 0;
     currentDirX = -1;
+    currentPosY = 8;
     currentDirY = 0;
+    scoreThisTurn = 0;
     getValidPieces();
     if (validPieces.length == 0) {
       // no more valid piece, end of the turn
@@ -66,56 +82,47 @@ ESVIJI.game = (function(){
         }
         currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
       }
-      drawnCurrentPiece = drawPiece(xToCoord(currentPosX), yToCoord(currentPosY), pieces[currentPiece - 1], "playable");
-      drawnCurrentPiece.on('mousedown', function() {
-        dragged = true;
-        drawnCurrentPiece.addClass("dragged");
-      });
-      drawnCurrentPiece.on('mousemove', function() {
+      drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), pieces[currentPiece - 1], "playable");
+      $("#board").on('mousemove', function(event) {
         if (dragged) {
-          
+          console.log("y = " + pixelsToSvgY(event.pageY));
+          cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
+          drawnCurrentPiece.attr({ y: cursorY });
         }
       });
-      drawnCurrentPiece.on('mouseup', function() {
-        dragged = false;
-        drawnCurrentPiece.removeClass("dragged");
-        drawnCurrentPiece.off('mousedown mousemove');
-//        drawnCurrentPiece.animate({'y': yToCoord(currentPosY)}, 500, 'elastic', playUserChoice);
+      $("#board").on('mouseup', function(event) {
+        if (dragged) {
+          dragged = false;
+          drawnCurrentPiece.attr({ class: "" });
+          cursorY = Math.round((pixelsToSvgY(event.pageY) - 16) / 32) * 32;
+          cursorY = Math.min(Math.max(cursorY, cursorMaxY), cursorMinY);
+          drawnCurrentPiece.attr({ y: cursorY });
+          currentPosY = svgToY(cursorY);
+          playUserChoice();
+        }
       });
-      
-//      drawnCurrentPiece.drag(function(dx, dy) {
-        // Math.min(Math.max(scaledY(dy) - yBeforeDrag, yToCoord(12) - yBeforeDrag), yToCoord(1) - yBeforeDrag)
-//        this.translate(0, scaledY(dy - yBeforeDrag));
-//        yBeforeDrag = dy;
-//      }, function () {
-//        xBeforeDrag = 0;
-//        yBeforeDrag = 0;
-//      }, function () {
-//        yAfterDrag = yBeforeDrag;
-//        diff = 1000;
-//        for (i = 1; i <= 12; i++) {
-//          thisDiff = Math.abs(yAfterDrag - yToCoord(i));
-//          if (thisDiff < diff) {
-//            diff = thisDiff;
-//            currentPosY = i;
-//          }
-//        }
-//        drawnCurrentPiece.animate({'y': yToCoord(currentPosY)}, 500, 'elastic', playUserChoice);
-//      });
-//      
+      drawnCurrentPiece.on('mousedown', function(event) {
+        dragged = true;
+        cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
+        drawnCurrentPiece.attr({ class: "dragged", y: cursorY });
+      });
     }
   }
   
   function playUserChoice () {
+    console.log("Playing from currentPosX = " + currentPosX + " & currentPosY = " + currentPosY);
     var stopped = false;
     if (currentPosY == 1 && currentDirY == -1) {
       stopped = true;
+      console.log("stopped");
     } else {
       if (currentPosX == 1 && currentDirX == -1) {
         currentDirX = 0;
         currentDirY = -1;
+        console.log("down");
       } else {
         nextPiece = currentPieces[currentPosX + currentDirX][currentPosY + currentDirY];
+        console.log(nextPiece);
         if (nextPiece == ROCK) {
           if (currentDirX == -1) {
             currentDirX = 0;
@@ -145,21 +152,23 @@ ESVIJI.game = (function(){
       }
     }
     if (!stopped) {
-      drawnCurrentPiece.animate({'x': xToCoord(currentPosX), 'y': yToCoord(currentPosY), 'rotate': 360}, 200, 'linear', playUserChoice);
+//      drawnCurrentPiece.animate({'x': xToSvg(currentPosX), 'y': yToSvg(currentPosY), 'rotate': 360}, 200, 'linear', playUserChoice);
+      drawnCurrentPiece.attr({'x': xToSvg(currentPosX), 'y': yToSvg(currentPosY) });
+      playUserChoice();
     } else {
       score += Math.pow(scoreThisTurn, 2);
       drawScore();
       drawnCurrentPiece.remove();
       makePiecesFall();
-      startNewTurn();
+//      startNewTurn();
     }
   }
   
   function makePiecesFall() {
     var abovePieces;
     
-    for(x = 1; x <= 6; x++) {
-      for (y = 1; y <= 5; y++) {
+    for(x = 1; x <= 7; x++) {
+      for (y = 1; y <= 7; y++) {
         if (currentPieces[x][y] == EMPTY) {
           abovePieces = 0;
           for (z = y; z <= 5; z++) {
@@ -173,7 +182,7 @@ ESVIJI.game = (function(){
               currentPieces[x][z + 1] = EMPTY;
               if (drawnCurrentPieces[x][z + 1] != null) {
                 drawnCurrentPieces[x][z] = drawnCurrentPieces[x][z + 1];
-                drawnCurrentPieces[x][z].animate({'y': yToCoord(z)}, 500, 'bounce');
+                drawnCurrentPieces[x][z].animate({'y': yToSvg(z)}, 500, 'bounce');
                 drawnCurrentPieces[x][z + 1] = null;
               }
             }
@@ -189,9 +198,9 @@ ESVIJI.game = (function(){
   function initPieces() {
     currentPieces = [];
         
-    for(x = 1; x <= 8; x++) {
+    for(x = 1; x <= 9; x++) {
       currentPieces[x] = [];
-      for (y = 1; y <= 12; y++) {
+      for (y = 1; y <= 13; y++) {
         if (x > 6) {
           currentPieces[x][y] = EMPTY;
         } else {
@@ -225,7 +234,8 @@ ESVIJI.game = (function(){
   function drawPiece(x, y, pieceType, pieceId) {
     var piece = $(document.createElementNS("http://www.w3.org/2000/svg","use"))
       .attr({
-        transform: "translate(" + x + "," + y + ")"
+        x: x,
+        y: y
       });
     if (pieceId != undefined) {
       piece.attr({ id: pieceId });
@@ -237,12 +247,12 @@ ESVIJI.game = (function(){
   
   function drawPieces() {
     drawnCurrentPieces = [];
-    for(x = 1; x <= 6; x++) {
+    for(x = 1; x <= 7; x++) {
       drawnCurrentPieces[x] = [];
-      for (y = 1; y <= 6; y++) {
+      for (y = 1; y <= 7; y++) {
         if (currentPieces[x][y] != EMPTY) {
-          piece_x = xToCoord(x);
-          piece_y = yToCoord(y);
+          piece_x = xToSvg(x);
+          piece_y = yToSvg(y);
           if (currentPieces[x][y] == ROCK) {
             rockId = 1 + Math.floor(Math.random() * rocks.length)
             drawnCurrentPieces[x][y] = drawPiece(piece_x, piece_y, rocks[rockId - 1]);
@@ -255,9 +265,9 @@ ESVIJI.game = (function(){
   }
 
   function erasePieces() {
-    for(x = 1; x <= 6; x++) {
+    for(x = 1; x <= 9; x++) {
       if (drawnCurrentPieces[x] != undefined) {
-        for (y = 1; y <= 6; y++) {
+        for (y = 1; y <= 13; y++) {
           if (drawnCurrentPieces[x][y] != null) {
             drawnCurrentPieces[x][y].remove();
           }
@@ -271,8 +281,8 @@ ESVIJI.game = (function(){
 
     validPieces = [];
     
-    for (y_start = 1; y_start <= 12; y_start++) {
-      x = 9;
+    for (y_start = 1; y_start <= 13; y_start++) {
+      x = 10;
       y = y_start;
       dir_x = -1;
       dir_y = 0;

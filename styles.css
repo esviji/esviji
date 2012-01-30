@@ -55,3 +55,6 @@ html, body {
   fill: #fff;
 }
 
+#playable.dragged {
+  opacity: 0.8;
+}
