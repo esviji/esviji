@@ -11,6 +11,7 @@ ESVIJI.game = (function(){
     currentPiece = 0,
     currentPosX = 0,
     currentPosY = 0,
+    dragged = false,
     maxAvailablePieces = 0,
     nbPieces = 0,
     level = 0,
@@ -65,7 +66,23 @@ ESVIJI.game = (function(){
         }
         currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
       }
-      drawnCurrentPiece = drawPiece(xToCoord(currentPosX), yToCoord(currentPosY), pieces[currentPiece - 1]);
+      drawnCurrentPiece = drawPiece(xToCoord(currentPosX), yToCoord(currentPosY), pieces[currentPiece - 1], "playable");
+      drawnCurrentPiece.on('mousedown', function() {
+        dragged = true;
+        drawnCurrentPiece.addClass("dragged");
+      });
+      drawnCurrentPiece.on('mousemove', function() {
+        if (dragged) {
+          
+        }
+      });
+      drawnCurrentPiece.on('mouseup', function() {
+        dragged = false;
+        drawnCurrentPiece.removeClass("dragged");
+        drawnCurrentPiece.off('mousedown mousemove');
+//        drawnCurrentPiece.animate({'y': yToCoord(currentPosY)}, 500, 'elastic', playUserChoice);
+      });
+      
 //      drawnCurrentPiece.drag(function(dx, dy) {
         // Math.min(Math.max(scaledY(dy) - yBeforeDrag, yToCoord(12) - yBeforeDrag), yToCoord(1) - yBeforeDrag)
 //        this.translate(0, scaledY(dy - yBeforeDrag));
@@ -205,11 +222,14 @@ ESVIJI.game = (function(){
     }
   }
   
-  function drawPiece(x, y, pieceType) {
+  function drawPiece(x, y, pieceType, pieceId) {
     var piece = $(document.createElementNS("http://www.w3.org/2000/svg","use"))
       .attr({
         transform: "translate(" + x + "," + y + ")"
       });
+    if (pieceId != undefined) {
+      piece.attr({ id: pieceId });
+    }
     piece.get(0).setAttributeNS("http://www.w3.org/1999/xlink","href","#" + pieceType);
     $("#board").append(piece);
     return piece;
