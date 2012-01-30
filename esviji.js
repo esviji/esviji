@@ -85,7 +85,6 @@ ESVIJI.game = (function(){
       drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), pieces[currentPiece - 1], "playable");
       $("#board").on('mousemove', function(event) {
         if (dragged) {
-          console.log("y = " + pixelsToSvgY(event.pageY));
           cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
           drawnCurrentPiece.attr({ y: cursorY });
         }
@@ -110,19 +109,15 @@ ESVIJI.game = (function(){
   }
   
   function playUserChoice () {
-    console.log("Playing from currentPosX = " + currentPosX + " & currentPosY = " + currentPosY);
     var stopped = false;
     if (currentPosY == 1 && currentDirY == -1) {
       stopped = true;
-      console.log("stopped");
     } else {
       if (currentPosX == 1 && currentDirX == -1) {
         currentDirX = 0;
         currentDirY = -1;
-        console.log("down");
       } else {
         nextPiece = currentPieces[currentPosX + currentDirX][currentPosY + currentDirY];
-        console.log(nextPiece);
         if (nextPiece == ROCK) {
           if (currentDirX == -1) {
             currentDirX = 0;
@@ -152,15 +147,14 @@ ESVIJI.game = (function(){
       }
     }
     if (!stopped) {
-//      drawnCurrentPiece.animate({'x': xToSvg(currentPosX), 'y': yToSvg(currentPosY), 'rotate': 360}, 200, 'linear', playUserChoice);
-      drawnCurrentPiece.attr({'x': xToSvg(currentPosX), 'y': yToSvg(currentPosY) });
+      drawnCurrentPiece.attr({"x": xToSvg(currentPosX), "y": yToSvg(currentPosY) });
       playUserChoice();
     } else {
       score += Math.pow(scoreThisTurn, 2);
       drawScore();
       drawnCurrentPiece.remove();
       makePiecesFall();
-//      startNewTurn();
+      startNewTurn();
     }
   }
   
@@ -182,7 +176,7 @@ ESVIJI.game = (function(){
               currentPieces[x][z + 1] = EMPTY;
               if (drawnCurrentPieces[x][z + 1] != null) {
                 drawnCurrentPieces[x][z] = drawnCurrentPieces[x][z + 1];
-                drawnCurrentPieces[x][z].animate({'y': yToSvg(z)}, 500, 'bounce');
+                drawnCurrentPieces[x][z].attr({'y': yToSvg(z)});
                 drawnCurrentPieces[x][z + 1] = null;
               }
             }
@@ -205,7 +199,7 @@ ESVIJI.game = (function(){
           currentPieces[x][y] = EMPTY;
         } else {
           if (y > 6) {
-            if (y - 6 > x) {
+            if (y - 7 > x) {
               currentPieces[x][y] = ROCK;
             } else {
               currentPieces[x][y] = EMPTY;
