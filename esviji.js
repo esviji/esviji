@@ -147,7 +147,7 @@ ESVIJI.game = (function(){
       }
     }
     if (!stopped) {
-      drawnCurrentPiece.attr({"x": xToSvg(currentPosX), "y": yToSvg(currentPosY) });
+      drawnCurrentPiece.attr({ x: xToSvg(currentPosX), y: yToSvg(currentPosY) });
       playUserChoice();
     } else {
       score += Math.pow(scoreThisTurn, 2);
