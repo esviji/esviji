@@ -369,5 +369,9 @@ ESVIJI.game = (function(){
 })();
   
 $(document).ready(function () {
+//  $("#fullscreen").on("click", function() {
+//    fs = new Fullscreen($("#board"));
+//    fs.request();
+//  });
   ESVIJI.game.init();
 });
