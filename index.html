@@ -13,6 +13,26 @@
 
 <body>
 <svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="board" viewBox="0 0 320 480" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <style>
+  @font-face {
+      font-family: 'SansitaOneRegular';
+      src: url('font/sansitaone-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
+  #boardGradient stop.begin {
+    stop-color: #880077;
+  }
+  #boardGradient stop.end {
+    stop-color: #550044;
+  }
+  #title {
+    font-family: SansitaOneRegular;
+    font-size: 48px;
+    text-anchor: end;
+    fill: #fff;
+  }
+  </style>
   <defs>
     <symbol id="rock"><image xlink:href="rock.svg" width="32" height="32" /></symbol>
     <symbol id="piece1"><image xlink:href="themes/metro/m1.svg" width="32" height="32" /></symbol>
@@ -31,9 +51,9 @@
     <symbol id="piece14"><image xlink:href="themes/metro/m14.svg" width="32" height="32" /></symbol>
   </defs>
 
-  <radialGradient id="boardGradient" gradientUnits="userSpaceOnUse" cx="70%" cy="70%" r="100%">
-    <stop class="begin" offset="0" stop-color="#880077" />
-    <stop class="end" offset="1" stop-color="#550044" />
+  <radialGradient id="boardBackgroundGradient" gradientUnits="userSpaceOnUse" cx="70%" cy="70%" r="100%">
+    <stop class="begin" offset="0" />
+    <stop class="end" offset="1" />
   </radialGradient>
 
   <radialGradient id="topbarGradient" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="50%">
@@ -41,16 +61,17 @@
     <stop class="end" offset="1" />
   </radialGradient>
 
-  <rect id="board" x="0" y="0" width="320" height="480" fill="url(#boardGradient)" />
+  <rect id="boardBackground" x="0" y="0" width="320" height="480" fill="url(#boardBackgroundGradient)" />
 
   <polygon id="topbar" points="0,0 0,224 32,224 32,190 64,190 64,158 96,158 96,126 128,126 128,94 160,94 160,62 320,62 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
 
-  <text id="title" x="310" y="44">esviji</text>
 <!--  <g id="fullscreen" transform="translate(300, 5)">
     <polygon points="0,0 15,0 15,12 8,12 8,15 11,15 4,15 7,15 7,12 0,12" style="stroke-width: 1; stroke: #000; fill: #fff;" />
     <polygon points="2,6 2,10 6,10" style="stroke-width: 0; fill: #000;" />
     <polyline points="13,6 13,2 9,2" style="stroke-width: 0; fill: #000;" />
   </g>-->
+
+  <text id="title" x="280" y="44">esviji</text>
   <text id="scoreLabel" x="70" y="35">score:</text>
   <text id="score" x="85" y="35"></text>
   <text id="levelLabel" x="70" y="65">level:</text>
