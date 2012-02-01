@@ -363,6 +363,13 @@ ESVIJI.game = (function(){
     $('#lives').text(lives);
   }
 
+  function vibrate(duration) {
+    // http://hacks.mozilla.org/2012/01/using-the-vibrator-api-part-of-webapi/
+    if (navigator.mozVibrate) {
+      navigator.mozVibrate(duration);
+    }
+  }
+  
   return {
     init: init
   }
