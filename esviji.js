@@ -314,6 +314,43 @@ ESVIJI.game = (function(){
     } 
   }
   
+  function gameOver() {
+    var gameoverBackground = $("#boardBackground").clone().attr({
+        id: "gameoverBackground"
+      }).on("click", function() {
+        $("#gameover").remove();
+        $("#playagain").remove();
+        $("#gameoverBackground").remove();
+        init();
+      });
+    var gameover = $(document.createElementNS("http://www.w3.org/2000/svg","text"))
+      .attr({
+        id: "gameover",
+        x: 160,
+        y: 240
+      })
+      .text("Game Over");
+    var playagain = $(document.createElementNS("http://www.w3.org/2000/svg","text"))
+      .attr({
+        id: "playagain",
+        x: 160,
+        y: 300
+      })
+      .text("Play again?");
+    $("#board").append(gameoverBackground).append(gameover).append(playagain);
+    playing = false;
+    vibrate(500);
+  }
+  
+  function removeLife() {
+    lives--;
+    drawLives();
+    vibrate(500);
+    if (lives == 0) {
+      gameOver();
+    }
+  }
+  
   function drawScore() {
     $('#score').text(score);
   }

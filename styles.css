@@ -57,4 +57,22 @@ html, body {
 
 #playable.dragged {
   opacity: 0.8;
+}#gameoverBackground {
+  opacity: 0.7;
+}
+
+#gameover {
+  font-family: SansitaOneRegular;
+  font-size: 48px;
+  text-anchor: middle;
+  fill: #fff;
+  stroke-width: 0;
+}
+
+#playagain {
+  font-family: SansitaOneRegular;
+  font-size: 24px;
+  text-anchor: middle;
+  fill: #ddd;
+  stroke-width: 0;
 }
