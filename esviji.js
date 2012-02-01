@@ -20,12 +20,16 @@ ESVIJI.game = (function(){
     cursorMaxY = 0,
     maxAvailablePieces = 0,
     nbPieces = 0,
-    level = 0,
-    score = 0,
+    level,
+    score,
+    lives,
     scoreThisTurn = 0,
-    lives = 10;
+    playing = false;
     
   function init() {
+    level = 0;
+    score = 0;
+    lives = 1;
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(13);
     maxAvailablePieces = pieces.length;
@@ -34,6 +38,7 @@ ESVIJI.game = (function(){
   }
   
   function nextLevel() {
+    playing = true;
     level++;
     drawLevel();
     lives++;
@@ -75,36 +80,34 @@ ESVIJI.game = (function(){
       nextLevel();
     } else {
       if (validPieces.indexOf(currentPiece) == -1) {
-        lives--;
-        drawLives();
-        if (lives == 0) {
-          gameOver();
-        }
+        removeLife();
         currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
       }
-      drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), pieces[currentPiece - 1], "playable");
-      $("#board").on('mousemove', function(event) {
-        if (dragged) {
+      if (playing) {
+        drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), pieces[currentPiece - 1], "playable");
+        $("#board").on('mousemove', function(event) {
+          if (dragged) {
+            cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
+            drawnCurrentPiece.attr({ y: cursorY });
+          }
+        });
+        $("#board").on('mouseup', function(event) {
+          if (dragged) {
+            dragged = false;
+            drawnCurrentPiece.attr({ class: "" });
+            cursorY = Math.round((pixelsToSvgY(event.pageY) - 16) / 32) * 32;
+            cursorY = Math.min(Math.max(cursorY, cursorMaxY), cursorMinY);
+            drawnCurrentPiece.attr({ y: cursorY });
+            currentPosY = svgToY(cursorY);
+            playUserChoice();
+          }
+        });
+        drawnCurrentPiece.on('mousedown', function(event) {
+          dragged = true;
           cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
-          drawnCurrentPiece.attr({ y: cursorY });
-        }
-      });
-      $("#board").on('mouseup', function(event) {
-        if (dragged) {
-          dragged = false;
-          drawnCurrentPiece.attr({ class: "" });
-          cursorY = Math.round((pixelsToSvgY(event.pageY) - 16) / 32) * 32;
-          cursorY = Math.min(Math.max(cursorY, cursorMaxY), cursorMinY);
-          drawnCurrentPiece.attr({ y: cursorY });
-          currentPosY = svgToY(cursorY);
-          playUserChoice();
-        }
-      });
-      drawnCurrentPiece.on('mousedown', function(event) {
-        dragged = true;
-        cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
-        drawnCurrentPiece.attr({ class: "dragged", y: cursorY });
-      });
+          drawnCurrentPiece.attr({ class: "dragged", y: cursorY });
+        });
+      }
     }
   }
   
@@ -195,10 +198,10 @@ ESVIJI.game = (function(){
     for(x = 1; x <= 9; x++) {
       currentPieces[x] = [];
       for (y = 1; y <= 13; y++) {
-        if (x > 6) {
+        if (x > Math.max(Math.min(level, 7), 3)) {
           currentPieces[x][y] = EMPTY;
         } else {
-          if (y > 6) {
+          if (y > Math.max(Math.min(level, 7), 3)) {
             if (y - 7 > x) {
               currentPieces[x][y] = ROCK;
             } else {
@@ -375,7 +378,7 @@ ESVIJI.game = (function(){
   }
 })();
   
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function() {
 //  $("#fullscreen").on("click", function() {
 //    fs = new Fullscreen($("#board"));
 //    fs.request();
