@@ -6,78 +6,81 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <link rel="stylesheet" media="all" href="styles.css" type="text/css" />
+<script type="text/javascript" src="svgweb/svg.js" data-path="svgweb"></script>
 <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
 <!--<script type="text/javascript" src="fullscreen.min.js"></script>-->
 <script type="text/javascript" src="esviji.js"></script>
 </head>
 
 <body>
-<svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="board" viewBox="0 0 320 480" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-  <style>
-  @font-face {
-      font-family: 'SansitaOneRegular';
-      src: url('font/sansitaone-webfont.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-  }
-  #boardGradient stop.begin {
-    stop-color: #880077;
-  }
-  #boardGradient stop.end {
-    stop-color: #550044;
-  }
-  #title {
-    font-family: SansitaOneRegular;
-    font-size: 48px;
-    text-anchor: end;
-    fill: #fff;
-  }
-  </style>
-  <defs>
-    <symbol id="rock"><image xlink:href="rock.svg" width="32" height="32" /></symbol>
-    <symbol id="piece1"><image xlink:href="themes/metro/m1.svg" width="32" height="32" /></symbol>
-    <symbol id="piece2"><image xlink:href="themes/metro/m2.svg" width="32" height="32" /></symbol>
-    <symbol id="piece3"><image xlink:href="themes/metro/m3.svg" width="32" height="32" /></symbol>
-    <symbol id="piece4"><image xlink:href="themes/metro/m4.svg" width="32" height="32" /></symbol>
-    <symbol id="piece5"><image xlink:href="themes/metro/m5.svg" width="32" height="32" /></symbol>
-    <symbol id="piece6"><image xlink:href="themes/metro/m6.svg" width="32" height="32" /></symbol>
-    <symbol id="piece7"><image xlink:href="themes/metro/m7.svg" width="32" height="32" /></symbol>
-    <symbol id="piece8"><image xlink:href="themes/metro/m8.svg" width="32" height="32" /></symbol>
-    <symbol id="piece9"><image xlink:href="themes/metro/m9.svg" width="32" height="32" /></symbol>
-    <symbol id="piece10"><image xlink:href="themes/metro/m10.svg" width="32" height="32" /></symbol>
-    <symbol id="piece11"><image xlink:href="themes/metro/m11.svg" width="32" height="32" /></symbol>
-    <symbol id="piece12"><image xlink:href="themes/metro/m12.svg" width="32" height="32" /></symbol>
-    <symbol id="piece13"><image xlink:href="themes/metro/m13.svg" width="32" height="32" /></symbol>
-    <symbol id="piece14"><image xlink:href="themes/metro/m14.svg" width="32" height="32" /></symbol>
-  </defs>
-
-  <radialGradient id="boardBackgroundGradient" gradientUnits="userSpaceOnUse" cx="70%" cy="70%" r="100%">
-    <stop class="begin" offset="0" />
-    <stop class="end" offset="1" />
-  </radialGradient>
-
-  <radialGradient id="topbarGradient" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="50%">
-    <stop class="begin" offset="0" />
-    <stop class="end" offset="1" />
-  </radialGradient>
-
-  <rect id="boardBackground" x="0" y="0" width="320" height="480" fill="url(#boardBackgroundGradient)" />
-
-  <polygon id="topbar" points="0,0 0,224 32,224 32,190 64,190 64,158 96,158 96,126 128,126 128,94 160,94 160,62 320,62 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
-
-<!--  <g id="fullscreen" transform="translate(300, 5)">
-    <polygon points="0,0 15,0 15,12 8,12 8,15 11,15 4,15 7,15 7,12 0,12" style="stroke-width: 1; stroke: #000; fill: #fff;" />
-    <polygon points="2,6 2,10 6,10" style="stroke-width: 0; fill: #000;" />
-    <polyline points="13,6 13,2 9,2" style="stroke-width: 0; fill: #000;" />
-  </g>-->
-
-  <text id="title" x="280" y="44">esviji</text>
-  <text id="scoreLabel" x="70" y="35">score:</text>
-  <text id="score" x="85" y="35"></text>
-  <text id="levelLabel" x="70" y="65">level:</text>
-  <text id="level" x="85" y="65"></text>
-  <text id="livesLabel" x="70" y="95">lives:</text>
-  <text id="lives" x="85" y="95"></text>
-</svg>
+<script type="image/svg+xml">
+  <svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="board" viewBox="0 0 320 480" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+    <style>
+    @font-face {
+        font-family: 'SansitaOneRegular';
+        src: url('font/sansitaone-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    #boardGradient stop.begin {
+      stop-color: #880077;
+    }
+    #boardGradient stop.end {
+      stop-color: #550044;
+    }
+    #title {
+      font-family: SansitaOneRegular;
+      font-size: 48px;
+      text-anchor: end;
+      fill: #fff;
+    }
+    </style>
+    <defs>
+      <symbol id="rock"><image xlink:href="rock.svg" width="32" height="32" /></symbol>
+      <symbol id="piece1"><image xlink:href="themes/metro/m1.svg" width="32" height="32" /></symbol>
+      <symbol id="piece2"><image xlink:href="themes/metro/m2.svg" width="32" height="32" /></symbol>
+      <symbol id="piece3"><image xlink:href="themes/metro/m3.svg" width="32" height="32" /></symbol>
+      <symbol id="piece4"><image xlink:href="themes/metro/m4.svg" width="32" height="32" /></symbol>
+      <symbol id="piece5"><image xlink:href="themes/metro/m5.svg" width="32" height="32" /></symbol>
+      <symbol id="piece6"><image xlink:href="themes/metro/m6.svg" width="32" height="32" /></symbol>
+      <symbol id="piece7"><image xlink:href="themes/metro/m7.svg" width="32" height="32" /></symbol>
+      <symbol id="piece8"><image xlink:href="themes/metro/m8.svg" width="32" height="32" /></symbol>
+      <symbol id="piece9"><image xlink:href="themes/metro/m9.svg" width="32" height="32" /></symbol>
+      <symbol id="piece10"><image xlink:href="themes/metro/m10.svg" width="32" height="32" /></symbol>
+      <symbol id="piece11"><image xlink:href="themes/metro/m11.svg" width="32" height="32" /></symbol>
+      <symbol id="piece12"><image xlink:href="themes/metro/m12.svg" width="32" height="32" /></symbol>
+      <symbol id="piece13"><image xlink:href="themes/metro/m13.svg" width="32" height="32" /></symbol>
+      <symbol id="piece14"><image xlink:href="themes/metro/m14.svg" width="32" height="32" /></symbol>
+    </defs>
+  
+    <radialGradient id="boardBackgroundGradient" gradientUnits="userSpaceOnUse" cx="70%" cy="70%" r="100%">
+      <stop class="begin" offset="0" />
+      <stop class="end" offset="1" />
+    </radialGradient>
+  
+    <radialGradient id="topbarGradient" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="50%">
+      <stop class="begin" offset="0" />
+      <stop class="end" offset="1" />
+    </radialGradient>
+  
+    <rect id="boardBackground" x="0" y="0" width="320" height="480" fill="url(#boardBackgroundGradient)" />
+  
+    <polygon id="topbar" points="0,0 0,224 32,224 32,190 64,190 64,158 96,158 96,126 128,126 128,94 160,94 160,62 320,62 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
+  
+  <!--  <g id="fullscreen" transform="translate(300, 5)">
+      <polygon points="0,0 15,0 15,12 8,12 8,15 11,15 4,15 7,15 7,12 0,12" style="stroke-width: 1; stroke: #000; fill: #fff;" />
+      <polygon points="2,6 2,10 6,10" style="stroke-width: 0; fill: #000;" />
+      <polyline points="13,6 13,2 9,2" style="stroke-width: 0; fill: #000;" />
+    </g>-->
+  
+    <text id="title" x="280" y="44">esviji</text>
+    <text id="scoreLabel" x="70" y="35">score:</text>
+    <text id="score" x="85" y="35"></text>
+    <text id="levelLabel" x="70" y="65">level:</text>
+    <text id="level" x="85" y="65"></text>
+    <text id="livesLabel" x="70" y="95">lives:</text>
+    <text id="lives" x="85" y="95"></text>
+  </svg>
+</script>
 </body>
 </html>
