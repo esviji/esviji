@@ -86,12 +86,14 @@ ESVIJI.game = (function(){
       if (playing) {
         drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), pieces[currentPiece - 1], "playable");
         $("#board").on('mousemove', function(event) {
+          event.preventDefault();
           if (dragged) {
             cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
             drawnCurrentPiece.attr({ y: cursorY });
           }
         });
         $("#board").on('mouseup', function(event) {
+          event.preventDefault();
           if (dragged) {
             dragged = false;
             drawnCurrentPiece.attr({ class: "" });
@@ -103,6 +105,7 @@ ESVIJI.game = (function(){
           }
         });
         drawnCurrentPiece.on('mousedown', function(event) {
+          event.preventDefault();
           dragged = true;
           cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
           drawnCurrentPiece.attr({ class: "dragged", y: cursorY });
