@@ -29,7 +29,7 @@ ESVIJI.game = (function(){
   function init() {
     level = 0;
     score = 0;
-    lives = 1;
+    lives = 10;
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(13);
     maxAvailablePieces = pieces.length;
