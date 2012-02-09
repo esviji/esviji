@@ -64,7 +64,8 @@ ESVIJI.game = (function(){
   }
   
   function svgToY(coordY) {
-    return (BOARD_HEIGHT - 12 - coordY) / 32;
+    y = Math.round((BOARD_HEIGHT - coordY) / 32);
+    return y;
   }
   
   function pixelsToSvgY(coordY) {
@@ -92,7 +93,11 @@ ESVIJI.game = (function(){
           event.preventDefault();
           if (dragged) {
             cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
+            currentPosY = svgToY(cursorY);
             drawnCurrentPiece.attr({ y: cursorY });
+            if (level < 4) {
+              $('#showAim').attr({ y: yToSvg(currentPosY) });
+            }
           }
         });
         $("#board").on('mouseup', function(event) {
@@ -100,11 +105,13 @@ ESVIJI.game = (function(){
           if (dragged) {
             dragged = false;
             drawnCurrentPiece.attr({ class: "" });
-            cursorY = Math.round((pixelsToSvgY(event.pageY) - 16) / 32) * 32;
-            cursorY = Math.min(Math.max(cursorY, cursorMaxY), cursorMinY);
-            drawnCurrentPiece.attr({ y: cursorY });
+            cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
             currentPosY = svgToY(cursorY);
-            console.log('currentPosY = ' + currentPosY);
+            drawnCurrentPiece.attr({ y: cursorY });
+            if (level < 4) {
+              $('#showAim').remove();
+            }
+            currentPosY = svgToY(cursorY);
             playUserChoice();
           }
         });
@@ -112,6 +119,9 @@ ESVIJI.game = (function(){
           event.preventDefault();
           dragged = true;
           drawnCurrentPiece.attr({ class: "dragged" });
+          if (level < 4) {
+            drawPiece(240, yToSvg(currentPosY), 'arrow', 'showAim');
+          }
         });
       }
     }
@@ -119,7 +129,6 @@ ESVIJI.game = (function(){
   
   function playUserChoice () {
     var stopped = false;
-    console.log('currentPosX = ' + currentPosY + ' / currentPosY = ' + currentPosY);
     if (currentPosY == 1 && currentDirY == -1) {
       stopped = true;
     } else {
