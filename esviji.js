@@ -108,9 +108,6 @@ ESVIJI.game = (function(){
             cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
             currentPosY = svgToY(cursorY);
             drawnCurrentPiece.attr({ y: cursorY });
-            if (level < 4) {
-              $('#showAim').remove();
-            }
             currentPosY = svgToY(cursorY);
             playUserChoice();
           }
@@ -128,6 +125,7 @@ ESVIJI.game = (function(){
   }
   
   function playUserChoice () {
+    $('#showAim').remove();
     var stopped = false;
     if (currentPosY == 1 && currentDirY == -1) {
       stopped = true;
