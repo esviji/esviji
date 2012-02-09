@@ -14,7 +14,7 @@
 
 <body>
 <script type="image/svg+xml">
-  <svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="board" viewBox="0 0 320 480" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="board" viewBox="0 0 320 460" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
     <style>
     @font-face {
         font-family: 'SansitaOneRegular';
@@ -36,7 +36,7 @@
     }
     </style>
     <defs>
-      <image id="rock" xlink:href="rock.svg" width="32" height="32" />
+      <polygon id="rock" points="1,1 1,31 31,31 31,1" style="stroke-width: 1; stroke: #99608B; fill: #8A0A79;" />
       <image id="piece1" xlink:href="themes/metro/m1.svg" width="32" height="32" />
       <image id="piece2" xlink:href="themes/metro/m2.svg" width="32" height="32" />
       <image id="piece3" xlink:href="themes/metro/m3.svg" width="32" height="32" />
@@ -65,7 +65,7 @@
   
     <rect id="boardBackground" x="0" y="0" width="320" height="480" fill="url(#boardBackgroundGradient)" />
   
-    <polygon id="topbar" points="0,0 0,224 32,224 32,190 64,190 64,158 96,158 96,126 128,126 128,94 160,94 160,62 320,62 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
+    <polygon id="topbar" points="0,0 0,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 320,42 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
   
   <!--  <g id="fullscreen" transform="translate(300, 5)">
       <polygon points="0,0 15,0 15,12 8,12 8,15 11,15 4,15 7,15 7,12 0,12" style="stroke-width: 1; stroke: #000; fill: #fff;" />
@@ -73,13 +73,13 @@
       <polyline points="13,6 13,2 9,2" style="stroke-width: 0; fill: #000;" />
     </g>-->
   
-    <text id="title" x="280" y="44">esviji</text>
-    <text id="scoreLabel" x="70" y="35">score:</text>
-    <text id="score" x="85" y="35"></text>
-    <text id="levelLabel" x="70" y="65">level:</text>
-    <text id="level" x="85" y="65"></text>
-    <text id="livesLabel" x="70" y="95">lives:</text>
-    <text id="lives" x="85" y="95"></text>
+    <text id="title" x="300" y="24">esviji</text>
+    <text id="scoreLabel" x="65" y="25">score:</text>
+    <text id="score" x="75" y="25"></text>
+    <text id="levelLabel" x="65" y="50">level:</text>
+    <text id="level" x="75" y="50"></text>
+    <text id="livesLabel" x="65" y="75">lives:</text>
+    <text id="lives" x="75" y="75"></text>
   </svg>
 </script>
 </body>

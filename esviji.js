@@ -1,9 +1,12 @@
 var ESVIJI = {};
 
 ESVIJI.game = (function(){
-  var EMPTY= 0,
+  var
+    BOARD_WIDTH = 320,
+    BOARD_HEIGHT = 460,
+    EMPTY = 0,
     ROCK = -1,
-    pieces = ['piece1', 'piece2', 'piece3', 'piece4', 'piece5', 'piece6'],
+    pieces = ['piece1', 'piece2', 'piece3', 'piece4', 'piece5', 'piece6', 'piece7', 'piece8', 'piece9', 'piece10', 'piece11', 'piece12', 'piece13', 'piece14'],
     rocks = ['rock'],
     currentPieces = [],
     drawnCurrentPieces = [],
@@ -57,21 +60,21 @@ ESVIJI.game = (function(){
   }
 
   function yToSvg(y) {
-    return 480 - 32 * y;
+    return BOARD_HEIGHT - 32 * y;
   }
   
   function svgToY(coordY) {
-    return (480 - coordY) / 32;
+    return (BOARD_HEIGHT - 12 - coordY) / 32;
   }
   
   function pixelsToSvgY(coordY) {
-    return coordY * 480 / $(document).height();
+    return coordY * BOARD_HEIGHT / $(document).height();
   }
   
   function startNewTurn() {
     currentPosX = 10;
     currentDirX = -1;
-    currentPosY = 8;
+    currentPosY = 7;
     currentDirY = 0;
     scoreThisTurn = 0;
     getValidPieces();
@@ -101,14 +104,14 @@ ESVIJI.game = (function(){
             cursorY = Math.min(Math.max(cursorY, cursorMaxY), cursorMinY);
             drawnCurrentPiece.attr({ y: cursorY });
             currentPosY = svgToY(cursorY);
+            console.log('currentPosY = ' + currentPosY);
             playUserChoice();
           }
         });
         drawnCurrentPiece.on('mousedown', function(event) {
           event.preventDefault();
           dragged = true;
-          cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
-          drawnCurrentPiece.attr({ class: "dragged", y: cursorY });
+          drawnCurrentPiece.attr({ class: "dragged" });
         });
       }
     }
@@ -116,6 +119,7 @@ ESVIJI.game = (function(){
   
   function playUserChoice () {
     var stopped = false;
+    console.log('currentPosX = ' + currentPosY + ' / currentPosY = ' + currentPosY);
     if (currentPosY == 1 && currentDirY == -1) {
       stopped = true;
     } else {
@@ -171,7 +175,7 @@ ESVIJI.game = (function(){
       for (y = 1; y <= 7; y++) {
         if (currentPieces[x][y] == EMPTY) {
           abovePieces = 0;
-          for (z = y; z <= 5; z++) {
+          for (z = y; z <= 6; z++) {
             if (currentPieces[x][z + 1] != EMPTY && currentPieces[x][z + 1] != ROCK) {
               abovePieces++;
             }
