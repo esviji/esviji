@@ -15,26 +15,6 @@
 <body>
 <script type="image/svg+xml">
   <svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="board" viewBox="0 0 320 460" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-    <style>
-    @font-face {
-        font-family: 'SansitaOneRegular';
-        src: url('font/sansitaone-webfont.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
-    #boardGradient stop.begin {
-      stop-color: #880077;
-    }
-    #boardGradient stop.end {
-      stop-color: #550044;
-    }
-    #title {
-      font-family: SansitaOneRegular;
-      font-size: 48px;
-      text-anchor: end;
-      fill: #fff;
-    }
-    </style>
     <defs>
       <polygon id="arrow" points="0,16 10,6 8,12 40,12 40,20 8,20 10,26" style="stroke-width: 0; fill: #ac2c9b;" />
       <polygon id="rock" points="1,1 1,31 31,31 31,1" style="stroke-width: 1; stroke: #99608B; fill: #8A0A79;" />
@@ -52,6 +32,25 @@
       <image id="piece12" xlink:href="themes/metro/m12.svg" width="32" height="32" />
       <image id="piece13" xlink:href="themes/metro/m13.svg" width="32" height="32" />
       <image id="piece14" xlink:href="themes/metro/m14.svg" width="32" height="32" />
+      
+      <g id="pausePanel">
+        <use xlink:href="#boardBackground" style="opacity: 0.7" />
+        <text x="160" y="140" class="title">Pause</text>
+        <g class="resume">
+          <rect x="100" y="200" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <text x="160" y="225">Resume</text>
+        </g>
+        <g class="fullscreen">
+          <rect x="100" y="250" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <text x="160" y="275">Full screen</text>
+        </g>
+      </g>
+      
+      <g id="gameOverPanel" style="display: none">
+        <use xlink:href="#boardBackground" style="opacity: 0.7" />
+        <text x="160" y="240" class="title">Game Over</text>
+        <text id="playagain" x="160" y="300">Play again?</text>
+      </g>
     </defs>
   
     <radialGradient id="boardBackgroundGradient" gradientUnits="userSpaceOnUse" cx="70%" cy="70%" r="100%">
@@ -73,8 +72,13 @@
       <polygon points="2,6 2,10 6,10" style="stroke-width: 0; fill: #000;" />
       <polyline points="13,6 13,2 9,2" style="stroke-width: 0; fill: #000;" />
     </g>-->
+
+    <g id="pauseButton" transform="translate(300, 15)">
+      <rect x="0" y="0" width="5" height="12" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
+      <rect x="7" y="0" width="5" height="12" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
+    </g>
   
-    <text id="title" x="300" y="24">esviji</text>
+    <text id="title" x="250" y="30">esviji</text>
     <text id="scoreLabel" x="65" y="25">score:</text>
     <text id="score" x="75" y="25"></text>
     <text id="levelLabel" x="65" y="50">level:</text>

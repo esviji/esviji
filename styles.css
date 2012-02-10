@@ -38,8 +38,7 @@ html, body {
 }
 
 #title {
-  font-family: SansitaOneRegular;
-  font-size: 140px;
+  font-size: 34px;
   text-anchor: end;
   fill: #fff;
   stroke-width: 0;
@@ -60,12 +59,11 @@ html, body {
   opacity: 0.8;
 }
 
-#gameoverBackground {
+#gameoverBackground, #pauseBackground {
   opacity: 0.7;
 }
 
-#gameover {
-  font-family: SansitaOneRegular;
+#gameover .title, #pause .title {
   font-size: 48px;
   text-anchor: middle;
   fill: #fff;
@@ -73,9 +71,15 @@ html, body {
 }
 
 #playagain {
-  font-family: SansitaOneRegular;
   font-size: 24px;
   text-anchor: middle;
   fill: #ddd;
+  stroke-width: 0;
+}
+
+#pause .resume text, #pause .fullscreen text {
+  font-size: 18px;
+  text-anchor: middle;
+  fill: #880077;
   stroke-width: 0;
 }

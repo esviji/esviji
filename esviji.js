@@ -36,6 +36,13 @@ ESVIJI.game = (function(){
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(13);
     maxAvailablePieces = pieces.length;
+    
+    /* handlers */
+    $('#pauseButton').on('click', function() {
+      $('#pausePanel').clone().attr('id', 'pause').appendTo('#board');
+      $('#pause .resume').on('click', function() { $('#pause').remove(); });
+    });
+
     drawScore();
     nextLevel();
   }
@@ -243,19 +250,21 @@ ESVIJI.game = (function(){
   }
   
   function drawPiece(x, y, pieceType, pieceId) {
-    var piece = $(document.createElementNS("http://www.w3.org/2000/svg","use"))
-      .attr({
-        x: x,
-        y: y
-      });
-    if (pieceId != undefined) {
-      piece.attr({ id: pieceId });
-    }
-    piece.get(0).setAttributeNS("http://www.w3.org/1999/xlink","href","#" + pieceType);
+    var piece = svgUse(pieceType, pieceId);
+    piece.attr({ x: x, y: y });
     $("#board").append(piece);
     return piece;
   }
-  
+
+  function svgUse(refId, useId) {
+    var use = $(document.createElementNS("http://www.w3.org/2000/svg","use"));
+    if (useId !== undefined) {
+      use.attr({ id: useId });
+    }
+    use.get(0).setAttributeNS("http://www.w3.org/1999/xlink","href","#" + refId);
+    return use;
+  }
+    
   function drawPieces() {
     drawnCurrentPieces = [];
     for(x = 1; x <= 7; x++) {
@@ -332,33 +341,12 @@ ESVIJI.game = (function(){
   }
   
   function gameOver() {
-    var gameoverBackground = $("#boardBackground").clone().attr({
-        id: "gameoverBackground"
-      }).on("click", function() {
-        $("#gameover").remove();
-        $("#playagain").remove();
-        $("#gameoverBackground").remove();
-        init();
-      });
-    var gameover = $(document.createElementNS("http://www.w3.org/2000/svg","text"))
-      .attr({
-        id: "gameover",
-        x: 160,
-        y: 240
-      })
-      .text("Game Over");
-    var playagain = $(document.createElementNS("http://www.w3.org/2000/svg","text"))
-      .attr({
-        id: "playagain",
-        x: 160,
-        y: 300
-      })
-      .text("Play again?");
-    $("#board").append(gameoverBackground).append(gameover).append(playagain);
+    var gameover = svgUse('gameOverPanel', 'gameOver').attr({ x: 0, y: 0 });
+    $("#board").append(gameover);
     playing = false;
     vibrate(500);
   }
-  
+
   function removeLife() {
     lives--;
     drawLives();
