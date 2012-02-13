@@ -101,19 +101,19 @@ ESVIJI.game = (function(){
         $("#board").on('mouseup touchend', cursorEnd);
         drawnCurrentPiece.on('mousedown touchstart', cursorStart);
         
-  			Touchy(drawnCurrentPiece, function (hand, finger) {
-  				function drawPoint (point) {
-  					var elem = document.createElement('div');
-  					elem.className = 'point';
-  					elem.style.top = point.y + 'px';
-  					elem.style.left = point.x + 'px';
-  					touchMe.appendChild(elem);
-  				}
-  
-  				finger.on('start', cursorStart);
-  				finger.on('move', cursorMove);
-  				finger.on('end', cursorEnd);
-  			});
+//  			Touchy(drawnCurrentPiece, function (hand, finger) {
+//  				function drawPoint (point) {
+//  					var elem = document.createElement('div');
+//  					elem.className = 'point';
+//  					elem.style.top = point.y + 'px';
+//  					elem.style.left = point.x + 'px';
+//  					touchMe.appendChild(elem);
+//  				}
+//  
+//  				finger.on('start', cursorStart);
+//  				finger.on('move', cursorMove);
+//  				finger.on('end', cursorEnd);
+//  			});
         
       }
     }
