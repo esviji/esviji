@@ -33,6 +33,52 @@
       <image id="piece12" xlink:href="themes/metro/m12.svg" width="32" height="32" />
       <image id="piece13" xlink:href="themes/metro/m13.svg" width="32" height="32" />
       <image id="piece14" xlink:href="themes/metro/m14.svg" width="32" height="32" />
+
+      <radialGradient id="boardBackgroundGradient" gradientUnits="userSpaceOnUse" cx="70%" cy="70%" r="100%">
+        <stop class="begin" offset="0" />
+        <stop class="end" offset="1" />
+      </radialGradient>
+    
+      <radialGradient id="topbarGradient" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="50%">
+        <stop class="begin" offset="0" />
+        <stop class="end" offset="1" />
+      </radialGradient>
+    
+      <rect id="boardBackground" x="0" y="0" width="320" height="480" fill="url(#boardBackgroundGradient)" />
+      
+      <g id="startPanel">
+        <use xlink:href="#boardBackground" style="opacity: 0.8" />
+        <text x="160" y="140" class="title">esviji</text>
+        <g class="start">
+          <rect x="100" y="200" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <text x="160" y="225">Start</text>
+        </g>
+      </g>
+
+      <g id="playPanel">
+        <use xlink:href="#boardBackground" style="opacity: 0.8" />
+        <polygon id="topbar" points="0,0 0,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 320,42 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
+      
+        <!--<g id="fullscreen" transform="translate(300, 5)">
+          <polygon points="0,0 15,0 15,12 8,12 8,15 11,15 4,15 7,15 7,12 0,12" style="stroke-width: 1; stroke: #000; fill: #fff;" />
+          <polygon points="2,6 2,10 6,10" style="stroke-width: 0; fill: #000;" />
+          <polyline points="13,6 13,2 9,2" style="stroke-width: 0; fill: #000;" />
+        </g>-->
+    
+        <g id="pauseButton" transform="translate(285, 5)">
+          <rect x="0" y="0" width="32" height="32" style="fill: transparent;" />
+          <rect x="7" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
+          <rect x="19" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
+        </g>
+      
+        <text id="title" x="250" y="30">esviji</text>
+        <text id="scoreLabel" x="65" y="25">score:</text>
+        <text id="score" x="75" y="25"></text>
+        <text id="levelLabel" x="65" y="50">level:</text>
+        <text id="level" x="75" y="50"></text>
+        <text id="livesLabel" x="65" y="75">lives:</text>
+        <text id="lives" x="75" y="75"></text>
+      </g>
       
       <g id="pausePanel">
         <use xlink:href="#boardBackground" style="opacity: 0.8" />
@@ -53,40 +99,8 @@
         <text id="playagain" x="160" y="300">Play again?</text>
       </g>
     </defs>
-  
-    <radialGradient id="boardBackgroundGradient" gradientUnits="userSpaceOnUse" cx="70%" cy="70%" r="100%">
-      <stop class="begin" offset="0" />
-      <stop class="end" offset="1" />
-    </radialGradient>
-  
-    <radialGradient id="topbarGradient" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="50%">
-      <stop class="begin" offset="0" />
-      <stop class="end" offset="1" />
-    </radialGradient>
-  
-    <rect id="boardBackground" x="0" y="0" width="320" height="480" fill="url(#boardBackgroundGradient)" />
-  
-    <polygon id="topbar" points="0,0 0,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 320,42 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
-  
-  <!--  <g id="fullscreen" transform="translate(300, 5)">
-      <polygon points="0,0 15,0 15,12 8,12 8,15 11,15 4,15 7,15 7,12 0,12" style="stroke-width: 1; stroke: #000; fill: #fff;" />
-      <polygon points="2,6 2,10 6,10" style="stroke-width: 0; fill: #000;" />
-      <polyline points="13,6 13,2 9,2" style="stroke-width: 0; fill: #000;" />
-    </g>-->
-
-    <g id="pauseButton" transform="translate(285, 5)">
-      <rect x="0" y="0" width="32" height="32" style="fill: transparent;" />
-      <rect x="7" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
-      <rect x="19" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
-    </g>
-  
-    <text id="title" x="250" y="30">esviji</text>
-    <text id="scoreLabel" x="65" y="25">score:</text>
-    <text id="score" x="75" y="25"></text>
-    <text id="levelLabel" x="65" y="50">level:</text>
-    <text id="level" x="75" y="50"></text>
-    <text id="livesLabel" x="65" y="75">lives:</text>
-    <text id="lives" x="75" y="75"></text>
+    
+    <use id="play" xlink:href="#playPanel" />
   </svg>
 </script>
 </body>
