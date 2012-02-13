@@ -120,7 +120,6 @@ ESVIJI.game = (function(){
   }
 
   function cursorStart (event) {
-    console.log(event);
     event.preventDefault();
     dragged = true;
     drawnCurrentPiece.attr({ class: "dragged" });
@@ -132,6 +131,11 @@ ESVIJI.game = (function(){
   function cursorMove (event) {
     event.preventDefault();
     if (dragged) {
+      if(event.originalEvent.touches && event.originalEvent.touches.length) {
+          event = event.originalEvent.touches[0];
+      } else if(event.originalEvent.changedTouches && event.originalEvent.changedTouches.length) {
+          event = event.originalEvent.changedTouches[0];
+      }
       cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
       currentPosY = svgToY(cursorY);
       drawnCurrentPiece.attr({ y: cursorY });
@@ -144,6 +148,11 @@ ESVIJI.game = (function(){
   function cursorEnd (event) {
     event.preventDefault();
     if (dragged) {
+      if(event.originalEvent.touches && event.originalEvent.touches.length) {
+          event = event.originalEvent.touches[0];
+      } else if(event.originalEvent.changedTouches && event.originalEvent.changedTouches.length) {
+          event = event.originalEvent.changedTouches[0];
+      }
       dragged = false;
       drawnCurrentPiece.attr({ class: "" });
       cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
