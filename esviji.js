@@ -96,41 +96,64 @@ ESVIJI.game = (function(){
       }
       if (playing) {
         drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), pieces[currentPiece - 1], "playable");
-        $("#board").on('mousemove', function(event) {
-          event.preventDefault();
-          if (dragged) {
-            cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
-            currentPosY = svgToY(cursorY);
-            drawnCurrentPiece.attr({ y: cursorY });
-            if (level < 4) {
-              $('#showAim').attr({ y: yToSvg(currentPosY) });
-            }
-          }
-        });
-        $("#board").on('mouseup', function(event) {
-          event.preventDefault();
-          if (dragged) {
-            dragged = false;
-            drawnCurrentPiece.attr({ class: "" });
-            cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
-            currentPosY = svgToY(cursorY);
-            drawnCurrentPiece.attr({ y: cursorY });
-            currentPosY = svgToY(cursorY);
-            playUserChoice();
-          }
-        });
-        drawnCurrentPiece.on('mousedown', function(event) {
-          event.preventDefault();
-          dragged = true;
-          drawnCurrentPiece.attr({ class: "dragged" });
-          if (level < 4) {
-            drawPiece(240, yToSvg(currentPosY), 'arrow', 'showAim');
-          }
-        });
+
+        $("#board").on('mousemove', cursorMove);
+        $("#board").on('mouseup', cursorEnd);
+        drawnCurrentPiece.on('mousedown', cursorStart);
+        
+  			Touchy(drawnCurrentPiece, function (hand, finger) {
+  				function drawPoint (point) {
+  					var elem = document.createElement('div');
+  					elem.className = 'point';
+  					elem.style.top = point.y + 'px';
+  					elem.style.left = point.x + 'px';
+  					touchMe.appendChild(elem);
+  				}
+  
+  				finger.on('start', cursorStart);
+  				finger.on('move', cursorMove);
+  				finger.on('end', cursorEnd);
+  			});
+        
       }
     }
   }
-  
+
+  function cursorStart (event) {
+    console.log(event);
+    event.preventDefault();
+    dragged = true;
+    drawnCurrentPiece.attr({ class: "dragged" });
+    if (level < 4) {
+      drawPiece(240, yToSvg(currentPosY), 'arrow', 'showAim');
+    }
+  }
+
+  function cursorMove (event) {
+    event.preventDefault();
+    if (dragged) {
+      cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
+      currentPosY = svgToY(cursorY);
+      drawnCurrentPiece.attr({ y: cursorY });
+      if (level < 4) {
+        $('#showAim').attr({ y: yToSvg(currentPosY) });
+      }
+    }
+  }
+
+  function cursorEnd (event) {
+    event.preventDefault();
+    if (dragged) {
+      dragged = false;
+      drawnCurrentPiece.attr({ class: "" });
+      cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
+      currentPosY = svgToY(cursorY);
+      drawnCurrentPiece.attr({ y: cursorY });
+      currentPosY = svgToY(cursorY);
+      playUserChoice();
+    }
+  }  
+
   function playUserChoice () {
     $('#showAim').remove();
     var stopped = false;
@@ -385,5 +408,6 @@ document.addEventListener("DOMContentLoaded", function() {
 //    fs = new Fullscreen($("#board"));
 //    fs.request();
 //  });
+	Touchy.stopWindowBounce();
   ESVIJI.game.init();
 });
