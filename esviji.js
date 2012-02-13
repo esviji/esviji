@@ -97,9 +97,9 @@ ESVIJI.game = (function(){
       if (playing) {
         drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), pieces[currentPiece - 1], "playable");
 
-        $("#board").on('mousemove', cursorMove);
-        $("#board").on('mouseup', cursorEnd);
-        drawnCurrentPiece.on('mousedown', cursorStart);
+        $("#board").on('mousemove touchmove', cursorMove);
+        $("#board").on('mouseup touchend', cursorEnd);
+        drawnCurrentPiece.on('mousedown touchstart', cursorStart);
         
   			Touchy(drawnCurrentPiece, function (hand, finger) {
   				function drawPoint (point) {
