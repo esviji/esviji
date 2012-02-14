@@ -44,6 +44,10 @@ ESVIJI.game = (function(){
     $('#play').remove();
     $('#playPanel').clone().attr('id', 'play').appendTo('#board');
     $('.pauseButton').on('click', pause);
+    //  $("#fullscreen").on("click", function() {
+    //    fs = new Fullscreen($("#board"));
+    //    fs.request();
+    //  });
     nextLevel();
   }
   
@@ -436,11 +440,5 @@ ESVIJI.game = (function(){
 })();
   
 document.addEventListener("DOMContentLoaded", function() {
-//  $("#fullscreen").on("click", function() {
-//    fs = new Fullscreen($("#board"));
-//    fs.request();
-//  });
-  // TODO: mandatory?
-	Touchy.stopWindowBounce();
   ESVIJI.game.init();
 });
