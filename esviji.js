@@ -42,6 +42,9 @@ ESVIJI.game = (function(){
     score = 0;
     lives = 0;
     $('#play').remove();
+    if (drawnCurrentPiece !== null) {
+      drawnCurrentPiece.remove();
+    }
     $('#playPanel').clone().attr('id', 'play').appendTo('#board');
     $('.pauseButton').on('click', pause);
     //  $("#fullscreen").on("click", function() {
@@ -61,6 +64,7 @@ ESVIJI.game = (function(){
     nbPieces = Math.min(maxAvailablePieces, Math.floor(5 + (level / 5)));
 
     erasePieces();
+    
     initPieces();
     drawPieces();
 
