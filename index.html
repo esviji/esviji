@@ -5,6 +5,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="apple-touch-icon" href="esviji-icon.png" />
 <link rel="stylesheet" media="all" href="styles.css" type="text/css" />
 <script type="text/javascript" src="js/svgweb/svg.js" data-path="svgweb"></script>
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -108,19 +109,37 @@
     
     <g id="main">
       <use xlink:href="#boardBackground" />
-      <text x="160" y="140" class="title">esviji</text>
+      <g style="opacity: 0.2">
+        <use xlink:href="#piece3" x="16" y="16" transform="scale(2)" />
+        <use xlink:href="#piece12" x="48" y="16" transform="scale(2)" />
+        <use xlink:href="#piece4" x="80" y="16" transform="scale(2)" />
+        <use xlink:href="#piece2" x="112" y="16" transform="scale(2)" />
+        <use xlink:href="#piece1" x="16" y="48" transform="scale(2)" />
+        <use xlink:href="#piece3" x="48" y="48" transform="scale(2)" />
+        <use xlink:href="#piece11" x="80" y="48" transform="scale(2)" />
+        <use xlink:href="#piece3" x="112" y="48" transform="scale(2)" />
+        <use xlink:href="#piece7" x="16" y="80" transform="scale(2)" />
+        <use xlink:href="#piece2" x="48" y="80" transform="scale(2)" />
+        <use xlink:href="#piece4" x="80" y="80" transform="scale(2)" />
+        <use xlink:href="#piece1" x="112" y="80" transform="scale(2)" />
+        <use xlink:href="#piece2" x="16" y="112" transform="scale(2)" />
+        <use xlink:href="#piece4" x="48" y="112" transform="scale(2)" />
+        <use xlink:href="#piece9" x="80" y="112" transform="scale(2)" />
+        <use xlink:href="#piece14" x="112" y="112" transform="scale(2)" />
+      </g>
+      <text x="160" y="180" class="title">esviji</text>
       <g class="start">
-        <rect x="100" y="200" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
-        <text x="160" y="225">Start</text>
+        <rect x="100" y="300" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+        <text x="160" y="325">Start</text>
       </g>
       <!--
       <g class="scores">
-        <rect x="100" y="250" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
-        <text x="160" y="275">Scores</text>
+        <rect x="100" y="350" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+        <text x="160" y="375">Scores</text>
       </g>
       <g class="about">
-        <rect x="100" y="300" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
-        <text x="160" y="325">About</text>
+        <rect x="100" y="400" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+        <text x="160" y="425">About</text>
       </g>
       -->
     </g>
