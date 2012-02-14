@@ -83,7 +83,7 @@ html, body {
   text-anchor: middle;
 }
 
-.start text, .scores text, .about text, .resume text, .fullscreen text, .playagain text, .exit text {
+.start text, .scores text, .about text, .resume text, .restart text, .fullscreen text, .playagain text, .exit text {
   font-size: 18px;
   text-anchor: middle;
   fill: #880077;
