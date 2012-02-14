@@ -44,13 +44,13 @@ html, body {
   stroke-width: 0;
 }
 
-#scoreLabel, #levelLabel, #livesLabel {
+.scoreLabel, .levelLabel, .livesLabel {
   text-anchor: end;
   fill: #CF83BC;
   stroke-width: 0;
 }
 
-#score, #level, #lives {
+.score, .level, .lives {
   fill: #fff;
   stroke-width: 0;
 }
@@ -59,25 +59,31 @@ html, body {
   opacity: 0.8;
 }
 
-#gameoverBackground, #pauseBackground {
+#gameOverBackground, #pauseBackground {
   opacity: 0.7;
 }
 
-#gameover .title, #pause .title {
+#main .title {
+  font-size: 96px;
+  text-anchor: middle;
+  fill: #fff;
+  stroke-width: 0;
+}
+
+#gameOver .title, #pause .title {
   font-size: 48px;
   text-anchor: middle;
   fill: #fff;
   stroke-width: 0;
 }
 
-#playagain {
-  font-size: 24px;
+#gameOver .score {
+  font-size: 34px;
+  fill: #CF83BC;
   text-anchor: middle;
-  fill: #ddd;
-  stroke-width: 0;
 }
 
-#pause .resume text, #pause .fullscreen text {
+.start text, .scores text, .about text, .resume text, .fullscreen text, .playagain text, .exit text {
   font-size: 18px;
   text-anchor: middle;
   fill: #880077;

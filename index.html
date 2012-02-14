@@ -46,17 +46,8 @@
     
       <rect id="boardBackground" x="0" y="0" width="320" height="480" fill="url(#boardBackgroundGradient)" />
       
-      <g id="startPanel">
-        <use xlink:href="#boardBackground" style="opacity: 0.8" />
-        <text x="160" y="140" class="title">esviji</text>
-        <g class="start">
-          <rect x="100" y="200" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
-          <text x="160" y="225">Start</text>
-        </g>
-      </g>
-
       <g id="playPanel">
-        <use xlink:href="#boardBackground" style="opacity: 0.8" />
+        <use xlink:href="#boardBackground" />
         <polygon id="topbar" points="0,0 0,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 320,42 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
       
         <!--<g id="fullscreen" transform="translate(300, 5)">
@@ -65,19 +56,19 @@
           <polyline points="13,6 13,2 9,2" style="stroke-width: 0; fill: #000;" />
         </g>-->
     
-        <g id="pauseButton" transform="translate(285, 5)">
+        <g class="pauseButton" transform="translate(285, 5)">
           <rect x="0" y="0" width="32" height="32" style="fill: transparent;" />
           <rect x="7" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
           <rect x="19" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
         </g>
       
         <text id="title" x="250" y="30">esviji</text>
-        <text id="scoreLabel" x="65" y="25">score:</text>
-        <text id="score" x="75" y="25"></text>
-        <text id="levelLabel" x="65" y="50">level:</text>
-        <text id="level" x="75" y="50"></text>
-        <text id="livesLabel" x="65" y="75">lives:</text>
-        <text id="lives" x="75" y="75"></text>
+        <text class="scoreLabel" x="65" y="25">score:</text>
+        <text class="score" x="75" y="25"></text>
+        <text class="levelLabel" x="65" y="50">level:</text>
+        <text class="level" x="75" y="50"></text>
+        <text class="livesLabel" x="65" y="75">lives:</text>
+        <text class="lives" x="75" y="75"></text>
       </g>
       
       <g id="pausePanel">
@@ -87,20 +78,53 @@
           <rect x="100" y="200" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
           <text x="160" y="225">Resume</text>
         </g>
-        <!--<g class="fullscreen">
+        <g class="restart">
           <rect x="100" y="250" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
-          <text x="160" y="275">Full screen</text>
+          <text x="160" y="275">Restart</text>
+        </g>
+        <g class="exit">
+          <rect x="100" y="300" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <text x="160" y="325">Exit</text>
+        </g>
+        <!--<g class="fullscreen">
+          <rect x="100" y="350" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <text x="160" y="375">Full screen</text>
         </g>-->
       </g>
       
-      <g id="gameOverPanel" style="display: none">
-        <use xlink:href="#boardBackground" style="opacity: 0.7" />
-        <text x="160" y="240" class="title">Game Over</text>
-        <text id="playagain" x="160" y="300">Play again?</text>
+      <g id="gameOverPanel">
+        <use xlink:href="#boardBackground" style="opacity: 0.8" />
+        <text x="160" y="140" class="title">Game Over</text>
+        <text class="score" x="160" y="200"></text>
+        <g class="playagain">
+          <rect x="100" y="250" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <text x="160" y="275">Play again</text>
+        </g>
+        <g class="exit">
+          <rect x="100" y="300" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <text x="160" y="325">Exit</text>
+        </g>
       </g>
     </defs>
     
-    <use id="play" xlink:href="#playPanel" />
+    <g id="main">
+      <use xlink:href="#boardBackground" />
+      <text x="160" y="140" class="title">esviji</text>
+      <g class="start">
+        <rect x="100" y="200" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+        <text x="160" y="225">Start</text>
+      </g>
+      <!--
+      <g class="scores">
+        <rect x="100" y="250" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+        <text x="160" y="275">Scores</text>
+      </g>
+      <g class="about">
+        <rect x="100" y="300" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+        <text x="160" y="325">About</text>
+      </g>
+      -->
+    </g>
   </svg>
 </script>
 </body>

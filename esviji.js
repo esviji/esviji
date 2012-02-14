@@ -30,59 +30,45 @@ ESVIJI.game = (function(){
     playing = false;
     
   function init() {
-    level = 0;
-    score = 0;
-    lives = 10;
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(13);
     maxAvailablePieces = pieces.length;
     
-    /* handlers */
-    $('#pauseButton').on('click', function() {
-      $('#pausePanel').clone().attr('id', 'pause').appendTo('#board');
-      $('#pause .resume').on('click', function() { $('#pause').remove(); });
-    });
+    $('#main .start').on('click', startPlaying );
+  }
 
-    drawScore();
+  function startPlaying() {
+    level = 0;
+    score = 0;
+    lives = 0;
+    $('#play').remove();
+    $('#playPanel').clone().attr('id', 'play').appendTo('#board');
+    $('.pauseButton').on('click', pause);
     nextLevel();
   }
   
   function nextLevel() {
     playing = true;
+    drawScore();
     level++;
     drawLevel();
     lives++;
     drawLives();
     nbPieces = Math.min(maxAvailablePieces, Math.floor(5 + (level / 5)));
 
-    initPieces();
     erasePieces();
+    initPieces();
     drawPieces();
 
+    getValidPieces();
+    currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
     startNewTurn();
-  }
-  
-  function xToSvg(x) {
-    return (x - 1) * 32;
-  }
-
-  function yToSvg(y) {
-    return BOARD_HEIGHT - 32 * y;
-  }
-  
-  function svgToY(coordY) {
-    y = Math.round((BOARD_HEIGHT - coordY) / 32);
-    return y;
-  }
-  
-  function pixelsToSvgY(coordY) {
-    return coordY * BOARD_HEIGHT / $(document).height();
   }
   
   function startNewTurn() {
     currentPosX = 10;
     currentDirX = -1;
-    currentPosY = 7;
+    currentPosY = 8;
     currentDirY = 0;
     scoreThisTurn = 0;
     getValidPieces();
@@ -100,21 +86,6 @@ ESVIJI.game = (function(){
         $("#board").on('mousemove touchmove', cursorMove);
         $("#board").on('mouseup touchend', cursorEnd);
         drawnCurrentPiece.on('mousedown touchstart', cursorStart);
-        
-//  			Touchy(drawnCurrentPiece, function (hand, finger) {
-//  				function drawPoint (point) {
-//  					var elem = document.createElement('div');
-//  					elem.className = 'point';
-//  					elem.style.top = point.y + 'px';
-//  					elem.style.left = point.x + 'px';
-//  					touchMe.appendChild(elem);
-//  				}
-//  
-//  				finger.on('start', cursorStart);
-//  				finger.on('move', cursorMove);
-//  				finger.on('end', cursorEnd);
-//  			});
-        
       }
     }
   }
@@ -372,9 +343,44 @@ ESVIJI.game = (function(){
     } 
   }
   
+  function stopPlaying() {
+    playing = false;
+    level = 0;
+    score = 0;
+    lives = 0;
+    erasePieces();
+    if (drawnCurrentPiece !== null) {
+      drawnCurrentPiece.remove();
+    }
+    $('#play').remove();
+  }
+  
+  function pause() {
+    $('#pausePanel').clone().attr('id', 'pause').appendTo('#board');
+    $('#pause .resume').on('click', function() {
+      $('#pause').remove();
+    });
+    $('#pause .restart').on('click', function() {
+      $('#pause').remove();
+      startPlaying();
+    });
+    $('#pause .exit').on('click', function() {
+      $('#pause').remove();
+      stopPlaying();
+    });
+  }
+
   function gameOver() {
-    var gameover = svgUse('gameOverPanel', 'gameOver').attr({ x: 0, y: 0 });
-    $("#board").append(gameover);
+    $('#gameOverPanel').clone().attr('id', 'gameOver').appendTo('#board');
+    $('#gameOver').find('.score').text('Score: ' + score);
+    $('.playagain').on('click', function () {
+      $('#gameOver').remove();
+      startPlaying();
+    });
+    $('.exit').on('click', function () {
+      $('#gameOver').remove();
+      stopPlaying();
+    });
     playing = false;
     vibrate(500);
   }
@@ -389,17 +395,34 @@ ESVIJI.game = (function(){
   }
   
   function drawScore() {
-    $('#score').text(score);
+    $('.score').text(score);
   }
   
   function drawLevel() {
-    $('#level').text(level);
+    $('.level').text(level);
   }
   
   function drawLives() {
-    $('#lives').text(lives);
+    $('.lives').text(lives);
   }
 
+  function xToSvg(x) {
+    return (x - 1) * 32;
+  }
+
+  function yToSvg(y) {
+    return BOARD_HEIGHT - 32 * y;
+  }
+  
+  function svgToY(coordY) {
+    y = Math.round((BOARD_HEIGHT - coordY) / 32);
+    return y;
+  }
+  
+  function pixelsToSvgY(coordY) {
+    return coordY * BOARD_HEIGHT / $(document).height();
+  }
+  
   function vibrate(duration) {
     // http://hacks.mozilla.org/2012/01/using-the-vibrator-api-part-of-webapi/
     if (navigator.mozVibrate) {
@@ -417,6 +440,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //    fs = new Fullscreen($("#board"));
 //    fs.request();
 //  });
+  // TODO: mandatory?
 	Touchy.stopWindowBounce();
   ESVIJI.game.init();
 });
