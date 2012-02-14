@@ -40,7 +40,7 @@ ESVIJI.game = (function(){
   function startPlaying() {
     level = 0;
     score = 0;
-    lives = 0;
+    lives = 8; // 9 lives as cats
     $('#play').remove();
     if (drawnCurrentPiece !== null) {
       drawnCurrentPiece.remove();
