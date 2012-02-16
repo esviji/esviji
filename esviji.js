@@ -18,6 +18,7 @@ ESVIJI.game = (function(){
     currentDirX = -1,
     currentDirY = 0,
     dragged = false,
+    moveCount = 0,
     cursorY = 0,
     cursorMinY = 0,
     cursorMaxY = 0,
@@ -138,11 +139,15 @@ ESVIJI.game = (function(){
       currentPosY = svgToY(cursorY);
       drawnCurrentPiece.attr({ y: cursorY });
       currentPosY = svgToY(cursorY);
+      moveCount = 0;
+      oldPosX = currentPosX;
+      oldPosY = currentPosY;
       playUserChoice();
     }
   }  
 
   function playUserChoice () {
+    moveCount++;
     $('#showAim').remove();
     var stopped = false;
     if (currentPosY == 1 && currentDirY == -1) {
@@ -151,12 +156,14 @@ ESVIJI.game = (function(){
       if (currentPosX == 1 && currentDirX == -1) {
         currentDirX = 0;
         currentDirY = -1;
+        animateMove();
       } else {
         nextPiece = currentPieces[currentPosX + currentDirX][currentPosY + currentDirY];
         if (nextPiece == ROCK) {
           if (currentDirX == -1) {
             currentDirX = 0;
             currentDirY = -1;
+            animateMove();
           } else {
             stopped = true;
           }
@@ -182,14 +189,38 @@ ESVIJI.game = (function(){
       }
     }
     if (!stopped) {
-      drawnCurrentPiece.attr({ x: xToSvg(currentPosX), y: yToSvg(currentPosY) });
       playUserChoice();
     } else {
+      animateMove();
       score += Math.pow(scoreThisTurn, 2);
       drawScore();
       drawnCurrentPiece.remove();
       makePiecesFall();
       startNewTurn();
+    }
+  }
+  
+  function animateMove() {
+    if (currentPosX != oldPosX) {
+      animateX = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+      animateX.setAttributeNS(null, "attributeName", "x");
+      animateX.setAttributeNS(null, "from", xToSvg(oldPosX));
+      animateX.setAttributeNS(null, "to", xToSvg(currentPosX));
+      animateX.setAttributeNS(null, "begin", (moveCount - oldPosX + currentPosX) / 5 + "s");
+      animateX.setAttributeNS(null, "dur", (oldPosX - currentPosX) / 5 + "s");
+      animateX.setAttributeNS(null, "fill", "freeze");
+      drawnCurrentPiece.append(animateX);
+      oldPosX = currentPosX;
+    } else {
+      animateY = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+      animateY.setAttributeNS(null, "attributeName", "y");
+      animateY.setAttributeNS(null, "from", yToSvg(oldPosY));
+      animateY.setAttributeNS(null, "to", yToSvg(currentPosY));
+      animateY.setAttributeNS(null, "begin", (moveCount - oldPosY + currentPosY) / 5 + "s");
+      animateY.setAttributeNS(null, "dur", (oldPosY - currentPosY) / 5 + "s");
+      animateY.setAttributeNS(null, "fill", "freeze");
+      drawnCurrentPiece.append(animateY);
+      oldPosY = currentPosY;
     }
   }
   
