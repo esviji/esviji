@@ -1,13 +1,18 @@
 var ESVIJI = {};
 
+ESVIJI.settings = {
+  'debug': true,
+  'board': { 'width': 320, 'height': 460 },
+  'pieces': ['piece1', 'piece2', 'piece3', 'piece4', 'piece5', 'piece6', 'piece7', 'piece8', 'piece9', 'piece10', 'piece11', 'piece12', 'piece13', 'piece14'],
+  'rocks': ['rock'],
+  'emptyId': 0,
+  'rockId': -1,
+  'launch': { 'lives': 9, 'score': 0, 'level': 1 },
+  'turn': { 'posX': 10, 'dirX': -1, 'posY': 8, 'dirY': 0 }  
+}
+
 ESVIJI.game = (function(){
   var
-    BOARD_WIDTH = 320,
-    BOARD_HEIGHT = 460,
-    EMPTY = 0,
-    ROCK = -1,
-    pieces = ['piece1', 'piece2', 'piece3', 'piece4', 'piece5', 'piece6', 'piece7', 'piece8', 'piece9', 'piece10', 'piece11', 'piece12', 'piece13', 'piece14'],
-    rocks = ['rock'],
     currentPieces = [],
     drawnCurrentPieces = [],
     validPieces = [],
@@ -33,15 +38,15 @@ ESVIJI.game = (function(){
   function init() {
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(13);
-    maxAvailablePieces = pieces.length;
+    maxAvailablePieces = ESVIJI.settings['pieces'].length;
     
     $('#main .start').on('click', startPlaying );
   }
 
   function startPlaying() {
-    level = 0;
-    score = 0;
-    lives = 8; // 9 lives as cats
+    level = ESVIJI.settings['launch']['level'] - 1; // nextLevel() will add one
+    score = ESVIJI.settings['launch']['score'];
+    lives = ESVIJI.settings['launch']['lives'] - 1; // nextLevel() will add one
     $('#play').remove();
     if (drawnCurrentPiece !== null) {
       drawnCurrentPiece.remove();
@@ -75,10 +80,10 @@ ESVIJI.game = (function(){
   }
   
   function startNewTurn() {
-    currentPosX = 10;
-    currentDirX = -1;
-    currentPosY = 8;
-    currentDirY = 0;
+    currentPosX = ESVIJI.settings['turn']['posX'];
+    currentDirX = ESVIJI.settings['turn']['dirX'];
+    currentPosY = ESVIJI.settings['turn']['posY'];
+    currentDirY = ESVIJI.settings['turn']['dirY'];
     scoreThisTurn = 0;
     getValidPieces();
     if (validPieces.length == 0) {
@@ -90,7 +95,7 @@ ESVIJI.game = (function(){
         currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
       }
       if (playing) {
-        drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), pieces[currentPiece - 1], "playable");
+        drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings['pieces'][currentPiece - 1], "playable");
 
         $("#board").on('mousemove touchmove', cursorMove);
         $("#board").on('mouseup touchend', cursorEnd);
@@ -159,7 +164,8 @@ ESVIJI.game = (function(){
         animateMove();
       } else {
         nextPiece = currentPieces[currentPosX + currentDirX][currentPosY + currentDirY];
-        if (nextPiece == ROCK) {
+        debug('nextPiece: ' + nextPiece);
+        if (nextPiece == ESVIJI.settings['rockId']) {
           if (currentDirX == -1) {
             currentDirX = 0;
             currentDirY = -1;
@@ -168,14 +174,14 @@ ESVIJI.game = (function(){
             stopped = true;
           }
         } else {
-          if (nextPiece == EMPTY) {
+          if (nextPiece == ESVIJI.settings['emptyId']) {
             currentPosX += currentDirX;
             currentPosY += currentDirY;
           } else {
             if (nextPiece == currentPiece) {
               currentPosX += currentDirX;
               currentPosY += currentDirY;
-              currentPieces[currentPosX][currentPosY] = EMPTY;
+              currentPieces[currentPosX][currentPosY] = ESVIJI.settings['emptyId'];
               drawnCurrentPieces[currentPosX][currentPosY].remove();
               scoreThisTurn++;
             } else {
@@ -235,17 +241,17 @@ ESVIJI.game = (function(){
     
     for(x = 1; x <= 6; x++) {
       for (y = 1; y <= 7; y++) {
-        if (currentPieces[x][y] == EMPTY) {
+        if (currentPieces[x][y] == ESVIJI.settings['emptyId']) {
           abovePieces = 0;
           for (z = y; z <= 6; z++) {
-            if (currentPieces[x][z + 1] != EMPTY && currentPieces[x][z + 1] != ROCK) {
+            if (currentPieces[x][z + 1] != ESVIJI.settings['emptyId'] && currentPieces[x][z + 1] != ESVIJI.settings['rockId']) {
               abovePieces++;
             }
-            if (currentPieces[x][z + 1] == ROCK) {
-              z = 5;
+            if (currentPieces[x][z + 1] == ESVIJI.settings['rockId']) {
+              z = 7;
             } else {
               currentPieces[x][z] = currentPieces[x][z + 1];
-              currentPieces[x][z + 1] = EMPTY;
+              currentPieces[x][z + 1] = ESVIJI.settings['emptyId'];
               if (drawnCurrentPieces[x][z + 1] != null) {
                 drawnCurrentPieces[x][z] = drawnCurrentPieces[x][z + 1];
                 drawnCurrentPieces[x][z].attr({'y': yToSvg(z)});
@@ -267,14 +273,14 @@ ESVIJI.game = (function(){
     for(x = 1; x <= 9; x++) {
       currentPieces[x] = [];
       for (y = 1; y <= 13; y++) {
-          currentPieces[x][y] = EMPTY;
         if (x > Math.max(Math.min(level, 6), 3)) {
+          currentPieces[x][y] = ESVIJI.settings['emptyId'];
         } else {
           if (y > Math.max(Math.min(level, 7), 3)) {
             if (y - 7 > x) {
-              currentPieces[x][y] = ROCK;
+              currentPieces[x][y] = ESVIJI.settings['rockId'];
             } else {
-              currentPieces[x][y] = EMPTY;
+              currentPieces[x][y] = ESVIJI.settings['emptyId'];
             }
           } else {
             currentPieces[x][y] = 1 + Math.floor(Math.random() * nbPieces);
@@ -289,8 +295,8 @@ ESVIJI.game = (function(){
       while (positionedRocks < nbRocks) {
         rock_x = 1 + Math.floor(Math.random() * 6);
         rock_y = 1 + Math.floor(Math.random() * 6);
-        if (currentPieces[rock_x][rock_y] != ROCK) {
-          currentPieces[rock_x][rock_y] = ROCK;
+        if (currentPieces[rock_x][rock_y] != ESVIJI.settings['rockId']) {
+          currentPieces[rock_x][rock_y] = ESVIJI.settings['rockId'];
           positionedRocks++;
         }
       }
@@ -318,14 +324,14 @@ ESVIJI.game = (function(){
     for(x = 1; x <= 7; x++) {
       drawnCurrentPieces[x] = [];
       for (y = 1; y <= 7; y++) {
-        if (currentPieces[x][y] != EMPTY) {
+        if (currentPieces[x][y] != ESVIJI.settings['emptyId']) {
           piece_x = xToSvg(x);
           piece_y = yToSvg(y);
-          if (currentPieces[x][y] == ROCK) {
-            rockId = 1 + Math.floor(Math.random() * rocks.length)
-            drawnCurrentPieces[x][y] = drawPiece(piece_x, piece_y, rocks[rockId - 1]);
+          if (currentPieces[x][y] == ESVIJI.settings['rockId']) {
+            rockId = 1 + Math.floor(Math.random() * ESVIJI.settings['rocks'].length)
+            drawnCurrentPieces[x][y] = drawPiece(piece_x, piece_y, ESVIJI.settings['rocks'][rockId - 1]);
           } else {
-            drawnCurrentPieces[x][y] = drawPiece(piece_x, piece_y, pieces[currentPieces[x][y] - 1]);
+            drawnCurrentPieces[x][y] = drawPiece(piece_x, piece_y, ESVIJI.settings['pieces'][currentPieces[x][y] - 1]);
           }
         }
       }
@@ -364,7 +370,7 @@ ESVIJI.game = (function(){
             dir_y = -1;
           } else {
             nextPiece = currentPieces[x + dir_x][y + dir_y];
-            if (nextPiece == ROCK) {
+            if (nextPiece == ESVIJI.settings['rockId']) {
               if (dir_x == -1) {
                 dir_x = 0;
                 dir_y = -1;
@@ -372,7 +378,7 @@ ESVIJI.game = (function(){
                 found = true;
               }
             } else {
-              if (nextPiece == EMPTY) {
+              if (nextPiece == ESVIJI.settings['emptyId']) {
                 x += dir_x;
                 y += dir_y;
               } else {
@@ -456,16 +462,16 @@ ESVIJI.game = (function(){
   }
 
   function yToSvg(y) {
-    return BOARD_HEIGHT - 32 * y;
+    return ESVIJI.settings['board']['height'] - 32 * y;
   }
   
   function svgToY(coordY) {
-    y = Math.round((BOARD_HEIGHT - coordY) / 32);
+    y = Math.round((ESVIJI.settings['board']['height'] - coordY) / 32);
     return y;
   }
   
   function pixelsToSvgY(coordY) {
-    return coordY * BOARD_HEIGHT / $(document).height();
+    return coordY * ESVIJI.settings['board']['height'] / $(document).height();
   }
   
   function vibrate(duration) {
