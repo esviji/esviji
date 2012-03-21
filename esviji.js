@@ -283,8 +283,8 @@ ESVIJI.game = (function(){
       }
     }
     // add rocks in the middle after level 10
-    if (level > 10) {
-      nbRocks = Math.floor((level - 5) / 5);
+    if (level > 8) {
+      nbRocks = Math.floor((level - 6) / 3);
       positionedRocks = 0;
       while (positionedRocks < nbRocks) {
         rock_x = 1 + Math.floor(Math.random() * 6);
