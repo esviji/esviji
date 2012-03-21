@@ -62,7 +62,7 @@ ESVIJI.game = (function(){
     drawLevel();
     lives++;
     drawLives();
-    nbPieces = Math.min(maxAvailablePieces, Math.floor(5 + (level / 5)));
+    nbPieces = Math.min(maxAvailablePieces, Math.floor(3 + (level / 3)));
 
     erasePieces();
     
