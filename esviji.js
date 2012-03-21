@@ -214,7 +214,7 @@ ESVIJI.game = (function(){
       animateX.setAttributeNS(null, "fill", "freeze");
       drawnCurrentPiece.append(animateX);
       oldPosX = currentPosX;
-    } else {
+    } else if (currentPosY != oldPosY) {
       begin = (moveCount - oldPosY + currentPosY) / 5;
       dur = (oldPosY - currentPosY) / 5;
       debug('begin=' + begin + ', dur=' + dur);
