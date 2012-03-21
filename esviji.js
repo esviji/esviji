@@ -233,7 +233,7 @@ ESVIJI.game = (function(){
   function makePiecesFall() {
     var abovePieces;
     
-    for(x = 1; x <= 7; x++) {
+    for(x = 1; x <= 6; x++) {
       for (y = 1; y <= 7; y++) {
         if (currentPieces[x][y] == EMPTY) {
           abovePieces = 0;
