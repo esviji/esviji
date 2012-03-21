@@ -267,8 +267,8 @@ ESVIJI.game = (function(){
     for(x = 1; x <= 9; x++) {
       currentPieces[x] = [];
       for (y = 1; y <= 13; y++) {
-        if (x > Math.max(Math.min(level, 7), 3)) {
           currentPieces[x][y] = EMPTY;
+        if (x > Math.max(Math.min(level, 6), 3)) {
         } else {
           if (y > Math.max(Math.min(level, 7), 3)) {
             if (y - 7 > x) {
