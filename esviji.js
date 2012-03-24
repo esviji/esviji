@@ -142,8 +142,8 @@ ESVIJI.game = (function(){
       drawnCurrentPiece.attr({ class: "" });
       cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
       currentPosY = svgToY(cursorY);
-      drawnCurrentPiece.attr({ y: cursorY });
       currentPosY = svgToY(cursorY);
+      drawnCurrentPiece.attr({ y: yToSvg(currentPosY) });
       moveCount = 0;
       oldPosX = currentPosX;
       oldPosY = currentPosY;
