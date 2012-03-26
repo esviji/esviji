@@ -215,11 +215,11 @@ ESVIJI.game = (function(){
       animateX.setAttributeNS(null, "attributeName", "x");
       animateX.setAttributeNS(null, "from", xToSvg(oldPosX));
       animateX.setAttributeNS(null, "to", xToSvg(currentPosX));
-      animateX.setAttributeNS(null, "begin", begin + "s");
+      animateX.setAttributeNS(null, "begin", "indefinite");
       animateX.setAttributeNS(null, "dur", dur + "s");
       animateX.setAttributeNS(null, "fill", "freeze");
       drawnCurrentPiece.append(animateX);
-      oldPosX = currentPosX;
+      animateX.beginElement();
     } else if (currentPosY != oldPosY) {
       begin = (moveCount - oldPosY + currentPosY) / 5;
       dur = (oldPosY - currentPosY) / 5;
@@ -228,11 +228,11 @@ ESVIJI.game = (function(){
       animateY.setAttributeNS(null, "attributeName", "y");
       animateY.setAttributeNS(null, "from", yToSvg(oldPosY));
       animateY.setAttributeNS(null, "to", yToSvg(currentPosY));
-      animateY.setAttributeNS(null, "begin", begin + "s");
+      animateY.setAttributeNS(null, "begin", "indefinite");
       animateY.setAttributeNS(null, "dur", dur + "s");
       animateY.setAttributeNS(null, "fill", "freeze");
       drawnCurrentPiece.append(animateY);
-      oldPosY = currentPosY;
+      animateY.beginElement();
     }
   }
   
