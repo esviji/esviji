@@ -147,13 +147,13 @@ ESVIJI.game = (function(){
       moveCount = 0;
       oldPosX = currentPosX;
       oldPosY = currentPosY;
+      $('#showAim').remove();
       playUserChoice();
     }
   }  
 
   function playUserChoice () {
     moveCount++;
-    $('#showAim').remove();
     var stopped = false;
     if (currentPosY == 1 && currentDirY == -1) {
       stopped = true;
