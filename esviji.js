@@ -33,7 +33,8 @@ ESVIJI.game = (function(){
     score,
     lives,
     scoreThisTurn = 0,
-    playing = false;
+    playing = false,
+    stopped = false;
     
   function init() {
     cursorMinY = yToSvg(1);
@@ -147,89 +148,93 @@ ESVIJI.game = (function(){
       oldPosX = currentPosX;
       oldPosY = currentPosY;
       $('#showAim').remove();
+      stopped = false;
       playUserChoice();
     }
   }  
 
-  function playUserChoice () {
-    moveCount++;
-    var stopped = false;
-    if (currentPosY == 1 && currentDirY == -1) {
-      stopped = true;
-    } else {
-      if (currentPosX == 1 && currentDirX == -1) {
-        currentDirX = 0;
-        currentDirY = -1;
-        animateMove();
-      } else {
-        nextPiece = currentPieces[currentPosX + currentDirX][currentPosY + currentDirY];
-        debug('nextPiece: ' + nextPiece);
-        if (nextPiece == ESVIJI.settings['rockId']) {
-          if (currentDirX == -1) {
-            currentDirX = 0;
-            currentDirY = -1;
-            animateMove();
-          } else {
-            stopped = true;
-          }
-        } else {
-          if (nextPiece == ESVIJI.settings['emptyId']) {
-            currentPosX += currentDirX;
-            currentPosY += currentDirY;
-          } else {
-            if (nextPiece == currentPiece) {
-              currentPosX += currentDirX;
-              currentPosY += currentDirY;
-              currentPieces[currentPosX][currentPosY] = ESVIJI.settings['emptyId'];
-              drawnCurrentPieces[currentPosX][currentPosY].remove();
-              scoreThisTurn++;
-            } else {
-              if (scoreThisTurn > 0) {
-                currentPiece = nextPiece;
-              }
-              stopped = true;
-            }
-          }
-        }
-      }
-    }
-    if (!stopped) {
-      playUserChoice();
-    } else {
-      animateMove();
+  function playUserChoice (evt) {
+    console.log(evt);
+    if (stopped) {
       score += Math.pow(scoreThisTurn, 2);
       drawScore();
       drawnCurrentPiece.remove();
       makePiecesFall();
       startNewTurn();
+    } else {
+      moveCount++;
+      if (currentPosY == 1 && currentDirY == -1) {
+        stopped = true;
+        animateMove();
+      } else {
+        if (currentPosX == 1 && currentDirX == -1) {
+          currentDirX = 0;
+          currentDirY = -1;
+          animateMove();
+        } else {
+          nextPiece = currentPieces[currentPosX + currentDirX][currentPosY + currentDirY];
+          debug('nextPiece: ' + nextPiece);
+          if (nextPiece == ESVIJI.settings['rockId']) {
+            if (currentDirX == -1) {
+              currentDirX = 0;
+              currentDirY = -1;
+              animateMove();
+            } else {
+              stopped = true;
+              animateMove();
+            }
+          } else {
+            if (nextPiece == ESVIJI.settings['emptyId']) {
+              currentPosX += currentDirX;
+              currentPosY += currentDirY;
+              playUserChoice();
+            } else {
+              if (nextPiece == currentPiece) {
+                currentPosX += currentDirX;
+                currentPosY += currentDirY;
+                currentPieces[currentPosX][currentPosY] = ESVIJI.settings['emptyId'];
+                drawnCurrentPieces[currentPosX][currentPosY].remove();
+                scoreThisTurn++;
+                playUserChoice();
+              } else {
+                if (scoreThisTurn > 0) {
+                  currentPiece = nextPiece;
+                }
+                stopped = true;
+                animateMove();
+              }
+            }
+          }
+        }
+      }
     }
   }
   
   function animateMove() {
     if (currentPosX != oldPosX) {
-      begin = (moveCount - oldPosX + currentPosX) / 10;
-      dur = (oldPosX - currentPosX) / 10;
+      dur = (oldPosX - currentPosX) / 1;
       oldPosX = currentPosX;
       animateX = document.createElementNS("http://www.w3.org/2000/svg", "animate");
       animateX.setAttributeNS(null, "attributeName", "x");
       animateX.setAttributeNS(null, "from", xToSvg(oldPosX));
       animateX.setAttributeNS(null, "to", xToSvg(currentPosX));
       animateX.setAttributeNS(null, "begin", "indefinite");
-      animateX.setAttributeNS(null, "dur", dur + "s");
+      animateX.setAttributeNS(null, "dur", dur);
       animateX.setAttributeNS(null, "fill", "freeze");
+      animateX.setAttributeNS(null, "onend", "ESVIJI.game.playUserChoice");
       drawnCurrentPiece.append(animateX);
       animateX.beginElement();
     } else if (currentPosY != oldPosY) {
-      begin = (moveCount - oldPosY + currentPosY) / 10;
-      dur = (oldPosY - currentPosY) / 10;
+      dur = (oldPosY - currentPosY) / 1;
       oldPosY = currentPosY;
       animateY = document.createElementNS("http://www.w3.org/2000/svg", "animate");
       animateY.setAttributeNS(null, "attributeName", "y");
       animateY.setAttributeNS(null, "from", yToSvg(oldPosY));
       animateY.setAttributeNS(null, "to", yToSvg(currentPosY));
       animateY.setAttributeNS(null, "begin", "indefinite");
-      animateY.setAttributeNS(null, "dur", dur + "s");
+      animateY.setAttributeNS(null, "dur", dur);
       animateY.setAttributeNS(null, "fill", "freeze");
+      animateY.setAttributeNS(null, "onend", "ESVIJI.game.playUserChoice");
       drawnCurrentPiece.append(animateY);
       animateY.beginElement();
     }
