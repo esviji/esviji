@@ -154,7 +154,6 @@ ESVIJI.game = (function(){
   }  
 
   function playUserChoice (evt) {
-    console.log(evt);
     if (stopped) {
       score += Math.pow(scoreThisTurn, 2);
       drawScore();
@@ -173,7 +172,6 @@ ESVIJI.game = (function(){
           animateMove();
         } else {
           nextPiece = currentPieces[currentPosX + currentDirX][currentPosY + currentDirY];
-          debug('nextPiece: ' + nextPiece);
           if (nextPiece == ESVIJI.settings['rockId']) {
             if (currentDirX == -1) {
               currentDirX = 0;
