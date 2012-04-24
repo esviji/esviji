@@ -214,6 +214,7 @@ ESVIJI.game = (function(){
     if (currentPosX != oldPosX) {
       dur = (oldPosX - currentPosX) / 1;
       animateX = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+      animateX.setAttributeNS(null, "attributeType", "xml");
       animateX.setAttributeNS(null, "attributeName", "x");
       animateX.setAttributeNS(null, "from", xToSvg(oldPosX));
       animateX.setAttributeNS(null, "to", xToSvg(currentPosX));
@@ -227,6 +228,7 @@ ESVIJI.game = (function(){
       dur = (oldPosY - currentPosY) / 1;
       animateY = document.createElementNS("http://www.w3.org/2000/svg", "animate");
       animateY.setAttributeNS(null, "attributeName", "y");
+      animateY.setAttributeNS(null, "attributeType", "xml");
       animateY.setAttributeNS(null, "from", yToSvg(oldPosY));
       animateY.setAttributeNS(null, "to", yToSvg(currentPosY));
       animateY.setAttributeNS(null, "begin", "indefinite");
