@@ -224,6 +224,7 @@ ESVIJI.game = (function(){
       animateX.setAttributeNS(null, "onend", "ESVIJI.game.playUserChoice");
       drawnCurrentPiece.append(animateX);
       animateX.beginElement();
+      oldPosX = currentPosX;
     } else if (currentPosY != oldPosY) {
       dur = (oldPosY - currentPosY) / 10;
       animateY = document.createElementNS("http://www.w3.org/2000/svg", "animate");
@@ -237,6 +238,7 @@ ESVIJI.game = (function(){
       animateY.setAttributeNS(null, "onend", "ESVIJI.game.playUserChoice");
       drawnCurrentPiece.append(animateY);
       animateY.beginElement();
+      oldPosY = currentPosY;
     }
   }
   
