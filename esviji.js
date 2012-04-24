@@ -487,14 +487,14 @@ ESVIJI.game = (function(){
   
   function debug(string) {
     if (ESVIJI.settings['debug']) {
-      for (y = 7; y >= 1; y--) {
-        line = '';
-        for(x = 1; x <= 6; x++) {
-          line += currentPieces[x][y] + ' ';
-        }
-        console.log(line);
-      }
-      console.log('piece: ' + currentPiece + ' | pos: ' + currentPosX + '/' + currentPosY + ' | dir: ' + currentDirX + '/' + currentDirY);
+//      for (y = 7; y >= 1; y--) {
+//        line = '';
+//        for(x = 1; x <= 6; x++) {
+//          line += currentPieces[x][y] + ' ';
+//        }
+//        console.log(line);
+//      }
+      console.log('piece: ' + currentPiece + ' | posXY: ' + currentPosX + '/' + currentPosY + ' | dir: ' + currentDirX + '/' + currentDirY);
       console.log(string);
     }
   }
