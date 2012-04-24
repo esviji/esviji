@@ -212,27 +212,27 @@ ESVIJI.game = (function(){
   
   function animateMove() {
     if (currentPosX != oldPosX) {
-      dur = (oldPosX - currentPosX) / 1;
+      dur = (oldPosX - currentPosX) / 10;
       animateX = document.createElementNS("http://www.w3.org/2000/svg", "animate");
       animateX.setAttributeNS(null, "attributeType", "xml");
       animateX.setAttributeNS(null, "attributeName", "x");
       animateX.setAttributeNS(null, "from", xToSvg(oldPosX));
       animateX.setAttributeNS(null, "to", xToSvg(currentPosX));
       animateX.setAttributeNS(null, "begin", "indefinite");
-      animateX.setAttributeNS(null, "dur", dur);
+      animateX.setAttributeNS(null, "dur", dur + "s");
       animateX.setAttributeNS(null, "fill", "freeze");
       animateX.setAttributeNS(null, "onend", "ESVIJI.game.playUserChoice");
       drawnCurrentPiece.append(animateX);
       animateX.beginElement();
     } else if (currentPosY != oldPosY) {
-      dur = (oldPosY - currentPosY) / 1;
+      dur = (oldPosY - currentPosY) / 10;
       animateY = document.createElementNS("http://www.w3.org/2000/svg", "animate");
       animateY.setAttributeNS(null, "attributeName", "y");
       animateY.setAttributeNS(null, "attributeType", "xml");
       animateY.setAttributeNS(null, "from", yToSvg(oldPosY));
       animateY.setAttributeNS(null, "to", yToSvg(currentPosY));
       animateY.setAttributeNS(null, "begin", "indefinite");
-      animateY.setAttributeNS(null, "dur", dur);
+      animateY.setAttributeNS(null, "dur", dur + "s");
       animateY.setAttributeNS(null, "fill", "freeze");
       animateY.setAttributeNS(null, "onend", "ESVIJI.game.playUserChoice");
       drawnCurrentPiece.append(animateY);
