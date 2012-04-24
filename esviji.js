@@ -219,7 +219,7 @@ ESVIJI.game = (function(){
       animateX.setAttributeNS(null, "begin", "indefinite");
       animateX.setAttributeNS(null, "dur", dur + "s");
       animateX.setAttributeNS(null, "fill", "freeze");
-      animateX.setAttributeNS(null, "onend", "ESVIJI.game.playUserChoice");
+      animateX.addEventListener("end", function(event) {playUserChoice();}, false);
       drawnCurrentPiece.append(animateX);
       animateX.beginElement();
       oldPosX = currentPosX;
@@ -233,7 +233,7 @@ ESVIJI.game = (function(){
       animateY.setAttributeNS(null, "begin", "indefinite");
       animateY.setAttributeNS(null, "dur", dur + "s");
       animateY.setAttributeNS(null, "fill", "freeze");
-      animateY.setAttributeNS(null, "onend", "ESVIJI.game.playUserChoice");
+      animateY.addEventListener("end", function(event) {playUserChoice();}, false);
       drawnCurrentPiece.append(animateY);
       animateY.beginElement();
       oldPosY = currentPosY;
