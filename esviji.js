@@ -199,9 +199,18 @@ ESVIJI.game = (function(){
               playUserChoice();
               break;
             case currentPiece:
+              currentPosXBefore = currentPosX;
+              currentPosYBefore = currentPosY;
               currentPosX += currentDirX;
               currentPosY += currentDirY;
               currentPieces[currentPosX][currentPosY] = ESVIJI.settings['emptyId'];
+              if (currentPosXBefore != oldPosX) {
+                stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosXBefore) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosXBefore));
+                oldPosX = currentPosXBefore;
+              } else if (currentPosYBefore != oldPosY) {
+                stackAnimation(drawnCurrentPiece, 'move', (oldPosY - currentPosYBefore) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosYBefore));
+                oldPosY = currentPosYBefore;
+              }
               stackAnimation(drawnCurrentPieces[currentPosX][currentPosY], 'destroy');
               scoreThisTurn++;
               playUserChoice();
