@@ -252,7 +252,22 @@ ESVIJI.game = (function(){
         lastStackedAnimation++;
         break;
       case 'destroy':
-        piece.remove();
+        anim = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
+        anim.setAttributeNS(null, "attributeType", "xml");
+        anim.setAttributeNS(null, "attributeName", "transform");
+        anim.setAttributeNS(null, "from", "0 16 16");
+        anim.setAttributeNS(null, "to", "360 16 16");
+        anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
+        anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] + "s");
+        piece.append(anim);
+        anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+        anim.setAttributeNS(null, "attributeType", "xml");
+        anim.setAttributeNS(null, "attributeName", "opacity");
+        anim.setAttributeNS(null, "to", "0");
+        anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
+        anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] + "s");
+        anim.addEventListener("end", function(event) { piece.remove(); }, false);
+        piece.append(anim);
         break;
     }
   }
