@@ -167,14 +167,14 @@ ESVIJI.game = (function(){
       if (currentPosY == 1 && currentDirY == -1) {
         stopped = true;
         if (oldPosY != 1) {
-          stackAnimation(drawnCurrentPiece, 'move', (oldPosY - currentPosY) / 10, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
+          stackAnimation(drawnCurrentPiece, 'move', (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
         }
         startAnimation();
       } else {
         if (currentPosX == 1 && currentDirX == -1) {
           currentDirX = 0;
           currentDirY = -1;
-          stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosX) / 10, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+          stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
           oldPosX = currentPosX;
         } else {
           nextPiece = currentPieces[currentPosX + currentDirX][currentPosY + currentDirY];
@@ -183,12 +183,12 @@ ESVIJI.game = (function(){
               if (currentDirX == -1) {
                 currentDirX = 0;
                 currentDirY = -1;
-                stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosX) / 10, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+                stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
                 oldPosX = currentPosX;
               } else {
                 stopped = true;
                 if (oldPosY != 1) {
-                  stackAnimation(drawnCurrentPiece, 'move', (oldPosY - currentPosY) / 10, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
+                  stackAnimation(drawnCurrentPiece, 'move', (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
                 }
                 startAnimation();
               }
@@ -212,9 +212,9 @@ ESVIJI.game = (function(){
               }
               stopped = true;
               if (currentPosX != oldPosX) {
-                stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosX) / 10, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+                stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
               } else if (currentPosY != oldPosY) {
-                stackAnimation(drawnCurrentPiece, 'move', (oldPosY - currentPosY) / 10, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
+                stackAnimation(drawnCurrentPiece, 'move', (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
               }
               startAnimation();
           }
