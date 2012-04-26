@@ -257,6 +257,7 @@ ESVIJI.game = (function(){
         anim = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
         anim.setAttributeNS(null, "attributeType", "xml");
         anim.setAttributeNS(null, "attributeName", "transform");
+        anim.setAttributeNS(null, "type", "rotate");
         anim.setAttributeNS(null, "from", "0 16 16");
         anim.setAttributeNS(null, "to", "360 16 16");
         anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
