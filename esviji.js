@@ -9,7 +9,7 @@ ESVIJI.settings = {
   'rockId': -1,
   'launch': { 'lives': 9, 'score': 0, 'level': 1 },
   'turn': { 'posX': 10, 'dirX': -1, 'posY': 8, 'dirY': 0 },
-  'secondsPerMove': 0.2
+  'secondsPerMove': 0.15
 }
 
 ESVIJI.game = (function(){
@@ -253,15 +253,33 @@ ESVIJI.game = (function(){
     lastStackedAnimation++;
   }
 
-  function animStackMorph(pieceFrom, pieceTo) {
-    // opacity
+  function animStackMorph(pieceFrom, pieceToId) {
+    debug(pieceFrom);
+    debug(pieceToId);
+    var pieceTo = svgUse(pieceToId, "morph");
+    pieceTo.attr({ x: pieceFrom.attr('x'), y: pieceFrom.attr('y'), opacity: 0 });
+    $("#board").append(pieceTo);
+    
+    // opacity from
     anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
     anim.setAttributeNS(null, "attributeType", "xml");
     anim.setAttributeNS(null, "attributeName", "opacity");
     anim.setAttributeNS(null, "to", "0");
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] + "s");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] * 2 + "s");
+    anim.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
     pieceFrom.append(anim);
+
+    // opacity to
+    anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    anim.setAttributeNS(null, "attributeType", "xml");
+    anim.setAttributeNS(null, "attributeName", "opacity");
+    anim.setAttributeNS(null, "to", "1");
+    anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] * 2 + "s");
+    pieceTo.append(anim);
+
+    lastStackedAnimation++;
   }
 
   function animStackDestroy(piece) {
