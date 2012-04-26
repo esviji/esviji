@@ -176,6 +176,7 @@ ESVIJI.game = (function(){
           currentDirY = -1;
           stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
           oldPosX = currentPosX;
+          playUserChoice();
         } else {
           nextPiece = currentPieces[currentPosX + currentDirX][currentPosY + currentDirY];
           switch (nextPiece) {
@@ -185,6 +186,7 @@ ESVIJI.game = (function(){
                 currentDirY = -1;
                 stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
                 oldPosX = currentPosX;
+                playUserChoice();
               } else {
                 stopped = true;
                 if (oldPosY != 1) {
