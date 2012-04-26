@@ -167,14 +167,14 @@ ESVIJI.game = (function(){
       if (currentPosY == 1 && currentDirY == -1) {
         stopped = true;
         if (oldPosY != 1) {
-          stackAnimation(drawnCurrentPiece, 'move', (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
+          animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
         }
-        startAnimation();
+        animStart();
       } else {
         if (currentPosX == 1 && currentDirX == -1) {
           currentDirX = 0;
           currentDirY = -1;
-          stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+          animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
           oldPosX = currentPosX;
           playUserChoice();
         } else {
@@ -184,15 +184,15 @@ ESVIJI.game = (function(){
               if (currentDirX == -1) {
                 currentDirX = 0;
                 currentDirY = -1;
-                stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+                animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
                 oldPosX = currentPosX;
                 playUserChoice();
               } else {
                 stopped = true;
                 if (oldPosY != 1) {
-                  stackAnimation(drawnCurrentPiece, 'move', (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
+                  animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
                 }
-                startAnimation();
+                animStart();
               }
               break;
             case ESVIJI.settings['emptyId']:
@@ -207,13 +207,13 @@ ESVIJI.game = (function(){
               currentPosY += currentDirY;
               currentPieces[currentPosX][currentPosY] = ESVIJI.settings['emptyId'];
               if (currentPosXBefore != oldPosX) {
-                stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosXBefore) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosXBefore));
+                animStackMove(drawnCurrentPiece, (oldPosX - currentPosXBefore) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosXBefore));
                 oldPosX = currentPosXBefore;
               } else if (currentPosYBefore != oldPosY) {
-                stackAnimation(drawnCurrentPiece, 'move', (oldPosY - currentPosYBefore) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosYBefore));
+                animStackMove(drawnCurrentPiece, (oldPosY - currentPosYBefore) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosYBefore));
                 oldPosY = currentPosYBefore;
               }
-              stackAnimation(drawnCurrentPieces[currentPosX][currentPosY], 'destroy');
+              animStackDestroy(drawnCurrentPieces[currentPosX][currentPosY]);
               scoreThisTurn++;
               playUserChoice();
               break;
@@ -223,59 +223,70 @@ ESVIJI.game = (function(){
               }
               stopped = true;
               if (currentPosX != oldPosX) {
-                stackAnimation(drawnCurrentPiece, 'move', (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+                animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
               } else if (currentPosY != oldPosY) {
-                stackAnimation(drawnCurrentPiece, 'move', (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
+                animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
               }
-              startAnimation();
+              animStackMorph(drawnCurrentPiece, nextPiece);
+              animStart();
           }
         }
       }
     }
   }
   
-  function stackAnimation(piece, animation, duration, attribute, from, to) {
-    switch (animation) {
-      case 'move':
-        anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-        anim.setAttributeNS(null, "attributeType", "xml");
-        anim.setAttributeNS(null, "attributeName", attribute);
-        anim.setAttributeNS(null, "from", from);
-        anim.setAttributeNS(null, "to", to);
-        if (lastStackedAnimation == 0) {
-          anim.setAttributeNS(null, "begin", "indefinite");
-        } else {
-          anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-        }
-        anim.setAttributeNS(null, "dur", duration + "s");
-        anim.setAttributeNS(null, "fill", "freeze");
-        anim.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
-        piece.append(anim);
-        lastStackedAnimation++;
-        break;
-      case 'destroy':
-        anim = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
-        anim.setAttributeNS(null, "attributeType", "xml");
-        anim.setAttributeNS(null, "attributeName", "transform");
-        anim.setAttributeNS(null, "type", "rotate");
-        anim.setAttributeNS(null, "from", "0 16 16");
-        anim.setAttributeNS(null, "to", "360 16 16");
-        anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-        anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] + "s");
-        piece.append(anim);
-        anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-        anim.setAttributeNS(null, "attributeType", "xml");
-        anim.setAttributeNS(null, "attributeName", "opacity");
-        anim.setAttributeNS(null, "to", "0");
-        anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-        anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] + "s");
-        anim.addEventListener("end", function(event) { piece.remove(); }, false);
-        piece.append(anim);
-        break;
+  function animStackMove(piece, duration, attribute, from, to) {
+    anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    anim.setAttributeNS(null, "attributeType", "xml");
+    anim.setAttributeNS(null, "attributeName", attribute);
+    anim.setAttributeNS(null, "from", from);
+    anim.setAttributeNS(null, "to", to);
+    if (lastStackedAnimation == 0) {
+      anim.setAttributeNS(null, "begin", "indefinite");
+    } else {
+      anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
     }
+    anim.setAttributeNS(null, "dur", duration + "s");
+    anim.setAttributeNS(null, "fill", "freeze");
+    anim.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
+    piece.append(anim);
+    lastStackedAnimation++;
   }
-  
-  function startAnimation() {
+
+  function animStackMorph(pieceFrom, pieceTo) {
+    // opacity
+    anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    anim.setAttributeNS(null, "attributeType", "xml");
+    anim.setAttributeNS(null, "attributeName", "opacity");
+    anim.setAttributeNS(null, "to", "0");
+    anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] + "s");
+    pieceFrom.append(anim);
+  }
+
+  function animStackDestroy(piece) {
+    // rotate
+    anim = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
+    anim.setAttributeNS(null, "attributeType", "xml");
+    anim.setAttributeNS(null, "attributeName", "transform");
+    anim.setAttributeNS(null, "type", "rotate");
+    anim.setAttributeNS(null, "from", "0 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16));
+    anim.setAttributeNS(null, "to", "360 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16));
+    anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] + "s");
+    piece.append(anim);
+    // opacity
+    anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    anim.setAttributeNS(null, "attributeType", "xml");
+    anim.setAttributeNS(null, "attributeName", "opacity");
+    anim.setAttributeNS(null, "to", "0");
+    anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] + "s");
+    anim.addEventListener("end", function(event) { piece.remove(); }, false);
+    piece.append(anim);
+  }
+    
+  function animStart() {
     $('#anim' + lastStackedAnimation)[0].addEventListener("end", function(event) { playUserChoice(); }, false);
     $('#anim1')[0].beginElement();
   }
