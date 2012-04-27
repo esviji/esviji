@@ -253,9 +253,9 @@ ESVIJI.game = (function(){
     lastStackedAnimation++;
   }
 
-  function animStackMorph(pieceFrom, pieceToId) {
+  function animStackMorph(pieceFrom, pieceToId, x, y) {
     var pieceTo = svgUse(pieceToId, "morph");
-    pieceTo.attr({ x: pieceFrom.attr('x'), y: pieceFrom.attr('y'), opacity: 0 });
+    pieceTo.attr({ x: x, y: y, opacity: 0 });
     $("#board").append(pieceTo);
     
     // opacity from
