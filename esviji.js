@@ -220,6 +220,7 @@ ESVIJI.game = (function(){
             default:
               if (scoreThisTurn > 0) {
                 currentPiece = nextPiece;
+                animStackMorph(drawnCurrentPiece, nextPiece, currentPosX, currentPosY);
               }
               stopped = true;
               if (currentPosX != oldPosX) {
@@ -227,7 +228,6 @@ ESVIJI.game = (function(){
               } else if (currentPosY != oldPosY) {
                 animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
               }
-              animStackMorph(drawnCurrentPiece, nextPiece);
               animStart();
           }
         }
