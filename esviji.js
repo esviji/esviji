@@ -9,7 +9,8 @@ ESVIJI.settings = {
   'rockId': -1,
   'launch': { 'lives': 9, 'score': 0, 'level': 1 },
   'turn': { 'posX': 10, 'dirX': -1, 'posY': 8, 'dirY': 0 },
-  'secondsPerMove': 0.15
+  'secondsPerMove': 0.15,
+  'secondsPerMorph': 0.5
 }
 
 ESVIJI.game = (function(){
@@ -226,6 +227,8 @@ ESVIJI.game = (function(){
     score += Math.pow(scoreThisTurn, 2);
     drawScore();
     drawnCurrentPiece.remove();
+    $('#morph').remove();
+    animStackFlush();
     makePiecesFall();
     startNewTurn();
   }
@@ -251,7 +254,6 @@ ESVIJI.game = (function(){
   function animStackMorph(pieceFrom, pieceToId, x, y) {
     var pieceTo = svgUse("piece" + pieceToId, "morph");
     pieceTo.attr({ x: x, y: y, opacity: 0 });
-    debug(pieceTo);
     $("#board").append(pieceTo);
     
     // opacity from
@@ -260,7 +262,7 @@ ESVIJI.game = (function(){
     anim.setAttributeNS(null, "attributeName", "opacity");
     anim.setAttributeNS(null, "to", "0");
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] * 2 + "s");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMorph'] + "s");
     anim.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
     pieceFrom.append(anim);
 
@@ -270,7 +272,7 @@ ESVIJI.game = (function(){
     anim.setAttributeNS(null, "attributeName", "opacity");
     anim.setAttributeNS(null, "to", "1");
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] * 2 + "s");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMorph'] + "s");
     pieceTo.append(anim);
 
     lastStackedAnimation++;
@@ -301,6 +303,14 @@ ESVIJI.game = (function(){
   function animStart() {
     $('#anim' + lastStackedAnimation)[0].addEventListener("end", function(event) { endOfTurn(); }, false);
     $('#anim1')[0].beginElement();
+    lastStackedAnimation = 0;
+  }
+  
+  function animStackFlush() {
+    for (i = 1; i <= lastStackedAnimation; i++) {
+      $('#anim' + i).remove();
+    }
+    lastStackedAnimation = 0;
   }
   
   function makePiecesFall() {
@@ -321,6 +331,7 @@ ESVIJI.game = (function(){
               currentPieces[x][z + 1] = ESVIJI.settings['emptyId'];
               if (drawnCurrentPieces[x][z + 1] != null) {
                 drawnCurrentPieces[x][z] = drawnCurrentPieces[x][z + 1];
+                animStackMove(drawnCurrentPieces[x][z], ESVIJI.settings['secondsPerMove'], 'y', yToSvg(z + 1), yToSvg(z));
                 drawnCurrentPieces[x][z].attr({'y': yToSvg(z)});
                 drawnCurrentPieces[x][z + 1] = null;
               }
@@ -332,8 +343,11 @@ ESVIJI.game = (function(){
         }
       }
     }
+    
+    $('#anim' + lastStackedAnimation)[0].addEventListener("end", function(event) { animStackFlush(); }, false);
+    $('#anim1')[0].beginElement();
   }
-  
+
   function initPieces() {
     currentPieces = [];
         
