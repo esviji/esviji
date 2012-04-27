@@ -184,8 +184,8 @@ ESVIJI.game = (function(){
               oldPosX = currentPosX;
               playUserChoice();
             } else {
-              if (oldPosY != 1) {
               // ...under us, no more possible move
+              if (oldPosY != currentPosY) {
                 animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
               }
               animStart();
