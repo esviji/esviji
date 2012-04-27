@@ -218,15 +218,15 @@ ESVIJI.game = (function(){
               playUserChoice();
               break;
             default:
-              if (scoreThisTurn > 0) {
-                currentPiece = nextPiece;
-                animStackMorph(drawnCurrentPiece, nextPiece, currentPosX, currentPosY);
-              }
               stopped = true;
               if (currentPosX != oldPosX) {
                 animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
               } else if (currentPosY != oldPosY) {
                 animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
+              }
+              if (scoreThisTurn > 0) {
+                currentPiece = nextPiece;
+                animStackMorph(drawnCurrentPiece, nextPiece, xToSvg(currentPosX), yToSvg(currentPosY));
               }
               animStart();
           }
