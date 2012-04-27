@@ -157,22 +157,27 @@ ESVIJI.game = (function(){
   function playUserChoice () {
     moveCount++;
     if (currentPosY == 1 && currentDirY == -1) {
+      // Against the floor, no more possible move
       if (oldPosY != 1) {
         animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
       }
       animStart();
     } else {
       if (currentPosX == 1 && currentDirX == -1) {
+        // Against the left wall, should no go down
         currentDirX = 0;
         currentDirY = -1;
         animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
         oldPosX = currentPosX;
         playUserChoice();
       } else {
+        // Neither floor nor wall, so what is it?
         nextPiece = currentPieces[currentPosX + currentDirX][currentPosY + currentDirY];
         switch (nextPiece) {
           case ESVIJI.settings['rockId']:
+            // A rock...
             if (currentDirX == -1) {
+              // ...at our left, should no go down
               currentDirX = 0;
               currentDirY = -1;
               animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
@@ -180,17 +185,20 @@ ESVIJI.game = (function(){
               playUserChoice();
             } else {
               if (oldPosY != 1) {
+              // ...under us, no more possible move
                 animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
               }
               animStart();
             }
             break;
           case ESVIJI.settings['emptyId']:
+            // Nothing can stop us
             currentPosX += currentDirX;
             currentPosY += currentDirY;
             playUserChoice();
             break;
           case currentPiece:
+            // Same piece, let's destroy it!
             currentPosXBefore = currentPosX;
             currentPosYBefore = currentPosY;
             currentPosX += currentDirX;
