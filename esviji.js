@@ -254,7 +254,7 @@ ESVIJI.game = (function(){
   }
 
   function animStackMorph(pieceFrom, pieceToId, x, y) {
-    var pieceTo = svgUse(pieceToId, "morph");
+    var pieceTo = svgUse("piece" + pieceToId, "morph");
     pieceTo.attr({ x: x, y: y, opacity: 0 });
     $("#board").append(pieceTo);
     
