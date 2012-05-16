@@ -324,6 +324,8 @@ ESVIJI.game = (function(){
   function makePiecesFall() {
     var abovePieces;
     
+    lastStackedAnimation = 0;
+    
     for(x = 1; x <= 6; x++) {
       for (y = 1; y <= 7; y++) {
         if (currentPieces[x][y] == ESVIJI.settings['emptyId']) {
