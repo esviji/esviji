@@ -555,10 +555,13 @@ ESVIJI.game = (function(){
   function yToSvg(y) {
     return ESVIJI.settings['board']['height'] - 32 * y;
   }
+
+  function svgToX(coordX) {
+    return coordX / 32 + 1;
+  }
   
   function svgToY(coordY) {
-    y = Math.round((ESVIJI.settings['board']['height'] - coordY) / 32);
-    return y;
+    return Math.round((ESVIJI.settings['board']['height'] - coordY) / 32);
   }
   
   function pixelsToSvgY(coordY) {
