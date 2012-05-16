@@ -296,9 +296,8 @@ ESVIJI.game = (function(){
     anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMorph'] + "s");
     anim.setAttributeNS(null, "fill", "freeze");
 
-    anim2 = anim;
-    pieceFrom.append(anim);    
-    pieceTo.append(anim2);
+    pieceFrom.append(anim);
+    pieceTo.append(anim);
 
     lastStackedAnimation++;
   }
