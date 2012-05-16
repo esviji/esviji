@@ -223,7 +223,11 @@ ESVIJI.game = (function(){
             }
             if (scoreThisTurn > 0) {
               currentPiece = nextPiece;
-              animStackMorph(drawnCurrentPiece, nextPiece, xToSvg(currentPosX), yToSvg(currentPosY));
+              if (currentPosX != oldPosX) {
+                animStackMorph(drawnCurrentPiece, nextPiece, xToSvg(currentPosX), yToSvg(currentPosY), 'x', xToSvg(currentPosX), xToSvg(currentPosX + currentDirX));
+              } else {
+                animStackMorph(drawnCurrentPiece, nextPiece, xToSvg(currentPosX), yToSvg(currentPosY), 'y', yToSvg(currentPosY), yToSvg(currentPosY + currentDirY));
+              }
             }
             animStart();
         }
@@ -232,13 +236,11 @@ ESVIJI.game = (function(){
   }
   
   function endOfTurn() {
-    score += Math.pow(scoreThisTurn, 2);
-    drawScore();
     drawnCurrentPiece.remove();
     $('#morph').remove();
-    animStackFlush();
+    score += Math.pow(scoreThisTurn, 2);
+    drawScore();
     makePiecesFall();
-    startNewTurn();
   }
   
   function animStackMove(piece, duration, attribute, from, to) {
@@ -256,10 +258,11 @@ ESVIJI.game = (function(){
     anim.setAttributeNS(null, "fill", "freeze");
     anim.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
     piece.append(anim);
+
     lastStackedAnimation++;
   }
 
-  function animStackMorph(pieceFrom, pieceToId, x, y) {
+  function animStackMorph(pieceFrom, pieceToId, x, y, attribute, from, to) {
     var pieceTo = svgUse("piece" + pieceToId, "morph");
     pieceTo.attr({ x: x, y: y, opacity: 0 });
     $("#board").append(pieceTo);
@@ -273,7 +276,7 @@ ESVIJI.game = (function(){
     anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMorph'] + "s");
     anim.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
     pieceFrom.append(anim);
-
+    
     // opacity to
     anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
     anim.setAttributeNS(null, "attributeType", "xml");
@@ -282,6 +285,20 @@ ESVIJI.game = (function(){
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
     anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMorph'] + "s");
     pieceTo.append(anim);
+
+    // move both
+    anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    anim.setAttributeNS(null, "attributeType", "xml");
+    anim.setAttributeNS(null, "attributeName", attribute);
+    anim.setAttributeNS(null, "from", from);
+    anim.setAttributeNS(null, "to", to);
+    anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMorph'] + "s");
+    anim.setAttributeNS(null, "fill", "freeze");
+
+    anim2 = anim;
+    pieceFrom.append(anim);    
+    pieceTo.append(anim2);
 
     lastStackedAnimation++;
   }
@@ -304,14 +321,19 @@ ESVIJI.game = (function(){
     anim.setAttributeNS(null, "to", "0");
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
     anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] + "s");
-    anim.addEventListener("end", function(event) { piece.remove(); }, false);
+    anim.addEventListener("end", function(event) {
+        piece = $(event.currentTarget.parentElement);
+        x = svgToX(piece.attr('x'));
+        y = svgToY(piece.attr('y'));
+        drawnCurrentPieces[x][y] = null
+        piece.remove();
+      }, false);
     piece.append(anim);
   }
     
   function animStart() {
     $('#anim' + lastStackedAnimation)[0].addEventListener("end", function(event) { endOfTurn(); }, false);
     $('#anim1')[0].beginElement();
-    lastStackedAnimation = 0;
   }
   
   function animStackFlush() {
@@ -339,10 +361,9 @@ ESVIJI.game = (function(){
             } else {
               currentPieces[x][z] = currentPieces[x][z + 1];
               currentPieces[x][z + 1] = ESVIJI.settings['emptyId'];
-              if (drawnCurrentPieces[x][z + 1] != null) {
+              if (drawnCurrentPieces[x][z + 1] !== null) {
+                animStackMove(drawnCurrentPieces[x][z + 1], ESVIJI.settings['secondsPerMove'], 'y', yToSvg(z + 1), yToSvg(z));
                 drawnCurrentPieces[x][z] = drawnCurrentPieces[x][z + 1];
-                animStackMove(drawnCurrentPieces[x][z], ESVIJI.settings['secondsPerMove'], 'y', yToSvg(z + 1), yToSvg(z));
-                drawnCurrentPieces[x][z].attr({'y': yToSvg(z)});
                 drawnCurrentPieces[x][z + 1] = null;
               }
             }
@@ -354,8 +375,22 @@ ESVIJI.game = (function(){
       }
     }
     
-    $('#anim' + lastStackedAnimation)[0].addEventListener("end", function(event) { animStackFlush(); }, false);
-    $('#anim1')[0].beginElement();
+    if (lastStackedAnimation > 0) {
+      $('#anim' + lastStackedAnimation)[0].addEventListener("end", function(event) {
+          for(x = 1; x <= 6; x++) {
+            for (y = 1; y <= 7; y++) {
+              if (drawnCurrentPieces[x][y] !== null) {
+                drawnCurrentPieces[x][y].attr({'y': yToSvg(y)});
+              }
+            }
+          }
+          animStackFlush();
+          startNewTurn();
+        }, false);
+      $('#anim1')[0].beginElement();
+    } else {
+      startNewTurn();
+    }
   }
 
   function initPieces() {
@@ -415,7 +450,9 @@ ESVIJI.game = (function(){
     for(x = 1; x <= 7; x++) {
       drawnCurrentPieces[x] = [];
       for (y = 1; y <= 7; y++) {
-        if (currentPieces[x][y] != ESVIJI.settings['emptyId']) {
+        if (currentPieces[x][y] == ESVIJI.settings['emptyId']) {
+          drawnCurrentPieces[x][y] = null;
+        } else {
           piece_x = xToSvg(x);
           piece_y = yToSvg(y);
           if (currentPieces[x][y] == ESVIJI.settings['rockId']) {
@@ -584,7 +621,7 @@ ESVIJI.game = (function(){
 //        }
 //        console.log(line);
 //      }
-      console.log('piece: ' + currentPiece + ' | posXY: ' + currentPosX + '/' + currentPosY + ' | dir: ' + currentDirX + '/' + currentDirY);
+//      console.log('piece: ' + currentPiece + ' | posXY: ' + currentPosX + '/' + currentPosY + ' | dir: ' + currentDirX + '/' + currentDirY + ' | lastStackedAnimation: ' + lastStackedAnimation);
       console.log(string);
     }
   }
