@@ -9,8 +9,8 @@ ESVIJI.settings = {
   'rockId': -1,
   'launch': { 'lives': 9, 'score': 0, 'level': 1 },
   'turn': { 'posX': 10, 'dirX': -1, 'posY': 8, 'dirY': 0 },
-  'secondsPerMove': 0.15,
-  'secondsPerMorph': 0.5
+  'secondsPerMove': 0.2,
+  'secondsPerMorph': 0.8
 }
 
 ESVIJI.game = (function(){
