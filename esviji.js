@@ -170,7 +170,6 @@ ESVIJI.game = (function() {
         y: yToSvg(currentPosY)
       });
       moveCount = 0;
-      // lastStackedAnimation = 0;
       oldPosX = currentPosX;
       oldPosY = currentPosY;
       $('#showAim').remove();
@@ -188,7 +187,7 @@ ESVIJI.game = (function() {
       animStart();
     } else {
       if (currentPosX == 1 && currentDirX == -1) {
-        // Against the left wall, should no go down
+        // Against the left wall, should not go down
         currentDirX = 0;
         currentDirY = -1;
         animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
@@ -352,9 +351,8 @@ ESVIJI.game = (function() {
       piece = $(event.currentTarget.parentElement);
       x = svgToX(piece.attr('x'));
       y = svgToY(piece.attr('y'));
-      drawnCurrentPieces[x][y] = null
+//      drawnCurrentPieces[x][y] = null
       piece.remove();
-      stackedAnimationToStart = lastStackedAnimation + 1;
     }, false);
     piece.append(anim);
   }
@@ -375,7 +373,7 @@ ESVIJI.game = (function() {
   }
 
   function makePiecesFall() {
-    var abovePieces;
+    var abovePieces;  
 
     // lastStackedAnimation = 0;
     debug('makePiecesFall');
