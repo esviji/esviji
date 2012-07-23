@@ -1,7 +1,7 @@
 var ESVIJI = {};
 
 ESVIJI.settings = {
-  'debug': true,
+  'debug': false,
   'board': {
     'width': 320,
     'height': 460
@@ -178,13 +178,16 @@ ESVIJI.game = (function() {
   }
 
   function playUserChoice() {
+    if (ESVIJI.settings['debug']) {
+      console.log('# playUserChoice');
+    }
     moveCount++;
     if (currentPosY == 1 && currentDirY == -1) {
       // Against the floor, no more possible move
       if (oldPosY != 1) {
         animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['durationMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
       }
-      animStart();
+      makePiecesFall();
     } else {
       if (currentPosX == 1 && currentDirX == -1) {
         // Against the left wall, should not go down
@@ -211,7 +214,7 @@ ESVIJI.game = (function() {
             if (oldPosY != currentPosY) {
               animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['durationMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
             }
-            animStart();
+            makePiecesFall();
           }
           break;
         case ESVIJI.settings['emptyId']:
@@ -252,21 +255,29 @@ ESVIJI.game = (function() {
               animStackMorph(drawnCurrentPiece, nextPiece, xToSvg(currentPosX), yToSvg(currentPosY), 'y', yToSvg(currentPosY), yToSvg(currentPosY + currentDirY));
             }
           }
-          animStart();
+          makePiecesFall();
         }
       }
     }
   }
 
   function endOfTurn() {
-    drawnCurrentPiece.remove();
-    $('#morph').remove();
+    if (ESVIJI.settings['debug']) {
+      console.log('# endOfTurn');
+    }
     score += Math.pow(scoreThisTurn, 2);
     drawScore();
-    makePiecesFall();
+    drawnCurrentPiece.remove();
+    $('#morph').remove();
+    stackedAnimationToStart = lastStackedAnimation + 1;
+    startNewTurn();
   }
 
   function animStackMove(piece, duration, attribute, from, to) {
+    if (ESVIJI.settings['debug']) {
+      console.log('# animStackMove');
+      console.log(piece);
+    }
     anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
     anim.setAttributeNS(null, "attributeType", "xml");
     anim.setAttributeNS(null, "attributeName", attribute);
@@ -286,6 +297,11 @@ ESVIJI.game = (function() {
   }
 
   function animStackMorph(pieceFrom, pieceToId, x, y, attribute, from, to) {
+    if (ESVIJI.settings['debug']) {
+      console.log('# animStackMorph');
+      console.log(pieceFrom);
+    }
+
     var pieceTo = svgUse("piece" + pieceToId, "morph");
     pieceTo.attr({
       x: x,
@@ -301,6 +317,7 @@ ESVIJI.game = (function() {
     anim.setAttributeNS(null, "to", "0");
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
     anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
+    anim.setAttributeNS(null, "fill", "freeze");
     anim.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
     pieceFrom.append(anim);
 
@@ -311,6 +328,7 @@ ESVIJI.game = (function() {
     anim.setAttributeNS(null, "to", "1");
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
     anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
+    anim.setAttributeNS(null, "fill", "freeze");
     pieceTo.append(anim);
 
     // move both
@@ -330,6 +348,11 @@ ESVIJI.game = (function() {
   }
 
   function animStackDestroy(piece) {
+    if (ESVIJI.settings['debug']) {
+      console.log('# animStackDestroy');
+      console.log(piece);
+    }
+
     // rotate
     anim = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
     anim.setAttributeNS(null, "attributeType", "xml");
@@ -340,6 +363,7 @@ ESVIJI.game = (function() {
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
     anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMove'] + "s");
     piece.append(anim);
+
     // opacity
     anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
     anim.setAttributeNS(null, "attributeType", "xml");
@@ -351,32 +375,18 @@ ESVIJI.game = (function() {
       piece = $(event.currentTarget.parentElement);
       x = svgToX(piece.attr('x'));
       y = svgToY(piece.attr('y'));
-//      drawnCurrentPieces[x][y] = null
       piece.remove();
     }, false);
     piece.append(anim);
   }
 
-  function animStart() {
-    debug('animStart');
-    $('#anim' + lastStackedAnimation)[0].addEventListener("end", function(event) {
-      endOfTurn();
-    }, false);
-    $('#anim' + stackedAnimationToStart)[0].beginElement();
-  }
-
-  function animStackFlush() {
-    // for (i = 1; i <= lastStackedAnimation; i++) {
-    //   $('#anim' + i).remove(); // BUG ?
-    // }
-    stackedAnimationToStart = lastStackedAnimation + 1;
-  }
-
   function makePiecesFall() {
+    if (ESVIJI.settings['debug']) {
+      console.log('# makePiecesFall');
+    }
     var abovePieces;
 
     // lastStackedAnimation = 0;
-    debug('makePiecesFall');
 
     for (x = 1; x <= 6; x++) {
       for (y = 1; y <= 7; y++) {
@@ -408,7 +418,6 @@ ESVIJI.game = (function() {
       }
     }
 
-    console.log('stackedAnimationToStart: ' + stackedAnimationToStart + ' / lastStackedAnimation: ' + lastStackedAnimation);
     if (lastStackedAnimation >= stackedAnimationToStart) {
       $('#anim' + lastStackedAnimation)[0].addEventListener("end", function(event) {
         for (x = 1; x <= 6; x++) {
@@ -420,12 +429,11 @@ ESVIJI.game = (function() {
             }
           }
         }
-        animStackFlush(); // BUG ?
-        startNewTurn();
+        endOfTurn();
       }, false);
       $('#anim' + stackedAnimationToStart)[0].beginElement();
     } else {
-      startNewTurn();
+      endOfTurn();
     }
   }
 
