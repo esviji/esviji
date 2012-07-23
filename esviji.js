@@ -267,8 +267,6 @@ ESVIJI.game = (function() {
     }
     score += Math.pow(scoreThisTurn, 2);
     drawScore();
-    drawnCurrentPiece.remove();
-    $('#morph').remove();
     stackedAnimationToStart = lastStackedAnimation + 1;
     startNewTurn();
   }
@@ -385,6 +383,11 @@ ESVIJI.game = (function() {
       console.log('# makePiecesFall');
     }
     var abovePieces;
+
+    $('#anim' + lastStackedAnimation)[0].addEventListener("end", function(event) {
+      drawnCurrentPiece.remove();
+      $('#morph').remove();
+    });
 
     // lastStackedAnimation = 0;
 
