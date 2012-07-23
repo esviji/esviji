@@ -17,6 +17,7 @@ See the included [LICENSE.md](https://github.com/nhoizey/esviji/blob/master/LICE
 - store current game in localStorage to continue on next launch
 - work offline
 - sounds
+- time to play modifies the turn score
 - change the design to stop using Paris metro signs
 
 ## Added difficulties
