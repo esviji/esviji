@@ -56,9 +56,9 @@ ESVIJI.game = (function() {
   }
 
   function startPlaying() {
-    level = ESVIJI.settings['launch']['level'] - 1; // nextLevel() will add one
+    level = ESVIJI.settings['launch']['level'];
     score = ESVIJI.settings['launch']['score'];
-    lives = ESVIJI.settings['launch']['lives'] - 1; // nextLevel() will add one
+    lives = ESVIJI.settings['launch']['lives'];
     $('#play').remove();
     if (drawnCurrentPiece !== null) {
       drawnCurrentPiece.remove();
@@ -75,9 +75,7 @@ ESVIJI.game = (function() {
   function nextLevel() {
     playing = true;
     drawScore();
-    level++;
     drawLevel();
-    lives++;
     drawLives();
     nbPieces = Math.min(maxAvailablePieces, Math.floor(3 + (level / 3)));
 
@@ -104,6 +102,8 @@ ESVIJI.game = (function() {
     getValidPieces();
     if (validPieces.length == 0) {
       // no more valid piece, end of the turn
+      level++;
+      lives++;
       nextLevel();
     } else {
       if (validPieces.indexOf(currentPiece) == -1) {
