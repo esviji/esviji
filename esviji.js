@@ -21,8 +21,8 @@ ESVIJI.settings = {
     'posY': 8,
     'dirY': 0
   },
-  'secondsPerMove': 0.2,
-  'secondsPerMorph': 0.8
+  'durationMove': 0.2,
+  'durationMorph': 0.8
 }
 
 ESVIJI.game = (function() {
@@ -182,7 +182,7 @@ ESVIJI.game = (function() {
     if (currentPosY == 1 && currentDirY == -1) {
       // Against the floor, no more possible move
       if (oldPosY != 1) {
-        animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
+        animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['durationMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
       }
       animStart();
     } else {
@@ -190,7 +190,7 @@ ESVIJI.game = (function() {
         // Against the left wall, should not go down
         currentDirX = 0;
         currentDirY = -1;
-        animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+        animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['durationMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
         oldPosX = currentPosX;
         playUserChoice();
       } else {
@@ -203,13 +203,13 @@ ESVIJI.game = (function() {
             // ...at our left, should no go down
             currentDirX = 0;
             currentDirY = -1;
-            animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+            animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['durationMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
             oldPosX = currentPosX;
             playUserChoice();
           } else {
             // ...under us, no more possible move
             if (oldPosY != currentPosY) {
-              animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
+              animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['durationMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
             }
             animStart();
           }
@@ -228,10 +228,10 @@ ESVIJI.game = (function() {
           currentPosY += currentDirY;
           currentPieces[currentPosX][currentPosY] = ESVIJI.settings['emptyId'];
           if (currentPosXBefore != oldPosX) {
-            animStackMove(drawnCurrentPiece, (oldPosX - currentPosXBefore) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosXBefore));
+            animStackMove(drawnCurrentPiece, (oldPosX - currentPosXBefore) * ESVIJI.settings['durationMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosXBefore));
             oldPosX = currentPosXBefore;
           } else if (currentPosYBefore != oldPosY) {
-            animStackMove(drawnCurrentPiece, (oldPosY - currentPosYBefore) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosYBefore));
+            animStackMove(drawnCurrentPiece, (oldPosY - currentPosYBefore) * ESVIJI.settings['durationMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosYBefore));
             oldPosY = currentPosYBefore;
           }
           animStackDestroy(drawnCurrentPieces[currentPosX][currentPosY]);
@@ -240,9 +240,9 @@ ESVIJI.game = (function() {
           break;
         default:
           if (currentPosX != oldPosX) {
-            animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['secondsPerMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+            animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings['durationMove'], 'x', xToSvg(oldPosX), xToSvg(currentPosX));
           } else if (currentPosY != oldPosY) {
-            animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['secondsPerMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
+            animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings['durationMove'], 'y', yToSvg(oldPosY), yToSvg(currentPosY));
           }
           if (scoreThisTurn > 0) {
             currentPiece = nextPiece;
@@ -300,7 +300,7 @@ ESVIJI.game = (function() {
     anim.setAttributeNS(null, "attributeName", "opacity");
     anim.setAttributeNS(null, "to", "0");
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMorph'] + "s");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
     anim.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
     pieceFrom.append(anim);
 
@@ -310,7 +310,7 @@ ESVIJI.game = (function() {
     anim.setAttributeNS(null, "attributeName", "opacity");
     anim.setAttributeNS(null, "to", "1");
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMorph'] + "s");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
     pieceTo.append(anim);
 
     // move both
@@ -320,7 +320,7 @@ ESVIJI.game = (function() {
     anim.setAttributeNS(null, "from", from);
     anim.setAttributeNS(null, "to", to);
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMorph'] + "s");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
     anim.setAttributeNS(null, "fill", "freeze");
 
     pieceFrom.append(anim);
@@ -338,7 +338,7 @@ ESVIJI.game = (function() {
     anim.setAttributeNS(null, "from", "0 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16));
     anim.setAttributeNS(null, "to", "360 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16));
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] + "s");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMove'] + "s");
     piece.append(anim);
     // opacity
     anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
@@ -346,7 +346,7 @@ ESVIJI.game = (function() {
     anim.setAttributeNS(null, "attributeName", "opacity");
     anim.setAttributeNS(null, "to", "0");
     anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['secondsPerMove'] + "s");
+    anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMove'] + "s");
     anim.addEventListener("end", function(event) {
       piece = $(event.currentTarget.parentElement);
       x = svgToX(piece.attr('x'));
@@ -373,7 +373,7 @@ ESVIJI.game = (function() {
   }
 
   function makePiecesFall() {
-    var abovePieces;  
+    var abovePieces;
 
     // lastStackedAnimation = 0;
     debug('makePiecesFall');
@@ -391,7 +391,7 @@ ESVIJI.game = (function() {
                 currentPieces[x][z] = currentPieces[x][z + 1];
                 currentPieces[x][z + 1] = ESVIJI.settings['emptyId'];
                 if (drawnCurrentPieces[x][z + 1] !== null) {
-                  animStackMove(drawnCurrentPieces[x][z + 1], ESVIJI.settings['secondsPerMove'], 'y', yToSvg(z + 1), yToSvg(z));
+                  animStackMove(drawnCurrentPieces[x][z + 1], ESVIJI.settings['durationMove'], 'y', yToSvg(z + 1), yToSvg(z));
                   drawnCurrentPieces[x][z] = drawnCurrentPieces[x][z + 1];
                   drawnCurrentPieces[x][z + 1] = null;
                 } else {
