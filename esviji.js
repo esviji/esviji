@@ -82,10 +82,25 @@ ESVIJI.game = (function() {
     erasePieces();
 
     initPieces();
+
+    // HACK
+    // currentPieces[1][1] = 2;
+    // currentPieces[2][1] = 3;
+    // currentPieces[3][1] = 3;
+    // currentPieces[1][2] = 2;
+    // currentPieces[2][2] = 2;
+    // currentPieces[3][2] = 2;
+    // currentPieces[1][3] = 3;
+    // currentPieces[2][3] = 3;
+    // currentPieces[3][3] = 3;
+
     drawPieces();
 
     getValidPieces();
     currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
+
+    // HACK
+    // currentPiece = 2;
 
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
