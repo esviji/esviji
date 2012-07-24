@@ -147,6 +147,9 @@ ESVIJI.game = (function() {
   }
 
   function keyEnter(event) {
+    Mousetrap.unbind('up');
+    Mousetrap.unbind('down');
+    Mousetrap.unbind(['enter', 'space']);
     moveCount = 0;
     oldPosX = currentPosX;
     oldPosY = currentPosY;
