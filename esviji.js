@@ -1,7 +1,7 @@
 var ESVIJI = {};
 
 ESVIJI.settings = {
-  'debug': false,
+  'debug': true,
   'board': {
     'width': 320,
     'height': 460
@@ -73,6 +73,10 @@ ESVIJI.game = (function() {
   }
 
   function nextLevel() {
+    if (ESVIJI.settings['debug']) {
+      console.log('# nextLevel');
+    }
+
     playing = true;
     drawScore();
     drawLevel();
@@ -83,24 +87,10 @@ ESVIJI.game = (function() {
 
     initPieces();
 
-    // HACK
-    // currentPieces[1][1] = 2;
-    // currentPieces[2][1] = 3;
-    // currentPieces[3][1] = 3;
-    // currentPieces[1][2] = 2;
-    // currentPieces[2][2] = 2;
-    // currentPieces[3][2] = 2;
-    // currentPieces[1][3] = 3;
-    // currentPieces[2][3] = 3;
-    // currentPieces[3][3] = 3;
-
     drawPieces();
 
     getValidPieces();
     currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
-
-    // HACK
-    // currentPiece = 2;
 
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
@@ -108,7 +98,10 @@ ESVIJI.game = (function() {
   }
 
   function startNewTurn() {
-    debug('startNewTurn');
+    if (ESVIJI.settings['debug']) {
+      console.log('# startNewTurn');
+    }
+
     currentPosX = ESVIJI.settings['turn']['posX'];
     currentDirX = ESVIJI.settings['turn']['dirX'];
     currentPosY = ESVIJI.settings['turn']['posY'];
@@ -127,10 +120,9 @@ ESVIJI.game = (function() {
       }
       if (playing) {
         drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings['pieces'][currentPiece - 1], "playable");
-
+        drawnCurrentPiece.on('mousedown touchstart', cursorStart);
         $("#board").on('mousemove touchmove', cursorMove);
         $("#board").on('mouseup touchend', cursorEnd);
-        drawnCurrentPiece.on('mousedown touchstart', cursorStart);
         Mousetrap.bind('up', keyUp);
         Mousetrap.bind('down', keyDown);
         Mousetrap.bind(['enter', 'space'], keyEnter);
@@ -140,11 +132,15 @@ ESVIJI.game = (function() {
 
   function keyUp(event) {
     cursorY = Math.min(Math.max(yToSvg(currentPosY + 1), cursorMaxY), cursorMinY);
+    currentPosY = svgToY(cursorY);
     drawnCurrentPiece.attr({
       y: cursorY
+    });
   }
+
   function keyDown(event) {
     cursorY = Math.min(Math.max(yToSvg(currentPosY - 1), cursorMaxY), cursorMinY);
+    currentPosY = svgToY(cursorY);
     drawnCurrentPiece.attr({
       y: cursorY
     });
@@ -156,6 +152,7 @@ ESVIJI.game = (function() {
     oldPosY = currentPosY;
     playUserChoice();
   }
+
   function cursorStart(event) {
     event.preventDefault();
     dragged = true;
@@ -345,73 +342,89 @@ ESVIJI.game = (function() {
     $("#board").append(pieceTo);
 
     // opacity from
-    anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    anim.setAttributeNS(null, "attributeType", "xml");
-    anim.setAttributeNS(null, "attributeName", "opacity");
-    anim.setAttributeNS(null, "to", "0");
-    anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
-    anim.setAttributeNS(null, "fill", "freeze");
-    anim.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
-    pieceFrom.append(anim);
+    animOpacityFrom = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    animOpacityFrom.setAttributeNS(null, "attributeType", "xml");
+    animOpacityFrom.setAttributeNS(null, "attributeName", "opacity");
+    animOpacityFrom.setAttributeNS(null, "to", "0");
+    animOpacityFrom.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
+    animOpacityFrom.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
+    animOpacityFrom.setAttributeNS(null, "fill", "freeze");
+    animOpacityFrom.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
+    pieceFrom.append(animOpacityFrom);
+
+    // move
+    animMoveFrom = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    animMoveFrom.setAttributeNS(null, "attributeType", "xml");
+    animMoveFrom.setAttributeNS(null, "attributeName", attribute);
+    animMoveFrom.setAttributeNS(null, "from", from);
+    animMoveFrom.setAttributeNS(null, "to", to);
+    animMoveFrom.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
+    animMoveFrom.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
+    animMoveFrom.setAttributeNS(null, "fill", "freeze");
+    animMoveFrom.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 2));
+    pieceFrom.append(animMoveFrom);
 
     // opacity to
-    anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    anim.setAttributeNS(null, "attributeType", "xml");
-    anim.setAttributeNS(null, "attributeName", "opacity");
-    anim.setAttributeNS(null, "to", "1");
-    anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
-    anim.setAttributeNS(null, "fill", "freeze");
-    pieceTo.append(anim);
+    animOpacityTo = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    animOpacityTo.setAttributeNS(null, "attributeType", "xml");
+    animOpacityTo.setAttributeNS(null, "attributeName", "opacity");
+    animOpacityTo.setAttributeNS(null, "to", "1");
+    animOpacityTo.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
+    animOpacityTo.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
+    animOpacityTo.setAttributeNS(null, "fill", "freeze");
+    animOpacityTo.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 3));
+    pieceTo.append(animOpacityTo);
 
-    // move both
-    anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    anim.setAttributeNS(null, "attributeType", "xml");
-    anim.setAttributeNS(null, "attributeName", attribute);
-    anim.setAttributeNS(null, "from", from);
-    anim.setAttributeNS(null, "to", to);
-    anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
-    anim.setAttributeNS(null, "fill", "freeze");
+    // move
+    animMoveTo = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    animMoveTo.setAttributeNS(null, "attributeType", "xml");
+    animMoveTo.setAttributeNS(null, "attributeName", attribute);
+    animMoveTo.setAttributeNS(null, "from", from);
+    animMoveTo.setAttributeNS(null, "to", to);
+    animMoveTo.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
+    animMoveTo.setAttributeNS(null, "dur", ESVIJI.settings['durationMorph'] + "s");
+    animMoveTo.setAttributeNS(null, "fill", "freeze");
+    animMoveTo.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 4));
+    pieceTo.append(animMoveTo);
 
-    pieceFrom.append(anim);
-    pieceTo.append(anim);
-
-    lastStackedAnimation++;
+    lastStackedAnimation += 4;
   }
 
-  function animStackDestroy(piece) {
+  function animStackDestroy(piece, begin) {
     if (ESVIJI.settings['debug']) {
       console.log('# animStackDestroy');
       console.log(piece);
     }
 
+    begin = begin || ("anim" + lastStackedAnimation + ".end");
+
     // rotate
-    anim = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
-    anim.setAttributeNS(null, "attributeType", "xml");
-    anim.setAttributeNS(null, "attributeName", "transform");
-    anim.setAttributeNS(null, "type", "rotate");
-    anim.setAttributeNS(null, "from", "0 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16));
-    anim.setAttributeNS(null, "to", "360 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16));
-    anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMove'] + "s");
-    piece.append(anim);
+    animRotate = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
+    animRotate.setAttributeNS(null, "attributeType", "xml");
+    animRotate.setAttributeNS(null, "attributeName", "transform");
+    animRotate.setAttributeNS(null, "type", "rotate");
+    animRotate.setAttributeNS(null, "from", "0 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16));
+    animRotate.setAttributeNS(null, "to", "360 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16));
+    animRotate.setAttributeNS(null, "begin", begin);
+    animRotate.setAttributeNS(null, "dur", ESVIJI.settings['durationMove'] + "s");
+    animRotate.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
+    piece.append(animRotate);
 
     // opacity
-    anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    anim.setAttributeNS(null, "attributeType", "xml");
-    anim.setAttributeNS(null, "attributeName", "opacity");
-    anim.setAttributeNS(null, "to", "0");
-    anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    anim.setAttributeNS(null, "dur", ESVIJI.settings['durationMove'] + "s");
-    anim.addEventListener("end", function(event) {
-      piece = $(event.currentTarget.parentElement);
-      x = svgToX(piece.attr('x'));
-      y = svgToY(piece.attr('y'));
-      piece.remove();
+    animOpacity = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    animOpacity.setAttributeNS(null, "attributeType", "xml");
+    animOpacity.setAttributeNS(null, "attributeName", "opacity");
+    animOpacity.setAttributeNS(null, "to", "0");
+    animOpacity.setAttributeNS(null, "begin", begin);
+    animOpacity.setAttributeNS(null, "dur", ESVIJI.settings['durationMove'] + "s");
+    animOpacity.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 2));
+    animOpacity.addEventListener("end", function(event) {
+      thisPiece = $(event.currentTarget.parentElement);
+      thisPiece.remove();
     }, false);
-    piece.append(anim);
+    piece.append(animOpacity);
+
+    lastStackedAnimation += 2;
   }
 
   function makePiecesFall() {
