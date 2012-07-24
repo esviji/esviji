@@ -131,10 +131,31 @@ ESVIJI.game = (function() {
         $("#board").on('mousemove touchmove', cursorMove);
         $("#board").on('mouseup touchend', cursorEnd);
         drawnCurrentPiece.on('mousedown touchstart', cursorStart);
+        Mousetrap.bind('up', keyUp);
+        Mousetrap.bind('down', keyDown);
+        Mousetrap.bind(['enter', 'space'], keyEnter);
       }
     }
   }
 
+  function keyUp(event) {
+    cursorY = Math.min(Math.max(yToSvg(currentPosY + 1), cursorMaxY), cursorMinY);
+    drawnCurrentPiece.attr({
+      y: cursorY
+  }
+  function keyDown(event) {
+    cursorY = Math.min(Math.max(yToSvg(currentPosY - 1), cursorMaxY), cursorMinY);
+    drawnCurrentPiece.attr({
+      y: cursorY
+    });
+  }
+
+  function keyEnter(event) {
+    moveCount = 0;
+    oldPosX = currentPosX;
+    oldPosY = currentPosY;
+    playUserChoice();
+  }
   function cursorStart(event) {
     event.preventDefault();
     dragged = true;
