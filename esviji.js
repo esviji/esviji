@@ -426,7 +426,7 @@ ESVIJI.game = (function () {
     animOpacity.setAttributeNS(null, "begin", begin);
     animOpacity.setAttributeNS(null, "dur", ESVIJI.settings.durationMove + "s");
     animOpacity.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 2));
-    animOpacity.addEventListener("end", function(event) {
+    animOpacity.addEventListener("endEvent", function(event) {
       thisPiece = $(event.currentTarget.parentElement);
       thisPiece.remove();
     }, false);
@@ -441,7 +441,7 @@ ESVIJI.game = (function () {
     }
     var abovePieces;
 
-    $('#anim' + lastStackedAnimation)[0].addEventListener("end", function(event) {
+    $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
       drawnCurrentPiece.remove();
       $('#morph').remove();
     });
@@ -477,7 +477,7 @@ ESVIJI.game = (function () {
     }
 
     if (lastStackedAnimation >= stackedAnimationToStart) {
-      $('#anim' + lastStackedAnimation)[0].addEventListener("end", function(event) {
+      $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
         for (x = 1; x <= 6; x++) {
           for (y = 1; y <= 7; y++) {
             if (drawnCurrentPieces[x][y] !== null) {
