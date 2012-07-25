@@ -498,16 +498,18 @@ ESVIJI.game = (function() {
     }
   }
 
-  function initPieces() {
+  function initPieces(thisLevel) {
+    thisLevel = thisLevel || level;
+    nbPieces = Math.min(maxAvailablePieces, Math.floor(3 + (thisLevel / 3)));
     currentPieces = [];
 
     for (x = 1; x <= 9; x++) {
       currentPieces[x] = [];
       for (y = 1; y <= 13; y++) {
-        if (x > Math.max(Math.min(level, 6), 3)) {
           currentPieces[x][y] = ESVIJI.settings['emptyId'];
+        if (x > Math.max(Math.min(thisLevel, 6), 3)) {
         } else {
-          if (y > Math.max(Math.min(level, 7), 3)) {
+          if (y > Math.max(Math.min(thisLevel, 7), 3)) {
             if (y - 7 > x) {
               currentPieces[x][y] = ESVIJI.settings['rockId'];
             } else {
@@ -520,8 +522,8 @@ ESVIJI.game = (function() {
       }
     }
     // add rocks in the middle after level 10
-    if (level > 8) {
-      nbRocks = Math.floor((level - 6) / 3);
+    if (thisLevel > 8) {
+      nbRocks = Math.floor((thisLevel - 6) / 3);
       positionedRocks = 0;
       while (positionedRocks < nbRocks) {
         rock_x = 1 + Math.floor(Math.random() * 6);
