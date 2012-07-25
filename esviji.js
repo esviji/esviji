@@ -53,6 +53,7 @@ ESVIJI.game = (function() {
     maxAvailablePieces = ESVIJI.settings['pieces'].length;
 
     $('#main .start').on('click', startPlaying);
+    $('#main .tutorial').on('click', startTutorial);
   }
 
   function startPlaying() {
@@ -70,6 +71,11 @@ ESVIJI.game = (function() {
     //    fs.request();
     //  });
     nextLevel();
+  }
+
+  function startTutorial() {
+    $('#tutorialPanel').clone().attr('id', 'tutorial').appendTo('#board');
+
   }
 
   function nextLevel() {
