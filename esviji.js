@@ -1,7 +1,7 @@
 var ESVIJI = {};
 
 ESVIJI.settings = {
-  'debug': true,
+  'debug': false,
   'board': {
     'width': 320,
     'height': 460
@@ -578,7 +578,7 @@ ESVIJI.game = (function () {
     for (x = 1; x <= 9; x++) {
       if (drawnCurrentPieces[x] !== undefined) {
         for (y = 1; y <= 13; y++) {
-          if (drawnCurrentPieces[x][y] !== null) {
+          if (drawnCurrentPieces[x][y] !== null && drawnCurrentPieces[x][y] !== undefined) {
             drawnCurrentPieces[x][y].remove();
           }
         }
