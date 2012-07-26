@@ -89,3 +89,13 @@ html, body {
   fill: #880077;
   stroke-width: 0;
 }
+
+.step rect, .step path {
+  fill: #333;
+  fill-opacity: 1;
+}
+
+.step text {
+  font-weight: normal;
+  fill: #fff;
+}
