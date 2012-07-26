@@ -220,30 +220,54 @@
           <animate attributeType="xml" attributeName="opacity" to="1" begin="animPiece7.end" dur="0.8s" fill="freeze" />
           <animate attributeType="xml" attributeName="x" to="64" begin="animPiece7.end" dur="0.8s" fill="freeze" />
         </use>
-        <use xlink:href="#piece1" x="96" y="332"/>
-        <use xlink:href="#piece4" x="96" y="300"/>
-        <use xlink:href="#piece3" x="96" y="268"/>
-        <use xlink:href="#piece1" x="96" y="236"/>
+        <use xlink:href="#piece1" x="96" y="332">
+          <animate attributeType="xml" attributeName="y" to="364" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
+        <use xlink:href="#piece4" x="96" y="300">
+          <animate attributeType="xml" attributeName="y" to="332" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
+        <use xlink:href="#piece3" x="96" y="268">
+          <animate attributeType="xml" attributeName="y" to="300" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
+        <use xlink:href="#piece1" x="96" y="236">
+          <animate attributeType="xml" attributeName="y" to="268" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
         <use xlink:href="#piece2" x="128" y="428"/>
         <use xlink:href="#rock" x="128" y="396"/>
         <use xlink:href="#piece4" x="128" y="364">
           <animate attributeType="xml" attributeName="opacity" to="0" begin="animPiece5.end" dur="0.8s" fill="freeze" />
           <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 144 380" to="360 144 380" begin="animPiece5.end" dur="0.8s" />
         </use>        
-        <use xlink:href="#piece4" x="128" y="332"/>
-        <use xlink:href="#piece3" x="128" y="300"/>
-        <use xlink:href="#piece2" x="128" y="268"/>
-        <use xlink:href="#piece3" x="128" y="236"/>
+        <use xlink:href="#piece4" x="128" y="332">
+          <animate attributeType="xml" attributeName="y" to="364" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
+        <use xlink:href="#piece3" x="128" y="300">
+          <animate attributeType="xml" attributeName="y" to="332" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
+        <use xlink:href="#piece2" x="128" y="268">
+          <animate attributeType="xml" attributeName="y" to="300" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
+        <use xlink:href="#piece3" x="128" y="236">
+          <animate attributeType="xml" attributeName="y" to="268" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
         <use xlink:href="#piece1" x="160" y="428"/>
         <use xlink:href="#piece1" x="160" y="396"/>
         <use xlink:href="#piece4" x="160" y="364">
           <animate attributeType="xml" attributeName="opacity" to="0" begin="animPiece4.end" dur="0.8s" fill="freeze" />
           <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 176 380" to="360 176 380" begin="animPiece4.end" dur="0.8s" />
         </use>
-        <use xlink:href="#piece2" x="160" y="332"/>
-        <use xlink:href="#piece5" x="160" y="300"/>
-        <use xlink:href="#piece2" x="160" y="268"/>
-        <use xlink:href="#piece2" x="160" y="236"/>
+        <use xlink:href="#piece2" x="160" y="332">
+          <animate attributeType="xml" attributeName="y" to="364" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
+        <use xlink:href="#piece5" x="160" y="300">
+          <animate attributeType="xml" attributeName="y" to="332" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
+        <use xlink:href="#piece2" x="160" y="268">
+          <animate attributeType="xml" attributeName="y" to="300" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
+        <use xlink:href="#piece2" x="160" y="236">
+          <animate attributeType="xml" attributeName="y" to="268" begin="animPiece9.end" dur="0.8s" fill="freeze" />
+        </use>
         
         <use id="playable" xlink:href="#piece4" x="288" y="204">
           <animate attributeType="xml" attributeName="y" to="428" begin="anim3.end" dur="1.5s" fill="freeze" id="animPiece1" />
@@ -311,6 +335,15 @@
             <tspan x="40" y="210">hits, becoming the</tspan>
             <tspan x="40" y="230">new playable piece.</tspan>
             <animate attributeType="xml" attributeName="opacity" to="1" begin="animPiece7.end" dur="3s" fill="freeze" id="anim10" />
+            <animate attributeType="xml" attributeName="opacity" to="0" begin="anim10.end" dur="1s" fill="freeze" id="anim11" />
+          </text>
+          <text opacity="0">
+            <tspan x="40" y="170">Pieces that now have</tspan>
+            <tspan x="40" y="190">holes under them</tspan>
+            <tspan x="40" y="210">fall.</tspan>
+            <tspan x="40" y="230"></tspan>
+            <animate attributeType="xml" attributeName="opacity" to="1" begin="anim11.end" dur="3s" fill="freeze" id="anim12" />
+            <animate attributeType="xml" attributeName="opacity" to="0" begin="anim12.end" dur="1s" fill="freeze" id="anim13" />
           </text>
           <path d="M 250 220 L 250 190 L 280 220 z">
             <animate attributeType="xml" attributeName="opacity" to="0" begin="anim3.end" dur="1s" fill="freeze" />
