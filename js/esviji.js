@@ -74,10 +74,15 @@ ESVIJI.game = (function () {
   }
 
   function startTutorial() {
-    $('#tutorialPanel').clone().attr('id', 'tutorial').appendTo('#board');
+    tuto = $('#tutorialPanel').clone().attr('id', 'tutorial');
+    $('#tutorialPanel').remove();
+    tuto.appendTo('#board');
     $('#tutoAnimEnd')[0].addEventListener("endEvent", function(event) {
+      tuto = $('#tutorial').clone().attr('id', 'tutorialPanel');
       $('#tutorial').remove();
+      tuto.appendTo('#board defs');
     }, false);
+    $('#tutoAnimStart')[0].beginElement();
   }
 
   function nextLevel() {
