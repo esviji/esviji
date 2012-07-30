@@ -75,6 +75,9 @@ ESVIJI.game = (function () {
 
   function startTutorial() {
     $('#tutorialPanel').clone().attr('id', 'tutorial').appendTo('#board');
+    $('#tutoAnimEnd')[0].addEventListener("endEvent", function(event) {
+      $('#tutorial').remove();
+    }, false);
   }
 
   function nextLevel() {
