@@ -1,5 +1,5 @@
 <!doctype html>
-<html><!-- manifest="esviji.appcache.php"-->
+<html><!-- manifest="esviji.appcache.php" -->
 <head>
 <meta charset="utf-8">
 <title>esviji</title>
@@ -7,12 +7,13 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="apple-touch-icon" href="esviji-icon.png" />
-<link rel="stylesheet" media="all" href="styles.css" type="text/css" />
+<link rel="stylesheet" media="all" href="css/styles.css" type="text/css" />
 <script type="text/javascript" src="js/svgweb/svg.js" data-path="svgweb"></script>
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="js/mousetrap.min.js"></script>
+<script type="text/javascript" src="js/mousetrap-1.1.2.min.js"></script>
+<script type="text/javascript" src="js/lawnchair-0.6.1.min.js"></script>
 <!--<script type="text/javascript" src="js/fullscreen.min.js"></script>-->
-<script type="text/javascript" src="esviji.js"></script>
+<script type="text/javascript" src="js/esviji.js"></script>
 </head>
 
 <body>
@@ -215,7 +216,7 @@
         <use xlink:href="#piece4" x="96" y="364">
           <tutoAnimate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnimPiece6.end" dur="0.8s" fill="freeze" />
           <tutoAnimateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 112 380" to="360 112 380" begin="tutoAnimPiece6.end" dur="0.8s" />
-        </use>        
+        </use>
         <use xlink:href="#piece2" x="96" y="364" opacity="0">
           <tutoAnimate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimPiece7.end" dur="0.8s" fill="freeze" />
           <tutoAnimate attributeType="xml" attributeName="x" to="64" begin="tutoAnimPiece7.end" dur="0.8s" fill="freeze" />
@@ -237,7 +238,7 @@
         <use xlink:href="#piece4" x="128" y="364">
           <tutoAnimate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnimPiece5.end" dur="0.8s" fill="freeze" />
           <tutoAnimateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 144 380" to="360 144 380" begin="tutoAnimPiece5.end" dur="0.8s" />
-        </use>        
+        </use>
         <use xlink:href="#piece4" x="128" y="332">
           <tutoAnimate attributeType="xml" attributeName="y" to="364" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
         </use>
@@ -268,7 +269,7 @@
         <use xlink:href="#piece2" x="160" y="236">
           <tutoAnimate attributeType="xml" attributeName="y" to="268" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
         </use>
-        
+
         <use id="playable" xlink:href="#piece4" x="288" y="204">
           <tutoAnimate attributeType="xml" attributeName="y" to="428" begin="tutoAnim3.end" dur="1.5s" fill="freeze" id="tutoAnimPiece1" />
           <tutoAnimate attributeType="xml" attributeName="y" to="44" begin="tutoAnimPiece1.end" dur="3s" fill="freeze" id="tutoAnimPiece2" />
@@ -285,7 +286,7 @@
           <tutoAnimate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimPiece9.end" dur="0.1s" fill="freeze" />
         </use>
 
-        <g id="tutorialStep1" class="step" opacity="0">
+        <g class="step" opacity="0">
           <rect x="50" y="100" width="250" height="90" />
           <text>
             <tspan x="70" y="130">These are the pieces you</tspan>
@@ -296,7 +297,7 @@
           <tutoAnimate attributeType="xml" attributeName="opacity" to="1" begin="2s" dur="3s" fill="freeze" id="tutoAnim1" />
           <tutoAnimate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim1.end" dur="1s" fill="freeze" id="tutoAnim2" />
         </g>
-        <g id="tutorialStep2" class="step" opacity="0">
+        <g class="step" opacity="0">
           <rect x="20" y="140" width="230" height="110" />
           <text>
             <tspan x="40" y="170">This is the piece you</tspan>
