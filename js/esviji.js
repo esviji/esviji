@@ -77,12 +77,22 @@ ESVIJI.game = (function () {
     tuto = $('#tutorialPanel').clone().attr('id', 'tutorial');
     $('#tutorialPanel').remove();
     tuto.appendTo('#board');
-    $('#tutoAnimEnd')[0].addEventListener("endEvent", function(event) {
-      tuto = $('#tutorial').clone().attr('id', 'tutorialPanel');
-      $('#tutorial').remove();
-      tuto.appendTo('#board defs');
-    }, false);
+    $('#tutoAnimEnd')[0].addEventListener("endEvent", endTutorial, false);
     $('#tutoAnimStart')[0].beginElement();
+    endListener = window.setInterval(function() {
+      if ($('#tutorial').length === 0) {
+        clearInterval(endListener);
+      } else if ($('#tutorial').css('opacity') === '0') {
+        endTutorial();  // for Webkit only, it doesn't support addEventListener("endEvent", …)
+        clearInterval(endListener);
+      }
+    }, 500);
+  }
+
+  function endTutorial() {
+    tuto = $('#tutorial').clone().attr('id', 'tutorialPanel');
+    $('#tutorial').remove();
+    tuto.appendTo('#board defs');
   }
 
   function nextLevel() {
