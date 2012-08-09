@@ -80,14 +80,6 @@ ESVIJI.game = (function () {
     tuto.appendTo('#board');
     $('#tutoAnimEnd')[0].addEventListener("endEvent", endTutorial, false);
     $('#tutoAnimStart')[0].beginElement();
-    // endListener = window.setInterval(function() {
-    //   if ($('#tutorial').length === 0) {
-    //     clearInterval(endListener);
-    //   } else if ($('#tutorial').css('opacity') === '0') {
-    //     endTutorial();  // for Webkit only, it doesn't support addEventListener("endEvent", …)
-    //     clearInterval(endListener);
-    //   }
-    // }, 500);
   }
 
   function endTutorial() {
@@ -364,9 +356,6 @@ ESVIJI.game = (function () {
     animOpacityFrom.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
     pieceFrom.append(animOpacityFrom);
 
-    // For webkit which doesn't support addEventListener("endEvent", …)
-    listenForEndEvent(pieceFrom, 'opacity', '0');
-
     // move
     animMoveFrom = document.createElementNS("http://www.w3.org/2000/svg", "animate");
     animMoveFrom.setAttributeNS(null, "attributeType", "xml");
@@ -389,9 +378,6 @@ ESVIJI.game = (function () {
     animOpacityTo.setAttributeNS(null, "fill", "freeze");
     animOpacityTo.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 3));
     pieceTo.append(animOpacityTo);
-
-    // For webkit which doesn't support addEventListener("endEvent", …)
-    listenForEndEvent(pieceTo, 'opacity', '1');
 
     // move
     animMoveTo = document.createElementNS("http://www.w3.org/2000/svg", "animate");
@@ -439,34 +425,7 @@ ESVIJI.game = (function () {
     }, false);
     piece.append(animOpacity);
 
-    // For webkit which doesn't support addEventListener("endEvent", …)
-    listenForEndEvent(piece, 'opacity', '0');
-
     lastStackedAnimation += 2;
-  }
-
-  function listenForEndEvent(piece, property, value) {
-    // endEventListener.push({ 'piece': piece, 'property': property, 'value': value });
-    // if (endEventListenerInterval === null) {
-    //   endEventListenerInterval = window.setInterval(function() {
-    //     for (var index = 0, len = endEventListener.length; index < len; ++index) {
-    //       if (endEventListener[index] === undefined || endEventListener[index].piece === undefined) {
-    //         endEventListener.splice(index, 1);
-    //       } else if (endEventListener[index].piece.css(endEventListener[index].property) === endEventListener[index].value) {
-    //         pieceId = endEventListener[index].piece.attr('id');
-    //         endEventListener[index].piece.remove();
-    //         endEventListener.splice(index, 1);
-    //         if (endEventListener.length === 0) {
-    //           clearInterval(endEventListenerInterval);
-    //           endEventListenerInterval = null;
-    //         }
-    //         if (pieceId === 'playable') {
-    //           endOfTurn();
-    //         }
-    //       }
-    //     }
-    //   }, 100);
-    // }
   }
 
   function makePiecesFall() {
