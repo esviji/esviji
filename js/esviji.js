@@ -311,8 +311,11 @@ ESVIJI.game = (function () {
         }
       }
     }
-    score += Math.pow(scoreThisTurn, 2);
-    drawScore();
+    if (scoreThisTurn === 0) {
+      removeLife();
+    } else {
+      increaseScore(Math.pow(scoreThisTurn, 2));
+    }
     stackedAnimationToStart = lastStackedAnimation + 1;
     startNewTurn();
   }
@@ -661,6 +664,11 @@ ESVIJI.game = (function () {
     if (lives === 0) {
       gameOver();
     }
+  }
+
+  function increaseScore(scoreToAdd) {
+    score += scoreToAdd;
+    drawScore();
   }
 
   function drawScore() {
