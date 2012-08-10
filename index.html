@@ -287,7 +287,7 @@
           <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimPiece9.end" dur="0.1s" fill="freeze" />
         </use>
 
-        <g class="step" opacity="0">
+        <g id="textPannel1" class="step" opacity="0">
           <rect x="50" y="100" width="250" height="90" />
           <text>
             <tspan x="70" y="130">These are the pieces you</tspan>
@@ -295,65 +295,77 @@
             <tspan x="70" y="170">the turn.</tspan>
           </text>
           <path d="M 70 190 L 100 190 L 70 220 z" />
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimStart.end" dur="3s" fill="freeze" id="tutoAnim1" />
+          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimStart.end" dur="4s" fill="freeze" id="tutoAnim1" />
           <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim1.end" dur="1s" fill="freeze" id="tutoAnim2" />
         </g>
-        <g class="step" opacity="0">
+        <g id="textPannel2" class="step" opacity="0">
           <rect x="20" y="140" width="230" height="110" />
+          <path d="M 250 220 L 250 190 L 280 220 z" />
           <text>
             <tspan x="40" y="170">This is the piece you</tspan>
             <tspan x="40" y="190">can move up or down</tspan>
             <tspan x="40" y="210">and then launch to</tspan>
             <tspan x="40" y="230">destroy the others.</tspan>
-            <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim3.end" dur="1s" fill="freeze" id="tutoAnim4" />
           </text>
-          <text opacity="0">
+          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim2.end" dur="4s" fill="freeze" id="tutoAnim3" />
+          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim3.end" dur="1s" fill="freeze" id="tutoAnim4" />
+        </g>
+        <g id="textPannel3" class="step" opacity="0">
+          <rect x="20" y="140" width="230" height="110" />
+          <text>
             <tspan x="40" y="170">You can use your</tspan>
             <tspan x="40" y="190">mouse, finger or</tspan>
             <tspan x="40" y="210">keyboard to move the</tspan>
             <tspan x="40" y="230">piece.</tspan>
-            <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim4.end" dur="3s" fill="freeze" id="tutoAnim5" />
-            <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim5.end" dur="1s" fill="freeze" id="tutoAnim6" />
           </text>
-          <text opacity="0">
+          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim4.end" dur="4s" fill="freeze" id="tutoAnim5" />
+          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim5.end" dur="1s" fill="freeze" id="tutoAnim6" />
+        </g>
+        <g id="textPannel4" class="step" opacity="0">
+          <rect x="20" y="140" width="230" height="110" />
+          <text>
             <tspan x="40" y="170">The piece then goes to</tspan>
             <tspan x="40" y="190">the left until it hits</tspan>
             <tspan x="40" y="210">something: piece,</tspan>
             <tspan x="40" y="230">rock or wall.</tspan>
-            <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim6.end" dur="3s" fill="freeze" id="tutoAnim7" />
-            <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim7.end" dur="1s" fill="freeze" id="tutoAnim8" />
           </text>
-          <text opacity="0">
+          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim6.end" dur="4s" fill="freeze" id="tutoAnim7" />
+          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim7.end" dur="1s" fill="freeze" id="tutoAnim8" />
+        </g>
+        <g id="textPannel5" class="step" opacity="0">
+          <rect x="20" y="140" width="230" height="110" />
+          <text>
             <tspan x="40" y="170">You have to hit same</tspan>
             <tspan x="40" y="190">pieces to destroy them.</tspan>
             <tspan x="40" y="210">Hit more pieces to</tspan>
             <tspan x="40" y="230">gain more points.</tspan>
-            <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim8.end" dur="3s" fill="freeze" id="tutoAnim9" />
-            <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim9.end" dur="1s" fill="freeze" id="tutoAnim9" />
           </text>
-          <text opacity="0">
+          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim8.end" dur="4s" fill="freeze" id="tutoAnim9" />
+          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim9.end" dur="1s" fill="freeze" id="tutoAnim10" />
+        </g>
+        <g id="textPannel6" class="step" opacity="0">
+          <rect x="20" y="140" width="230" height="110" />
+          <text>
             <tspan x="40" y="170">The piece morphes</tspan>
             <tspan x="40" y="190">into the next piece it</tspan>
             <tspan x="40" y="210">hits, becoming the</tspan>
             <tspan x="40" y="230">new playable piece.</tspan>
-            <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimPiece7.end" dur="3s" fill="freeze" id="tutoAnim10" />
-            <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim10.end" dur="1s" fill="freeze" id="tutoAnim11" />
           </text>
-          <text opacity="0">
+          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim10.end" dur="4s" fill="freeze" id="tutoAnim11" />
+          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim11.end" dur="1s" fill="freeze" id="tutoAnim12" />
+        </g>
+        <g id="textPannel7" class="step" opacity="0">
+          <rect x="20" y="140" width="230" height="90" />
+          <text>
             <tspan x="40" y="170">Pieces that now have</tspan>
             <tspan x="40" y="190">holes under them</tspan>
             <tspan x="40" y="210">fall.</tspan>
-            <tspan x="40" y="230"></tspan>
-            <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim11.end" dur="3s" fill="freeze" id="tutoAnim12" />
           </text>
-          <path d="M 250 220 L 250 190 L 280 220 z">
-            <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim3.end" dur="1s" fill="freeze" />
-          </path>
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim2.end" dur="3s" fill="freeze" id="tutoAnim3" />
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim12.end" dur="1s" fill="freeze" id="tutoAnim13" />
+          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim12.end" dur="4s" fill="freeze" id="tutoAnim13" />
+          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim13.end" dur="1s" fill="freeze" id="tutoAnim14" />
         </g>
         <animate attributeType="xml" attributeName="opacity" to="1" begin="indefinite" dur="1s" fill="freeze" id="tutoAnimStart" />
-        <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim13.end" dur="1s" fill="freeze" id="tutoAnimEnd" />
+        <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim14.end" dur="1s" fill="freeze" id="tutoAnimEnd" />
       </g>
 
       <g id="pausePanel">
