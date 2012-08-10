@@ -320,11 +320,13 @@ ESVIJI.game = (function () {
     startNewTurn();
   }
 
-  function animStackMove(piece, duration, attribute, from, to) {
-    if (lastStackedAnimation === (stackedAnimationToStart - 1)) {
-      begin = 'indefinite';
-    } else {
-      begin = 'anim' + lastStackedAnimation + '.end';
+  function animStackMove(piece, duration, attribute, from, to, begin) {
+    if (begin === undefined) {
+      if (lastStackedAnimation === (stackedAnimationToStart - 1)) {
+        begin = 'indefinite';
+      } else {
+        begin = 'anim' + lastStackedAnimation + '.end';
+      }
     }
 
     anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
@@ -441,6 +443,7 @@ ESVIJI.game = (function () {
       $('#morph').remove();
     });
 
+    lastStackedAnimationBeforeFall = lastStackedAnimation;
     for (x = 1; x <= 6; x++) {
       for (y = 1; y <= 7; y++) {
         if (currentPieces[x][y] == ESVIJI.settings.emptyId) {
@@ -453,7 +456,7 @@ ESVIJI.game = (function () {
                 abovePieces++;
                 currentPieces[x][z] = currentPieces[x][z + 1];
                 currentPieces[x][z + 1] = ESVIJI.settings.emptyId;
-                animStackMove(drawnCurrentPieces[x][z + 1], ESVIJI.settings.durationMove, 'y', yToSvg(z + 1), yToSvg(z));
+                animStackMove(drawnCurrentPieces[x][z + 1], ESVIJI.settings.durationMove, 'y', yToSvg(z + 1), yToSvg(z), 'anim' + lastStackedAnimationBeforeFall + '.end');
                 drawnCurrentPieces[x][z] = drawnCurrentPieces[x][z + 1];
                 drawnCurrentPieces[x][z + 1] = null;
               }
