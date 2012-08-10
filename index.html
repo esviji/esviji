@@ -24,27 +24,25 @@
       <polygon id="arrow" points="0,16 10,6 8,12 40,12 40,20 8,20 10,26" style="stroke-width: 0; fill: #ac2c9b;" />
       <polygon id="rock" points="1,1 1,31 31,31 31,1" style="stroke-width: 3; stroke: #333; fill: #333;" />
       <svg id="piece1" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
-        <linearGradient id="gradient1" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id="gradientPiece1" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#ff0000"/>
           <stop offset="1" stop-color="#ffff00"/>
         </linearGradient>
-        <circle fill="url(#gradient1)" stroke="#ff7f00" cx="16" cy="16" r="15" />
+        <circle fill="url(#gradientPiece1)" stroke-width="1" stroke="#ff7f00" cx="16" cy="16" r="15" />
       </svg>
       <svg id="piece2" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
-        <linearGradient y2="0.5" x2="0" y1="0.5" x1="1" id="gradient2">
-          <stop stop-color="#ffff00" offset="0"/>
-          <stop stop-color="#007f00" offset="1"/>
+        <linearGradient id="gradientPiece2" x1="1" y1="0.5" x2="0" y2="0.5">
+          <stop offset="0" stop-color="#ffff00" />
+          <stop offset="1" stop-color="#007f00" />
         </linearGradient>
-        <rect fill="url(#gradient2)" stroke="#00af00" x="3" y="3" width="26" height="26" rx="7" ry="7" transform="rotate(45, 16, 16)"/>
+        <rect fill="url(#gradientPiece2)" stroke-width="1" stroke="#00af00" x="3" y="3" width="26" height="26" rx="7" ry="7" transform="rotate(45, 16, 16)"/>
       </svg>
-      <svg id="piece3" width="32" height="32" viewBox="-0.968 -0.699 55 55" enable-background="new -0.968 -0.699 55 55">
-        <path fill="#9B993A" d="M0,26.701C0,11.953,11.961,0,26.695,0c14.758,0,26.719,11.953,26.719,26.701
-          c0,14.752-11.961,26.703-26.719,26.703C11.961,53.404,0,41.453,0,26.701"/>
-        <path fill="#FFFFFF" d="M36.613,32.357c0-3.961-2.359-6.297-5.48-6.896v-0.072c3-1.125,4.562-3.377,4.562-6.297
-          c0-3.771-3.281-7.139-9.082-7.139c-3.293,0-6.031,0.92-8.473,2.531l1.965,4.172c0.926-0.807,2.641-2.064,5.254-2.064
-          c2.977,0,4.336,1.58,4.336,3.385c0,2.164-1.719,3.531-4.496,3.531h-2.977v4.693h2.934c2.898,0,5.379,1.031,5.379,4.283
-          c0,2.404-2.039,4.164-5.336,4.164c-2.402,0-4.371-0.932-5.586-1.836l-2.152,4.359c2.285,1.289,4.488,2.133,8.129,2.133
-          C32.176,41.305,36.613,37.328,36.613,32.357"/>
+      <svg id="piece3" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <linearGradient id="gradientPiece3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#00007f"/>
+          <stop offset="1" stop-color="#00ffff"/>
+        </linearGradient>
+        <polygon fill="url(#gradientPiece3)" stroke="#0066bf" points="23.5,31 8.5,31 1,16.5 8.5,1 23.5,1 31,16.5 23.5,31"/>
       </svg>
       <svg id="piece4" width="32" height="32" viewBox="-0.971 -0.696 55 55" enable-background="new -0.971 -0.696 55 55">
         <path fill="#BB4B9C" d="M0,26.707C0,11.949,11.947,0,26.707,0c14.748,0,26.701,11.949,26.701,26.707

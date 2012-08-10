@@ -12,7 +12,7 @@ ESVIJI.settings = {
   'launch': {
     'lives': 9,
     'score': 0,
-    'level': 10
+    'level': 1
   },
   'turn': {
     'posX': 10,

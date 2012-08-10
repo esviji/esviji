@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg id="piece2" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
-  <linearGradient y2="0.5" x2="0" y1="0.5" x1="1" id="gradient">
-    <stop stop-color="#007f00" offset="0"/>
-    <stop stop-color="#ffff00" offset="1"/>
-  </linearGradient>
-  <rect fill="url(#gradient)" stroke="#007f00" x="3" y="3" width="26" height="26" rx="7" ry="7" transform="rotate(45, 16, 16)"/>
-</svg>
