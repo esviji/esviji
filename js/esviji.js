@@ -321,16 +321,18 @@ ESVIJI.game = (function () {
   }
 
   function animStackMove(piece, duration, attribute, from, to) {
+    if (lastStackedAnimation === (stackedAnimationToStart - 1)) {
+      begin = 'indefinite';
+    } else {
+      begin = 'anim' + lastStackedAnimation + '.end';
+    }
+
     anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
     anim.setAttributeNS(null, "attributeType", "xml");
     anim.setAttributeNS(null, "attributeName", attribute);
     anim.setAttributeNS(null, "from", from);
     anim.setAttributeNS(null, "to", to);
-    if (lastStackedAnimation == (stackedAnimationToStart - 1)) {
-      anim.setAttributeNS(null, "begin", "indefinite");
-    } else {
-      anim.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    }
+    anim.setAttributeNS(null, "begin", begin);
     anim.setAttributeNS(null, "dur", duration + "s");
     anim.setAttributeNS(null, "fill", "freeze");
     anim.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
