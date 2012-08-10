@@ -180,114 +180,61 @@
 
         <text id="title" x="250" y="30">esviji</text>
         <text class="scoreLabel" x="65" y="25">score:</text>
-        <text class="score" x="75" y="25">0
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnimPiece7.end" dur="1s" fill="freeze" />
-        </text>
-        <text class="score" x="75" y="25" opacity="0">9
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimPiece7.end" dur="1s" fill="freeze" />
-        </text>
+        <text id="score1" class="score" x="75" y="25">0</text>
+        <text id="score2" class="score" x="75" y="25" opacity="0">9</text>
         <text class="levelLabel" x="65" y="50">level:</text>
         <text class="level" x="75" y="50">1</text>
         <text class="livesLabel" x="65" y="75">lives:</text>
         <text class="lives" x="75" y="75">9</text>
 
-        <use xlink:href="#piece2" x="0" y="428"/>
-        <use xlink:href="#piece5" x="0" y="396"/>
-        <use xlink:href="#piece1" x="0" y="364"/>
-        <use xlink:href="#piece2" x="0" y="332"/>
-        <use xlink:href="#piece2" x="0" y="300"/>
-        <use xlink:href="#piece1" x="0" y="268"/>
-        <use xlink:href="#piece4" x="0" y="236"/>
-        <use xlink:href="#piece4" x="32" y="428"/>
-        <use xlink:href="#piece6" x="32" y="396"/>
-        <use xlink:href="#piece3" x="32" y="364"/>
-        <use xlink:href="#piece5" x="32" y="332"/>
-        <use xlink:href="#piece3" x="32" y="300"/>
-        <use xlink:href="#piece5" x="32" y="268"/>
-        <use xlink:href="#piece4" x="32" y="236"/>
-        <use xlink:href="#piece5" x="64" y="428"/>
-        <use xlink:href="#piece2" x="64" y="396"/>
-        <use xlink:href="#piece2" x="64" y="364"/>
-        <use xlink:href="#piece6" x="64" y="332"/>
-        <use xlink:href="#piece2" x="64" y="300"/>
-        <use xlink:href="#piece4" x="64" y="268"/>
-        <use xlink:href="#piece5" x="64" y="236"/>
-        <use xlink:href="#piece5" x="96" y="428"/>
-        <use xlink:href="#piece5" x="96" y="396"/>
-        <use xlink:href="#piece4" x="96" y="364">
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnimPiece6.end" dur="0.8s" fill="freeze" />
-          <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 112 380" to="360 112 380" begin="tutoAnimPiece6.end" dur="0.8s" />
-        </use>
-        <use xlink:href="#piece2" x="96" y="364" opacity="0">
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimPiece7.end" dur="0.8s" fill="freeze" />
-          <animate attributeType="xml" attributeName="x" to="64" begin="tutoAnimPiece7.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece1" x="96" y="332">
-          <animate attributeType="xml" attributeName="y" to="364" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece4" x="96" y="300">
-          <animate attributeType="xml" attributeName="y" to="332" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece3" x="96" y="268">
-          <animate attributeType="xml" attributeName="y" to="300" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece1" x="96" y="236">
-          <animate attributeType="xml" attributeName="y" to="268" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece2" x="128" y="428"/>
-        <use xlink:href="#rock" x="128" y="396"/>
-        <use xlink:href="#piece4" x="128" y="364">
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnimPiece5.end" dur="0.8s" fill="freeze" />
-          <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 144 380" to="360 144 380" begin="tutoAnimPiece5.end" dur="0.8s" />
-        </use>
-        <use xlink:href="#piece4" x="128" y="332">
-          <animate attributeType="xml" attributeName="y" to="364" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece3" x="128" y="300">
-          <animate attributeType="xml" attributeName="y" to="332" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece2" x="128" y="268">
-          <animate attributeType="xml" attributeName="y" to="300" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece3" x="128" y="236">
-          <animate attributeType="xml" attributeName="y" to="268" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece1" x="160" y="428"/>
-        <use xlink:href="#piece1" x="160" y="396"/>
-        <use xlink:href="#piece4" x="160" y="364">
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnimPiece4.end" dur="0.8s" fill="freeze" />
-          <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 176 380" to="360 176 380" begin="tutoAnimPiece4.end" dur="0.8s" />
-        </use>
-        <use xlink:href="#piece2" x="160" y="332">
-          <animate attributeType="xml" attributeName="y" to="364" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece5" x="160" y="300">
-          <animate attributeType="xml" attributeName="y" to="332" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece2" x="160" y="268">
-          <animate attributeType="xml" attributeName="y" to="300" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
-        <use xlink:href="#piece2" x="160" y="236">
-          <animate attributeType="xml" attributeName="y" to="268" begin="tutoAnim11.end" dur="0.8s" fill="freeze" />
-        </use>
+        <use id="tutoPiece11" xlink:href="#piece2" x="0" y="428"/>
+        <use id="tutoPiece12" xlink:href="#piece5" x="0" y="396"/>
+        <use id="tutoPiece13" xlink:href="#piece1" x="0" y="364"/>
+        <use id="tutoPiece14" xlink:href="#piece2" x="0" y="332"/>
+        <use id="tutoPiece15" xlink:href="#piece2" x="0" y="300"/>
+        <use id="tutoPiece16" xlink:href="#piece1" x="0" y="268"/>
+        <use id="tutoPiece17" xlink:href="#piece4" x="0" y="236"/>
+        <use id="tutoPiece21" xlink:href="#piece4" x="32" y="428"/>
+        <use id="tutoPiece22" xlink:href="#piece6" x="32" y="396"/>
+        <use id="tutoPiece23" xlink:href="#piece3" x="32" y="364"/>
+        <use id="tutoPiece24" xlink:href="#piece5" x="32" y="332"/>
+        <use id="tutoPiece25" xlink:href="#piece3" x="32" y="300"/>
+        <use id="tutoPiece26" xlink:href="#piece5" x="32" y="268"/>
+        <use id="tutoPiece27" xlink:href="#piece4" x="32" y="236"/>
+        <use id="tutoPiece31" xlink:href="#piece5" x="64" y="428"/>
+        <use id="tutoPiece32" xlink:href="#piece2" x="64" y="396"/>
+        <use id="tutoPiece33" xlink:href="#piece2" x="64" y="364"/>
+        <use id="tutoPiece34" xlink:href="#piece6" x="64" y="332"/>
+        <use id="tutoPiece35" xlink:href="#piece2" x="64" y="300"/>
+        <use id="tutoPiece36" xlink:href="#piece4" x="64" y="268"/>
+        <use id="tutoPiece37" xlink:href="#piece5" x="64" y="236"/>
+        <use id="tutoPiece41" xlink:href="#piece5" x="96" y="428"/>
+        <use id="tutoPiece42" xlink:href="#piece5" x="96" y="396"/>
+        <use id="tutoPiece43" xlink:href="#piece4" x="96" y="364" />
+        <use id="tutoPiece43Morph" xlink:href="#piece2" x="96" y="364" opacity="0" />
+        <use id="tutoPiece44" xlink:href="#piece1" x="96" y="332" />
+        <use id="tutoPiece45" xlink:href="#piece4" x="96" y="300" />
+        <use id="tutoPiece46" xlink:href="#piece3" x="96" y="268" />
+        <use id="tutoPiece47" xlink:href="#piece1" x="96" y="236" />
+        <use id="tutoPiece51" xlink:href="#piece2" x="128" y="428"/>
+        <use id="tutoPiece52" xlink:href="#rock" x="128" y="396"/>
+        <use id="tutoPiece53" xlink:href="#piece4" x="128" y="364" />
+        <use id="tutoPiece54" xlink:href="#piece4" x="128" y="332" />
+        <use id="tutoPiece55" xlink:href="#piece3" x="128" y="300" />
+        <use id="tutoPiece56" xlink:href="#piece2" x="128" y="268" />
+        <use id="tutoPiece57" xlink:href="#piece3" x="128" y="236" />
+        <use id="tutoPiece61" xlink:href="#piece1" x="160" y="428"/>
+        <use id="tutoPiece62" xlink:href="#piece1" x="160" y="396"/>
+        <use id="tutoPiece63" xlink:href="#piece4" x="160" y="364" />
+        <use id="tutoPiece64" xlink:href="#piece2" x="160" y="332" />
+        <use id="tutoPiece65" xlink:href="#piece5" x="160" y="300" />
+        <use id="tutoPiece66" xlink:href="#piece2" x="160" y="268" />
+        <use id="tutoPiece67" xlink:href="#piece2" x="160" y="236" />
 
-        <use id="playable" xlink:href="#piece4" x="288" y="204">
-          <animate attributeType="xml" attributeName="y" to="428" begin="tutoAnim3.end" dur="1.5s" fill="freeze" id="tutoAnimPiece1" />
-          <animate attributeType="xml" attributeName="y" to="44" begin="tutoAnimPiece1.end" dur="3s" fill="freeze" id="tutoAnimPiece2" />
-          <animate attributeType="xml" attributeName="y" to="364" begin="tutoAnimPiece2.end" dur="2s" fill="freeze" id="tutoAnimPiece3" />
-          <animate attributeType="xml" attributeName="x" to="192" begin="tutoAnim7.end" dur="1.5s" fill="freeze" id="tutoAnimPiece4" />
-          <animate attributeType="xml" attributeName="x" to="160" begin="tutoAnimPiece4.end" dur="0.8s" fill="freeze" id="tutoAnimPiece5" />
-          <animate attributeType="xml" attributeName="x" to="128" begin="tutoAnimPiece5.end" dur="0.8s" fill="freeze" id="tutoAnimPiece6" />
-          <animate attributeType="xml" attributeName="x" to="96" begin="tutoAnimPiece6.end" dur="0.8s" fill="freeze" id="tutoAnimPiece7" />
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnimPiece7.end" dur="0.8s" fill="freeze" id="tutoAnimPiece8" />
-          <animate attributeType="xml" attributeName="x" to="64" begin="tutoAnimPiece7.end" dur="0.8s" fill="freeze" id="tutoAnimPiece9" />
-        </use>
+        <use id="playable" xlink:href="#piece4" x="288" y="204" />
+        <use id="playable2" xlink:href="#piece2" x="288" y="204" opacity="0" />
 
-        <use id="playable2" xlink:href="#piece2" x="288" y="204" opacity="0">
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimPiece9.end" dur="0.1s" fill="freeze" />
-        </use>
-
-        <g id="textPannel1" class="step" opacity="0">
+        <g id="tutoPiecesText" class="step" opacity="0">
           <rect x="50" y="100" width="250" height="90" />
           <text>
             <tspan x="70" y="130">These are the pieces you</tspan>
@@ -295,22 +242,18 @@
             <tspan x="70" y="170">the turn.</tspan>
           </text>
           <path d="M 70 190 L 100 190 L 70 220 z" />
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimStart.end" dur="4s" fill="freeze" id="tutoAnim1" />
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim1.end" dur="1s" fill="freeze" id="tutoAnim2" />
         </g>
-        <g id="textPannel2" class="step" opacity="0">
+        <g id="tutoPlayableText" class="step" opacity="0">
           <rect x="20" y="140" width="230" height="110" />
           <path d="M 250 220 L 250 190 L 280 220 z" />
           <text>
             <tspan x="40" y="170">This is the piece you</tspan>
             <tspan x="40" y="190">can move up or down</tspan>
-            <tspan x="40" y="210">and then launch to</tspan>
+            <tspan x="40" y="210">and then release to</tspan>
             <tspan x="40" y="230">destroy the others.</tspan>
           </text>
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim2.end" dur="4s" fill="freeze" id="tutoAnim3" />
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim3.end" dur="1s" fill="freeze" id="tutoAnim4" />
         </g>
-        <g id="textPannel3" class="step" opacity="0">
+        <g id="tutoPlayText" class="step" opacity="0">
           <rect x="20" y="140" width="230" height="110" />
           <text>
             <tspan x="40" y="170">You can use your</tspan>
@@ -318,10 +261,8 @@
             <tspan x="40" y="210">keyboard to move the</tspan>
             <tspan x="40" y="230">piece.</tspan>
           </text>
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim4.end" dur="4s" fill="freeze" id="tutoAnim5" />
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim5.end" dur="1s" fill="freeze" id="tutoAnim6" />
         </g>
-        <g id="textPannel4" class="step" opacity="0">
+        <g id="tutoMoveText" class="step" opacity="0">
           <rect x="20" y="140" width="230" height="110" />
           <text>
             <tspan x="40" y="170">The piece then goes to</tspan>
@@ -329,10 +270,8 @@
             <tspan x="40" y="210">something: piece,</tspan>
             <tspan x="40" y="230">rock or wall.</tspan>
           </text>
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim6.end" dur="4s" fill="freeze" id="tutoAnim7" />
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim7.end" dur="1s" fill="freeze" id="tutoAnim8" />
         </g>
-        <g id="textPannel5" class="step" opacity="0">
+        <g id="tutoHitText" class="step" opacity="0">
           <rect x="20" y="140" width="230" height="110" />
           <text>
             <tspan x="40" y="170">You have to hit same</tspan>
@@ -340,10 +279,8 @@
             <tspan x="40" y="210">Hit more pieces to</tspan>
             <tspan x="40" y="230">gain more points.</tspan>
           </text>
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim8.end" dur="4s" fill="freeze" id="tutoAnim9" />
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim9.end" dur="1s" fill="freeze" id="tutoAnim10" />
         </g>
-        <g id="textPannel6" class="step" opacity="0">
+        <g id="tutoMorphText" class="step" opacity="0">
           <rect x="20" y="140" width="230" height="110" />
           <text>
             <tspan x="40" y="170">The piece morphes</tspan>
@@ -351,21 +288,71 @@
             <tspan x="40" y="210">hits, becoming the</tspan>
             <tspan x="40" y="230">new playable piece.</tspan>
           </text>
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim10.end" dur="4s" fill="freeze" id="tutoAnim11" />
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim11.end" dur="1s" fill="freeze" id="tutoAnim12" />
         </g>
-        <g id="textPannel7" class="step" opacity="0">
+        <g id="tutoFallText" class="step" opacity="0">
           <rect x="20" y="140" width="230" height="90" />
           <text>
             <tspan x="40" y="170">Pieces that now have</tspan>
             <tspan x="40" y="190">holes under them</tspan>
             <tspan x="40" y="210">fall.</tspan>
           </text>
-          <animate attributeType="xml" attributeName="opacity" to="1" begin="tutoAnim12.end" dur="4s" fill="freeze" id="tutoAnim13" />
-          <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim13.end" dur="1s" fill="freeze" id="tutoAnim14" />
         </g>
-        <animate attributeType="xml" attributeName="opacity" to="1" begin="indefinite" dur="1s" fill="freeze" id="tutoAnimStart" />
-        <animate attributeType="xml" attributeName="opacity" to="0" begin="tutoAnim14.end" dur="1s" fill="freeze" id="tutoAnimEnd" />
+        <animate id="tutoAnimStart" attributeType="xml" attributeName="opacity" to="1" begin="indefinite" dur="1s" fill="freeze" />
+
+        <animate id="tutoPiecesAnimStart" xlink:href="#tutoPiecesText" attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimStart.end" dur="4s" fill="freeze" />
+        <animate id="tutoPiecesAnimEnd" xlink:href="#tutoPiecesText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPiecesAnimStart.end" dur="2s" fill="freeze" />
+
+        <animate id="tutoPlayableAnimStart" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPiecesAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoPlayableMove1" xlink:href="#playable" attributeType="xml" attributeName="y" to="428" begin="tutoPlayableAnimStart.end" dur="1.5s" fill="freeze" />
+        <animate id="tutoPlayableMove2" xlink:href="#playable" attributeType="xml" attributeName="y" to="44" begin="tutoPlayableMove1.end" dur="3s" fill="freeze" />
+        <animate id="tutoPlayableMove3" xlink:href="#playable" attributeType="xml" attributeName="y" to="364" begin="tutoPlayableMove2.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableAnimEnd" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayAnimStart" xlink:href="#tutoPlayText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoPlayAnimEnd" xlink:href="#tutoPlayText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayAnimStart.end" dur="2s" fill="freeze" />
+
+        <animate id="tutoMoveAnimStart" xlink:href="#tutoMoveText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoPlayableMove4" xlink:href="#playable" attributeType="xml" attributeName="x" to="192" begin="tutoMoveAnimStart.end" dur="1.5s" fill="freeze" />
+        <animate id="tutoMoveAnimEnd" xlink:href="#tutoMoveText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMove4.end" dur="2s" fill="freeze" />
+
+        <animate id="tutoHitAnimStart" xlink:href="#tutoHitText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableMove4.end" dur="4s" fill="freeze" />
+        <animate id="tutoHitPiece1" xlink:href="#tutoPiece63" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMove4.end" dur="0.8s" fill="freeze" />
+        <animateTransform id="tutoHitPiece2" xlink:href="#tutoPiece63" attributeType="xml" attributeName="transform" type="rotate" from="0 176 380" to="360 176 380" begin="tutoPlayableMove4.end" dur="0.8s" />
+        <animate id="tutoPlayableHit1" xlink:href="#playable" attributeType="xml" attributeName="x" to="160" begin="tutoPlayableMove4.end" dur="0.8s" fill="freeze" />
+        <animate id="tutoHitPiece3" xlink:href="#tutoPiece53" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableHit1.end" dur="0.8s" fill="freeze" />
+        <animateTransform id="tutoHitPiece4" xlink:href="#tutoPiece53" attributeType="xml" attributeName="transform" type="rotate" from="0 144 380" to="360 144 380" begin="tutoPlayableHit1.end" dur="0.8s" />
+        <animate id="tutoPlayableHit2" xlink:href="#playable" attributeType="xml" attributeName="x" to="128" begin="tutoPlayableHit1.end" dur="0.8s" fill="freeze" />
+        <animate id="tutoHitPiece5" xlink:href="#tutoPiece43" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableHit2.end" dur="0.8s" fill="freeze" />
+        <animateTransform id="tutoHitPiece6" xlink:href="#tutoPiece43" attributeType="xml" attributeName="transform" type="rotate" from="0 112 380" to="360 112 380" begin="tutoPlayableHit2.end" dur="0.8s" />
+        <animate id="tutoPlayableHit3" xlink:href="#playable" attributeType="xml" attributeName="x" to="96" begin="tutoPlayableHit2.end" dur="0.8s" fill="freeze" />
+        <animate id="tutoHitAnimEnd" xlink:href="#tutoHitText" attributeType="xml" attributeName="opacity" to="0" begin="tutoHitAnimStart.end" dur="2s" fill="freeze" />
+
+        <animate id="tutoMorphAnimStart" xlink:href="#tutoMorphText" attributeType="xml" attributeName="opacity" to="1" begin="tutoHitAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoPlayableMorph1" xlink:href="#playable" attributeType="xml" attributeName="opacity" to="0" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableMorph2" xlink:href="#playable" attributeType="xml" attributeName="x" to="64" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableMorph3" xlink:href="#tutoPiece43Morph" attributeType="xml" attributeName="opacity" to="1" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableMorph4" xlink:href="#tutoPiece43Morph" attributeType="xml" attributeName="x" to="64" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableMorph5" xlink:href="#playable2" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableMorph2.end" dur="1s" fill="freeze" />
+        <animate id="tutoMorphAnimEnd" xlink:href="#tutoMorphText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMorph2.end" dur="2s" fill="freeze" />
+
+        <animate id="tutoFallAnimStart" xlink:href="#tutoFallText" attributeType="xml" attributeName="opacity" to="1" begin="tutoMorphAnimEnd.end" dur="4s" fill="freeze" />
+        <animate xlink:href="#tutoPiece44" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece45" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece46" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece47" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece54" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece55" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece56" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece57" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece64" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece65" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece66" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece67" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate id="tutoFallAnimEnd" xlink:href="#tutoFallText" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimStart.end" dur="2s" fill="freeze" />
+
+        <animate xlink:href="#score1" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimStart.end" dur="1s" fill="freeze" />
+        <animate xlink:href="#score2" attributeType="xml" attributeName="opacity" to="1" begin="tutoFallAnimStart.end" dur="1s" fill="freeze" />
+
+        <animate id="tutoAnimEnd" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimEnd.end" dur="1s" fill="freeze" />
       </g>
 
       <g id="pausePanel">
