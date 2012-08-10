@@ -453,11 +453,9 @@ ESVIJI.game = (function () {
                 abovePieces++;
                 currentPieces[x][z] = currentPieces[x][z + 1];
                 currentPieces[x][z + 1] = ESVIJI.settings.emptyId;
-                if (drawnCurrentPieces[x][z + 1] !== null) {
-                  animStackMove(drawnCurrentPieces[x][z + 1], ESVIJI.settings.durationMove, 'y', yToSvg(z + 1), yToSvg(z));
-                  drawnCurrentPieces[x][z] = drawnCurrentPieces[x][z + 1];
-                  drawnCurrentPieces[x][z + 1] = null;
-                }
+                animStackMove(drawnCurrentPieces[x][z + 1], ESVIJI.settings.durationMove, 'y', yToSvg(z + 1), yToSvg(z));
+                drawnCurrentPieces[x][z] = drawnCurrentPieces[x][z + 1];
+                drawnCurrentPieces[x][z + 1] = null;
               }
             }
           }
