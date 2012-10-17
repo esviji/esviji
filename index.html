@@ -22,7 +22,7 @@
   <svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="board" viewBox="0 0 320 460" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
     <defs>
       <polygon id="arrow" points="0,16 10,6 8,12 40,12 40,20 8,20 10,26" style="stroke-width: 0; fill: #ac2c9b;" />
-      <polygon id="rock" points="1,1 1,31 31,31 31,1" style="stroke-width: 3; stroke: #333; fill: #333;" />
+      <polygon id="rock" points="1,1 1,31 31,31 31,1" style="stroke-width: 3; stroke: #555; fill: #555;" />
       <svg id="piece1" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
         <linearGradient id="gradientPiece1" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#ff0000"/>
@@ -31,103 +31,39 @@
         <circle fill="url(#gradientPiece1)" stroke-width="1" stroke="#ff7f00" cx="16" cy="16" r="15" />
       </svg>
       <svg id="piece2" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
-        <linearGradient id="gradientPiece2" x1="1" y1="0.5" x2="0" y2="0.5">
-          <stop offset="0" stop-color="#ffff00" />
-          <stop offset="1" stop-color="#007f00" />
+        <linearGradient id="gradientPiece2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#007f00" />
+          <stop offset="1" stop-color="#ffff00" />
         </linearGradient>
-        <rect fill="url(#gradientPiece2)" stroke-width="1" stroke="#00af00" x="3" y="3" width="26" height="26" rx="7" ry="7" transform="rotate(45, 16, 16)"/>
+        <circle fill="url(#gradientPiece2)" stroke-width="1" stroke="#00af00" cx="16" cy="16" r="15" />
       </svg>
       <svg id="piece3" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
         <linearGradient id="gradientPiece3" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#00007f"/>
-          <stop offset="1" stop-color="#00ffff"/>
+          <stop offset="0" stop-color="#00007f" />
+          <stop offset="1" stop-color="#00ffff" />
         </linearGradient>
-        <polygon fill="url(#gradientPiece3)" stroke="#0066bf" points="23.5,31 8.5,31 1,16.5 8.5,1 23.5,1 31,16.5 23.5,31"/>
+        <circle fill="url(#gradientPiece3)" stroke-width="1" stroke="#0066bf" cx="16" cy="16" r="15" />
       </svg>
-      <svg id="piece4" width="32" height="32" viewBox="-0.971 -0.696 55 55" enable-background="new -0.971 -0.696 55 55">
-        <path fill="#BB4B9C" d="M0,26.707C0,11.949,11.947,0,26.707,0c14.748,0,26.701,11.949,26.701,26.707
-          c0,14.75-11.953,26.703-26.701,26.703C11.947,53.41,0,41.457,0,26.707"/>
-        <path fill="#FFFFFF" d="M35.936,34.918v-4.41h-3.488V12.5h-7.215L14.24,29.656v5.262h12.756v5.887h5.451v-5.887H35.936
-           M26.996,30.508h-7.904l5.775-9.066c1.117-1.77,1.926-3.492,2.041-3.969h0.088V30.508z"/>
+      <svg id="piece4" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <linearGradient id="gradientPiece4" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#4b0061"/>
+          <stop offset="1" stop-color="#b900ec"/>
+        </linearGradient>
+        <circle fill="url(#gradientPiece4)" stroke-width="1" stroke="#8000a6" cx="16" cy="16" r="15" />
       </svg>
-      <svg id="piece5" width="32" height="32" viewBox="-0.966 -0.692 55 55" enable-background="new -0.966 -0.692 55 55">
-        <path fill="#F68F4D" d="M0,26.715C0,11.961,11.965,0,26.703,0c14.758,0,26.715,11.961,26.715,26.715
-          c0,14.742-11.957,26.703-26.715,26.703C11.965,53.418,0,41.457,0,26.715"/>
-        <path fill="#231F20" d="M36.309,31.664c0-4.246-3.121-8.531-10.859-8.934l-0.809-0.039l0.398-5.414H35.23v-4.695H20.352
-          l-1.125,14.715l4.41,0.039c5.215,0.051,6.57,2.848,6.57,4.895c0,3.32-2.758,4.574-4.961,4.574c-2.414,0-4.008-0.887-5.375-1.812
-          l-2.078,4.418c2.195,1.238,4.77,2.047,7.773,2.047C32.016,41.457,36.309,37.074,36.309,31.664"/>
+      <svg id="piece5" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <linearGradient id="gradientPiece5" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#52423B"/>
+          <stop offset="1" stop-color="#CFB591"/>
+        </linearGradient>
+        <circle fill="url(#gradientPiece5)" stroke-width="1" stroke="#AB8E6F" cx="16" cy="16" r="15" />
       </svg>
-      <svg id="piece6" width="32" height="32" viewBox="-0.968 -0.694 55 55" enable-background="new -0.968 -0.694 55 55">
-        <path fill="#78C696" d="M0,26.703C0,11.949,11.961,0,26.707,0c14.754,0,26.707,11.949,26.707,26.703
-          c0,14.746-11.953,26.711-26.707,26.711C11.961,53.414,0,41.449,0,26.703"/>
-        <path fill="#231F20" d="M35.902,30.477c0-5.305-3.766-8.387-8.391-8.387c-2.988,0-4.801,1.082-5.758,1.926
-          c0.359-5.688,3.281-8.539,7.18-8.539c1.59,0,3.043,0.359,3.793,0.688l0.891-4.812c-1.16-0.289-2.613-0.477-4.211-0.477
-          c-8.898,0-13.426,6.723-13.426,16.551c0,7.496,2.719,12.836,10.34,12.836C32.137,40.262,35.902,36.121,35.902,30.477 M30.25,31.078
-          c0,2.438-1.402,4.723-4.133,4.723c-2.809,0-4.324-2.605-4.324-5.293c0-0.836,0-1.922,0.32-2.402
-          c0.559-0.887,1.965-1.559,3.688-1.559C28.523,26.547,30.25,28.426,30.25,31.078z"/>
-      </svg>
-      <svg id="piece7" width="32" height="32" viewBox="-0.968 -0.696 55 55" enable-background="new -0.968 -0.696 55 55">
-        <path fill="#F59EB3" d="M0,26.707C0,11.965,11.961,0,26.707,0s26.707,11.965,26.707,26.707c0,14.75-11.961,26.703-26.707,26.703
-          S0,41.457,0,26.707"/>
-        <path fill="#231F20" d="M36.215,18.035v-4.609H16.414v4.73H30.16L23.27,30.984c-2.488,4.621-3.488,7.008-3.488,10.754h6.457
-          C26.238,37.285,29.996,28.828,36.215,18.035"/>
-      </svg>
-      <svg id="piece8" width="32" height="32" viewBox="-0.461 -0.206 54 54" enable-background="new -0.461 -0.206 54 54">
-        <path fill="#C5A3CC" d="M0,26.7C0,11.953,11.955,0,26.703,0C41.455,0,53.41,11.953,53.41,26.7c0,14.754-11.955,26.715-26.707,26.715
-          C11.955,53.415,0,41.454,0,26.7"/>
-        <path fill="#231F20" d="M36.811,32.845c0-3.719-2.283-5.973-4.891-7.203c2.646-1.613,4.016-3.656,4.016-6.297
-          c0-4.86-4.133-7.31-9.104-7.31c-4.854,0-9.102,3.255-9.102,7.942c0,2.926,1.525,4.648,3.965,6.172
-          c-2.725,1.402-4.848,3.617-4.848,7.379c0,4.293,3.562,8.059,9.859,8.059C32.52,41.587,36.811,38.224,36.811,32.845 M30.52,19.7
-          c0,1.77-1.604,3.402-3.088,4.09c-1.801-0.762-4.129-2.008-4.129-4.328c0-1.961,1.4-3.328,3.607-3.328
-          C29.234,16.134,30.52,17.731,30.52,19.7z M30.959,33.29c0,2.246-1.484,4.133-4.172,4.133c-2.729,0-4.248-2.215-4.248-4.535
-          c0-2.199,1.844-4.043,3.688-4.77C28.631,29.321,30.959,30.724,30.959,33.29z"/>
-      </svg>
-      <svg id="piece9" width="32" height="32" viewBox="-0.973 -0.694 55 55" enable-background="new -0.973 -0.694 55 55">
-        <path fill="#CEC82B" d="M7.827,45.59c-10.438-10.426-10.434-27.336,0-37.764c10.426-10.439,27.348-10.432,37.746,0
-          c10.441,10.428,10.441,27.338,0,37.764C35.175,56.02,18.253,56.028,7.827,45.59"/>
-        <path fill="#231F20" d="M16.769,21.739c0,5.297,3.766,8.383,8.379,8.383c2.984,0,4.828-1.086,5.785-1.914
-          c-0.359,5.68-3.32,8.531-7.195,8.531c-1.59,0-3.039-0.359-3.812-0.68l-0.883,4.812c1.172,0.273,2.613,0.484,4.219,0.484
-          c8.914,0,13.434-6.742,13.434-16.57c0-7.492-2.719-12.826-10.359-12.826C20.534,11.959,16.769,16.09,16.769,21.739 M22.417,21.145
-          c0-2.453,1.41-4.734,4.117-4.734c2.801,0,4.359,2.609,4.359,5.289c0,0.852,0,1.93-0.32,2.406C30.015,24.993,28.253,26,26.534,26
-          C23.819,26,22.417,23.793,22.417,21.145z"/>
-      </svg>
-      <svg id="piece10" width="32" height="32" viewBox="-0.653 -0.146 53.417999 53.414001" enable-background="new -0.653 -0.146 55 55">
-        <path fill="#e0b03a" d="m -0.653,26.561 c 0,-14.746 11.961,-26.707 26.703,-26.707 14.758,0 26.715,11.961 26.715,26.707 0,14.746 -11.957,26.707 -26.715,26.707 -14.742,0 -26.703,-11.961 -26.703,-26.707"/>
-        <path fill="#231f20" d="M 19.632,40.718 V 12.413 h -4.934 c -1.285,1 -4.332,2.887 -7.613,4.457 l -1.73,0.797 1.926,4.336 1.488,-0.77 c 1.035,-0.523 3.883,-2.008 4.848,-2.762 v 22.247 h 6.015 M 44.273,26.651 c 0,-6.539 -1.68,-14.797 -10.223,-14.797 -8.539,0 -10.391,8.258 -10.391,14.797 0,6.539 1.688,14.797 10.227,14.797 8.551,0 10.387,-8.258 10.387,-14.797 z m -6.129,0 c 0,2.812 -0.156,10.059 -4.176,10.059 -4,0 -4.211,-7.207 -4.211,-10.059 0,-2.895 0.121,-10.023 4.211,-10.023 4.051,0 4.176,7.054 4.176,10.023 z"/>
-      </svg>
-      <svg id="piece11" width="32" height="32" viewBox="-0.968 -0.697 55 55" enable-background="new -0.968 -0.697 55 55">
-        <path fill="#8D663A" d="M0,26.707C0,11.959,11.961,0,26.695,0c14.758,0,26.719,11.959,26.719,26.707S41.453,53.408,26.695,53.408
-          C11.961,53.408,0,41.455,0,26.707"/>
-        <path fill="#FFFFFF" d="M22.969,40.812V12.508h-4.934c-1.281,1.004-4.328,2.885-7.617,4.447L8.695,17.76l1.918,4.332l1.484-0.764
-          c1.043-0.525,3.895-2.004,4.852-2.764v22.248H22.969 M40.574,40.812V12.508h-4.918c-1.281,1.004-4.32,2.885-7.602,4.447
-          l-1.719,0.805l1.918,4.332l1.48-0.764c1.039-0.525,3.879-2.004,4.84-2.764v22.248H40.574z"/>
-      </svg>
-      <svg id="piece12" width="32" height="32" viewBox="-0.971 -0.692 55 55" enable-background="new -0.971 -0.692 55 55">
-        <path fill="#028D5B" d="M0,26.703C0,11.965,11.957,0,26.705,0c14.752,0,26.703,11.965,26.703,26.703
-          c0,14.762-11.951,26.715-26.703,26.715C11.957,53.418,0,41.465,0,26.703"/>
-        <path fill="#FFFFFF" d="M20.289,40.238v-28.32h-4.938c-1.279,1.008-4.332,2.898-7.615,4.461l-1.725,0.793l1.924,4.336l1.484-0.762
-          c1.045-0.523,3.893-2.008,4.854-2.766v22.258H20.289 M43.404,40.238V35.5H31.74c0.369-1.648,3.205-4.012,4.652-5.336
-          c3.408-3.082,6.496-5.297,6.496-10.141c0-5.777-4.697-8.582-9.664-8.582c-3.809,0-6.336,1.133-9.057,3.484l2.961,3.926
-          c0.68-0.746,2.404-2.559,4.891-2.559c3.09,0,4.689,1.969,4.689,4.41c0,2.73-2.045,4.684-3.924,6.336
-          c-3.773,3.285-7.021,6.176-7.74,9.461v3.738H43.404z"/>
-      </svg>
-      <svg id="piece13" width="32" height="32" viewBox="-0.971 -0.69 55 55" enable-background="new -0.971 -0.69 55 55">
-        <path fill="#89D3DE" d="M0,26.699C0,11.941,11.955,0,26.707,0s26.701,11.941,26.701,26.699c0,14.762-11.949,26.723-26.701,26.723
-          S0,41.461,0,26.699"/>
-        <path fill="#231F20" d="M20.695,40.82V12.5h-4.932c-1.287,1-4.336,2.879-7.623,4.441l-1.725,0.801l1.928,4.359l1.484-0.762
-          c1.039-0.52,3.889-2,4.848-2.758V40.82H20.695 M43.859,32.422c0-3.961-2.367-6.281-5.492-6.883v-0.078
-          c3.004-1.121,4.561-3.359,4.561-6.281c0-3.801-3.283-7.16-9.053-7.16c-3.336,0-6.055,0.922-8.5,2.52l1.961,4.16
-          c0.92-0.758,2.641-2.039,5.252-2.039c2.969,0,4.328,1.602,4.328,3.402c0,2.156-1.721,3.52-4.492,3.52h-2.965v4.68h2.926
-          c2.895,0,5.375,1.039,5.375,4.277c0,2.402-2.039,4.203-5.336,4.203c-2.393,0-4.359-0.922-5.564-1.84l-2.168,4.359
-          c2.285,1.277,4.488,2.117,8.137,2.117C39.408,41.379,43.859,37.379,43.859,32.422z"/>
-      </svg>
-      <svg id="piece14" width="32" height="32" viewBox="-0.971 -0.697 55 55" enable-background="new -0.971 -0.697 55 55">
-        <path fill="#672F8F" d="M0,26.703C0,11.953,11.953,0,26.705,0c14.748,0,26.703,11.953,26.703,26.703S41.453,53.408,26.705,53.408
-          C11.953,53.408,0,41.453,0,26.703"/>
-        <path fill="#FFFFFF" d="M20.4,40.859V12.564h-4.936c-1.279,1-4.32,2.889-7.611,4.451l-1.725,0.789l1.92,4.336l1.488-0.756
-          c1.035-0.525,3.891-2,4.848-2.768v22.242H20.4"/>
-        <path fill="#FFFFFF" d="M45.16,34.953v-4.414h-3.484v-18h-7.219L23.473,29.695v5.258h12.748v5.891h5.455v-5.891H45.16
-           M36.221,30.539h-7.896l5.771-9.055c1.121-1.771,1.93-3.492,2.045-3.977h0.08V30.539z"/>
+      <svg id="piece6" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <linearGradient id="gradientPiece6" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#770000"/>
+          <stop offset="1" stop-color="#ff0000"/>
+        </linearGradient>
+        <circle fill="url(#gradientPiece6)" stroke-width="1" stroke="#aa0000" cx="16" cy="16" r="15" />
       </svg>
 
       <radialGradient id="boardBackgroundGradient" gradientUnits="userSpaceOnUse" cx="70%" cy="70%" r="100%">
@@ -358,19 +294,19 @@
         <use xlink:href="#boardBackground" style="opacity: 0.8" />
         <text x="160" y="140" class="title">Pause</text>
         <g class="resume">
-          <rect x="100" y="200" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <rect x="100" y="200" width="120" height="40" class="button" />
           <text x="160" y="225">Resume</text>
         </g>
         <g class="restart">
-          <rect x="100" y="250" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <rect x="100" y="250" width="120" height="40" class="button" />
           <text x="160" y="275">Restart</text>
         </g>
         <g class="exit">
-          <rect x="100" y="300" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <rect x="100" y="300" width="120" height="40" class="button" />
           <text x="160" y="325">Exit</text>
         </g>
         <!--<g class="fullscreen">
-          <rect x="100" y="350" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <rect x="100" y="350" width="120" height="40" class="button" />
           <text x="160" y="375">Full screen</text>
         </g>-->
       </g>
@@ -380,11 +316,11 @@
         <text x="160" y="140" class="title">Game Over</text>
         <text class="score" x="160" y="200"></text>
         <g class="playagain">
-          <rect x="100" y="250" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <rect x="100" y="250" width="120" height="40" class="button" />
           <text x="160" y="275">Play again</text>
         </g>
         <g class="exit">
-          <rect x="100" y="300" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+          <rect x="100" y="300" width="120" height="40" class="button" />
           <text x="160" y="325">Exit</text>
         </g>
       </g>
@@ -394,34 +330,34 @@
       <use xlink:href="#boardBackground" />
       <g style="opacity: 0.2">
         <use xlink:href="#piece3" x="16" y="16" transform="scale(2)" />
-        <use xlink:href="#piece12" x="48" y="16" transform="scale(2)" />
+        <use xlink:href="#piece2" x="48" y="16" transform="scale(2)" />
         <use xlink:href="#piece4" x="80" y="16" transform="scale(2)" />
         <use xlink:href="#piece2" x="112" y="16" transform="scale(2)" />
         <use xlink:href="#piece1" x="16" y="48" transform="scale(2)" />
         <use xlink:href="#piece3" x="48" y="48" transform="scale(2)" />
-        <use xlink:href="#piece11" x="80" y="48" transform="scale(2)" />
+        <use xlink:href="#piece6" x="80" y="48" transform="scale(2)" />
         <use xlink:href="#piece3" x="112" y="48" transform="scale(2)" />
-        <use xlink:href="#piece7" x="16" y="80" transform="scale(2)" />
+        <use xlink:href="#piece3" x="16" y="80" transform="scale(2)" />
         <use xlink:href="#piece2" x="48" y="80" transform="scale(2)" />
         <use xlink:href="#piece4" x="80" y="80" transform="scale(2)" />
         <use xlink:href="#piece1" x="112" y="80" transform="scale(2)" />
         <use xlink:href="#piece2" x="16" y="112" transform="scale(2)" />
         <use xlink:href="#piece4" x="48" y="112" transform="scale(2)" />
-        <use xlink:href="#piece9" x="80" y="112" transform="scale(2)" />
-        <use xlink:href="#piece14" x="112" y="112" transform="scale(2)" />
+        <use xlink:href="#piece1" x="80" y="112" transform="scale(2)" />
+        <use xlink:href="#piece4" x="112" y="112" transform="scale(2)" />
       </g>
       <text x="160" y="180" class="title">esviji</text>
       <g class="start">
-        <rect x="100" y="300" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+        <rect x="100" y="300" width="120" height="40" class="button" />
         <text x="160" y="325">Start</text>
       </g>
       <g class="tutorial">
-        <rect x="100" y="350" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+        <rect x="100" y="350" width="120" height="40" class="button" />
         <text x="160" y="375">Tutorial</text>
       </g>
       <!--
       <g class="about">
-        <rect x="100" y="400" width="120" height="40" style="stroke-width: 1; stroke: #880077; fill: #fff" />
+        <rect x="100" y="400" width="120" height="40" class="button" />
         <text x="160" y="425">About</text>
       </g>
       -->

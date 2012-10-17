@@ -9,7 +9,7 @@ html, body {
   font-family: SansitaOneRegular;
   font-size: 18px;
   color:  #fff;
-  background-color: #333; /*#99618B;*/
+  background-color: #444;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -18,11 +18,11 @@ html, body {
 }
 
 #boardBackgroundGradient stop.begin {
-  stop-color: #880077;
+  stop-color: #333;
 }
 
 #boardBackgroundGradient stop.end {
-  stop-color: #550044;
+  stop-color: #111;
 }
 
 #boardBackground {
@@ -30,11 +30,11 @@ html, body {
 }
 
 #topbarGradient stop.begin {
-  stop-color: #99618B;
+  stop-color: #555;
 }
 
 #topbarGradient stop.end {
-  stop-color: #880077;
+  stop-color: #333;
 }
 
 #title {
@@ -46,12 +46,12 @@ html, body {
 
 .scoreLabel, .levelLabel, .livesLabel {
   text-anchor: end;
-  fill: #CF83BC;
+  fill: #ccc;
   stroke-width: 0;
 }
 
 .score, .level, .lives {
-  fill: #fff;
+  fill: #eee;
   stroke-width: 0;
 }
 
@@ -79,23 +79,31 @@ html, body {
 
 #gameOver .score {
   font-size: 34px;
-  fill: #CF83BC;
+  fill: #eee;
   text-anchor: middle;
 }
 
 .start text, .tutorial text, .about text, .resume text, .restart text, .fullscreen text, .playagain text, .exit text {
   font-size: 18px;
   text-anchor: middle;
-  fill: #880077;
+  fill: #333;
   stroke-width: 0;
 }
 
+.button {
+  fill: #ddd;
+  stroke-width: 3;
+  stroke: #666;
+}
+
 .step rect, .step path {
-  fill: #333;
+  fill: #aaa;
   fill-opacity: 1;
+  stroke-width: 0;
+  stroke: #aaa;
 }
 
 .step text {
   font-weight: normal;
-  fill: #fff;
+  fill: #333;
 }

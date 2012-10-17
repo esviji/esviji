@@ -5,7 +5,7 @@ ESVIJI.settings = {
     'width': 320,
     'height': 460
   },
-  'pieces': ['piece1', 'piece2', 'piece3', 'piece4', 'piece5', 'piece6', 'piece7', 'piece8', 'piece9', 'piece10', 'piece11', 'piece12', 'piece13', 'piece14'],
+  'pieces': ['piece1', 'piece2', 'piece3', 'piece4', 'piece5', 'piece6'],
   'rocks': ['rock'],
   'emptyId': 0,
   'rockId': -1,
