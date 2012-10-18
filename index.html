@@ -23,9 +23,9 @@
 
 	@media screen and (min-width: 60em) {
 		section {
-		  -webkit-column-count: 3;  -webkit-column-gap: 1em;
-		     -moz-column-count: 3;     -moz-column-gap: 1em;
-		          column-count: 3;          column-gap: 1em;
+		  width: 30%;
+		  float: left;
+		  margin-left: 2em;
 		}
 	}
 
@@ -36,6 +36,7 @@
 	}
 
 	#play {
+		clear: left;
 		font-size: 2em;
 		text-align: center;
 		margin-top: 2em;
@@ -59,6 +60,8 @@
 			<li>Offline</li>
 			<li>Resume previous paused game</li>
 		</ul>
+	</section>
+	<section>
 		<h3>Known to work on</h3>
 		<ul>
 			<li>Most recent desktop browsers: Firefox, Chrome, Safari, Maxthon (this one's for <a href="http://twitter.com/madsgraphics">Matthias</a>)</li>
@@ -71,12 +74,21 @@
 			<li>Some mobile browsers: Chrome Android</li>
 			<li><a href="http://twitter.com/esviji">Tell us!</a></li>
 		</ul>
+	</section>
+	<section>
 		<h3>Building blocks</h3>
 		<ul>
 			<li>SVG obviously, but with a <del>little</del> huge help from <a href="http://code.google.com/p/svgweb/">SVG Web</a> on webkit browsers</li>
 			<li>JavaScript, with a little bit of jQuery</li>
 			<li><a href="http://twitter.com/madsgraphics">Matthias</a>'s awesome <a href="https://github.com/madsgraphics/SVGEventListener">SVGEventListener polyfil</a> for SVG animate events in webkit (once again)</li>
 			<li><a href="http://craig.is/">Craig Campbell</a>'s <a href="http://craig.is/killing/mice">mousetrap</a> for keyboard controls</li>
+		</ul>
+		<h3>Thanks a lot to…</h3>
+		<ul>
+			<li><a href="http://twitter.com/JeremiePat">Jérémie</a> for inspiration regarding SVG awesomeness</li>
+			<li><a href="http://twitter.com/karlpro">Karl</a> for kind assistance on Opera issues</li>
+			<li><a href="http://twitter.com/madsgraphics">Matthias</a> for his SVG animate events polyfil</li>
+			<li>HP for the awesome <a href="http://en.wikipedia.org/wiki/HP-48_series">HP 48</a> calculator series (I owned 3 of them) on which I invented this game 20 years ago</li>
 		</ul>
 	</section>
 	<p id="play"><a href="esviji.html">Let's play!</a></p>
