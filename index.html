@@ -15,46 +15,63 @@
 
 	h1 {
 		font-size: 3em;
+	}
+
+	h1, h2 {
+		text-align: center;
+	}
+
+	section {
+	  -webkit-column-count: 2;  -webkit-column-gap: 1em;
+	     -moz-column-count: 2;     -moz-column-gap: 1em;
+	          column-count: 2;          column-gap: 1em;
+	}
+
+	#disclaimer {
+		font-size: 2em;
+		color: #c00;
 		text-align: center;
 	}
 </style>
 </head>
 
 <body>
-	<h1>esviji (ALPHA)</h1>
+	<h1>esviji</h1>
 	<h2><a href="http://gasteroprod.com/">Nicolas Hoizey</a>'s silly pet project attempting to develop a cross device/browser game with SVG</h2>
-	<p>Be careful, <strong>this is work in progress</strong>!</p>
-	<h3>Features</h3>
-	<ul>
-		<li>Vectorial interface, scalled to fit any viewport size without visual loss</li>
-		<li>Multiple interaction options: keyboard, mouse &amp; touch</li>
-	</ul>
-	<h3>Still to do</h3>
-	<ul>
-		<li>Scores persistance</li>
-		<li>Offline</li>
-		<li>Resume previous paused game</li>
-	</ul>
-	<h3>Known to work on</h3>
-	<ul>
-		<li>Most recent desktop browsers: Firefox, Chrome, Safari, Maxthon (this one's for <a href="http://twitter.com/madsgraphics">Matthias</a>)</li>
-		<li>Some mobile browsers: iOS Safari, Android stock browser</li>
-		<li><a href="http://twitter.com/esviji">Tell us!</a></li>
-	</ul>
-	<h3>Known to NOT work on</h3>
-	<ul>
-		<li>Some desktop browsers: Opera (a bug on score handling)</li>
-		<li>Some mobile browsers: Chrome Android</li>
-		<li><a href="http://twitter.com/esviji">Tell us!</a></li>
-	</ul>
-	<h3>Building blocks</h3>
-	<ul>
-		<li>SVG obviously, but with a <del>little</del> huge help from <a href="http://code.google.com/p/svgweb/">SVG Web</a> on webkit browsers</li>
-		<li>JavaScript, with a little bit of jQuery</li>
-		<li><a href="http://twitter.com/madsgraphics">Matthias</a>'s awesome <a href="https://github.com/madsgraphics/SVGEventListener">SVGEventListener polyfil</a> for SVG animate events in webkit (once again)</li>
-		<li><a href="http://craig.is/">Craig Campbell</a>'s <a href="http://craig.is/killing/mice">mousetrap</a> for keyboard controls</li>
-	</ul>
-	<p><a href="esviji.html">Let's play!</a></p>
+	<p id="disclaimer">Be careful, <strong>this is work in progress</strong>!</p>
+	<section>
+		<h3>Features</h3>
+		<ul>
+			<li>Vectorial interface, scalled to fit any viewport size without visual loss</li>
+			<li>Multiple interaction options: keyboard, mouse &amp; touch</li>
+		</ul>
+		<h3>Still to do</h3>
+		<ul>
+			<li>Scores persistance</li>
+			<li>Offline</li>
+			<li>Resume previous paused game</li>
+		</ul>
+		<h3>Known to work on</h3>
+		<ul>
+			<li>Most recent desktop browsers: Firefox, Chrome, Safari, Maxthon (this one's for <a href="http://twitter.com/madsgraphics">Matthias</a>)</li>
+			<li>Some mobile browsers: iOS Safari, Android stock browser</li>
+			<li><a href="http://twitter.com/esviji">Tell us!</a></li>
+		</ul>
+		<h3>Known to NOT work on</h3>
+		<ul>
+			<li>Some desktop browsers: Opera (a bug on score handling)</li>
+			<li>Some mobile browsers: Chrome Android</li>
+			<li><a href="http://twitter.com/esviji">Tell us!</a></li>
+		</ul>
+		<h3>Building blocks</h3>
+		<ul>
+			<li>SVG obviously, but with a <del>little</del> huge help from <a href="http://code.google.com/p/svgweb/">SVG Web</a> on webkit browsers</li>
+			<li>JavaScript, with a little bit of jQuery</li>
+			<li><a href="http://twitter.com/madsgraphics">Matthias</a>'s awesome <a href="https://github.com/madsgraphics/SVGEventListener">SVGEventListener polyfil</a> for SVG animate events in webkit (once again)</li>
+			<li><a href="http://craig.is/">Craig Campbell</a>'s <a href="http://craig.is/killing/mice">mousetrap</a> for keyboard controls</li>
+		</ul>
+		<p><a href="esviji.html">Let's play!</a></p>
+	</section>
 </body>
 
 </html>
