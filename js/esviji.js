@@ -56,7 +56,7 @@ ESVIJI.game = (function () {
     $('#main .start').on('click', startPlaying);
     $('#main .tutorial').on('click', startTutorial);
     $('#main .about').on('click', function() {
-      window.location.href="http://nhoizey.github.com/esviji/";
+      window.location.href="https://github.com/nhoizey/esviji/blob/master/README.md";
     });
   }
 
