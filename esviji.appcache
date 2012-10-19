@@ -1,0 +1,21 @@
+CACHE MANIFEST
+
+# version 2012-10-19 00:55 v1
+
+CACHE:
+index.html
+esviji.html
+esviji-icon.png
+css/styles.css
+css/font/sansitaone-webfont.eot
+css/font/sansitaone-webfont.svg
+css/font/sansitaone-webfont.ttf
+css/font/sansitaone-webfont.woff
+js/esviji.js
+js/fullscreen.min.js
+js/jquery-1.7.1.min.js
+js/mousetrap-1.1.2.min.js
+js/SVGEventListener-0.1.min.js
+js/svgweb/svg.htc
+js/svgweb/svg.js
+js/svgweb/svg.swf
