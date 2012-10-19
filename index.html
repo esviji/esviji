@@ -1,104 +1,369 @@
 <!doctype html>
-<html><!-- manifest="esviji.appcache.php" -->
+<html manifest="esviji.appcache" -->
 <head>
 <meta charset="utf-8">
 <title>esviji</title>
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=initial-scale=1.0" />
 <link rel="apple-touch-icon" href="esviji-icon.png" />
-<link rel="stylesheet" href="http://www.blueprintcss.org/blueprint/screen.css" type="text/css" media="screen, projection">
-<style>
-	body {
-		padding: 1em;
-	}
-
-	h1 {
-		font-size: 4em;
-		font-weight: bold;
-	}
-
-	h1, h2 {
-		text-align: center;
-	}
-
-	@media screen and (min-width: 60em) {
-		section {
-		  width: 30%;
-		  float: left;
-		  margin-left: 2em;
-		}
-	}
-
-	#disclaimer {
-		font-size: 2em;
-		color: #c00;
-		text-align: center;
-	}
-
-	#play {
-		clear: left;
-		font-size: 2em;
-		font-weight: bold;
-		text-align: center;
-		margin-top: 2em;
-	}
-</style>
+<link rel="stylesheet" media="all" href="css/styles.css" type="text/css" />
+<script type="text/javascript" src="js/svgweb/svg.js" data-path="svgweb"></script>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/SVGEventListener-0.1.min.js"></script>
+<script type="text/javascript" src="js/mousetrap-1.1.2.min.js"></script>
+<script type="text/javascript" src="js/lawnchair-0.6.1.min.js"></script>
+<!--<script type="text/javascript" src="js/fullscreen.min.js"></script>-->
+<script type="text/javascript" src="js/esviji.js"></script>
 </head>
 
 <body>
-	
-	<h1><img src="esviji-icon.png" alt="esviji" width="114" height="114" /></h1>
-	<h2><a href="http://gasteroprod.com/">Nicolas Hoizey</a>'s silly pet project attempting to develop a cross device/browser game with SVG</h2>
-	<p id="disclaimer">Be careful, <strong>this is work in progress</strong>!</p>
-	<section>
-		<h3>Features</h3>
-		<ul>
-			<li>Vectorial interface, scalled to fit any viewport size without visual loss</li>
-			<li>Multiple interaction options: keyboard, mouse &amp; touch</li>
-			<li>Offline support</li>
-		</ul>
-		<h3>Still to do</h3>
-		<ul>
-			<li>Scores persistance</li>
-			<li>Resume previous paused game</li>
-			<li>Package it into pseudo native apps with PhoneGap</li>
-			<li>Open source everything</li>
-			<li>Share feedback on issues encountered during development</li>
-		</ul>
-	</section>
-	<section>
-		<h3>Known to work on</h3>
-		<ul>
-			<li>Most recent desktop browsers: Firefox, Chrome, Safari, Maxthon (this one's for <a href="http://twitter.com/madsgraphics">Matthias</a>)</li>
-			<li>Some mobile browsers: iOS Safari, Android stock browser</li>
-			<li><a href="http://twitter.com/esviji">Tell us!</a></li>
-		</ul>
-		<h3>Known to NOT work on</h3>
-		<ul>
-			<li>Some desktop browsers: Opera (a bug on score handling)</li>
-			<li>Some mobile browsers: Chrome Android</li>
-			<li><a href="http://twitter.com/esviji">Tell us!</a></li>
-		</ul>
-	</section>
-	<section>
-		<h3>Building blocks</h3>
-		<ul>
-			<li>SVG obviously, but with a <del>little</del> huge help from <a href="http://code.google.com/p/svgweb/">SVG Web</a> on webkit browsers</li>
-			<li>JavaScript, with a little bit of jQuery</li>
-			<li><a href="http://twitter.com/madsgraphics">Matthias</a>'s awesome <a href="https://github.com/madsgraphics/SVGEventListener">SVGEventListener polyfil</a> for SVG animate events in webkit (once again)</li>
-			<li><a href="http://craig.is/">Craig Campbell</a>'s <a href="http://craig.is/killing/mice">mousetrap</a> for keyboard controls</li>
-		</ul>
-		<h3>Thanks a lot to…</h3>
-		<ul>
-			<li>HP for the awesome <a href="http://en.wikipedia.org/wiki/HP-48_series">HP 48</a> calculator series (I've had 3 of them) on which I invented this game 20 years ago</li>
-			<li><a href="http://twitter.com/JeremiePat">Jérémie</a> for <a href="http://jeremie.patonnier.net/tag/SVG">inspiration about SVG</a> <a href="http://jeremie.patonnier.net/experiences/parisweb2011/animation.svg">awesomeness</a> and assistance finding great docs in <a href="https://developer.mozilla.org/en-US/docs/SVG">Mozilla Developer Network</a></li>
-			<li><a href="http://twitter.com/karlpro">Karl</a> for kind assistance on Opera issues (some were real bugs, some were my own mistakes)</li>
-			<li><a href="http://twitter.com/rik24d">Anthony</a> for kind assistance on Firefox issues (again, some were real bugs, some were my own mistakes)</li>
-			<li><a href="http://twitter.com/madsgraphics">Matthias</a> for his SVG animate events polyfil</li>
-		</ul>
-	</section>
-	<p id="play"><a href="esviji.html">Let's play!</a></p>
+<script type="image/svg+xml">
+  <svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="board" viewBox="0 0 320 460" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <polygon id="arrow" points="0,16 10,6 8,12 40,12 40,20 8,20 10,26" style="stroke-width: 0; fill: #ccc;" />
+      <polygon id="rock" points="1,1 1,31 31,31 31,1" style="stroke-width: 3; stroke: #555; fill: #555;" />
+      <svg id="piece1" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <linearGradient id="gradientPiece1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ff0000"/>
+          <stop offset="1" stop-color="#ffff00"/>
+        </linearGradient>
+        <circle fill="url(#gradientPiece1)" stroke-width="1" stroke="#ff7f00" cx="16" cy="16" r="15" />
+      </svg>
+      <svg id="piece2" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <linearGradient id="gradientPiece2" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#007f00" />
+          <stop offset="1" stop-color="#ffff00" />
+        </linearGradient>
+        <circle fill="url(#gradientPiece2)" stroke-width="1" stroke="#00af00" cx="16" cy="16" r="15" />
+      </svg>
+      <svg id="piece3" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <linearGradient id="gradientPiece3" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#00007f" />
+          <stop offset="1" stop-color="#00ffff" />
+        </linearGradient>
+        <circle fill="url(#gradientPiece3)" stroke-width="1" stroke="#0066bf" cx="16" cy="16" r="15" />
+      </svg>
+      <svg id="piece4" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <linearGradient id="gradientPiece4" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#4b0061"/>
+          <stop offset="1" stop-color="#b900ec"/>
+        </linearGradient>
+        <circle fill="url(#gradientPiece4)" stroke-width="1" stroke="#8000a6" cx="16" cy="16" r="15" />
+      </svg>
+      <svg id="piece5" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <linearGradient id="gradientPiece5" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#52423B"/>
+          <stop offset="1" stop-color="#CFB591"/>
+        </linearGradient>
+        <circle fill="url(#gradientPiece5)" stroke-width="1" stroke="#AB8E6F" cx="16" cy="16" r="15" />
+      </svg>
+      <svg id="piece6" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <linearGradient id="gradientPiece6" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#770000"/>
+          <stop offset="1" stop-color="#ff0000"/>
+        </linearGradient>
+        <circle fill="url(#gradientPiece6)" stroke-width="1" stroke="#aa0000" cx="16" cy="16" r="15" />
+      </svg>
+
+      <radialGradient id="boardBackgroundGradient" gradientUnits="userSpaceOnUse" cx="70%" cy="70%" r="100%">
+        <stop class="begin" offset="0" />
+        <stop class="end" offset="1" />
+      </radialGradient>
+
+      <radialGradient id="topbarGradient" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="50%">
+        <stop class="begin" offset="0" />
+        <stop class="end" offset="1" />
+      </radialGradient>
+
+      <rect id="boardBackground" x="0" y="0" width="320" height="480" fill="url(#boardBackgroundGradient)" />
+
+      <g id="playPanel">
+        <use xlink:href="#boardBackground" />
+        <polygon id="topbar" points="0,0 0,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 320,42 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
+
+        <!--<g id="fullscreen" transform="translate(300, 5)">
+          <polygon points="0,0 15,0 15,12 8,12 8,15 11,15 4,15 7,15 7,12 0,12" style="stroke-width: 1; stroke: #000; fill: #fff;" />
+          <polygon points="2,6 2,10 6,10" style="stroke-width: 0; fill: #000;" />
+          <polyline points="13,6 13,2 9,2" style="stroke-width: 0; fill: #000;" />
+        </g>-->
+
+        <g class="pauseButton" transform="translate(285, 5)">
+          <rect x="0" y="0" width="32" height="32" style="fill: #fff; opacity: 0;" />
+          <rect x="7" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
+          <rect x="19" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
+        </g>
+
+        <text id="title" x="250" y="30">esviji</text>
+        <text class="scoreLabel" x="65" y="25">score:</text>
+        <text class="score" x="75" y="25"></text>
+        <text class="levelLabel" x="65" y="50">level:</text>
+        <text class="level" x="75" y="50"></text>
+        <text class="livesLabel" x="65" y="75">lives:</text>
+        <text class="lives" x="75" y="75"></text>
+      </g>
+
+      <g id="tutorialPanel" opacity="0">
+        <use xlink:href="#boardBackground" />
+        <polygon id="topbar" points="0,0 0,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 320,42 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
+
+        <g class="pauseButton" transform="translate(285, 5)">
+          <rect x="0" y="0" width="32" height="32" style="fill: #fff; opacity: 0;" />
+          <rect x="7" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
+          <rect x="19" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
+        </g>
+
+        <text id="title" x="250" y="30">esviji</text>
+        <text class="scoreLabel" x="65" y="25">score:</text>
+        <text id="score1" class="score" x="75" y="25">0</text>
+        <text id="score2" class="score" x="75" y="25" opacity="0">9</text>
+        <text class="levelLabel" x="65" y="50">level:</text>
+        <text class="level" x="75" y="50">1</text>
+        <text class="livesLabel" x="65" y="75">lives:</text>
+        <text class="lives" x="75" y="75">9</text>
+
+        <use id="tutoPiece11" xlink:href="#piece2" x="0" y="428"/>
+        <use id="tutoPiece12" xlink:href="#piece5" x="0" y="396"/>
+        <use id="tutoPiece13" xlink:href="#piece1" x="0" y="364"/>
+        <use id="tutoPiece14" xlink:href="#piece2" x="0" y="332"/>
+        <use id="tutoPiece15" xlink:href="#piece2" x="0" y="300"/>
+        <use id="tutoPiece16" xlink:href="#piece1" x="0" y="268"/>
+        <use id="tutoPiece17" xlink:href="#piece4" x="0" y="236"/>
+        <use id="tutoPiece21" xlink:href="#piece4" x="32" y="428"/>
+        <use id="tutoPiece22" xlink:href="#piece6" x="32" y="396"/>
+        <use id="tutoPiece23" xlink:href="#piece3" x="32" y="364"/>
+        <use id="tutoPiece24" xlink:href="#piece5" x="32" y="332"/>
+        <use id="tutoPiece25" xlink:href="#piece3" x="32" y="300"/>
+        <use id="tutoPiece26" xlink:href="#piece5" x="32" y="268"/>
+        <use id="tutoPiece27" xlink:href="#piece4" x="32" y="236"/>
+        <use id="tutoPiece31" xlink:href="#piece5" x="64" y="428"/>
+        <use id="tutoPiece32" xlink:href="#piece2" x="64" y="396"/>
+        <use id="tutoPiece33" xlink:href="#piece2" x="64" y="364"/>
+        <use id="tutoPiece34" xlink:href="#piece6" x="64" y="332"/>
+        <use id="tutoPiece35" xlink:href="#piece2" x="64" y="300"/>
+        <use id="tutoPiece36" xlink:href="#piece4" x="64" y="268"/>
+        <use id="tutoPiece37" xlink:href="#piece5" x="64" y="236"/>
+        <use id="tutoPiece41" xlink:href="#piece5" x="96" y="428"/>
+        <use id="tutoPiece42" xlink:href="#piece5" x="96" y="396"/>
+        <use id="tutoPiece43" xlink:href="#piece4" x="96" y="364" />
+        <use id="tutoPiece43Morph" xlink:href="#piece2" x="96" y="364" opacity="0" />
+        <use id="tutoPiece44" xlink:href="#piece1" x="96" y="332" />
+        <use id="tutoPiece45" xlink:href="#piece4" x="96" y="300" />
+        <use id="tutoPiece46" xlink:href="#piece3" x="96" y="268" />
+        <use id="tutoPiece47" xlink:href="#piece1" x="96" y="236" />
+        <use id="tutoPiece51" xlink:href="#piece2" x="128" y="428"/>
+        <use id="tutoPiece52" xlink:href="#rock" x="128" y="396"/>
+        <use id="tutoPiece53" xlink:href="#piece4" x="128" y="364" />
+        <use id="tutoPiece54" xlink:href="#piece4" x="128" y="332" />
+        <use id="tutoPiece55" xlink:href="#piece3" x="128" y="300" />
+        <use id="tutoPiece56" xlink:href="#piece2" x="128" y="268" />
+        <use id="tutoPiece57" xlink:href="#piece3" x="128" y="236" />
+        <use id="tutoPiece61" xlink:href="#piece1" x="160" y="428"/>
+        <use id="tutoPiece62" xlink:href="#piece1" x="160" y="396"/>
+        <use id="tutoPiece63" xlink:href="#piece4" x="160" y="364" />
+        <use id="tutoPiece64" xlink:href="#piece2" x="160" y="332" />
+        <use id="tutoPiece65" xlink:href="#piece5" x="160" y="300" />
+        <use id="tutoPiece66" xlink:href="#piece2" x="160" y="268" />
+        <use id="tutoPiece67" xlink:href="#piece2" x="160" y="236" />
+
+        <use id="playable" xlink:href="#piece4" x="288" y="204" />
+        <use id="playable2" xlink:href="#piece2" x="288" y="204" opacity="0" />
+
+        <g id="tutoPiecesText" class="step" opacity="0">
+          <rect x="50" y="100" width="250" height="90" />
+          <text>
+            <tspan x="70" y="130">These are the pieces you</tspan>
+            <tspan x="70" y="150">have to destroy to finish</tspan>
+            <tspan x="70" y="170">the turn.</tspan>
+          </text>
+          <path d="M 70 190 L 100 190 L 70 220 z" />
+        </g>
+        <g id="tutoPlayableText" class="step" opacity="0">
+          <rect x="20" y="140" width="230" height="110" />
+          <path d="M 250 220 L 250 190 L 280 220 z" />
+          <text>
+            <tspan x="40" y="170">This is the piece you</tspan>
+            <tspan x="40" y="190">can move up or down</tspan>
+            <tspan x="40" y="210">and then release to</tspan>
+            <tspan x="40" y="230">destroy the others.</tspan>
+          </text>
+        </g>
+        <g id="tutoPlayText" class="step" opacity="0">
+          <rect x="20" y="140" width="230" height="110" />
+          <text>
+            <tspan x="40" y="170">You can use your</tspan>
+            <tspan x="40" y="190">mouse, finger or</tspan>
+            <tspan x="40" y="210">keyboard to move the</tspan>
+            <tspan x="40" y="230">piece.</tspan>
+          </text>
+        </g>
+        <g id="tutoMoveText" class="step" opacity="0">
+          <rect x="20" y="140" width="230" height="110" />
+          <text>
+            <tspan x="40" y="170">The piece then goes to</tspan>
+            <tspan x="40" y="190">the left until it hits</tspan>
+            <tspan x="40" y="210">something: piece,</tspan>
+            <tspan x="40" y="230">rock or wall.</tspan>
+          </text>
+        </g>
+        <g id="tutoHitText" class="step" opacity="0">
+          <rect x="20" y="140" width="230" height="110" />
+          <text>
+            <tspan x="40" y="170">You have to hit same</tspan>
+            <tspan x="40" y="190">pieces to destroy them.</tspan>
+            <tspan x="40" y="210">Hit more pieces to</tspan>
+            <tspan x="40" y="230">gain more points.</tspan>
+          </text>
+        </g>
+        <g id="tutoMorphText" class="step" opacity="0">
+          <rect x="20" y="140" width="230" height="110" />
+          <text>
+            <tspan x="40" y="170">The piece morphes</tspan>
+            <tspan x="40" y="190">into the next piece it</tspan>
+            <tspan x="40" y="210">hits, becoming the</tspan>
+            <tspan x="40" y="230">new playable piece.</tspan>
+          </text>
+        </g>
+        <g id="tutoFallText" class="step" opacity="0">
+          <rect x="20" y="140" width="230" height="90" />
+          <text>
+            <tspan x="40" y="170">Pieces that now have</tspan>
+            <tspan x="40" y="190">holes under them</tspan>
+            <tspan x="40" y="210">fall.</tspan>
+          </text>
+        </g>
+        <animate id="tutoAnimStart" attributeType="xml" attributeName="opacity" to="1" begin="indefinite" dur="1s" fill="freeze" />
+
+        <animate id="tutoPiecesAnimStart" xlink:href="#tutoPiecesText" attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimStart.end" dur="4s" fill="freeze" />
+        <animate id="tutoPiecesAnimEnd" xlink:href="#tutoPiecesText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPiecesAnimStart.end" dur="2s" fill="freeze" />
+
+        <animate id="tutoPlayableAnimStart" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPiecesAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoPlayableMove1" xlink:href="#playable" attributeType="xml" attributeName="y" to="428" begin="tutoPlayableAnimStart.end" dur="1.5s" fill="freeze" />
+        <animate id="tutoPlayableMove2" xlink:href="#playable" attributeType="xml" attributeName="y" to="44" begin="tutoPlayableMove1.end" dur="3s" fill="freeze" />
+        <animate id="tutoPlayableMove3" xlink:href="#playable" attributeType="xml" attributeName="y" to="364" begin="tutoPlayableMove2.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableAnimEnd" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayAnimStart" xlink:href="#tutoPlayText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoPlayAnimEnd" xlink:href="#tutoPlayText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayAnimStart.end" dur="2s" fill="freeze" />
+
+        <animate id="tutoMoveAnimStart" xlink:href="#tutoMoveText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoPlayableMove4" xlink:href="#playable" attributeType="xml" attributeName="x" to="192" begin="tutoMoveAnimStart.end" dur="1.5s" fill="freeze" />
+        <animate id="tutoMoveAnimEnd" xlink:href="#tutoMoveText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMove4.end" dur="2s" fill="freeze" />
+
+        <animate id="tutoHitAnimStart" xlink:href="#tutoHitText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableMove4.end" dur="4s" fill="freeze" />
+        <animate id="tutoHitPiece1" xlink:href="#tutoPiece63" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMove4.end" dur="0.8s" fill="freeze" />
+        <animateTransform id="tutoHitPiece2" xlink:href="#tutoPiece63" attributeType="xml" attributeName="transform" type="rotate" from="0 176 380" to="360 176 380" begin="tutoPlayableMove4.end" dur="0.8s" />
+        <animate id="tutoPlayableHit1" xlink:href="#playable" attributeType="xml" attributeName="x" to="160" begin="tutoPlayableMove4.end" dur="0.8s" fill="freeze" />
+        <animate id="tutoHitPiece3" xlink:href="#tutoPiece53" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableHit1.end" dur="0.8s" fill="freeze" />
+        <animateTransform id="tutoHitPiece4" xlink:href="#tutoPiece53" attributeType="xml" attributeName="transform" type="rotate" from="0 144 380" to="360 144 380" begin="tutoPlayableHit1.end" dur="0.8s" />
+        <animate id="tutoPlayableHit2" xlink:href="#playable" attributeType="xml" attributeName="x" to="128" begin="tutoPlayableHit1.end" dur="0.8s" fill="freeze" />
+        <animate id="tutoHitPiece5" xlink:href="#tutoPiece43" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableHit2.end" dur="0.8s" fill="freeze" />
+        <animateTransform id="tutoHitPiece6" xlink:href="#tutoPiece43" attributeType="xml" attributeName="transform" type="rotate" from="0 112 380" to="360 112 380" begin="tutoPlayableHit2.end" dur="0.8s" />
+        <animate id="tutoPlayableHit3" xlink:href="#playable" attributeType="xml" attributeName="x" to="96" begin="tutoPlayableHit2.end" dur="0.8s" fill="freeze" />
+        <animate id="tutoHitAnimEnd" xlink:href="#tutoHitText" attributeType="xml" attributeName="opacity" to="0" begin="tutoHitAnimStart.end" dur="2s" fill="freeze" />
+
+        <animate id="tutoMorphAnimStart" xlink:href="#tutoMorphText" attributeType="xml" attributeName="opacity" to="1" begin="tutoHitAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoPlayableMorph1" xlink:href="#playable" attributeType="xml" attributeName="opacity" to="0" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableMorph2" xlink:href="#playable" attributeType="xml" attributeName="x" to="64" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableMorph3" xlink:href="#tutoPiece43Morph" attributeType="xml" attributeName="opacity" to="1" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableMorph4" xlink:href="#tutoPiece43Morph" attributeType="xml" attributeName="x" to="64" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableMorph5" xlink:href="#playable2" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableMorph2.end" dur="1s" fill="freeze" />
+        <animate id="tutoMorphAnimEnd" xlink:href="#tutoMorphText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMorph2.end" dur="2s" fill="freeze" />
+
+        <animate id="tutoFallAnimStart" xlink:href="#tutoFallText" attributeType="xml" attributeName="opacity" to="1" begin="tutoMorphAnimEnd.end" dur="4s" fill="freeze" />
+        <animate xlink:href="#tutoPiece44" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece45" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece46" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece47" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece54" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece55" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece56" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece57" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece64" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece65" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece66" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoPiece67" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate id="tutoFallAnimEnd" xlink:href="#tutoFallText" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimStart.end" dur="2s" fill="freeze" />
+
+        <animate xlink:href="#score1" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimStart.end" dur="1s" fill="freeze" />
+        <animate xlink:href="#score2" attributeType="xml" attributeName="opacity" to="1" begin="tutoFallAnimStart.end" dur="1s" fill="freeze" />
+
+        <animate id="tutoAnimEnd" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimEnd.end" dur="1s" fill="freeze" />
+      </g>
+
+      <g id="pausePanel">
+        <use xlink:href="#boardBackground" style="opacity: 0.8" />
+        <text x="160" y="140" class="title">Pause</text>
+        <g class="resume">
+          <rect x="100" y="200" width="120" height="40" class="button" />
+          <text x="160" y="225">Resume</text>
+        </g>
+        <g class="restart">
+          <rect x="100" y="250" width="120" height="40" class="button" />
+          <text x="160" y="275">Restart</text>
+        </g>
+        <g class="exit">
+          <rect x="100" y="300" width="120" height="40" class="button" />
+          <text x="160" y="325">Exit</text>
+        </g>
+        <!--<g class="fullscreen">
+          <rect x="100" y="350" width="120" height="40" class="button" />
+          <text x="160" y="375">Full screen</text>
+        </g>-->
+      </g>
+
+      <g id="gameOverPanel">
+        <use xlink:href="#boardBackground" style="opacity: 0.8" />
+        <text x="160" y="140" class="title">Game Over</text>
+        <text class="score" x="160" y="200"></text>
+        <g class="playagain">
+          <rect x="100" y="250" width="120" height="40" class="button" />
+          <text x="160" y="275">Play again</text>
+        </g>
+        <g class="exit">
+          <rect x="100" y="300" width="120" height="40" class="button" />
+          <text x="160" y="325">Exit</text>
+        </g>
+      </g>
+    </defs>
+
+    <g id="main">
+      <use xlink:href="#boardBackground" />
+      <g style="opacity: 0.5">
+        <use xlink:href="#piece3" x="16" y="16" transform="scale(2)" />
+        <use xlink:href="#piece2" x="48" y="16" transform="scale(2)" />
+        <use xlink:href="#piece4" x="80" y="16" transform="scale(2)" />
+        <use xlink:href="#piece2" x="112" y="16" transform="scale(2)" />
+        <use xlink:href="#piece1" x="16" y="48" transform="scale(2)" />
+        <use xlink:href="#piece3" x="48" y="48" transform="scale(2)" />
+        <use xlink:href="#piece6" x="80" y="48" transform="scale(2)" />
+        <use xlink:href="#piece3" x="112" y="48" transform="scale(2)" />
+        <use xlink:href="#piece3" x="16" y="80" transform="scale(2)" />
+        <use xlink:href="#piece2" x="48" y="80" transform="scale(2)" />
+        <use xlink:href="#piece4" x="80" y="80" transform="scale(2)" />
+        <use xlink:href="#piece1" x="112" y="80" transform="scale(2)" />
+        <use xlink:href="#piece2" x="16" y="112" transform="scale(2)" />
+        <use xlink:href="#piece4" x="48" y="112" transform="scale(2)" />
+        <use xlink:href="#piece1" x="80" y="112" transform="scale(2)" />
+        <use xlink:href="#piece4" x="112" y="112" transform="scale(2)" />
+      </g>
+      <text x="160" y="180" class="title">esviji</text>
+      <g class="start">
+        <rect x="100" y="300" width="120" height="40" class="button" />
+        <text x="160" y="325">Start</text>
+      </g>
+      <g class="tutorial">
+        <rect x="100" y="350" width="120" height="40" class="button" />
+        <text x="160" y="375">Tutorial</text>
+      </g>
+      <!--
+      <g class="about">
+        <rect x="100" y="400" width="120" height="40" class="button" />
+        <text x="160" y="425">About</text>
+      </g>
+      -->
+    </g>
+  </svg>
+</script>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -113,5 +378,4 @@
 
 </script>
 </body>
-
 </html>
