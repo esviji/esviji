@@ -26,7 +26,7 @@ I never found a satisfying name for this game, so I now took "esviji", a word ga
 
 - Some desktop browsers: Opera (a bug on score handling)
 - Some mobile browsers: Chrome Android
-- [Tell us!](http://twitter.com/esviji)
+- [Open issues!](https://github.com/nhoizey/esviji/issues)
 
 ## To do
 
