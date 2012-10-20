@@ -1,6 +1,6 @@
 # esviji
 
-*DISCLAIMER: Be careful, this is work in progress, use at your own risk!*
+**DISCLAIMER: Be careful, this is work in progress, use at your own risk!**
 
 ## [Nicolas Hoizey](http://gasteroprod.com/)'s silly pet project attempting to develop a cross device/browser game with SVG
 
