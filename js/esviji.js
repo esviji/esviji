@@ -305,6 +305,7 @@ ESVIJI.game = (function () {
   }
 
   function endOfTurn() {
+    console.log('endOfTurn');
     for (x = 1; x <= 6; x++) {
       for (y = 1; y <= 7; y++) {
         if (drawnCurrentPieces[x][y] !== null) {
