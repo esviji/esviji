@@ -243,69 +243,68 @@ ESVIJI.game = (function () {
         // Neither floor nor wall, so what is it?
         nextPiece = currentPieces[currentPosX + currentDirX][currentPosY + currentDirY];
         switch (nextPiece) {
-        case ESVIJI.settings.rockId:
-          // A rock...
-          if (currentDirX == -1) {
-            // ...at our left, should no go down
-            currentDirX = 0;
-            currentDirY = -1;
-            animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
-            oldPosX = currentPosX;
+          case ESVIJI.settings.rockId:
+            // A rock...
+            if (currentDirX == -1) {
+              // ...at our left, should no go down
+              currentDirX = 0;
+              currentDirY = -1;
+              animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+              oldPosX = currentPosX;
+              playUserChoice();
+            } else {
+              // ...under us, no more possible move
+              if (oldPosY != currentPosY) {
+                animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
+              }
+              makePiecesFall();
+            }
+            break;
+          case ESVIJI.settings.emptyId:
+            // Nothing can stop us
+            currentPosX += currentDirX;
+            currentPosY += currentDirY;
             playUserChoice();
-          } else {
-            // ...under us, no more possible move
-            if (oldPosY != currentPosY) {
+            break;
+          case currentPiece:
+            // Same piece, let's destroy it!
+            currentPosXBefore = currentPosX;
+            currentPosYBefore = currentPosY;
+            currentPosX += currentDirX;
+            currentPosY += currentDirY;
+            currentPieces[currentPosX][currentPosY] = ESVIJI.settings.emptyId;
+            if (currentPosXBefore != oldPosX) {
+              animStackMove(drawnCurrentPiece, (oldPosX - currentPosXBefore) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosXBefore));
+              oldPosX = currentPosXBefore;
+            } else if (currentPosYBefore != oldPosY) {
+              animStackMove(drawnCurrentPiece, (oldPosY - currentPosYBefore) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosYBefore));
+              oldPosY = currentPosYBefore;
+            }
+            animStackDestroy(drawnCurrentPieces[currentPosX][currentPosY]);
+            scoreThisTurn++;
+            playUserChoice();
+            break;
+          default:
+            if (currentPosX != oldPosX) {
+              animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+            } else if (currentPosY != oldPosY) {
               animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
             }
-            makePiecesFall();
-          }
-          break;
-        case ESVIJI.settings.emptyId:
-          // Nothing can stop us
-          currentPosX += currentDirX;
-          currentPosY += currentDirY;
-          playUserChoice();
-          break;
-        case currentPiece:
-          // Same piece, let's destroy it!
-          currentPosXBefore = currentPosX;
-          currentPosYBefore = currentPosY;
-          currentPosX += currentDirX;
-          currentPosY += currentDirY;
-          currentPieces[currentPosX][currentPosY] = ESVIJI.settings.emptyId;
-          if (currentPosXBefore != oldPosX) {
-            animStackMove(drawnCurrentPiece, (oldPosX - currentPosXBefore) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosXBefore));
-            oldPosX = currentPosXBefore;
-          } else if (currentPosYBefore != oldPosY) {
-            animStackMove(drawnCurrentPiece, (oldPosY - currentPosYBefore) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosYBefore));
-            oldPosY = currentPosYBefore;
-          }
-          animStackDestroy(drawnCurrentPieces[currentPosX][currentPosY]);
-          scoreThisTurn++;
-          playUserChoice();
-          break;
-        default:
-          if (currentPosX != oldPosX) {
-            animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
-          } else if (currentPosY != oldPosY) {
-            animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
-          }
-          if (scoreThisTurn > 0) {
-            currentPiece = nextPiece;
-            if (currentPosX != oldPosX) {
-              animStackMorph(drawnCurrentPiece, nextPiece, xToSvg(currentPosX), yToSvg(currentPosY), 'x', xToSvg(currentPosX), xToSvg(currentPosX + currentDirX));
-            } else {
-              animStackMorph(drawnCurrentPiece, nextPiece, xToSvg(currentPosX), yToSvg(currentPosY), 'y', yToSvg(currentPosY), yToSvg(currentPosY + currentDirY));
+            if (scoreThisTurn > 0) {
+              currentPiece = nextPiece;
+              if (currentPosX != oldPosX) {
+                animStackMorph(drawnCurrentPiece, nextPiece, xToSvg(currentPosX), yToSvg(currentPosY), 'x', xToSvg(currentPosX), xToSvg(currentPosX + currentDirX));
+              } else {
+                animStackMorph(drawnCurrentPiece, nextPiece, xToSvg(currentPosX), yToSvg(currentPosY), 'y', yToSvg(currentPosY), yToSvg(currentPosY + currentDirY));
+              }
             }
-          }
-          makePiecesFall();
+            makePiecesFall();
         }
       }
     }
   }
 
   function endOfTurn() {
-    console.log('endOfTurn');
     for (x = 1; x <= 6; x++) {
       for (y = 1; y <= 7; y++) {
         if (drawnCurrentPieces[x][y] !== null) {
@@ -659,7 +658,7 @@ ESVIJI.game = (function () {
       stopPlaying();
     });
     playing = false;
-    vibrate(500);
+    vibrate(1000);
   }
 
   function removeLife() {
@@ -671,9 +670,20 @@ ESVIJI.game = (function () {
     }
   }
 
+  function addLives(nbLives) {
+    lives += nbLives;
+    drawLives();
+    vibrate(100);
+  }
+
   function increaseScore(scoreToAdd) {
+    oldScore = score;
     score += scoreToAdd;
     drawScore();
+    hundreds = Math.floor(score / 100) - Math.floor(oldScore / 100);
+    if (hundreds > 0) {
+      addLives(hundreds);
+    }
   }
 
   function drawScore() {
