@@ -83,17 +83,24 @@ html, body {
   text-anchor: middle;
 }
 
-.start text, .tutorial text, .about text, .resume text, .restart text, .fullscreen text, .playagain text, .exit text {
+.button text {
   font-size: 18px;
   text-anchor: middle;
   fill: #333;
   stroke-width: 0;
 }
 
-.button {
+.button rect {
   fill: #ddd;
   stroke-width: 3;
   stroke: #666;
+}
+
+.version {
+  font-size: 12px;
+  text-anchor: middle;
+  fill: #aaa;
+  stroke-width: 0;
 }
 
 .step rect, .step path {
