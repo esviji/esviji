@@ -86,7 +86,7 @@ ESVIJI.game = (function () {
   }
 
   function startPlaying() {
-    _gaq.push(['_trackEvent', 'Play', 'Start');
+    _gaq.push(['_trackEvent', 'Play', 'Start']);
     level = ESVIJI.settings.launch.level;
     score = ESVIJI.settings.launch.score;
     lives = ESVIJI.settings.launch.lives;
@@ -104,7 +104,7 @@ ESVIJI.game = (function () {
   }
 
   function startTutorial() {
-    _gaq.push(['_trackEvent', 'Tutorial', 'Start');
+    _gaq.push(['_trackEvent', 'Tutorial', 'Start']);
     tuto = $('#tutorialPanel').clone().attr('id', 'tutorial');
     $('#tutorialPanel').remove();
     tuto.appendTo('#board');
@@ -113,7 +113,7 @@ ESVIJI.game = (function () {
   }
 
   function endTutorial() {
-    _gaq.push(['_trackEvent', 'Tutorial', 'End');
+    _gaq.push(['_trackEvent', 'Tutorial', 'End']);
     tuto = $('#tutorial').clone().attr('id', 'tutorialPanel');
     $('#tutorial').remove();
     tuto.appendTo('#board defs');
@@ -660,26 +660,26 @@ ESVIJI.game = (function () {
   }
 
   function pause() {
-    _gaq.push(['_trackEvent', 'Pause', 'Start');
+    _gaq.push(['_trackEvent', 'Pause', 'Start']);
     $('#pausePanel').clone().attr('id', 'pause').appendTo('#board');
     $('#pause .resume').on('click', function() {
-      _gaq.push(['_trackEvent', 'Pause', 'Resume');
+      _gaq.push(['_trackEvent', 'Pause', 'Resume']);
       $('#pause').remove();
     });
     $('#pause .restart').on('click', function() {
-      _gaq.push(['_trackEvent', 'Pause', 'Restart');
+      _gaq.push(['_trackEvent', 'Pause', 'Restart']);
       $('#pause').remove();
       startPlaying();
     });
     $('#pause .exit').on('click', function() {
-      _gaq.push(['_trackEvent', 'Pause', 'Exit');
+      _gaq.push(['_trackEvent', 'Pause', 'Exit']);
       $('#pause').remove();
       stopPlaying();
     });
   }
 
   function gameOver() {
-    _gaq.push(['_trackEvent', 'Play', 'Game Over', 'Score', score);
+    _gaq.push(['_trackEvent', 'Play', 'Game Over', 'Score', score]);
     $('#gameOverPanel').clone().attr('id', 'gameOver').appendTo('#board');
     $('#gameOver').find('.score').text('Score: ' + score);
     $('.playagain').on('click', function() {
