@@ -26,24 +26,11 @@ I never found a satisfying name for this game, so I now took "esviji", a word ga
 
 - Some desktop browsers: Opera (a bug on score handling)
 - Some mobile browsers: Chrome Android
-- [Open issues!](https://github.com/nhoizey/esviji/issues)
+- [Open issues!](https://github.com/nhoizey/esviji/issues?labels=Broken+browser+support&page=1&state=open)
 
 ## To do
 
-### Must have
-
-- Scores persistance
-- Resume previous paused game
-- Try to adapt to other aspect ratios
-- Package it into pseudo native apps with PhoneGap
-- Sounds
-- Share feedback on issues encountered during development
-
-### Nice to have
-
-- Time to play modifies the turn score
-- The piece is launched after a short while even if the player doesn't do anything
-- Allow navigating in menus with the keyboard
+Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direction=asc&page=1&sort=due_date).
 
 ## Building blocks
 
