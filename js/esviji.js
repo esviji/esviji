@@ -200,9 +200,9 @@ ESVIJI.game = (function () {
     drawnCurrentPiece.attr({
       'class': "dragged"
     });
-    if (level < 4) {
+    // if (level < 4) {
       drawPiece(240, yToSvg(currentPosY), 'arrow', 'showAim');
-    }
+    // }
   }
 
   function cursorMove(event) {
@@ -218,11 +218,11 @@ ESVIJI.game = (function () {
       drawnCurrentPiece.attr({
         y: cursorY
       });
-      if (level < 4) {
+      // if (level < 4) {
         $('#showAim').attr({
           y: yToSvg(currentPosY)
         });
-      }
+      // }
     }
   }
 
