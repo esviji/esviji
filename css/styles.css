@@ -98,7 +98,7 @@ html, body {
 
 .version {
   font-size: 12px;
-  text-anchor: middle;
+  text-anchor: end;
   fill: #aaa;
   stroke-width: 0;
 }
