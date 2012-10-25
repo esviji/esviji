@@ -657,6 +657,7 @@ ESVIJI.game = (function () {
   }
 
   function pause() {
+    console.log('pause');
     _gaq.push(['_trackEvent', 'Pause', 'Start']);
     $('#pausePanel').clone().attr('id', 'pause').appendTo('#board');
     $('#pause .resume').on('click', function() {
