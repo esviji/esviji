@@ -70,8 +70,6 @@ ESVIJI.game = (function () {
     nbPieces = 0,
     level, score, lives, scoreThisTurn = 0,
     playing = false,
-    endEventListener = [],
-    endEventListenerInterval = null;
 
   function init() {
     cursorMinY = yToSvg(1);
