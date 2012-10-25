@@ -1,7 +1,5 @@
 # esviji
 
-**DISCLAIMER: Be careful, this is work in progress, use at your own risk!**
-
 ## [Nicolas Hoizey](http://gasteroprod.com/)'s silly pet project attempting to develop a cross device/browser game with SVG
 
 This game came out of my mind 20 years ago thanks to the great platform that were <a href="http://en.wikipedia.org/wiki/HP-48_series">HP 48 calculators</a> (I've had 3 of them). I loved playing Tetris on my HP, but was also eager to develop my own game (a sily habit I have to develop games to discover new platforms/languages), and came with this idea of a kind of mashup of Tetris and Bubble Bobble.
