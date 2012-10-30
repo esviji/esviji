@@ -86,6 +86,7 @@ ESVIJI.game = (function () {
       $('#play').remove();
       if (drawnCurrentPiece !== null) {
         drawnCurrentPiece.remove();
+        drawnCurrentPiece = null;
       }
     }
     $('#playPanel').clone().attr('id', 'play').appendTo('#board');
@@ -642,7 +643,7 @@ ESVIJI.game = (function () {
                 x += dir_x;
                 y += dir_y;
               } else {
-                drawnCurrentPieces[x + dir_x][y + dir_y].attr('class', 'valid');
+                drawnCurrentPieces[x + dir_x][y + dir_y].attr('data-valid', 'true');
                 if (validPieces.indexOf(nextPiece) == -1) {
                   validPieces.push(nextPiece);
                 }
