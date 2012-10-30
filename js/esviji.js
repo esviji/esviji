@@ -121,10 +121,12 @@ ESVIJI.game = (function () {
     if (!useStored) {
       erasePieces();
       initPieces();
+      drawPieces();
       getValidPieces();
       gameStatus.currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
+    } else {
+      drawPieces();
     }
-    drawPieces();
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
     startNewTurn();
@@ -140,18 +142,24 @@ ESVIJI.game = (function () {
 
     if (validPieces.length === 0) {
       // no more valid piece, end of the turn
+      drawnCurrentPiece.remove(); // TODO: animate
+      drawnCurrentPiece = null;
       gameStatus.level++;
       gameStatus.lives++;
       nextLevel();
     } else {
       if (validPieces.indexOf(gameStatus.currentPiece) == -1) {
+        drawnCurrentPiece.remove(); // TODO: animate
+        drawnCurrentPiece = null;
         removeLife();
         gameStatus.currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
       }
       store.set('gameStatus', gameStatus);
       useStored = false;
       if (gameStatus.playing) {
-        drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.pieces[gameStatus.currentPiece - 1], 'playable');
+        if (drawnCurrentPiece === null) {
+          drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.pieces[gameStatus.currentPiece - 1], 'playable');
+        }
         drawnCurrentPiece.on('mousedown touchstart', cursorStart);
         $("#board").on('mousemove touchmove', cursorMove);
         $("#board").on('mouseup touchend', cursorEnd);
@@ -252,7 +260,7 @@ ESVIJI.game = (function () {
       if (oldPosY != 1) {
         animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
       }
-      makePiecesFall();
+      endOfMove();
     } else {
       if (currentPosX == 1 && currentDirX == -1) {
         // Against the left wall, should not go down
@@ -279,7 +287,7 @@ ESVIJI.game = (function () {
               if (oldPosY != currentPosY) {
                 animStackMove(drawnCurrentPiece, (oldPosY - currentPosY) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
               }
-              makePiecesFall();
+              endOfMove();
             }
             break;
           case ESVIJI.settings.emptyId:
@@ -320,7 +328,7 @@ ESVIJI.game = (function () {
                 animStackMorph(drawnCurrentPiece, nextPiece, xToSvg(currentPosX), yToSvg(currentPosY), 'y', yToSvg(currentPosY), yToSvg(currentPosY + currentDirY));
               }
             }
-            makePiecesFall();
+            endOfMove();
         }
       }
     }
@@ -460,13 +468,18 @@ ESVIJI.game = (function () {
     lastStackedAnimation += 2;
   }
 
-  function makePiecesFall() {
-    var abovePieces;
-
+  function endOfMove() {
     $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
       drawnCurrentPiece.remove();
       $('#morph').remove();
+      drawnCurrentPiece = drawPiece(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY), ESVIJI.settings.pieces[gameStatus.currentPiece - 1], 'playable');
     });
+
+    makePiecesFall();
+  }
+
+  function makePiecesFall() {
+    var abovePieces;
 
     lastStackedAnimationBeforeFall = lastStackedAnimation;
     for (x = 1; x <= 6; x++) {
@@ -629,6 +642,7 @@ ESVIJI.game = (function () {
                 x += dir_x;
                 y += dir_y;
               } else {
+                drawnCurrentPieces[x + dir_x][y + dir_y].attr('class', 'valid');
                 if (validPieces.indexOf(nextPiece) == -1) {
                   validPieces.push(nextPiece);
                 }
@@ -781,24 +795,24 @@ ESVIJI.game = (function () {
 
 document.addEventListener("DOMContentLoaded", function() {
   ESVIJI.game.init();
-});
 
-/***************************************************************************************
- * appcache
- ***************************************************************************************/
+  /***************************************************************************************
+   * appcache
+   ***************************************************************************************/
 
-// Check if a new cache is available on page load.
-window.addEventListener('load', function(e) {
-  window.applicationCache.addEventListener('updateready', function(e) {
-    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-      // Browser downloaded a new app cache.
-      // Swap it in and reload the page to get the new hotness.
-      window.applicationCache.swapCache();
-      if (confirm('A new version of this site is available. Load it?')) {
-        window.location.reload();
+  // Check if a new cache is available on page load.
+  window.addEventListener('load', function(e) {
+    window.applicationCache.addEventListener('updateready', function(e) {
+      if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+        // Browser downloaded a new app cache.
+        // Swap it in and reload the page to get the new hotness.
+        window.applicationCache.swapCache();
+        if (confirm('A new version of this site is available. Load it?')) {
+          window.location.reload();
+        }
+      } else {
+        // Manifest didn't changed. Nothing new to server.
       }
-    } else {
-      // Manifest didn't changed. Nothing new to server.
-    }
+    }, false);
   }, false);
-}, false);
+});
