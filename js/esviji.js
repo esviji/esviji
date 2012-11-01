@@ -150,25 +150,56 @@ ESVIJI.game = (function () {
       nextLevel();
     } else {
       if (validPieces.indexOf(gameStatus.currentPiece) == -1) {
-        drawnCurrentPiece.remove(); // TODO: animate
-        drawnCurrentPiece = null;
-        removeLife();
-        gameStatus.currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
-      }
-      store.set('gameStatus', gameStatus);
-      useStored = false;
-      if (gameStatus.playing) {
-        if (drawnCurrentPiece === null) {
-          drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.pieces[gameStatus.currentPiece - 1], 'playable');
+        var animRotateMain = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
+        animRotateMain.setAttributeNS(null, "attributeType", "xml");
+        animRotateMain.setAttributeNS(null, "attributeName", "opacity");
+        animRotateMain.setAttributeNS(null, "from", "1");
+        animRotateMain.setAttributeNS(null, "to", "0");
+        animRotateMain.setAttributeNS(null, "begin", "indefinite");
+        animRotateMain.setAttributeNS(null, "dur", "0.25s");
+        animRotateMain.setAttributeNS(null, "repeatCount", "4");
+        animRotateMain.setAttributeNS(null, "fill", "freeze");
+        animRotateMain.setAttributeNS(null, "id", "notPlayableAnim");
+        animRotateMain.addEventListener("endEvent", notPlayable, false);
+        drawnCurrentPiece.append(animRotateMain);
+        $('[data-valid=true]').each(function() {
+          that = $(this);
+          var animRotate = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
+          animRotate.setAttributeNS(null, "attributeType", "xml");
+          animRotate.setAttributeNS(null, "attributeName", "transform");
+          animRotate.setAttributeNS(null, "type", "rotate");
+          animRotate.setAttributeNS(null, "from", "0 " + (parseInt(that.attr('x'), 10) + 16) + " " + (parseInt(that.attr('y'), 10) + 16));
+          animRotate.setAttributeNS(null, "to", "720 " + (parseInt(that.attr('x'), 10) + 16) + " " + (parseInt(that.insertAfter('selector expression').attr('y'), 10) + 16));
+          animRotate.setAttributeNS(null, "begin", "notPlayableAnim.begin");
+          animRotate.setAttributeNS(null, "dur", "0.5s");
+          animRotate.setAttributeNS(null, "fill", "freeze");
+          that.append(animRotate);
+        });
+        animRotateMain.beginElement();
+      } else {
+        store.set('gameStatus', gameStatus);
+        useStored = false;
+        if (gameStatus.playing) {
+          if (drawnCurrentPiece === null) {
+            drawnCurrentPiece = drawPiece(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.pieces[gameStatus.currentPiece - 1], 'playable');
+          }
+          drawnCurrentPiece.on('mousedown touchstart', cursorStart);
+          $("#board").on('mousemove touchmove', cursorMove);
+          $("#board").on('mouseup touchend', cursorEnd);
+          Mousetrap.bind('up', keyUp);
+          Mousetrap.bind('down', keyDown);
+          Mousetrap.bind(['enter', 'space'], keyEnter);
         }
-        drawnCurrentPiece.on('mousedown touchstart', cursorStart);
-        $("#board").on('mousemove touchmove', cursorMove);
-        $("#board").on('mouseup touchend', cursorEnd);
-        Mousetrap.bind('up', keyUp);
-        Mousetrap.bind('down', keyDown);
-        Mousetrap.bind(['enter', 'space'], keyEnter);
       }
     }
+  }
+
+  function notPlayable() {
+    drawnCurrentPiece.remove();
+    drawnCurrentPiece = null;
+    removeLife();
+    gameStatus.currentPiece = validPieces[Math.floor(Math.random() * validPieces.length)];
+    startNewTurn();
   }
 
   function keyUp(event) {
