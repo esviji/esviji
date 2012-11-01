@@ -839,7 +839,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Browser downloaded a new app cache.
         // Swap it in and reload the page to get the new hotness.
         window.applicationCache.swapCache();
-        if (confirm('A new version of this site is available. Load it?')) {
+        if (confirm('A new version is available. Load it now?')) {
           window.location.reload();
         }
       } else {
