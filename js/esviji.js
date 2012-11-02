@@ -385,6 +385,16 @@ ESVIJI.game = (function () {
     startNewTurn();
   }
 
+  function svgAnimate(settings) {
+    var anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    anim.setAttributeNS(null, "attributeType", "xml");
+    for (var key in settings) {
+      anim.setAttributeNS(null, key, settings[key]);
+      console.log(key);
+    }
+    return anim;
+  }
+
   function animStackMove(piece, duration, attribute, from, to, begin) {
     if (begin === undefined) {
       if (lastStackedAnimation === (stackedAnimationToStart - 1)) {
@@ -394,15 +404,15 @@ ESVIJI.game = (function () {
       }
     }
 
-    anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    anim.setAttributeNS(null, "attributeType", "xml");
-    anim.setAttributeNS(null, "attributeName", attribute);
-    anim.setAttributeNS(null, "from", from);
-    anim.setAttributeNS(null, "to", to);
-    anim.setAttributeNS(null, "begin", begin);
-    anim.setAttributeNS(null, "dur", duration + "s");
-    anim.setAttributeNS(null, "fill", "freeze");
-    anim.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
+    anim = svgAnimate({
+      "attributeName": attribute,
+      "from": from,
+      "to": to,
+      "begin": begin,
+      "dur": duration + "s",
+      "fill": "freeze",
+      "id": "anim" + (lastStackedAnimation + 1)
+    });
     piece.append(anim);
 
     lastStackedAnimation++;
