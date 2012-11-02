@@ -390,7 +390,6 @@ ESVIJI.game = (function () {
     anim.setAttributeNS(null, "attributeType", "xml");
     for (var key in settings) {
       anim.setAttributeNS(null, key, settings[key]);
-      console.log(key);
     }
     return anim;
   }
