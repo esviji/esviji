@@ -427,49 +427,49 @@ ESVIJI.game = (function () {
     $("#board").append(pieceTo);
 
     // opacity from
-    animOpacityFrom = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    animOpacityFrom.setAttributeNS(null, "attributeType", "xml");
-    animOpacityFrom.setAttributeNS(null, "attributeName", "opacity");
-    animOpacityFrom.setAttributeNS(null, "to", "0");
-    animOpacityFrom.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    animOpacityFrom.setAttributeNS(null, "dur", ESVIJI.settings.durationMorph + "s");
-    animOpacityFrom.setAttributeNS(null, "fill", "freeze");
-    animOpacityFrom.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
+    animOpacityFrom = svgAnimate({
+      "attributeName": "opacity",
+      "to": "0",
+      "begin": "anim" + lastStackedAnimation + ".end",
+      "dur": ESVIJI.settings.durationMorph + "s",
+      "fill": "freeze",
+      "id": "anim" + (lastStackedAnimation + 1)
+    });
     pieceFrom.append(animOpacityFrom);
 
     // move
-    animMoveFrom = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    animMoveFrom.setAttributeNS(null, "attributeType", "xml");
-    animMoveFrom.setAttributeNS(null, "attributeName", attribute);
-    animMoveFrom.setAttributeNS(null, "from", from);
-    animMoveFrom.setAttributeNS(null, "to", to);
-    animMoveFrom.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    animMoveFrom.setAttributeNS(null, "dur", ESVIJI.settings.durationMorph + "s");
-    animMoveFrom.setAttributeNS(null, "fill", "freeze");
-    animMoveFrom.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 2));
+    animMoveFrom = svgAnimate({
+      "attributeName": attribute,
+      "from": from,
+      "to": to,
+      "begin": "anim" + lastStackedAnimation + ".end",
+      "dur": ESVIJI.settings.durationMorph + "s",
+      "fill": "freeze",
+      "id": "anim" + (lastStackedAnimation + 2)
+    });
     pieceFrom.append(animMoveFrom);
 
     // opacity to
-    animOpacityTo = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    animOpacityTo.setAttributeNS(null, "attributeType", "xml");
-    animOpacityTo.setAttributeNS(null, "attributeName", "opacity");
-    animOpacityTo.setAttributeNS(null, "to", "1");
-    animOpacityTo.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    animOpacityTo.setAttributeNS(null, "dur", ESVIJI.settings.durationMorph + "s");
-    animOpacityTo.setAttributeNS(null, "fill", "freeze");
-    animOpacityTo.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 3));
+    animOpacityTo = svgAnimate({
+      "attributeName": "opacity",
+      "to": "1",
+      "begin": "anim" + lastStackedAnimation + ".end",
+      "dur": ESVIJI.settings.durationMorph + "s",
+      "fill": "freeze",
+      "id": "anim" + (lastStackedAnimation + 3)
+    });
     pieceTo.append(animOpacityTo);
 
     // move
-    animMoveTo = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    animMoveTo.setAttributeNS(null, "attributeType", "xml");
-    animMoveTo.setAttributeNS(null, "attributeName", attribute);
-    animMoveTo.setAttributeNS(null, "from", from);
-    animMoveTo.setAttributeNS(null, "to", to);
-    animMoveTo.setAttributeNS(null, "begin", "anim" + lastStackedAnimation + ".end");
-    animMoveTo.setAttributeNS(null, "dur", ESVIJI.settings.durationMorph + "s");
-    animMoveTo.setAttributeNS(null, "fill", "freeze");
-    animMoveTo.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 4));
+    animMoveTo = svgAnimate({
+      "attributeName": attribute,
+      "from": from,
+      "to": to,
+      "begin": "anim" + lastStackedAnimation + ".end",
+      "dur": ESVIJI.settings.durationMorph + "s",
+      "fill": "freeze",
+      "id": "anim" + (lastStackedAnimation + 4)
+    });
     pieceTo.append(animMoveTo);
 
     lastStackedAnimation += 4;
