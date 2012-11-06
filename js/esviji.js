@@ -150,29 +150,29 @@ ESVIJI.game = (function () {
       nextLevel();
     } else {
       if (validPieces.indexOf(gameStatus.currentPiece) == -1) {
-        var animRotateMain = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
-        animRotateMain.setAttributeNS(null, "attributeType", "xml");
-        animRotateMain.setAttributeNS(null, "attributeName", "opacity");
-        animRotateMain.setAttributeNS(null, "from", "1");
-        animRotateMain.setAttributeNS(null, "to", "0");
-        animRotateMain.setAttributeNS(null, "begin", "indefinite");
-        animRotateMain.setAttributeNS(null, "dur", "0.25s");
-        animRotateMain.setAttributeNS(null, "repeatCount", "4");
-        animRotateMain.setAttributeNS(null, "fill", "freeze");
-        animRotateMain.setAttributeNS(null, "id", "notPlayableAnim");
+        var animRotateMain = svgAnimate({
+          "attributeName": "opacity",
+          "from": "1",
+          "to": "0",
+          "begin": "indefinite",
+          "dur": "0.5s",
+          "repeatCount": "4",
+          "fill": "freeze",
+          "id": "notPlayableAnim"
+        });
         animRotateMain.addEventListener("endEvent", notPlayable, false);
         drawnCurrentPiece.append(animRotateMain);
         $('[data-valid=true]').each(function() {
           that = $(this);
-          var animRotate = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
-          animRotate.setAttributeNS(null, "attributeType", "xml");
-          animRotate.setAttributeNS(null, "attributeName", "transform");
-          animRotate.setAttributeNS(null, "type", "rotate");
-          animRotate.setAttributeNS(null, "from", "0 " + (parseInt(that.attr('x'), 10) + 16) + " " + (parseInt(that.attr('y'), 10) + 16));
-          animRotate.setAttributeNS(null, "to", "720 " + (parseInt(that.attr('x'), 10) + 16) + " " + (parseInt(that.insertAfter('selector expression').attr('y'), 10) + 16));
-          animRotate.setAttributeNS(null, "begin", "notPlayableAnim.begin");
-          animRotate.setAttributeNS(null, "dur", "0.5s");
-          animRotate.setAttributeNS(null, "fill", "freeze");
+          var animRotate = svgAnimate({
+            "attributeName": "opacity",
+            "from": "0",
+            "to": "1",
+            "begin": "notPlayableAnim.begin",
+            "dur": "0.5s",
+            "repeatCount": "4",
+            "fill": "freeze"
+          });
           that.append(animRotate);
         });
         animRotateMain.beginElement();
