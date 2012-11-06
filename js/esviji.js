@@ -150,7 +150,7 @@ ESVIJI.game = (function () {
       nextLevel();
     } else {
       if (validPieces.indexOf(gameStatus.currentPiece) == -1) {
-        var animRotateMain = svgAnimate({
+        var notPlayableAnimMain = svgAnimate({
           "attributeName": "opacity",
           "from": "1",
           "to": "0",
@@ -160,11 +160,11 @@ ESVIJI.game = (function () {
           "fill": "freeze",
           "id": "notPlayableAnim"
         });
-        animRotateMain.addEventListener("endEvent", notPlayable, false);
-        drawnCurrentPiece.append(animRotateMain);
+        notPlayableAnimMain.addEventListener("endEvent", notPlayable, false);
+        drawnCurrentPiece.append(notPlayableAnimMain);
         $('[data-valid=true]').each(function() {
           that = $(this);
-          var animRotate = svgAnimate({
+          var notPlayableAnim = svgAnimate({
             "attributeName": "opacity",
             "from": "0",
             "to": "1",
@@ -173,9 +173,9 @@ ESVIJI.game = (function () {
             "repeatCount": "4",
             "fill": "freeze"
           });
-          that.append(animRotate);
+          that.append(notPlayableAnim);
         });
-        animRotateMain.beginElement();
+        notPlayableAnimMain.beginElement();
       } else {
         store.set('gameStatus', gameStatus);
         useStored = false;
