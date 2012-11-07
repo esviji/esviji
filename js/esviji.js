@@ -535,7 +535,9 @@ ESVIJI.game = (function () {
                 abovePieces++;
                 gameStatus.currentPieces[x][z] = gameStatus.currentPieces[x][z + 1];
                 gameStatus.currentPieces[x][z + 1] = ESVIJI.settings.emptyId;
-                animStackMove(drawnCurrentPieces[x][z + 1], ESVIJI.settings.durationMove, 'y', yToSvg(z + 1), yToSvg(z), 'anim' + lastStackedAnimationBeforeFall + '.end');
+                // Follow through and overlapping action: http://uxdesign.smashingmagazine.com/2012/10/30/motion-animation-new-mobile-ux-design-material/
+                dur = ESVIJI.settings.durationMove * (1 + abovePieces / 10);
+                animStackMove(drawnCurrentPieces[x][z + 1], dur, 'y', yToSvg(z + 1), yToSvg(z), 'anim' + lastStackedAnimationBeforeFall + '.end');
                 drawnCurrentPieces[x][z] = drawnCurrentPieces[x][z + 1];
                 drawnCurrentPieces[x][z + 1] = null;
               }
