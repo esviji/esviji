@@ -850,11 +850,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Browser downloaded a new app cache.
         // Swap it in and reload the page to get the new hotness.
         window.applicationCache.swapCache();
-        if (confirm('A new version is available. Do you want it right now, without losing your game?')) {
+        msg = 'A new version is available. Do you want it right now?'
+        if (ESVIJI.game.gameStatus.playing) {
+          msg = 'A new version is available. Do you want it right now, without losing your game?'
+        }
+        if (confirm(msg)) {
           window.location.reload();
         }
-      } else {
-        // Manifest didn't changed. Nothing new to server.
       }
     }, false);
   }, false);
