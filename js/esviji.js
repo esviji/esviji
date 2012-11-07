@@ -479,27 +479,27 @@ ESVIJI.game = (function () {
     begin = begin || ("anim" + lastStackedAnimation + ".end");
 
     // rotate
-    animRotate = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
-    animRotate.setAttributeNS(null, "attributeType", "xml");
-    animRotate.setAttributeNS(null, "attributeName", "transform");
-    animRotate.setAttributeNS(null, "type", "rotate");
-    animRotate.setAttributeNS(null, "from", "0 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16));
-    animRotate.setAttributeNS(null, "to", "360 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16));
-    animRotate.setAttributeNS(null, "begin", begin);
-    animRotate.setAttributeNS(null, "dur", ESVIJI.settings.durationMove + "s");
-    animRotate.setAttributeNS(null, "fill", "freeze");
-    animRotate.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 1));
+    var animRotate = svgAnimate({
+      "attributeName": "transform",
+      "type": "rotate",
+      "from": "0 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16),
+      "to": "360 " + (parseInt(piece.attr('x'), 10) + 16) + " " + (parseInt(piece.attr('y'), 10) + 16),
+      "begin": begin,
+      "dur": ESVIJI.settings.durationMove + "s",
+      "fill": "freeze",
+      "id": "anim" + (lastStackedAnimation + 1)
+    });
     piece.append(animRotate);
 
     // opacity
-    animOpacity = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    animOpacity.setAttributeNS(null, "attributeType", "xml");
-    animOpacity.setAttributeNS(null, "attributeName", "opacity");
-    animOpacity.setAttributeNS(null, "to", "0");
-    animOpacity.setAttributeNS(null, "begin", begin);
-    animOpacity.setAttributeNS(null, "dur", ESVIJI.settings.durationMove + "s");
-    animOpacity.setAttributeNS(null, "fill", "freeze");
-    animOpacity.setAttributeNS(null, "id", "anim" + (lastStackedAnimation + 2));
+    var animOpacity = svgAnimate({
+      "attributeName": "opacity",
+      "to": "0",
+      "begin": begin,
+      "dur": ESVIJI.settings.durationMove + "s",
+      "fill": "freeze",
+      "id": "anim" + (lastStackedAnimation + 2)
+    });
     animOpacity.addEventListener("endEvent", function(event) {
       thisPiece = $(event.currentTarget.parentElement);
       thisPiece.remove();
