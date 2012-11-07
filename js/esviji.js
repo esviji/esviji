@@ -90,6 +90,9 @@ ESVIJI.game = (function () {
       }
     }
     $('#playPanel').clone().attr('id', 'play').appendTo('#board');
+    drawLevel();
+    drawScore();
+    drawLives();
     $('.pauseButton').on('click', pause);
     //  $("#fullscreen").on("click", function() {
     //    fs = new Fullscreen($("#board"));
@@ -116,9 +119,6 @@ ESVIJI.game = (function () {
 
   function nextLevel() {
     gameStatus.playing = true;
-    drawScore();
-    drawLevel();
-    drawLives();
     if (!useStored) {
       erasePieces();
       initPieces();
@@ -788,7 +788,6 @@ ESVIJI.game = (function () {
   }
 
   function drawScore() {
-
     $('#play .score').text(gameStatus.score);
   }
 
