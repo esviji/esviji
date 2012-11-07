@@ -152,8 +152,8 @@ ESVIJI.game = (function () {
       if (validPieces.indexOf(gameStatus.currentPiece) == -1) {
         var notPlayableAnimMain = svgAnimate({
           "attributeName": "opacity",
-          "from": "1",
-          "to": "0",
+          "from": "0",
+          "to": "1",
           "begin": "indefinite",
           "dur": "0.5s",
           "repeatCount": "4",
