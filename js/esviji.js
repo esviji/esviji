@@ -379,7 +379,7 @@ ESVIJI.game = (function () {
     if (scoreThisTurn === 0) {
       removeLife();
     } else {
-      increaseScore(Math.pow(scoreThisTurn, 2));
+      addScore(scoreThisTurn);
     }
     stackedAnimationToStart = lastStackedAnimation + 1;
     startNewTurn();
@@ -769,26 +769,35 @@ ESVIJI.game = (function () {
     vibrate(100);
   }
 
-  function increaseScore(scoreToAdd) {
+  function addScore(scoreToAdd) {
     oldScore = gameStatus.score;
-    gameStatus.score += scoreToAdd;
-    drawScore();
+    gameStatus.score += Math.pow(scoreToAdd, 3);
+    increaseScore();
     hundreds = Math.floor(gameStatus.score / 100) - Math.floor(oldScore / 100);
     if (hundreds > 0) {
       addLives(hundreds);
     }
   }
 
+  function increaseScore() {
+    currentDrawnScore = parseInt($('#play .score').text(), 10);
+    if (currentDrawnScore < gameStatus.score) {
+      $('#play .score').text(currentDrawnScore + 1);
+      window.setTimeout(increaseScore, 100);
+    }
+  }
+
   function drawScore() {
-    $('.score').text(gameStatus.score);
+
+    $('#play .score').text(gameStatus.score);
   }
 
   function drawLevel() {
-    $('.level').text(gameStatus.level);
+    $('#play .level').text(gameStatus.level);
   }
 
   function drawLives() {
-    $('.lives').text(gameStatus.lives);
+    $('#play .lives').text(gameStatus.lives);
   }
 
   function xToSvg(x) {
