@@ -96,10 +96,17 @@ html, body {
   stroke: #666;
 }
 
+.copyright {
+  font-size: 10px;
+  text-anchor: begin;
+  fill: #888;
+  stroke-width: 0;
+}
+
 .version {
-  font-size: 12px;
+  font-size: 10px;
   text-anchor: end;
-  fill: #aaa;
+  fill: #888;
   stroke-width: 0;
 }
 
