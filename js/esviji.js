@@ -824,6 +824,8 @@ ESVIJI.game = (function () {
     // http://hacks.mozilla.org/2012/01/using-the-vibrator-api-part-of-webapi/
     if (navigator.mozVibrate) {
       navigator.mozVibrate(duration);
+    } else if (navigator.webkitvibrate) {
+      navigator.webkitvibrate(duration);
     }
   }
 
