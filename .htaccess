@@ -1,6 +1,3 @@
 AddType text/x-component htc
 AddType application/x-shockwave-flash swf
 AddType image/svg+xml svg
-
-AddType text/cache-manifest appcache
-AddHandler application/x-httpd-fastphp5 .appcache
