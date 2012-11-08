@@ -536,7 +536,7 @@ ESVIJI.game = (function () {
                 gameStatus.currentPieces[x][z] = gameStatus.currentPieces[x][z + 1];
                 gameStatus.currentPieces[x][z + 1] = ESVIJI.settings.emptyId;
                 // Follow through and overlapping action: http://uxdesign.smashingmagazine.com/2012/10/30/motion-animation-new-mobile-ux-design-material/
-                dur = ESVIJI.settings.durationMove * (1 + abovePieces / 5);
+                dur = ESVIJI.settings.durationMove * (1 + abovePieces / 3);
                 animStackMove(drawnCurrentPieces[x][z + 1], dur, 'y', yToSvg(z + 1), yToSvg(z), 'anim' + lastStackedAnimationBeforeFall + '.end');
                 drawnCurrentPieces[x][z] = drawnCurrentPieces[x][z + 1];
                 drawnCurrentPieces[x][z + 1] = null;
@@ -782,7 +782,7 @@ ESVIJI.game = (function () {
   function increaseScore() {
     currentDrawnScore = parseInt($('#play .score').text(), 10);
     if (currentDrawnScore < gameStatus.score) {
-      $('#play .score').text(currentDrawnScore + 1);
+      $('#play .score').text(currentDrawnScore + Math.ceil((gameStatus.score - currentDrawnScore) / 3));
       window.setTimeout(increaseScore, 100);
     }
   }
