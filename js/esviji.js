@@ -146,7 +146,9 @@ ESVIJI.game = (function () {
       drawnCurrentPiece.remove(); // TODO: animate
       drawnCurrentPiece = null;
       gameStatus.level++;
+      drawLevel();
       gameStatus.lives++;
+      drawLives();
       nextLevel();
     } else {
       if (validPieces.indexOf(gameStatus.currentPiece) == -1) {
