@@ -1,14 +1,14 @@
 @font-face {
-  font-family: 'SansitaOneRegular';
-  src: url('font/sansitaone-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'SansitaOneRegular';
+    src: url('font/sansitaone-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
-html,
-body {
+
+html, body {
   font-family: SansitaOneRegular;
   font-size: 18px;
-  color: #fff;
+  color:  #fff;
   background-color: #444;
   margin: 0;
   padding: 0;
@@ -16,97 +16,113 @@ body {
   height: 100%;
   overflow: hidden;
 }
-#boardBackgroundGradient stop.begin {
-  stop-color: #333;
+
+#boardBackgroundGradient {
+  stop.begin {
+    stop-color: #333;
+  }
+
+  stop.end {
+    stop-color: #111;
+  }
 }
-#boardBackgroundGradient stop.end {
-  stop-color: #111;
-}
+
 #boardBackground {
   border: 0;
 }
-#topbarGradient stop.begin {
-  stop-color: #555;
+
+#topbarGradient {
+  stop.begin {
+    stop-color: #555;
+  }
+
+  stop.end {
+    stop-color: #333;
+  }
 }
-#topbarGradient stop.end {
-  stop-color: #333;
+
+#play {
+  .title {
+    font-size: 34px;
+    text-anchor: end;
+    fill: #fff;
+    stroke-width: 0;
+  }
+
+  .scoreLabel, .levelLabel, .livesLabel {
+    text-anchor: end;
+    fill: #ccc;
+    stroke-width: 0;
+  }
+
+  .score, .level, .lives {
+    fill: #eee;
+    stroke-width: 0;
+  }
 }
-#play .title {
-  x: 250;
-  y: 30;
-  font-size: 34px;
-  text-anchor: end;
-  fill: #fff;
-  stroke-width: 0;
-}
-#play .scoreLabel,
-#play .levelLabel,
-#play .livesLabel {
-  text-anchor: end;
-  fill: #ccc;
-  stroke-width: 0;
-}
-#play .score,
-#play .level,
-#play .lives {
-  fill: #eee;
-  stroke-width: 0;
-}
+
 #playable.dragged {
   opacity: 0.8;
 }
-#gameOverBackground,
-#pauseBackground {
+
+#gameOverBackground, #pauseBackground {
   opacity: 0.7;
 }
+
 #main .title {
   font-size: 96px;
   text-anchor: middle;
   fill: #fff;
   stroke-width: 0;
 }
-#gameOver .title,
-#pause .title {
+
+#gameOver .title, #pause .title {
   font-size: 48px;
   text-anchor: middle;
   fill: #fff;
   stroke-width: 0;
 }
+
 #gameOver .score {
   font-size: 34px;
   fill: #eee;
   text-anchor: middle;
 }
+
 .button text {
   font-size: 18px;
   text-anchor: middle;
   fill: #333;
   stroke-width: 0;
 }
+
 .button rect {
   fill: #ddd;
   stroke-width: 3;
   stroke: #666;
 }
+
 .copyright {
   font-size: 10px;
   text-anchor: begin;
   fill: #888;
   stroke-width: 0;
 }
+
 .version {
   font-size: 10px;
   text-anchor: end;
   fill: #888;
   stroke-width: 0;
 }
-.step rect,
-.step path {
+
+.step rect, .step path {
   fill: #aaa;
   fill-opacity: 1;
   stroke-width: 0;
   stroke: #aaa;
 }
+
 .step text {
   font-weight: normal;
   fill: #333;
