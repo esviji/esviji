@@ -753,13 +753,11 @@ ESVIJI.game = (function () {
     store.set('gameStatus', {
       'playing': false
     });
-    vibrate(1000);
   }
 
   function removeLife() {
     gameStatus.lives--;
     drawLives();
-    vibrate(500);
     if (gameStatus.lives === 0) {
       gameOver();
     }
@@ -768,7 +766,6 @@ ESVIJI.game = (function () {
   function addLives(nbLives) {
     gameStatus.lives += nbLives;
     drawLives();
-    vibrate(100);
   }
 
   function addScore(scoreToAdd) {
@@ -819,15 +816,6 @@ ESVIJI.game = (function () {
 
   function pixelsToSvgY(coordY) {
     return coordY * ESVIJI.settings.board.height / $(document).height();
-  }
-
-  function vibrate(duration) {
-    // http://hacks.mozilla.org/2012/01/using-the-vibrator-api-part-of-webapi/
-    if (navigator.mozVibrate) {
-      navigator.mozVibrate(duration);
-    } else if (navigator.webkitvibrate) {
-      navigator.webkitvibrate(duration);
-    }
   }
 
   function debug(string) {
