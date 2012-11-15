@@ -89,17 +89,25 @@ html, body {
   text-anchor: middle;
 }
 
-.button text {
-  font-size: 18px;
-  text-anchor: middle;
-  fill: #333;
-  stroke-width: 0;
+.button {
+  pointer-events: visible;
+
+  text {
+    font-size: 18px;
+    text-anchor: middle;
+    fill: #333;
+    stroke-width: 0;
+  }
+
+  rect {
+    fill: #ddd;
+    stroke-width: 3;
+    stroke: #666;
+  }
 }
 
-.button rect {
-  fill: #ddd;
-  stroke-width: 3;
-  stroke: #666;
+.pauseButton {
+  pointer-events: visible;
 }
 
 .copyright {
