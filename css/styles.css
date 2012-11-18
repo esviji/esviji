@@ -31,6 +31,10 @@ body {
 #topbarGradient stop.end {
   stop-color: #333;
 }
+#play .pauseButton,
+#tutorial .pauseButton {
+  pointer-events: visible;
+}
 #play .title,
 #tutorial .title {
   font-size: 34px;
@@ -95,9 +99,6 @@ body {
   fill: #ddd;
   stroke-width: 3;
   stroke: #666;
-}
-.pauseButton {
-  pointer-events: visible;
 }
 .copyright {
   font-size: 10px;

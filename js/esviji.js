@@ -7,7 +7,9 @@ var ESVIJI = {};
 ESVIJI.settings = {
   'board': {
     'width': 320,
-    'height': 460
+    'height': 460,
+    'xMax': 7,
+    'yMax': 7
   },
   'pieces': ['piece1', 'piece2', 'piece3', 'piece4', 'piece5', 'piece6'],
   'rocks': ['rock'],
