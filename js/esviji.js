@@ -93,7 +93,7 @@ ESVIJI.game = (function () {
     drawLevel();
     drawScore();
     drawLives();
-    $('.pauseButton').on('click', pause);
+    $('#play .pauseButton').on('click', pause);
     //  $("#fullscreen").on("click", function() {
     //    fs = new Fullscreen($("#board"));
     //    fs.request();
@@ -106,6 +106,7 @@ ESVIJI.game = (function () {
     tuto = $('#tutorialPanel').clone().attr('id', 'tutorial');
     $('#tutorialPanel').remove();
     tuto.appendTo('#board');
+    $('#tutorial .pauseButton').on('click', endTutorial);
     $('#tutoAnimEnd')[0].addEventListener("endEvent", endTutorial, false);
     $('#tutoAnimStart')[0].beginElement();
   }

@@ -31,24 +31,29 @@ body {
 #topbarGradient stop.end {
   stop-color: #333;
 }
-#play .title {
-  x: 250;
-  y: 30;
+#play .title,
+#tutorial .title {
   font-size: 34px;
   text-anchor: end;
   fill: #fff;
   stroke-width: 0;
 }
 #play .scoreLabel,
+#tutorial .scoreLabel,
 #play .levelLabel,
-#play .livesLabel {
+#tutorial .levelLabel,
+#play .livesLabel,
+#tutorial .livesLabel {
   text-anchor: end;
   fill: #ccc;
   stroke-width: 0;
 }
 #play .score,
+#tutorial .score,
 #play .level,
-#play .lives {
+#tutorial .level,
+#play .lives,
+#tutorial .lives {
   fill: #eee;
   stroke-width: 0;
 }
@@ -77,6 +82,9 @@ body {
   fill: #eee;
   text-anchor: middle;
 }
+.button {
+  pointer-events: visible;
+}
 .button text {
   font-size: 18px;
   text-anchor: middle;
@@ -87,6 +95,9 @@ body {
   fill: #ddd;
   stroke-width: 3;
   stroke: #666;
+}
+.pauseButton {
+  pointer-events: visible;
 }
 .copyright {
   font-size: 10px;
