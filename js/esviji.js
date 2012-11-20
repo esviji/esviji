@@ -95,7 +95,7 @@ ESVIJI.game = (function () {
     drawLevel();
     drawScore();
     drawLives();
-    $('#play .pauseButton .fullarea').on('click', pause);
+    $('#play .pauseButton').on('click', pause);
     //  $("#fullscreen").on("click", function() {
     //    fs = new Fullscreen($("#board"));
     //    fs.request();
