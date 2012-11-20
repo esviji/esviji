@@ -42,10 +42,6 @@ html, body {
 }
 
 #play, #tutorial {
-  .pauseButton {
-    pointer-events: visible;
-  }
-
   .title {
     font-size: 34px;
     text-anchor: end;
@@ -62,6 +58,22 @@ html, body {
   .score, .level, .lives {
     fill: #eee;
     stroke-width: 0;
+  }
+}
+
+.pauseButton {
+  pointer-events: visible;
+
+  .fullarea {
+    fill: #fff;
+    opacity: 0;
+    pointer-events: visible;
+  }
+
+  .icon {
+    stroke-width: 0;
+    fill: #fff;
+    opacity: 0.7;
   }
 }
 

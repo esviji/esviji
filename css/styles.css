@@ -31,10 +31,6 @@ body {
 #topbarGradient stop.end {
   stop-color: #333;
 }
-#play .pauseButton,
-#tutorial .pauseButton {
-  pointer-events: visible;
-}
 #play .title,
 #tutorial .title {
   font-size: 34px;
@@ -60,6 +56,19 @@ body {
 #tutorial .lives {
   fill: #eee;
   stroke-width: 0;
+}
+.pauseButton {
+  pointer-events: visible;
+}
+.pauseButton .fullarea {
+  fill: #fff;
+  opacity: 0;
+  pointer-events: visible;
+}
+.pauseButton .icon {
+  stroke-width: 0;
+  fill: #fff;
+  opacity: 0.7;
 }
 #playable.dragged {
   opacity: 0.8;
