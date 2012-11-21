@@ -49,6 +49,7 @@ ESVIJI.game = (function () {
     maxAvailablePieces = 0,
     nbPieces = 0,
     scoreThisTurn = 0,
+    lastHitPiece = ESVIJI.settings.rockId,
     storageScores = store.get('scores') || [ ],
     gameStatus = store.get('gameStatus') || {
       'currentPieces': [],
@@ -142,6 +143,7 @@ ESVIJI.game = (function () {
     currentPosY = ESVIJI.settings.turn.posY;
     currentDirY = ESVIJI.settings.turn.dirY;
     scoreThisTurn = 0;
+    lastHitPiece = ESVIJI.settings.rockId;
     getValidPieces();
 
     if (validPieces.length === 0) {
@@ -300,7 +302,7 @@ ESVIJI.game = (function () {
       endOfMove();
     } else {
       if (currentPosX == 1 && currentDirX == -1) {
-        // Against the left wall, should not go down
+        // Against the left wall, should now go down
         currentDirX = 0;
         currentDirY = -1;
         animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
@@ -352,6 +354,7 @@ ESVIJI.game = (function () {
             playUserChoice();
             break;
           default:
+            lastHitPiece = nextPiece;
             if (currentPosX != oldPosX) {
               animStackMove(drawnCurrentPiece, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
             } else if (currentPosY != oldPosY) {
@@ -382,7 +385,9 @@ ESVIJI.game = (function () {
       }
     }
     if (scoreThisTurn === 0) {
-      removeLife();
+      if (lastHitPiece != ESVIJI.settings.rockId) {
+        removeLife();
+      }
     } else {
       addScore(scoreThisTurn);
     }
