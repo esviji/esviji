@@ -68,9 +68,9 @@ ESVIJI.game = (function () {
 
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
       _gaq.push(['_trackEvent', 'Init', 'Init']);
-      $('#main .start').on('click', startPlaying);
-      $('#main .tutorial').on('click', startTutorial);
-      $('#main .about').on('click', function() {
+      $('#main .start').on('click touchstart', startPlaying);
+      $('#main .tutorial').on('click touchstart', startTutorial);
+      $('#main .about').on('click touchstart', function() {
         window.location.href="https://github.com/nhoizey/esviji/blob/master/README.md";
       });
     } else {
@@ -96,8 +96,8 @@ ESVIJI.game = (function () {
     drawLevel();
     drawScore();
     drawLives();
-    $('#play .pauseButton').on('click', pause);
-    //  $("#fullscreen").on("click", function() {
+    $('#play .pauseButton').on('click touchstart', pause);
+    //  $("#fullscreen").on("click touchstart", function() {
     //    fs = new Fullscreen($("#board"));
     //    fs.request();
     //  });
@@ -109,8 +109,8 @@ ESVIJI.game = (function () {
     tuto = $('#tutorialPanel').clone().attr('id', 'tutorial');
     $('#tutorialPanel').remove();
     tuto.appendTo('#board');
-    $('#tutorial .pauseButton').on('click', endTutorial);
-    $('#tutoAnimEnd')[0].addEventListener("endEvent", endTutorial, false);
+    $('#tutorial .pauseButton').on('click touchstart', endTutorial);
+    $('#tutoAnimEnd')[0].addEventListener('endEvent', endTutorial, false);
     $('#tutoAnimStart')[0].beginElement();
   }
 
@@ -277,7 +277,7 @@ ESVIJI.game = (function () {
       }
       dragged = false;
       drawnCurrentPiece.attr({
-        'class': ""
+        'class': ''
       });
       cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
       currentPosY = svgToY(cursorY);
@@ -720,16 +720,19 @@ ESVIJI.game = (function () {
     store.set('gameStatus', {
       'playing': false
     });
+    init();
   }
 
   function pause() {
     _gaq.push(['_trackEvent', 'Pause', 'Start']);
     $('#pausePanel').clone().attr('id', 'pause').appendTo('#board');
-    $('#pause .resume').on('click', function() {
+    $('#pause .resume').on('click touchstart', function(e) {
+      e.preventDefault();
       _gaq.push(['_trackEvent', 'Pause', 'Resume']);
       $('#pause').remove();
     });
-    $('#pause .restart').on('click', function() {
+    $('#pause .restart').on('click touchstart', function(e) {
+      e.preventDefault();
       _gaq.push(['_trackEvent', 'Pause', 'Restart']);
       $('#pause').remove();
       store.set('gameStatus', {
@@ -737,7 +740,8 @@ ESVIJI.game = (function () {
       });
       startPlaying();
     });
-    $('#pause .exit').on('click', function() {
+    $('#pause .exit').on('click touchstart', function(e) {
+      e.preventDefault();
       _gaq.push(['_trackEvent', 'Pause', 'Exit']);
       $('#pause').remove();
       stopPlaying();
@@ -748,11 +752,11 @@ ESVIJI.game = (function () {
     _gaq.push(['_trackEvent', 'Play', 'Game Over', 'Score', gameStatus.score]);
     $('#gameOverPanel').clone().attr('id', 'gameOver').appendTo('#board');
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
-    $('.playagain').on('click', function() {
+    $('.playagain').on('click touchstart', function() {
       $('#gameOver').remove();
       startPlaying();
     });
-    $('.exit').on('click', function() {
+    $('.exit').on('click touchstart', function() {
       $('#gameOver').remove();
       stopPlaying();
     });
