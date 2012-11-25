@@ -8,8 +8,8 @@ ESVIJI.settings = {
   'board': {
     'width': 320,
     'height': 460,
-    'xMax': 7,
-    'yMax': 7
+    'xMax': 10,
+    'yMax': 13
   },
   'pieces': ['piece1', 'piece2', 'piece3', 'piece4', 'piece5', 'piece6'],
   'rocks': ['rock'],
@@ -63,7 +63,7 @@ ESVIJI.game = (function () {
 
   function init() {
     cursorMinY = yToSvg(1);
-    cursorMaxY = yToSvg(13);
+    cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailablePieces = ESVIJI.settings.pieces.length;
 
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
@@ -576,20 +576,19 @@ ESVIJI.game = (function () {
     nbPieces = Math.min(maxAvailablePieces, Math.floor(3 + (thisLevel / 3)));
     gameStatus.currentPieces = [];
 
-    for (x = 1; x <= 9; x++) {
+    for (x = 1; x <= ESVIJI.settings.board.xMax; x++) {
       gameStatus.currentPieces[x] = [];
-      for (y = 1; y <= 13; y++) {
-        if (x > Math.max(Math.min(thisLevel, 6), 3)) {
-          gameStatus.currentPieces[x][y] = ESVIJI.settings.emptyId;
+      for (y = 1; y <= ESVIJI.settings.board.yMax; y++) {
+        if (y - 7 > x) {
+          // put the "stair" rocks
+          gameStatus.currentPieces[x][y] = ESVIJI.settings.rockId;
         } else {
-          if (y > Math.max(Math.min(thisLevel, 7), 3)) {
-            if (y - 7 > x) {
-              gameStatus.currentPieces[x][y] = ESVIJI.settings.rockId;
-            } else {
-              gameStatus.currentPieces[x][y] = ESVIJI.settings.emptyId;
-            }
-          } else {
+          if ((x <= Math.max(Math.min(thisLevel, 6), 3)) && (y <= Math.max(Math.min(thisLevel, 7), 3))) {
+            // a piece
             gameStatus.currentPieces[x][y] = 1 + Math.floor(Math.random() * nbPieces);
+          } else {
+            // empty
+            gameStatus.currentPieces[x][y] = ESVIJI.settings.emptyId;
           }
         }
       }
@@ -829,8 +828,8 @@ ESVIJI.game = (function () {
   function debug(string) {
     console.log(string);
     matrix = '';
-    for (y = 7; y >= 1; y--) {
-      for (x = 1; x <= 6; x++) {
+    for (y = ESVIJI.settings.board.yMax; y >= 1; y--) {
+      for (x = 1; x <= ESVIJI.settings.board.xMax; x++) {
         matrix += gameStatus.currentPieces[x][y] + ' ';
       }
       matrix += "\n";
