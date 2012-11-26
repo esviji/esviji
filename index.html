@@ -75,21 +75,11 @@
         <circle fill="url(#gradientPiece6)" stroke-width="1" stroke="#aa0000" cx="16" cy="16" r="15" />
       </svg>
 
-      <radialGradient id="boardBackgroundGradient" gradientUnits="userSpaceOnUse" cx="70%" cy="70%" r="100%">
-        <stop class="begin" offset="0" />
-        <stop class="end" offset="1" />
-      </radialGradient>
-
-      <radialGradient id="topbarGradient" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="50%">
-        <stop class="begin" offset="0" />
-        <stop class="end" offset="1" />
-      </radialGradient>
-
-      <rect id="boardBackground" x="0" y="0" width="320" height="460" fill="url(#boardBackgroundGradient)" />
+      <rect id="boardBackground" x="0" y="0" width="320" height="460" />
 
       <g id="playPanel">
         <use xlink:href="#boardBackground" />
-        <polygon id="topbar" points="0,0 0,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 320,42 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
+        <polygon id="topbar" points="-1,-1 -1,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 321,42 321,-1" />
 
         <!--<g class="fullscreenButton" transform="translate(300, 5)">
           <polygon points="0,0 15,0 15,12 8,12 8,15 11,15 4,15 7,15 7,12 0,12" style="stroke-width: 1; stroke: #000; fill: #fff;" />

@@ -9,7 +9,7 @@ html, body {
   font-family: SansitaOneRegular;
   font-size: 18px;
   color:  #fff;
-  background-color: #444;
+  background-color: #555;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -17,28 +17,18 @@ html, body {
   overflow: hidden;
 }
 
-#boardBackgroundGradient {
-  stop.begin {
-    stop-color: #333;
-  }
-
-  stop.end {
-    stop-color: #111;
-  }
+#board {
+  stroke-width: 0;
 }
 
 #boardBackground {
-  border: 0;
+  stroke-width: 0;
+  fill: #333;
 }
 
-#topbarGradient {
-  stop.begin {
-    stop-color: #555;
-  }
-
-  stop.end {
-    stop-color: #333;
-  }
+#topbar {
+  stroke-width: 0;
+  fill: #555;
 }
 
 #play, #tutorial {
