@@ -77,7 +77,11 @@ ESVIJI.game = (function () {
         'dur': 1000
       },
       'destroy': {
-        'sound': T("+", T("sin", 523.35), T("sin", 659.25), T("sin", 783.99)).set({mul: 0.25}),
+        'sound': T("*", T("sin", 440), T("sin", 880)).set({mul: 0.25}),
+        'dur': 100
+      },
+      'lostLife': {
+        'sound': T("*", T("sin", 523.35), T("sin", 659.25), T("sin", 783.99)).set({mul: 0.25}),
         'dur': 300
       }
     };
@@ -799,6 +803,7 @@ ESVIJI.game = (function () {
 
   function removeLife() {
     gameStatus.lives--;
+    playSound('lostLife');
     drawLives();
     if (gameStatus.lives === 0) {
       gameOver();
