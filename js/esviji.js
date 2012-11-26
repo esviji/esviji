@@ -59,12 +59,23 @@ ESVIJI.game = (function () {
       'lives': 0,
       'playing': false
     },
-    useStored = false;
+    useStored = false,
+    sounds = {};
 
   function init() {
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailablePieces = ESVIJI.settings.pieces.length;
+    sounds = {
+      'error': {
+        'sound': T("tri", T("tri", 2, 30, 880).kr(), 0.25),
+        'dur': 1000
+      },
+      'destroy': {
+        'sound': T("+", T("sin", 523.35), T("sin", 659.25), T("sin", 783.99)).set({mul: 0.25}),
+        'dur': 300
+      }
+    };
 
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
       _gaq.push(['_trackEvent', 'Init', 'Init']);
@@ -167,6 +178,7 @@ ESVIJI.game = (function () {
           "fill": "freeze",
           "id": "notPlayableAnim"
         });
+        notPlayableAnimMain.addEventListener("beginEvent", function () { playSound('error'); }, false);
         notPlayableAnimMain.addEventListener("endEvent", notPlayable, false);
         drawnCurrentPiece.append(notPlayableAnimMain);
         $('[data-valid=true]').each(function() {
@@ -499,6 +511,9 @@ ESVIJI.game = (function () {
       "fill": "freeze",
       "id": "anim" + (lastStackedAnimation + 1)
     });
+    animRotate.addEventListener("beginEvent", function(event) {
+      playSound('destroy');
+    }, false);
     piece.append(animRotate);
 
     // opacity
@@ -827,6 +842,11 @@ ESVIJI.game = (function () {
 
   function pixelsToSvgY(coordY) {
     return coordY * ESVIJI.settings.board.height / $(document).height();
+  }
+
+  function playSound(type) {
+    sounds[type].sound.play();
+    window.setTimeout(function() { sounds[type].sound.pause(); }, sounds[type].dur);
   }
 
   function debug(string) {
