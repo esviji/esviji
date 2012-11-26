@@ -32,6 +32,11 @@ ESVIJI.settings = {
 
 ESVIJI.game = (function () {
   var
+    docWidth,
+    docHeight,
+    boardWidth,
+    boardHeight,
+    boardOffsetY,
     drawnCurrentPieces = [],
     validPieces = [],
     drawnCurrentPiece = null,
@@ -76,6 +81,17 @@ ESVIJI.game = (function () {
         'dur': 300
       }
     };
+    docWidth = $(document).width();
+    docHeight = $(document).height();
+    if (docHeight / docWidth > ESVIJI.settings.board.height / ESVIJI.settings.board.width) {
+      boardWidth = docWidth;
+      boardHeight = ESVIJI.settings.board.height / ESVIJI.settings.board.width * boardWidth;
+      boardOffsetY = docHeight - boardHeight; // top empty area height
+    } else {
+      boardHeight = docHeight;
+      boardWidth = ESVIJI.settings.board.width / ESVIJI.settings.board.height * boardHeight;
+      boardOffsetY = 0;
+    }
 
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
       _gaq.push(['_trackEvent', 'Init', 'Init']);
@@ -841,7 +857,7 @@ ESVIJI.game = (function () {
   }
 
   function pixelsToSvgY(coordY) {
-    return coordY * ESVIJI.settings.board.height / $(document).height();
+    return (coordY - boardOffsetY) * ESVIJI.settings.board.height / boardHeight;
   }
 
   function playSound(type) {
