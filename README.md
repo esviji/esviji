@@ -36,6 +36,7 @@ Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direct
 - JavaScript, with a little bit of jQuery
 - [Matthias](http://twitter.com/madsgraphics)'s awesome [SVGEventListener polyfil](https://github.com/madsgraphics/SVGEventListener) for SVG animate events in webkit (once again)
 - [Craig Campbell](http://craig.is/)'s [mousetrap](http://craig.is/killing/mice) for keyboard controls
+- [mohayonao](http://twitter.com/mohayonao)'s [Timbre.js](https://github.com/mohayonao/timbre) for sounds
 
 ## Thanks a lot to…
 
