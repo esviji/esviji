@@ -56,6 +56,26 @@ body {
 #tutorial .lives {
   fill: #eee;
   stroke-width: 0;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+#play .score.changeDown,
+#tutorial .score.changeDown,
+#play .level.changeDown,
+#tutorial .level.changeDown,
+#play .lives.changeDown,
+#tutorial .lives.changeDown {
+  fill: #faa;
+}
+#play .score.changeUp,
+#tutorial .score.changeUp,
+#play .level.changeUp,
+#tutorial .level.changeUp,
+#play .lives.changeUp,
+#tutorial .lives.changeUp {
+  fill: #afa;
 }
 .pauseButton {
   pointer-events: visible;

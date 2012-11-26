@@ -183,8 +183,12 @@ ESVIJI.game = (function () {
       drawnCurrentPiece = null;
       gameStatus.level++;
       drawLevel();
+      $('#play .level').attr('class', 'level changeUp');
+      window.setTimeout(function() { $('#play .level').attr('class', 'level'); }, 2000);
       gameStatus.lives++;
       drawLives();
+      $('#play .lives').attr('class', 'lives changeUp');
+      window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
       nextLevel();
     } else {
       if (validPieces.indexOf(gameStatus.currentPiece) == -1) {
@@ -805,6 +809,8 @@ ESVIJI.game = (function () {
     gameStatus.lives--;
     playSound('lostLife');
     drawLives();
+    $('#play .lives').attr('class', 'lives changeDown');
+    window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
     if (gameStatus.lives === 0) {
       gameOver();
     }
@@ -813,12 +819,16 @@ ESVIJI.game = (function () {
   function addLives(nbLives) {
     gameStatus.lives += nbLives;
     drawLives();
+    $('#play .lives').attr('class', 'lives changeUp');
+    window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
   }
 
   function addScore(scoreToAdd) {
     oldScore = gameStatus.score;
     gameStatus.score += Math.pow(scoreToAdd, 3);
     increaseScore();
+    $('#play .score').attr('class', 'score changeUp');
+    window.setTimeout(function() { $('#play .score').attr('class', 'score'); }, 2000);
     hundreds = Math.floor(gameStatus.score / 100) - Math.floor(oldScore / 100);
     if (hundreds > 0) {
       addLives(hundreds);

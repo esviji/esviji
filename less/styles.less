@@ -58,6 +58,19 @@ html, body {
   .score, .level, .lives {
     fill: #eee;
     stroke-width: 0;
+
+    -webkit-transition: all 0.3s ease-out;
+       -moz-transition: all 0.3s ease-out;
+         -o-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+
+    &.changeDown {
+      fill: #f33;
+    }
+
+    &.changeUp {
+      fill: #3f3;
+    }
   }
 }
 
