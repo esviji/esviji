@@ -128,10 +128,6 @@ ESVIJI.game = (function () {
     drawScore();
     drawLives();
     $('#play .pauseButton').on('click touchstart', pause);
-    //  $("#fullscreen").on("click touchstart", function() {
-    //    fs = new Fullscreen($("#board"));
-    //    fs.request();
-    //  });
     nextLevel();
   }
 
