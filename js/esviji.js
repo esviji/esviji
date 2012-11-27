@@ -101,8 +101,8 @@ ESVIJI.game = (function () {
       _gaq.push(['_trackEvent', 'Init', 'Init']);
       $('#main .start').on('click touchstart', startPlaying);
       $('#main .tutorial').on('click touchstart', startTutorial);
-      $('#main .about').on('click touchstart', function() {
-        window.location.href="https://github.com/nhoizey/esviji/blob/master/README.md";
+      $('#main .website').on('click touchstart', function() {
+        window.location.href="http://esviji.com/";
       });
     } else {
       _gaq.push(['_trackEvent', 'Init', 'Restore']);

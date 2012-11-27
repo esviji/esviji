@@ -125,9 +125,20 @@ body {
   stroke-width: 3;
   stroke: #666;
 }
+.button:hover rect {
+  fill: #fff;
+  stroke-width: 3;
+  stroke: #888;
+}
 .copyright {
   font-size: 10px;
   text-anchor: begin;
+  fill: #888;
+  stroke-width: 0;
+}
+.website {
+  font-size: 10px;
+  text-anchor: middle;
   fill: #888;
   stroke-width: 0;
 }
