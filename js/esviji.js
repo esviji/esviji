@@ -26,8 +26,8 @@ ESVIJI.settings = {
     'posY': 8,
     'dirY': 0
   },
-  'durationMove': 0.2,
-  'durationMorph': 0.8
+  'durationMove': 0.15,
+  'durationMorph': 0.5
 };
 
 ESVIJI.game = (function () {
@@ -112,18 +112,19 @@ ESVIJI.game = (function () {
   }
 
   function startPlaying() {
+    hidePanel('main');
     if (!useStored) {
       _gaq.push(['_trackEvent', 'Play', 'Start']);
       gameStatus.level = ESVIJI.settings.launch.level;
       gameStatus.score = ESVIJI.settings.launch.score;
       gameStatus.lives = ESVIJI.settings.launch.lives;
-      $('#play').remove();
+      hidePanel('play');
       if (drawnCurrentPiece !== null) {
         drawnCurrentPiece.remove();
         drawnCurrentPiece = null;
       }
     }
-    $('#playPanel').clone().attr('id', 'play').appendTo('#board');
+    showPanel('play');
     drawLevel();
     drawScore();
     drawLives();
@@ -133,9 +134,8 @@ ESVIJI.game = (function () {
 
   function startTutorial() {
     _gaq.push(['_trackEvent', 'Tutorial', 'Start']);
-    tuto = $('#tutorialPanel').clone().attr('id', 'tutorial');
-    $('#tutorialPanel').remove();
-    tuto.appendTo('#board');
+    hidePanel('main');
+    showPanel('tutorial');
     $('#tutorial .pauseButton').on('click touchstart', endTutorial);
     $('#tutoAnimEnd')[0].addEventListener('endEvent', endTutorial, false);
     $('#tutoAnimStart')[0].beginElement();
@@ -143,9 +143,22 @@ ESVIJI.game = (function () {
 
   function endTutorial() {
     _gaq.push(['_trackEvent', 'Tutorial', 'End']);
-    tuto = $('#tutorial').clone().attr('id', 'tutorialPanel');
-    $('#tutorial').remove();
-    tuto.appendTo('#board defs');
+    hidePanel('tutorial');
+    showPanel('main');
+  }
+
+  function showPanel(panel) {
+    if ( $('#' + panel).length === 0 && $('#' + panel + 'Panel').length === 1) {
+      $('#' + panel + 'Panel').clone().attr('id', panel).appendTo('#board');
+      $('#' + panel + 'Panel').remove();
+    }
+  }
+
+  function hidePanel(panel) {
+    if ($('#' + panel).length === 1 && $('#' + panel + 'Panel').length === 0) {
+      $('#' + panel).clone().attr('id', panel + 'Panel').appendTo('#board defs');
+      $('#' + panel).remove();
+    }
   }
 
   function nextLevel() {
@@ -751,7 +764,8 @@ ESVIJI.game = (function () {
     if (drawnCurrentPiece !== null) {
       drawnCurrentPiece.remove();
     }
-    $('#play').remove();
+    hidePanel('play');
+    showPanel('main');
     store.set('gameStatus', {
       'playing': false
     });
@@ -760,16 +774,16 @@ ESVIJI.game = (function () {
 
   function pause() {
     _gaq.push(['_trackEvent', 'Pause', 'Start']);
-    $('#pausePanel').clone().attr('id', 'pause').appendTo('#board');
+    showPanel('pause');
     $('#pause .resume').on('click touchstart', function(e) {
       e.preventDefault();
       _gaq.push(['_trackEvent', 'Pause', 'Resume']);
-      $('#pause').remove();
+      hidePanel('pause');
     });
     $('#pause .restart').on('click touchstart', function(e) {
       e.preventDefault();
       _gaq.push(['_trackEvent', 'Pause', 'Restart']);
-      $('#pause').remove();
+      hidePanel('pause');
       store.set('gameStatus', {
         'playing': false
       });
@@ -778,7 +792,7 @@ ESVIJI.game = (function () {
     $('#pause .exit').on('click touchstart', function(e) {
       e.preventDefault();
       _gaq.push(['_trackEvent', 'Pause', 'Exit']);
-      $('#pause').remove();
+      hidePanel('pause');
       stopPlaying();
     });
   }

@@ -74,12 +74,15 @@
         <circle fill="url(#gradientPiece6)" stroke-width="1" stroke="#aa0000" cx="16" cy="16" r="15" />
       </svg>
 
-      <rect id="boardBackground" x="0" y="0" width="320" height="460" />
+      <radialGradient id="boardBackgroundGradient" gradientUnits="userSpaceOnUse" cx="70%" cy="70%" r="100%">
+        <stop class="begin" offset="0" />
+        <stop class="end" offset="1" />
+      </radialGradient>
+
+      <rect id="boardBackground" x="0" y="0" width="320" height="460" fill="url(#boardBackgroundGradient)" />
 
       <g id="playPanel">
-        <use xlink:href="#boardBackground" />
-        <polygon id="topbar" points="-1,-1 -1,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 321,42 321,-1" />
-
+        <polygon class="playzone" points="-1,461 -1,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 321,42 321,461" style="stroke-width: 0; fill: url(#boardBackgroundGradient);" />
 
         <g class="pauseButton" transform="translate(285, 5)">
           <rect class="fullarea" x="0" y="0" width="32" height="32" />
@@ -97,8 +100,7 @@
       </g>
 
       <g id="tutorialPanel" opacity="0">
-        <use xlink:href="#boardBackground" />
-        <polygon id="topbar" points="0,0 0,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 320,42 320,0" style="stroke-width: 0; fill: url(#topbarGradient);" />
+        <polygon class="playzone" points="-1,461 -1,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 321,42 321,461" style="stroke-width: 0; fill: url(#boardBackgroundGradient);" />
 
         <g class="pauseButton" transform="translate(285, 5)">
           <rect x="0" y="0" width="32" height="32" style="fill: #fff; opacity: 0;" />
@@ -280,7 +282,7 @@
         <animate xlink:href="#score1" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimStart.end" dur="1s" fill="freeze" />
         <animate xlink:href="#score2" attributeType="xml" attributeName="opacity" to="1" begin="tutoFallAnimStart.end" dur="1s" fill="freeze" />
 
-        <animate id="tutoAnimEnd" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimEnd.end" dur="1s" fill="freeze" />
+        <animate id="tutoAnimEnd" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimEnd.end" dur="0.1s" fill="freeze" />
       </g>
 
       <g id="pausePanel">
