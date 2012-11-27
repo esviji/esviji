@@ -151,7 +151,7 @@ ESVIJI.game = (function () {
     if ( $('#' + panel).length === 0 && $('#' + panel + 'Panel').length === 1) {
       $('#' + panel + 'Panel').clone().attr('id', panel).appendTo('#board');
       $('#' + panel + 'Panel').remove();
-      if (panel === 'pause') {
+      if (panel === 'pause' || panel === 'gameOver') {
         $('#play, #board use').css('opacity', 0.3);
       }
     }
@@ -161,7 +161,7 @@ ESVIJI.game = (function () {
     if ($('#' + panel).length === 1 && $('#' + panel + 'Panel').length === 0) {
       $('#' + panel).clone().attr('id', panel + 'Panel').appendTo('#board defs');
       $('#' + panel).remove();
-      if (panel === 'pause') {
+      if (panel === 'pause' || panel === 'gameOver') {
         $('#play, #board use').css('opacity', 1);
       }
     }
@@ -805,14 +805,14 @@ ESVIJI.game = (function () {
 
   function gameOver() {
     _gaq.push(['_trackEvent', 'Play', 'Game Over', 'Score', gameStatus.score]);
-    $('#gameOverPanel').clone().attr('id', 'gameOver').appendTo('#board');
+    showPanel('gameOver');
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
     $('.playagain').on('click touchstart', function() {
-      $('#gameOver').remove();
+      hidePanel('gameOver');
       startPlaying();
     });
     $('.exit').on('click touchstart', function() {
-      $('#gameOver').remove();
+      hidePanel('gameOver');
       stopPlaying();
     });
     gameStatus.playing = false;
