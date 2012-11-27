@@ -151,6 +151,9 @@ ESVIJI.game = (function () {
     if ( $('#' + panel).length === 0 && $('#' + panel + 'Panel').length === 1) {
       $('#' + panel + 'Panel').clone().attr('id', panel).appendTo('#board');
       $('#' + panel + 'Panel').remove();
+      if (panel === 'pause') {
+        $('#play, #board use').css('opacity', 0.3);
+      }
     }
   }
 
@@ -158,6 +161,9 @@ ESVIJI.game = (function () {
     if ($('#' + panel).length === 1 && $('#' + panel + 'Panel').length === 0) {
       $('#' + panel).clone().attr('id', panel + 'Panel').appendTo('#board defs');
       $('#' + panel).remove();
+      if (panel === 'pause') {
+        $('#play, #board use').css('opacity', 1);
+      }
     }
   }
 
