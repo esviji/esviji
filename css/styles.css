@@ -39,13 +39,10 @@ body {
 #board {
   stroke-width: 0;
 }
-#boardBackground {
-  stroke-width: 0;
-}
-#boardBackgroundGradient stop.begin {
+#playzoneGradient stop.begin {
   stop-color: #333;
 }
-#boardBackgroundGradient stop.end {
+#playzoneGradient stop.end {
   stop-color: #111;
 }
 #play .title,
