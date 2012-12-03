@@ -104,6 +104,12 @@ body {
   fill: #fff;
   opacity: 0.7;
 }
+.piece text {
+  font-size: 16px;
+  text-anchor: middle;
+  fill: #fff;
+  stroke-width: 0;
+}
 #playable.dragged {
   opacity: 0.8;
 }
