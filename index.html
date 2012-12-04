@@ -87,13 +87,24 @@
 
       <g id="playPanel">
         <polygon class="playzone" points="-1,461 -1,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 321,42 321,461" style="stroke-width: 0; fill: url(#playzoneGradient);" />
-
-        <g class="pauseButton" transform="translate(285, 5)">
-          <rect class="fullarea" x="0" y="0" width="32" height="32" />
-          <rect class="icon" x="7" y="6" width="7" height="20" />
-          <rect class="icon" x="19" y="6" width="7" height="20" />
+        <g transform="translate(285,5)" class="pause button">
+          <switch>
+            <foreignObject width="32" height="32">
+              <html xmlns="http://www.w3.org/1999/xhtml">
+                <body>
+                  <button>
+                    <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <rect x="4" y="6" width="5" height="16" />
+                        <rect x="15" y="6" width="5" height="16" />
+                      </g>
+                    </svg>
+                  </button>
+                </body>
+              </html>
+            </foreignObject>
+          </switch>
         </g>
-
         <text class="title" x="250" y="30">esviji</text>
         <text class="scoreLabel" x="65" y="25">score:</text>
         <text class="score" x="75" y="25"></text>
@@ -105,13 +116,24 @@
 
       <g id="tutorialPanel" opacity="0">
         <polygon class="playzone" points="-1,461 -1,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 321,42 321,461" style="stroke-width: 0; fill: url(#playzoneGradient);" />
-
-        <g class="pauseButton" transform="translate(285, 5)">
-          <rect x="0" y="0" width="32" height="32" style="fill: #fff; opacity: 0;" />
-          <rect x="7" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
-          <rect x="19" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
+        <g transform="translate(285,5)" class="pause button">
+          <switch>
+            <foreignObject width="32" height="32">
+              <html xmlns="http://www.w3.org/1999/xhtml">
+                <body>
+                  <button>
+                    <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <rect x="4" y="6" width="5" height="16" />
+                        <rect x="15" y="6" width="5" height="16" />
+                      </g>
+                    </svg>
+                  </button>
+                </body>
+              </html>
+            </foreignObject>
+          </switch>
         </g>
-
         <text class="title" x="250" y="30">esviji</text>
         <text class="scoreLabel" x="65" y="25">score:</text>
         <text id="score1" class="score" x="75" y="25">0</text>
@@ -291,30 +313,65 @@
 
       <g id="pausePanel">
         <text x="160" y="140" class="title">Pause</text>
-        <g class="resume button">
-          <rect x="100" y="200" width="120" height="40" />
-          <text x="160" y="225">Resume</text>
+        <g transform="translate(100,200)" class="resume button">
+          <switch>
+            <foreignObject width="120" height="40">
+              <html xmlns="http://www.w3.org/1999/xhtml">
+                <body>
+                  <button>Resume</button>
+                </body>
+              </html>
+            </foreignObject>
+          </switch>
         </g>
-        <g class="restart button">
-          <rect x="100" y="250" width="120" height="40" />
-          <text x="160" y="275">Restart</text>
+        <g transform="translate(100,250)" class="restart button">
+          <switch>
+            <foreignObject width="120" height="40">
+              <html xmlns="http://www.w3.org/1999/xhtml">
+                <body>
+                  <button>Restart</button>
+                </body>
+              </html>
+            </foreignObject>
+          </switch>
         </g>
-        <g class="exit button">
-          <rect x="100" y="300" width="120" height="40" />
-          <text x="160" y="325">Exit</text>
+        <g transform="translate(100,300)" class="exit button">
+          <switch>
+            <foreignObject width="120" height="40">
+              <html xmlns="http://www.w3.org/1999/xhtml">
+                <body>
+                  <button>Exit</button>
+                </body>
+              </html>
+            </foreignObject>
+          </switch>
         </g>
       </g>
 
       <g id="gameOverPanel">
         <text x="160" y="140" class="title">Game Over</text>
         <text class="score" x="160" y="200"></text>
-        <g class="playagain button">
-          <rect x="100" y="250" width="120" height="40" />
-          <text x="160" y="275">Play again</text>
+        <g transform="translate(100,250)" class="playagain button">
+          <switch>
+            <foreignObject width="120" height="40">
+              <html xmlns="http://www.w3.org/1999/xhtml">
+                <body>
+                  <button>Play again</button>
+                </body>
+              </html>
+            </foreignObject>
+          </switch>
         </g>
-        <g class="exit button">
-          <rect x="100" y="300" width="120" height="40" />
-          <text x="160" y="325">Exit</text>
+        <g transform="translate(100,300)" class="exit button">
+          <switch>
+            <foreignObject width="120" height="40">
+              <html xmlns="http://www.w3.org/1999/xhtml">
+                <body>
+                  <button>Exit</button>
+                </body>
+              </html>
+            </foreignObject>
+          </switch>
         </g>
       </g>
     </defs>
@@ -339,17 +396,31 @@
         <use xlink:href="#piece4" x="112" y="112" transform="scale(2)" />
       </g>
       <text x="160" y="180" class="title">esviji</text>
-      <g class="start button">
-        <rect x="100" y="320" width="120" height="40" />
-        <text x="160" y="345">Start</text>
+      <g transform="translate(100,320)" class="start button">
+        <switch>
+          <foreignObject width="120" height="40">
+            <html xmlns="http://www.w3.org/1999/xhtml">
+              <body>
+                <button>Start</button>
+              </body>
+            </html>
+          </foreignObject>
+        </switch>
       </g>
-      <g class="tutorial button">
-        <rect x="100" y="380" width="120" height="40" />
-        <text x="160" y="405">Tutorial</text>
+      <g transform="translate(100,380)" class="tutorial button">
+        <switch>
+          <foreignObject width="120" height="40">
+            <html xmlns="http://www.w3.org/1999/xhtml">
+              <body>
+                <button>Tutorial</button>
+              </body>
+            </html>
+          </foreignObject>
+        </switch>
       </g>
       <text class="copyright" x="10" y="455">© 2012 Nicolas Hoizey</text>
       <text class="website" x="200" y="455">http://esviji.com/</text>
-      <text class="version" x="310" y="455">v0.4.0</text>
+      <text class="version" x="310" y="455">v0.4.1</text>
     </g>
   </svg>
 </script>

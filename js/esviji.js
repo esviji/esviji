@@ -128,7 +128,7 @@ ESVIJI.game = (function () {
     drawLevel();
     drawScore();
     drawLives();
-    $('#play .pauseButton').on('click touchstart', pause);
+    $('#play .pause').on('click touchstart', pause);
     nextLevel();
   }
 
@@ -136,7 +136,7 @@ ESVIJI.game = (function () {
     _gaq.push(['_trackEvent', 'Tutorial', 'Start']);
     hidePanel('main');
     showPanel('tutorial');
-    $('#tutorial .pauseButton').on('click touchstart', endTutorial);
+    $('#tutorial .pause').on('click touchstart', endTutorial);
     $('#tutoAnimEnd')[0].addEventListener('endEvent', endTutorial, false);
     $('#tutoAnimStart')[0].beginElement();
   }

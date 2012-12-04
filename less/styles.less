@@ -18,13 +18,13 @@ html, body {
   height: 100%;
   overflow: hidden;
 
-  background: @bodyBkgBegin; /* Old browsers */
-  background: -moz-radial-gradient(center, ellipse cover, @bodyBkgBegin 0%, @bodyBkgEnd 100%); /* FF3.6+ */
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,@bodyBkgBegin), color-stop(100%,@bodyBkgEnd)); /* Chrome,Safari4+ */
-  background: -webkit-radial-gradient(center, ellipse cover, @bodyBkgBegin 0%,@bodyBkgEnd 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-radial-gradient(center, ellipse cover, @bodyBkgBegin 0%,@bodyBkgEnd 100%); /* Opera 12+ */
-  background: -ms-radial-gradient(center, ellipse cover, @bodyBkgBegin 0%,@bodyBkgEnd 100%); /* IE10+ */
-  background: radial-gradient(ellipse at center, @bodyBkgBegin 0%,@bodyBkgEnd 100%); /* W3C */
+  background-color: (@bodyBkgBegin + @bodyBkgEnd) / 2;
+  background-image: -moz-linear-gradient(top, @bodyBkgBegin, @bodyBkgEnd);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@bodyBkgBegin), to(@bodyBkgEnd));
+  background-image: -webkit-linear-gradient(top, @bodyBkgBegin, @bodyBkgEnd);
+  background-image: -o-linear-gradient(top, @bodyBkgBegin, @bodyBkgEnd);
+  background-image: linear-gradient(to bottom, @bodyBkgBegin, @bodyBkgEnd);
+  background-repeat: repeat-x;
 }
 
 #board {
@@ -37,7 +37,65 @@ html, body {
   }
 
   stop.end {
-    stop-color: #111;
+    stop-color: #202020;
+  }
+}
+
+foreignObject {
+  html, body {
+    background: none;
+  }
+
+  button {
+    width: 120px;
+    height: 40px;
+    font-family: SansitaOneRegular;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    padding: .5em 1em;
+
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+
+    background-color: #363636;
+    background-image: -moz-linear-gradient(top, #444444, #222222);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
+    background-image: -webkit-linear-gradient(top, #444444, #222222);
+    background-image: -o-linear-gradient(top, #444444, #222222);
+    background-image: linear-gradient(to bottom, #444444, #222222);
+    background-repeat: repeat-x;
+
+    border-width: 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border-color: #222222 #222222 #000000;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      background-color: #222222;
+      background-position: 0 -15px;
+        -webkit-transition: background-position 0.1s linear;
+           -moz-transition: background-position 0.1s linear;
+             -o-transition: background-position 0.1s linear;
+                transition: background-position 0.1s linear;
+    }
+
+    .pause & {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+
+      rect {
+        fill: #fff;
+      }
+    }
   }
 }
 
@@ -71,22 +129,6 @@ html, body {
     &.changeUp {
       fill: #0f0;
     }
-  }
-}
-
-.pauseButton {
-  pointer-events: visible;
-
-  .fullarea {
-    fill: #fff;
-    opacity: 0;
-    pointer-events: visible;
-  }
-
-  .icon {
-    stroke-width: 0;
-    fill: #fff;
-    opacity: 0.7;
   }
 }
 
@@ -127,50 +169,23 @@ html, body {
   text-anchor: middle;
 }
 
-.button {
-  pointer-events: visible;
-
-  text {
-    font-size: 18px;
-    text-anchor: middle;
-    fill: #333;
-    stroke-width: 0;
-  }
-
-  rect {
-    fill: #ddd;
-    stroke-width: 3;
-    stroke: #666;
-  }
-
-  &:hover {
-    rect {
-      fill: #fff;
-      stroke-width: 3;
-      stroke: #888;
-    }
-  }
+.copyright, .website, .version {
+  font-family: verdana;
+  font-size: 8px;
+  fill: #777;
+  stroke-width: 0;
 }
 
 .copyright {
-  font-size: 10px;
   text-anchor: begin;
-  fill: #888;
-  stroke-width: 0;
 }
 
 .website {
-  font-size: 10px;
   text-anchor: middle;
-  fill: #888;
-  stroke-width: 0;
 }
 
 .version {
-  font-size: 10px;
   text-anchor: end;
-  fill: #888;
-  stroke-width: 0;
 }
 
 .step rect, .step path {
