@@ -32,8 +32,8 @@ ESVIJI.settings = {
 
 ESVIJI.game = (function () {
   var
-    docWidth,
-    docHeight,
+    viewportWidth = 0,
+    viewportHeight = 0,
     boardWidth,
     boardHeight,
     boardOffsetY,
@@ -68,6 +68,7 @@ ESVIJI.game = (function () {
     sounds = {};
 
   function init() {
+    viewportOptimize();
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailablePieces = ESVIJI.settings.pieces.length;
@@ -85,18 +86,6 @@ ESVIJI.game = (function () {
         'dur': 300
       }
     };
-    docWidth = $(document).width();
-    docHeight = $(document).height();
-    if (docHeight / docWidth > ESVIJI.settings.board.height / ESVIJI.settings.board.width) {
-      boardWidth = docWidth;
-      boardHeight = ESVIJI.settings.board.height / ESVIJI.settings.board.width * boardWidth;
-      boardOffsetY = docHeight - boardHeight; // top empty area height
-    } else {
-      boardHeight = docHeight;
-      boardWidth = ESVIJI.settings.board.width / ESVIJI.settings.board.height * boardHeight;
-      boardOffsetY = 0;
-    }
-
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
       _gaq.push(['_trackEvent', 'Init', 'Init']);
       $('#main .start').on('click touchstart', startPlaying);
@@ -108,6 +97,27 @@ ESVIJI.game = (function () {
       _gaq.push(['_trackEvent', 'Init', 'Restore']);
       useStored = true;
       startPlaying();
+    }
+  }
+
+  function viewportOptimize() {
+    if (viewportWidth != document.body.clientWidth || viewportHeight != document.body.clientHeight) {
+      viewportWidth = document.body.clientWidth;
+      viewportHeight = document.body.clientHeight;
+      console.log(viewportWidth + ' / ' + viewportHeight);
+      if (viewportHeight / viewportWidth > ESVIJI.settings.board.height / ESVIJI.settings.board.width) {
+        // tall
+        boardWidth = viewportWidth;
+        boardHeight = ESVIJI.settings.board.height / ESVIJI.settings.board.width * boardWidth;
+        boardOffsetY = viewportHeight - boardHeight; // top empty area height
+        $('body').addClass('tall').removeClass('large');
+      } else {
+        // large
+        boardHeight = viewportHeight;
+        boardWidth = ESVIJI.settings.board.width / ESVIJI.settings.board.height * boardHeight;
+        boardOffsetY = 0;
+        $('body').addClass('large').removeClass('tall');
+      }
     }
   }
 
@@ -910,13 +920,16 @@ ESVIJI.game = (function () {
   }
 
   return {
-    init: init
+    init: init,
+    viewportOptimize: viewportOptimize
   };
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
   ESVIJI.game.init();
 });
+
+window.addEventListener('resize', ESVIJI.game.viewportOptimize);
 
 /***************************************************************************************
  * Hide address bar in mobile browsers
