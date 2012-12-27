@@ -31,52 +31,52 @@
     <defs>
       <polygon id="arrow" points="0,16 10,6 8,12 40,12 40,20 8,20 10,26" style="stroke-width: 0; fill: #ccc;" />
       <polygon id="rock" points="1,1 1,31 31,31 31,1" style="stroke-width: 3; stroke: #555; fill: #555;" />
-      <svg id="piece1" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="piece">
-        <linearGradient id="gradientPiece1" x1="0" y1="0" x2="1" y2="1">
+      <svg id="ball1" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <linearGradient id="gradientBall1" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#ff0000"/>
           <stop offset="1" stop-color="#ffff00"/>
         </linearGradient>
-        <circle fill="url(#gradientPiece1)" stroke-width="1" stroke="#ff7f00" cx="16" cy="16" r="15" />
+        <circle fill="url(#gradientBall1)" stroke-width="1" stroke="#ff7f00" cx="16" cy="16" r="15" />
         <text x="16" y="21">1</text>
       </svg>
-      <svg id="piece2" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="piece">
-        <linearGradient id="gradientPiece2" x1="0" y1="0" x2="1" y2="1">
+      <svg id="ball2" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <linearGradient id="gradientBall2" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#007f00" />
           <stop offset="1" stop-color="#ffff00" />
         </linearGradient>
-        <circle fill="url(#gradientPiece2)" stroke-width="1" stroke="#00af00" cx="16" cy="16" r="15" />
+        <circle fill="url(#gradientBall2)" stroke-width="1" stroke="#00af00" cx="16" cy="16" r="15" />
         <text x="16" y="21">2</text>
       </svg>
-      <svg id="piece3" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="piece">
-        <linearGradient id="gradientPiece3" x1="0" y1="0" x2="1" y2="1">
+      <svg id="ball3" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <linearGradient id="gradientBall3" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#00007f" />
           <stop offset="1" stop-color="#00ffff" />
         </linearGradient>
-        <circle fill="url(#gradientPiece3)" stroke-width="1" stroke="#0066bf" cx="16" cy="16" r="15" />
+        <circle fill="url(#gradientBall3)" stroke-width="1" stroke="#0066bf" cx="16" cy="16" r="15" />
         <text x="16" y="21">3</text>
       </svg>
-      <svg id="piece4" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="piece">
-        <linearGradient id="gradientPiece4" x1="0" y1="0" x2="1" y2="1">
+      <svg id="ball4" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <linearGradient id="gradientBall4" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#4b0061"/>
           <stop offset="1" stop-color="#b900ec"/>
         </linearGradient>
-        <circle fill="url(#gradientPiece4)" stroke-width="1" stroke="#8000a6" cx="16" cy="16" r="15" />
+        <circle fill="url(#gradientBall4)" stroke-width="1" stroke="#8000a6" cx="16" cy="16" r="15" />
         <text x="16" y="21">4</text>
       </svg>
-      <svg id="piece5" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="piece">
-        <linearGradient id="gradientPiece5" x1="0" y1="0" x2="1" y2="1">
+      <svg id="ball5" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <linearGradient id="gradientBall5" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#52423B"/>
           <stop offset="1" stop-color="#CFB591"/>
         </linearGradient>
-        <circle fill="url(#gradientPiece5)" stroke-width="1" stroke="#AB8E6F" cx="16" cy="16" r="15" />
+        <circle fill="url(#gradientBall5)" stroke-width="1" stroke="#AB8E6F" cx="16" cy="16" r="15" />
         <text x="16" y="21">5</text>
       </svg>
-      <svg id="piece6" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="piece">
-        <linearGradient id="gradientPiece6" x1="0" y1="0" x2="1" y2="1">
+      <svg id="ball6" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <linearGradient id="gradientBall6" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#770000"/>
           <stop offset="1" stop-color="#ff0000"/>
         </linearGradient>
-        <circle fill="url(#gradientPiece6)" stroke-width="1" stroke="#aa0000" cx="16" cy="16" r="15" />
+        <circle fill="url(#gradientBall6)" stroke-width="1" stroke="#aa0000" cx="16" cy="16" r="15" />
         <text x="16" y="21">6</text>
       </svg>
 
@@ -121,57 +121,57 @@
         <text class="livesLabel" x="65" y="75">lives:</text>
         <text class="lives" x="75" y="75">9</text>
 
-        <use id="tutoPiece11" xlink:href="#piece2" x="0" y="428"/>
-        <use id="tutoPiece12" xlink:href="#piece5" x="0" y="396"/>
-        <use id="tutoPiece13" xlink:href="#piece1" x="0" y="364"/>
-        <use id="tutoPiece14" xlink:href="#piece2" x="0" y="332"/>
-        <use id="tutoPiece15" xlink:href="#piece2" x="0" y="300"/>
-        <use id="tutoPiece16" xlink:href="#piece1" x="0" y="268"/>
-        <use id="tutoPiece17" xlink:href="#piece4" x="0" y="236"/>
-        <use id="tutoPiece21" xlink:href="#piece4" x="32" y="428"/>
-        <use id="tutoPiece22" xlink:href="#piece6" x="32" y="396"/>
-        <use id="tutoPiece23" xlink:href="#piece3" x="32" y="364"/>
-        <use id="tutoPiece24" xlink:href="#piece5" x="32" y="332"/>
-        <use id="tutoPiece25" xlink:href="#piece3" x="32" y="300"/>
-        <use id="tutoPiece26" xlink:href="#piece5" x="32" y="268"/>
-        <use id="tutoPiece27" xlink:href="#piece4" x="32" y="236"/>
-        <use id="tutoPiece31" xlink:href="#piece5" x="64" y="428"/>
-        <use id="tutoPiece32" xlink:href="#piece2" x="64" y="396"/>
-        <use id="tutoPiece33" xlink:href="#piece2" x="64" y="364"/>
-        <use id="tutoPiece34" xlink:href="#piece6" x="64" y="332"/>
-        <use id="tutoPiece35" xlink:href="#piece2" x="64" y="300"/>
-        <use id="tutoPiece36" xlink:href="#piece4" x="64" y="268"/>
-        <use id="tutoPiece37" xlink:href="#piece5" x="64" y="236"/>
-        <use id="tutoPiece41" xlink:href="#piece5" x="96" y="428"/>
-        <use id="tutoPiece42" xlink:href="#piece5" x="96" y="396"/>
-        <use id="tutoPiece43" xlink:href="#piece4" x="96" y="364" />
-        <use id="tutoPiece43Morph" xlink:href="#piece2" x="96" y="364" opacity="0" />
-        <use id="tutoPiece44" xlink:href="#piece1" x="96" y="332" />
-        <use id="tutoPiece45" xlink:href="#piece4" x="96" y="300" />
-        <use id="tutoPiece46" xlink:href="#piece3" x="96" y="268" />
-        <use id="tutoPiece47" xlink:href="#piece1" x="96" y="236" />
-        <use id="tutoPiece51" xlink:href="#piece2" x="128" y="428"/>
-        <use id="tutoPiece52" xlink:href="#rock" x="128" y="396"/>
-        <use id="tutoPiece53" xlink:href="#piece4" x="128" y="364" />
-        <use id="tutoPiece54" xlink:href="#piece4" x="128" y="332" />
-        <use id="tutoPiece55" xlink:href="#piece3" x="128" y="300" />
-        <use id="tutoPiece56" xlink:href="#piece2" x="128" y="268" />
-        <use id="tutoPiece57" xlink:href="#piece3" x="128" y="236" />
-        <use id="tutoPiece61" xlink:href="#piece1" x="160" y="428"/>
-        <use id="tutoPiece62" xlink:href="#piece1" x="160" y="396"/>
-        <use id="tutoPiece63" xlink:href="#piece4" x="160" y="364" />
-        <use id="tutoPiece64" xlink:href="#piece2" x="160" y="332" />
-        <use id="tutoPiece65" xlink:href="#piece5" x="160" y="300" />
-        <use id="tutoPiece66" xlink:href="#piece2" x="160" y="268" />
-        <use id="tutoPiece67" xlink:href="#piece2" x="160" y="236" />
+        <use id="tutoBall11" xlink:href="#ball2" x="0" y="428"/>
+        <use id="tutoBall12" xlink:href="#ball5" x="0" y="396"/>
+        <use id="tutoBall13" xlink:href="#ball1" x="0" y="364"/>
+        <use id="tutoBall14" xlink:href="#ball2" x="0" y="332"/>
+        <use id="tutoBall15" xlink:href="#ball2" x="0" y="300"/>
+        <use id="tutoBall16" xlink:href="#ball1" x="0" y="268"/>
+        <use id="tutoBall17" xlink:href="#ball4" x="0" y="236"/>
+        <use id="tutoBall21" xlink:href="#ball4" x="32" y="428"/>
+        <use id="tutoBall22" xlink:href="#ball6" x="32" y="396"/>
+        <use id="tutoBall23" xlink:href="#ball3" x="32" y="364"/>
+        <use id="tutoBall24" xlink:href="#ball5" x="32" y="332"/>
+        <use id="tutoBall25" xlink:href="#ball3" x="32" y="300"/>
+        <use id="tutoBall26" xlink:href="#ball5" x="32" y="268"/>
+        <use id="tutoBall27" xlink:href="#ball4" x="32" y="236"/>
+        <use id="tutoBall31" xlink:href="#ball5" x="64" y="428"/>
+        <use id="tutoBall32" xlink:href="#ball2" x="64" y="396"/>
+        <use id="tutoBall33" xlink:href="#ball2" x="64" y="364"/>
+        <use id="tutoBall34" xlink:href="#ball6" x="64" y="332"/>
+        <use id="tutoBall35" xlink:href="#ball2" x="64" y="300"/>
+        <use id="tutoBall36" xlink:href="#ball4" x="64" y="268"/>
+        <use id="tutoBall37" xlink:href="#ball5" x="64" y="236"/>
+        <use id="tutoBall41" xlink:href="#ball5" x="96" y="428"/>
+        <use id="tutoBall42" xlink:href="#ball5" x="96" y="396"/>
+        <use id="tutoBall43" xlink:href="#ball4" x="96" y="364" />
+        <use id="tutoBall43Morph" xlink:href="#ball2" x="96" y="364" opacity="0" />
+        <use id="tutoBall44" xlink:href="#ball1" x="96" y="332" />
+        <use id="tutoBall45" xlink:href="#ball4" x="96" y="300" />
+        <use id="tutoBall46" xlink:href="#ball3" x="96" y="268" />
+        <use id="tutoBall47" xlink:href="#ball1" x="96" y="236" />
+        <use id="tutoBall51" xlink:href="#ball2" x="128" y="428"/>
+        <use id="tutoBall52" xlink:href="#rock" x="128" y="396"/>
+        <use id="tutoBall53" xlink:href="#ball4" x="128" y="364" />
+        <use id="tutoBall54" xlink:href="#ball4" x="128" y="332" />
+        <use id="tutoBall55" xlink:href="#ball3" x="128" y="300" />
+        <use id="tutoBall56" xlink:href="#ball2" x="128" y="268" />
+        <use id="tutoBall57" xlink:href="#ball3" x="128" y="236" />
+        <use id="tutoBall61" xlink:href="#ball1" x="160" y="428"/>
+        <use id="tutoBall62" xlink:href="#ball1" x="160" y="396"/>
+        <use id="tutoBall63" xlink:href="#ball4" x="160" y="364" />
+        <use id="tutoBall64" xlink:href="#ball2" x="160" y="332" />
+        <use id="tutoBall65" xlink:href="#ball5" x="160" y="300" />
+        <use id="tutoBall66" xlink:href="#ball2" x="160" y="268" />
+        <use id="tutoBall67" xlink:href="#ball2" x="160" y="236" />
 
-        <use id="playable" xlink:href="#piece4" x="288" y="204" />
-        <use id="playable2" xlink:href="#piece2" x="288" y="204" opacity="0" />
+        <use id="playable" xlink:href="#ball4" x="288" y="204" />
+        <use id="playable2" xlink:href="#ball2" x="288" y="204" opacity="0" />
 
-        <g id="tutoPiecesText" class="step" opacity="0">
+        <g id="tutoBallsText" class="step" opacity="0">
           <rect x="50" y="100" width="250" height="90" />
           <text>
-            <tspan x="70" y="130">These are the pieces you</tspan>
+            <tspan x="70" y="130">These are the balls you</tspan>
             <tspan x="70" y="150">have to destroy to finish</tspan>
             <tspan x="70" y="170">the turn.</tspan>
           </text>
@@ -181,7 +181,7 @@
           <rect x="20" y="140" width="230" height="110" />
           <path d="M 250 220 L 250 190 L 280 220 z" />
           <text>
-            <tspan x="40" y="170">This is the piece you</tspan>
+            <tspan x="40" y="170">This is the ball you</tspan>
             <tspan x="40" y="190">can move up or down</tspan>
             <tspan x="40" y="210">and then release to</tspan>
             <tspan x="40" y="230">destroy the others.</tspan>
@@ -193,15 +193,15 @@
             <tspan x="40" y="170">You can use your</tspan>
             <tspan x="40" y="190">mouse, finger or</tspan>
             <tspan x="40" y="210">keyboard to move the</tspan>
-            <tspan x="40" y="230">piece.</tspan>
+            <tspan x="40" y="230">ball.</tspan>
           </text>
         </g>
         <g id="tutoMoveText" class="step" opacity="0">
           <rect x="20" y="140" width="230" height="110" />
           <text>
-            <tspan x="40" y="170">The piece then goes to</tspan>
+            <tspan x="40" y="170">The ball then goes to</tspan>
             <tspan x="40" y="190">the left until it hits</tspan>
-            <tspan x="40" y="210">something: piece,</tspan>
+            <tspan x="40" y="210">something: ball,</tspan>
             <tspan x="40" y="230">rock or wall.</tspan>
           </text>
         </g>
@@ -209,34 +209,34 @@
           <rect x="20" y="140" width="230" height="110" />
           <text>
             <tspan x="40" y="170">You have to hit same</tspan>
-            <tspan x="40" y="190">pieces to destroy them.</tspan>
-            <tspan x="40" y="210">Hit more pieces to</tspan>
+            <tspan x="40" y="190">balls to destroy them.</tspan>
+            <tspan x="40" y="210">Hit more balls to</tspan>
             <tspan x="40" y="230">gain more points.</tspan>
           </text>
         </g>
         <g id="tutoMorphText" class="step" opacity="0">
           <rect x="20" y="140" width="230" height="110" />
           <text>
-            <tspan x="40" y="170">The piece morphes</tspan>
-            <tspan x="40" y="190">into the next piece it</tspan>
+            <tspan x="40" y="170">The ball morphes</tspan>
+            <tspan x="40" y="190">into the next ball it</tspan>
             <tspan x="40" y="210">hits, becoming the</tspan>
-            <tspan x="40" y="230">new playable piece.</tspan>
+            <tspan x="40" y="230">new playable ball.</tspan>
           </text>
         </g>
         <g id="tutoFallText" class="step" opacity="0">
           <rect x="20" y="140" width="230" height="90" />
           <text>
-            <tspan x="40" y="170">Pieces that now have</tspan>
+            <tspan x="40" y="170">Balls that now have</tspan>
             <tspan x="40" y="190">holes under them</tspan>
             <tspan x="40" y="210">fall.</tspan>
           </text>
         </g>
         <animate id="tutoAnimStart" attributeType="xml" attributeName="opacity" to="1" begin="indefinite" dur="1s" fill="freeze" />
 
-        <animate id="tutoPiecesAnimStart" xlink:href="#tutoPiecesText" attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimStart.end" dur="4s" fill="freeze" />
-        <animate id="tutoPiecesAnimEnd" xlink:href="#tutoPiecesText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPiecesAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoBallsAnimStart" xlink:href="#tutoBallsText" attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimStart.end" dur="4s" fill="freeze" />
+        <animate id="tutoBallsAnimEnd" xlink:href="#tutoBallsText" attributeType="xml" attributeName="opacity" to="0" begin="tutoBallsAnimStart.end" dur="2s" fill="freeze" />
 
-        <animate id="tutoPlayableAnimStart" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPiecesAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoPlayableAnimStart" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to="1" begin="tutoBallsAnimEnd.end" dur="4s" fill="freeze" />
         <animate id="tutoPlayableMove1" xlink:href="#playable" attributeType="xml" attributeName="y" to="428" begin="tutoPlayableAnimStart.end" dur="1.5s" fill="freeze" />
         <animate id="tutoPlayableMove2" xlink:href="#playable" attributeType="xml" attributeName="y" to="44" begin="tutoPlayableMove1.end" dur="3s" fill="freeze" />
         <animate id="tutoPlayableMove3" xlink:href="#playable" attributeType="xml" attributeName="y" to="364" begin="tutoPlayableMove2.end" dur="2s" fill="freeze" />
@@ -249,38 +249,38 @@
         <animate id="tutoMoveAnimEnd" xlink:href="#tutoMoveText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMove4.end" dur="2s" fill="freeze" />
 
         <animate id="tutoHitAnimStart" xlink:href="#tutoHitText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableMove4.end" dur="4s" fill="freeze" />
-        <animate id="tutoHitPiece1" xlink:href="#tutoPiece63" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMove4.end" dur="0.8s" fill="freeze" />
-        <animateTransform id="tutoHitPiece2" xlink:href="#tutoPiece63" attributeType="xml" attributeName="transform" type="rotate" from="0 176 380" to="360 176 380" begin="tutoPlayableMove4.end" dur="0.8s" />
+        <animate id="tutoHitBall1" xlink:href="#tutoBall63" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMove4.end" dur="0.8s" fill="freeze" />
+        <animateTransform id="tutoHitBall2" xlink:href="#tutoBall63" attributeType="xml" attributeName="transform" type="rotate" from="0 176 380" to="360 176 380" begin="tutoPlayableMove4.end" dur="0.8s" />
         <animate id="tutoPlayableHit1" xlink:href="#playable" attributeType="xml" attributeName="x" to="160" begin="tutoPlayableMove4.end" dur="0.8s" fill="freeze" />
-        <animate id="tutoHitPiece3" xlink:href="#tutoPiece53" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableHit1.end" dur="0.8s" fill="freeze" />
-        <animateTransform id="tutoHitPiece4" xlink:href="#tutoPiece53" attributeType="xml" attributeName="transform" type="rotate" from="0 144 380" to="360 144 380" begin="tutoPlayableHit1.end" dur="0.8s" />
+        <animate id="tutoHitBall3" xlink:href="#tutoBall53" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableHit1.end" dur="0.8s" fill="freeze" />
+        <animateTransform id="tutoHitBall4" xlink:href="#tutoBall53" attributeType="xml" attributeName="transform" type="rotate" from="0 144 380" to="360 144 380" begin="tutoPlayableHit1.end" dur="0.8s" />
         <animate id="tutoPlayableHit2" xlink:href="#playable" attributeType="xml" attributeName="x" to="128" begin="tutoPlayableHit1.end" dur="0.8s" fill="freeze" />
-        <animate id="tutoHitPiece5" xlink:href="#tutoPiece43" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableHit2.end" dur="0.8s" fill="freeze" />
-        <animateTransform id="tutoHitPiece6" xlink:href="#tutoPiece43" attributeType="xml" attributeName="transform" type="rotate" from="0 112 380" to="360 112 380" begin="tutoPlayableHit2.end" dur="0.8s" />
+        <animate id="tutoHitBall5" xlink:href="#tutoBall43" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableHit2.end" dur="0.8s" fill="freeze" />
+        <animateTransform id="tutoHitBall6" xlink:href="#tutoBall43" attributeType="xml" attributeName="transform" type="rotate" from="0 112 380" to="360 112 380" begin="tutoPlayableHit2.end" dur="0.8s" />
         <animate id="tutoPlayableHit3" xlink:href="#playable" attributeType="xml" attributeName="x" to="96" begin="tutoPlayableHit2.end" dur="0.8s" fill="freeze" />
         <animate id="tutoHitAnimEnd" xlink:href="#tutoHitText" attributeType="xml" attributeName="opacity" to="0" begin="tutoHitAnimStart.end" dur="2s" fill="freeze" />
 
         <animate id="tutoMorphAnimStart" xlink:href="#tutoMorphText" attributeType="xml" attributeName="opacity" to="1" begin="tutoHitAnimEnd.end" dur="4s" fill="freeze" />
         <animate id="tutoPlayableMorph1" xlink:href="#playable" attributeType="xml" attributeName="opacity" to="0" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
         <animate id="tutoPlayableMorph2" xlink:href="#playable" attributeType="xml" attributeName="x" to="64" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
-        <animate id="tutoPlayableMorph3" xlink:href="#tutoPiece43Morph" attributeType="xml" attributeName="opacity" to="1" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
-        <animate id="tutoPlayableMorph4" xlink:href="#tutoPiece43Morph" attributeType="xml" attributeName="x" to="64" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableMorph3" xlink:href="#tutoBall43Morph" attributeType="xml" attributeName="opacity" to="1" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableMorph4" xlink:href="#tutoBall43Morph" attributeType="xml" attributeName="x" to="64" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
         <animate id="tutoPlayableMorph5" xlink:href="#playable2" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableMorph2.end" dur="1s" fill="freeze" />
         <animate id="tutoMorphAnimEnd" xlink:href="#tutoMorphText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMorph2.end" dur="2s" fill="freeze" />
 
         <animate id="tutoFallAnimStart" xlink:href="#tutoFallText" attributeType="xml" attributeName="opacity" to="1" begin="tutoMorphAnimEnd.end" dur="4s" fill="freeze" />
-        <animate xlink:href="#tutoPiece44" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-        <animate xlink:href="#tutoPiece45" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-        <animate xlink:href="#tutoPiece46" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-        <animate xlink:href="#tutoPiece47" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-        <animate xlink:href="#tutoPiece54" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-        <animate xlink:href="#tutoPiece55" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-        <animate xlink:href="#tutoPiece56" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-        <animate xlink:href="#tutoPiece57" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-        <animate xlink:href="#tutoPiece64" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-        <animate xlink:href="#tutoPiece65" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-        <animate xlink:href="#tutoPiece66" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-        <animate xlink:href="#tutoPiece67" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall44" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall45" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall46" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall47" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall54" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall55" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall56" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall57" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall64" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall65" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall66" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
+        <animate xlink:href="#tutoBall67" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
         <animate id="tutoFallAnimEnd" xlink:href="#tutoFallText" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimStart.end" dur="2s" fill="freeze" />
 
         <animate xlink:href="#score1" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimStart.end" dur="1s" fill="freeze" />
@@ -321,22 +321,22 @@
 
     <g id="main">
       <g style="opacity: 0.5">
-        <use xlink:href="#piece3" x="16" y="16" transform="scale(2)" />
-        <use xlink:href="#piece2" x="48" y="16" transform="scale(2)" />
-        <use xlink:href="#piece4" x="80" y="16" transform="scale(2)" />
-        <use xlink:href="#piece2" x="112" y="16" transform="scale(2)" />
-        <use xlink:href="#piece1" x="16" y="48" transform="scale(2)" />
-        <use xlink:href="#piece3" x="48" y="48" transform="scale(2)" />
-        <use xlink:href="#piece6" x="80" y="48" transform="scale(2)" />
-        <use xlink:href="#piece3" x="112" y="48" transform="scale(2)" />
-        <use xlink:href="#piece3" x="16" y="80" transform="scale(2)" />
-        <use xlink:href="#piece2" x="48" y="80" transform="scale(2)" />
-        <use xlink:href="#piece4" x="80" y="80" transform="scale(2)" />
-        <use xlink:href="#piece1" x="112" y="80" transform="scale(2)" />
-        <use xlink:href="#piece2" x="16" y="112" transform="scale(2)" />
-        <use xlink:href="#piece4" x="48" y="112" transform="scale(2)" />
-        <use xlink:href="#piece1" x="80" y="112" transform="scale(2)" />
-        <use xlink:href="#piece4" x="112" y="112" transform="scale(2)" />
+        <use xlink:href="#ball3" x="16" y="16" transform="scale(2)" />
+        <use xlink:href="#ball2" x="48" y="16" transform="scale(2)" />
+        <use xlink:href="#ball4" x="80" y="16" transform="scale(2)" />
+        <use xlink:href="#ball2" x="112" y="16" transform="scale(2)" />
+        <use xlink:href="#ball1" x="16" y="48" transform="scale(2)" />
+        <use xlink:href="#ball3" x="48" y="48" transform="scale(2)" />
+        <use xlink:href="#ball6" x="80" y="48" transform="scale(2)" />
+        <use xlink:href="#ball3" x="112" y="48" transform="scale(2)" />
+        <use xlink:href="#ball3" x="16" y="80" transform="scale(2)" />
+        <use xlink:href="#ball2" x="48" y="80" transform="scale(2)" />
+        <use xlink:href="#ball4" x="80" y="80" transform="scale(2)" />
+        <use xlink:href="#ball1" x="112" y="80" transform="scale(2)" />
+        <use xlink:href="#ball2" x="16" y="112" transform="scale(2)" />
+        <use xlink:href="#ball4" x="48" y="112" transform="scale(2)" />
+        <use xlink:href="#ball1" x="80" y="112" transform="scale(2)" />
+        <use xlink:href="#ball4" x="112" y="112" transform="scale(2)" />
       </g>
       <text x="160" y="180" class="title">esviji</text>
       <g class="start button">
