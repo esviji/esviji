@@ -98,6 +98,9 @@ ESVIJI.game = (function () {
       useStored = true;
       startPlaying();
     }
+    $('#main .version').text($('#main .version').text() + ' ' + svgweb.getHandlerType()[0]);
+    // https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingCustomVariables
+    _gaq.push(['_setCustomVar', 1, 'native-or-flash', svgweb.getHandlerType(), 1]);
   }
 
   function viewportOptimize() {
