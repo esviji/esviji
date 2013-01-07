@@ -233,22 +233,22 @@
         </g>
         <animate id="tutoAnimStart" attributeType="xml" attributeName="opacity" to="1" begin="indefinite" dur="1s" fill="freeze" />
 
-        <animate id="tutoBallsAnimStart" xlink:href="#tutoBallsText" attributeType="xml" attributeName="opacity" to="1" begin="tutoAnimStart.end" dur="4s" fill="freeze" />
-        <animate id="tutoBallsAnimEnd" xlink:href="#tutoBallsText" attributeType="xml" attributeName="opacity" to="0" begin="tutoBallsAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoBallsAnimStart" xlink:href="#tutoBallsText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoAnimStart.end" dur="2s" fill="freeze" />
+        <animate id="tutoBallsAnimEnd" xlink:href="#tutoBallsText" attributeType="xml" attributeName="opacity" to="0" begin="tutoBallsAnimStart.end+2s" dur="2s" fill="freeze" />
 
-        <animate id="tutoPlayableAnimStart" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to="1" begin="tutoBallsAnimEnd.end" dur="4s" fill="freeze" />
-        <animate id="tutoPlayableMove1" xlink:href="#playable" attributeType="xml" attributeName="y" to="428" begin="tutoPlayableAnimStart.end" dur="1.5s" fill="freeze" />
+        <animate id="tutoPlayableAnimStart" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoBallsAnimEnd.end" dur="2s" fill="freeze" />
+        <animate id="tutoPlayableMove1" xlink:href="#playable" attributeType="xml" attributeName="y" to="428" begin="tutoPlayableAnimStart.end+2s" dur="1.5s" fill="freeze" />
         <animate id="tutoPlayableMove2" xlink:href="#playable" attributeType="xml" attributeName="y" to="44" begin="tutoPlayableMove1.end" dur="3s" fill="freeze" />
         <animate id="tutoPlayableMove3" xlink:href="#playable" attributeType="xml" attributeName="y" to="364" begin="tutoPlayableMove2.end" dur="2s" fill="freeze" />
-        <animate id="tutoPlayableAnimEnd" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableAnimStart.end" dur="2s" fill="freeze" />
-        <animate id="tutoPlayAnimStart" xlink:href="#tutoPlayText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoPlayableAnimEnd" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableAnimStart.end+2s" dur="2s" fill="freeze" />
+        <animate id="tutoPlayAnimStart" xlink:href="#tutoPlayText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoPlayableAnimEnd.end" dur="4s" fill="freeze" />
         <animate id="tutoPlayAnimEnd" xlink:href="#tutoPlayText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayAnimStart.end" dur="2s" fill="freeze" />
 
-        <animate id="tutoMoveAnimStart" xlink:href="#tutoMoveText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoMoveAnimStart" xlink:href="#tutoMoveText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoPlayAnimEnd.end" dur="4s" fill="freeze" />
         <animate id="tutoPlayableMove4" xlink:href="#playable" attributeType="xml" attributeName="x" to="192" begin="tutoMoveAnimStart.end" dur="1.5s" fill="freeze" />
         <animate id="tutoMoveAnimEnd" xlink:href="#tutoMoveText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMove4.end" dur="2s" fill="freeze" />
 
-        <animate id="tutoHitAnimStart" xlink:href="#tutoHitText" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableMove4.end" dur="4s" fill="freeze" />
+        <animate id="tutoHitAnimStart" xlink:href="#tutoHitText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoPlayableMove4.end" dur="4s" fill="freeze" />
         <animate id="tutoHitBall1" xlink:href="#tutoBall63" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMove4.end" dur="0.8s" fill="freeze" />
         <animateTransform id="tutoHitBall2" xlink:href="#tutoBall63" attributeType="xml" attributeName="transform" type="rotate" from="0 176 380" to="360 176 380" begin="tutoPlayableMove4.end" dur="0.8s" />
         <animate id="tutoPlayableHit1" xlink:href="#playable" attributeType="xml" attributeName="x" to="160" begin="tutoPlayableMove4.end" dur="0.8s" fill="freeze" />
@@ -260,7 +260,7 @@
         <animate id="tutoPlayableHit3" xlink:href="#playable" attributeType="xml" attributeName="x" to="96" begin="tutoPlayableHit2.end" dur="0.8s" fill="freeze" />
         <animate id="tutoHitAnimEnd" xlink:href="#tutoHitText" attributeType="xml" attributeName="opacity" to="0" begin="tutoHitAnimStart.end" dur="2s" fill="freeze" />
 
-        <animate id="tutoMorphAnimStart" xlink:href="#tutoMorphText" attributeType="xml" attributeName="opacity" to="1" begin="tutoHitAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoMorphAnimStart" xlink:href="#tutoMorphText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoHitAnimEnd.end" dur="4s" fill="freeze" />
         <animate id="tutoPlayableMorph1" xlink:href="#playable" attributeType="xml" attributeName="opacity" to="0" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
         <animate id="tutoPlayableMorph2" xlink:href="#playable" attributeType="xml" attributeName="x" to="64" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
         <animate id="tutoPlayableMorph3" xlink:href="#tutoBall43Morph" attributeType="xml" attributeName="opacity" to="1" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
@@ -268,7 +268,7 @@
         <animate id="tutoPlayableMorph5" xlink:href="#playable2" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableMorph2.end" dur="1s" fill="freeze" />
         <animate id="tutoMorphAnimEnd" xlink:href="#tutoMorphText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMorph2.end" dur="2s" fill="freeze" />
 
-        <animate id="tutoFallAnimStart" xlink:href="#tutoFallText" attributeType="xml" attributeName="opacity" to="1" begin="tutoMorphAnimEnd.end" dur="4s" fill="freeze" />
+        <animate id="tutoFallAnimStart" xlink:href="#tutoFallText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoMorphAnimEnd.end" dur="4s" fill="freeze" />
         <animate xlink:href="#tutoBall44" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
         <animate xlink:href="#tutoBall45" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
         <animate xlink:href="#tutoBall46" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
