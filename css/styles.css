@@ -117,11 +117,20 @@ body {
 #pauseBackground {
   opacity: 0.7;
 }
+#main .title-shadow,
 #main .title {
   font-size: 96px;
   text-anchor: middle;
-  fill: #fff;
   stroke-width: 0;
+}
+#main .title-shadow {
+  fill: #333;
+}
+#main .title {
+  fill: #fff;
+}
+#main use text {
+  fill: none;
 }
 #gameOver .title,
 #pause .title {

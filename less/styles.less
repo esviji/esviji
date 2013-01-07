@@ -107,11 +107,24 @@ html, body {
   opacity: 0.7;
 }
 
-#main .title {
-  font-size: 96px;
-  text-anchor: middle;
-  fill: #fff;
-  stroke-width: 0;
+#main {
+  .title-shadow, .title {
+    font-size: 96px;
+    text-anchor: middle;
+    stroke-width: 0;
+  }
+
+  .title-shadow {
+    fill: #333;
+  }
+
+  .title {
+    fill: #fff;
+  }
+
+  use text {
+    fill: none;
+  }
 }
 
 #gameOver .title, #pause .title {
