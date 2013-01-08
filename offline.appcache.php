@@ -5,7 +5,7 @@ header('Expires: Wed, 11 Jan 1984 05:00:00 GMT');
 header('Content-type: text/cache-manifest');
 
 $hashes = '';
-$ignore = array('offline.appcache');
+$ignore = array('offline.appcache', 'offline.appcache.php');
 
 function printFiles($path = '.', $level = 0) {
   global $hashes, $ignore;
