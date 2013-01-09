@@ -104,7 +104,7 @@ ESVIJI.game = (function () {
     if (viewportWidth != document.body.clientWidth || viewportHeight != document.body.clientHeight) {
       viewportWidth = document.body.clientWidth;
       viewportHeight = document.body.clientHeight;
-      console.log(viewportWidth + ' / ' + viewportHeight);
+      //console.log(viewportWidth + ' / ' + viewportHeight);
       if (viewportHeight / viewportWidth > ESVIJI.settings.board.height / ESVIJI.settings.board.width) {
         // tall
         boardWidth = viewportWidth;
