@@ -90,9 +90,6 @@ ESVIJI.game = (function () {
       _gaq.push(['_trackEvent', 'Init', 'Init']);
       $('#main .start').on('click touchstart', startPlaying);
       $('#main .tutorial').on('click touchstart', startTutorial);
-      $('#main .website').on('click touchstart', function() {
-        window.location.href="http://esviji.com/";
-      });
     } else {
       _gaq.push(['_trackEvent', 'Init', 'Restore']);
       useStored = true;
