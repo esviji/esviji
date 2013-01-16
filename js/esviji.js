@@ -176,7 +176,7 @@ ESVIJI.game = (function () {
       $('#' + panel + 'Panel').clone().attr('id', panel).appendTo('#board');
       $('#' + panel + 'Panel').remove();
       if (panel === 'pause' || panel === 'gameOver') {
-        $('#play, #board use').css('opacity', 0.3);
+        $('#play').css('opacity', 0.3);
       }
     }
   }
@@ -186,7 +186,7 @@ ESVIJI.game = (function () {
       $('#' + panel).clone().attr('id', panel + 'Panel').appendTo('#board defs');
       $('#' + panel).remove();
       if (panel === 'pause' || panel === 'gameOver') {
-        $('#play, #board use').css('opacity', 1);
+        $('#play').css('opacity', 1);
       }
     }
   }
@@ -512,7 +512,7 @@ ESVIJI.game = (function () {
       y: y,
       opacity: 0
     });
-    $("#board").append(ballTo);
+    $("#play").append(ballTo);
 
     // opacity from
     animOpacityFrom = svgAnimate({
@@ -695,7 +695,7 @@ ESVIJI.game = (function () {
       x: x,
       y: y
     });
-    $("#board").append(ball);
+    $("#play").append(ball);
     return ball;
   }
 
