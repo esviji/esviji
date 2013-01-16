@@ -112,6 +112,8 @@ body {
 }
 #playable.dragged {
   opacity: 0.8;
+#playable:hover {
+  cursor: pointer;
 }
 #gameOverBackground,
 #pauseBackground {
