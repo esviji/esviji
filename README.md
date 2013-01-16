@@ -33,7 +33,6 @@ Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direct
 
 ## Building blocks
 
-- SVG obviously, but with a <del>little</del> huge help from [SVG Web](http://code.google.com/p/svgweb/) on webkit browsers
 - JavaScript, with a little bit of jQuery
 - [Matthias](http://twitter.com/madsgraphics)'s awesome [SVGEventListener polyfil](https://github.com/madsgraphics/SVGEventListener) for SVG animate events in webkit (once again)
 - [Craig Campbell](http://craig.is/)'s [mousetrap](http://craig.is/killing/mice) for keyboard controls
