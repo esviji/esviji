@@ -24,7 +24,8 @@ I never found a satisfying name for this game, so I now took "esviji", a word ga
 
 - Some desktop browsers: Opera (a bug on score handling)
 - Some mobile browsers: Chrome Android
-- [Open issues!](https://github.com/nhoizey/esviji/issues?labels=Broken+browser+support&page=1&state=open)
+- [Open issues](https://github.com/nhoizey/esviji/issues?labels=Broken+browser+support&page=1&state=open)
+- [Open a new issue!](https://github.com/nhoizey/esviji/issues/new)
 
 ## To do
 
@@ -45,6 +46,9 @@ Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direct
 - [Anthony](http://twitter.com/rik24d) for his kind assistance on Firefox issues (again, some were real bugs, some where MDN errors, some were my own mistakes)
 - [Matthias](http://twitter.com/madsgraphics) for his SVG animate events polyfil
 
+## Contributing
+
+Please feel free to fork, fix and send me pull requests. Alternatively, [open issues](https://github.com/nhoizey/esviji/issues/new) for bugs and feature requests.
 
 ## License
 
