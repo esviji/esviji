@@ -1,35 +1,52 @@
-/***************************************************************************************
- * esviji
- ***************************************************************************************/
+// **esviji** is [Nicolas Hoizey](http://gasteroprod.com/)'s silly pet project attempting to develop a cross device/browser game with SVG
+//
+// This game came out of my mind 20 years ago thanks to the great platform that were
+// [HP 48 calculators](http://en.wikipedia.org/wiki/HP-48_series) (I've had 3 of them).
+// I loved playing Tetris on my HP, but was also eager to develop my own game (a sily habit I have to develop games to discover
+// new platforms & languages), and came with this idea of a kind of mashup of Tetris and Bubble Bobble.
+//
+// I never found a satisfying name for this game, so I now took "esviji", a word game on "SVG".
+
+// ## Create the main object
 
 var ESVIJI = {};
 
+// ## Add default settings
+
 ESVIJI.settings = {
+  // board size and according ball extreme positions
   'board': {
     'width': 320,
     'height': 460,
     'xMax': 10,
     'yMax': 13
   },
+  // list of available ball "names"
   'balls': ['ball1', 'ball2', 'ball3', 'ball4', 'ball5', 'ball6'],
+  // list of available rock "names" (only one for now)
   'rocks': ['rock'],
+  // special ids for the game matrix
   'emptyId': 0,
   'rockId': -1,
+  // game info at launch time
   'launch': {
     'lives': 9,
     'score': 0,
     'level': 1
   },
+  // game info at new turn start
   'turn': {
     'posX': 10,
     'dirX': -1,
     'posY': 8,
     'dirY': 0
   },
+  // animation settings
   'durationMove': 0.15,
   'durationMorph': 0.5
 };
 
+// ## Add the game engine
 ESVIJI.game = (function () {
   var
     viewportWidth = 0,
