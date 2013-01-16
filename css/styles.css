@@ -110,8 +110,6 @@ body {
   fill: #fff;
   stroke-width: 0;
 }
-#playable.dragged {
-  opacity: 0.8;
 #playable:hover {
   cursor: pointer;
 }
