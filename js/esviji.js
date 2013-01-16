@@ -354,6 +354,9 @@ ESVIJI.game = (function () {
       drawnCurrentBall.attr({
         'class': ''
       });
+      drawnCurrentBall.off('mousedown touchstart');
+      $("#board").off('mousemove touchmove');
+      $("#board").off('mouseup touchend');
       cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
       currentPosY = svgToY(cursorY);
       drawnCurrentBall.attr({
