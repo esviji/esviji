@@ -169,6 +169,8 @@ ESVIJI.game = (function () {
     _gaq.push(['_trackEvent', 'Tutorial', 'End']);
     hidePanel('tutorial');
     showPanel('main');
+    $('#main .start').on('click touchstart', startPlaying);
+    $('#main .tutorial').on('click touchstart', startTutorial);
   }
 
   function showPanel(panel) {
