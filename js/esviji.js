@@ -318,9 +318,7 @@ ESVIJI.game = (function () {
     drawnCurrentBall.attr({
       'class': "dragged"
     });
-    // if (gameStatus.level < 4) {
-      drawBall(240, yToSvg(currentPosY), 'arrow', 'showAim');
-    // }
+    drawBall(240, yToSvg(currentPosY), 'arrow', 'showAim');
   }
 
   function cursorMove(event) {
