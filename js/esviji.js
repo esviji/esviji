@@ -329,14 +329,16 @@ ESVIJI.game = (function () {
       } else if (event.originalEvent.changedTouches && event.originalEvent.changedTouches.length) {
         event = event.originalEvent.changedTouches[0];
       }
-      cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
-      currentPosY = svgToY(cursorY);
-      drawnCurrentBall.attr({
-        y: cursorY
-      });
-      $('#showAim').attr({
-        y: yToSvg(currentPosY)
-      });
+      if (event.pageY !== 0) {
+        cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
+        currentPosY = svgToY(cursorY);
+        drawnCurrentBall.attr({
+          y: cursorY
+        });
+        $('#showAim').attr({
+          y: yToSvg(currentPosY)
+        });
+      }
     }
   }
 
