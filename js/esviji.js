@@ -316,7 +316,7 @@ ESVIJI.game = (function () {
     event.preventDefault();
     dragged = true;
     drawnCurrentBall.attr({
-      'class': "dragged"
+      'class': 'dragged'
     });
     drawBall(240, yToSvg(currentPosY), 'arrow', 'showAim');
   }
