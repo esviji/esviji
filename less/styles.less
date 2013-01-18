@@ -2,10 +2,11 @@
 @bodyBkgEnd: #333;
 
 @font-face {
-    font-family: 'SansitaOneRegular';
-    src: url('font/sansitaone-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'SansitaOneRegular';
+  src: url('font/sansitaone-webfont.woff') format('woff'),
+       url('fonts/sansitaone-webfont.svg#SansitaOneRegular') format('svg'); // only for Android
+  font-weight: normal;
+  font-style: normal;
 }
 
 html, body {
@@ -18,7 +19,7 @@ html, body {
   height: 100%;
   overflow: hidden;
 
-  background: @bodyBkgBegin; /* Old browsers */
+  background: @bodyBkgBegin; // Old browsers
   background: -moz-radial-gradient(center, ellipse cover, @bodyBkgBegin 0%, @bodyBkgEnd 100%); /* FF3.6+ */
   background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,@bodyBkgBegin), color-stop(100%,@bodyBkgEnd)); /* Chrome,Safari4+ */
   background: -webkit-radial-gradient(center, ellipse cover, @bodyBkgBegin 0%,@bodyBkgEnd 100%); /* Chrome10+,Safari5.1+ */

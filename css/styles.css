@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'SansitaOneRegular';
-  src: url('font/sansitaone-webfont.woff') format('woff');
+  src: url('font/sansitaone-webfont.woff') format('woff'), url('fonts/sansitaone-webfont.svg#SansitaOneRegular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,8 +15,6 @@ body {
   height: 100%;
   overflow: hidden;
   background: #555555;
-  /* Old browsers */
-
   background: -moz-radial-gradient(center, ellipse cover, #555555 0%, #333333 100%);
   /* FF3.6+ */
 
