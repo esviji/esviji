@@ -222,6 +222,13 @@
           <tspan x="40" y="210">fall.</tspan>
         </text>
       </g>
+      <g id="tutoScoreText" class="step" opacity="0">
+        <rect x="20" y="140" width="230" height="90" />
+        <text>
+          <tspan x="40" y="170">Score is increased</tspan>
+          <tspan x="40" y="190">with (# hit balls)^3</tspan>
+        </text>
+      </g>
       <animate id="tutoAnimStart" attributeType="xml" attributeName="opacity" to="1" begin="indefinite" dur="1s" fill="freeze" />
 
       <animate id="tutoBallsAnimStart" xlink:href="#tutoBallsText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoAnimStart.end" dur="2s" fill="freeze" />
@@ -274,10 +281,12 @@
       <animate xlink:href="#tutoBall67" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
       <animate id="tutoFallAnimEnd" xlink:href="#tutoFallText" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimStart.end" dur="2s" fill="freeze" />
 
-      <animate xlink:href="#score1" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimStart.end" dur="1s" fill="freeze" />
-      <animate xlink:href="#score2" attributeType="xml" attributeName="opacity" to="1" begin="tutoFallAnimStart.end" dur="1s" fill="freeze" />
+      <animate id="tutoScoreAnimStart" xlink:href="#tutoScoreText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoFallAnimEnd.end" dur="2s" fill="freeze" />
 
-      <animate id="tutoAnimEnd" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimEnd.end" dur="0.1s" fill="freeze" />
+      <animate xlink:href="#score1" attributeType="xml" attributeName="opacity" to="0" begin="tutoScoreAnimStart.start" dur="1s" fill="freeze" />
+      <animate xlink:href="#score2" attributeType="xml" attributeName="opacity" to="1" begin="tutoScoreAnimStart.start" dur="1s" fill="freeze" />
+
+      <animate id="tutoAnimEnd" attributeType="xml" attributeName="opacity" to="0" begin="tutoScoreAnimStart.end" dur="3s" fill="freeze" />
     </g>
 
     <g id="pausePanel">
@@ -341,7 +350,7 @@
     </g>
     <text class="copyright" x="10" y="455">© 1992 Nicolas Hoizey</text>
     <text class="website" x="200" y="455">http://esviji.com/</text>
-    <text class="version" x="310" y="455">v0.5.3</text>
+    <text class="version" x="310" y="455">v0.5.4</text>
   </g>
 </svg>
 <!-- JS libs -->
