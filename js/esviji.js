@@ -334,11 +334,9 @@ ESVIJI.game = (function () {
       drawnCurrentBall.attr({
         y: cursorY
       });
-      // if (gameStatus.level < 4) {
-        $('#showAim').attr({
-          y: yToSvg(currentPosY)
-        });
-      // }
+      $('#showAim').attr({
+        y: yToSvg(currentPosY)
+      });
     }
   }
 
