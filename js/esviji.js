@@ -321,7 +321,7 @@ ESVIJI.game = (function () {
     drawnCurrentBall.attr({
       'class': 'dragged'
     });
-    drawBall(240, yToSvg(currentPosY), 'arrow', 'showAim');
+    drawBall(xToSvg(currentPosX) - 48, yToSvg(currentPosY), 'arrow', 'showAim');
   }
 
   function cursorMove(event) {
