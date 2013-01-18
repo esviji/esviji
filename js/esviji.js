@@ -48,6 +48,7 @@ ESVIJI.settings = {
 
 // ## Add the game engine
 ESVIJI.game = (function () {
+  // Initial values
   var
     viewportWidth = 0,
     viewportHeight = 0,
@@ -84,11 +85,13 @@ ESVIJI.game = (function () {
     useStored = false,
     sounds = {};
 
+  // Initialization
   function init() {
     viewportOptimize();
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailableBalls = ESVIJI.settings.balls.length;
+    // Available sounds
     sounds = {
       'error': {
         'sound': T("tri", T("tri", 2, 30, 880).kr(), 0.25),
