@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '0.5.6',
+  version: '0.5.7',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -90,7 +90,7 @@ ESVIJI.game = (function () {
 
   // Initialization
   function init() {
-    console.log('esviji versions: JS = ' + ESVIJI.settings.version + ' / HTML = ' + $('.version'));
+    console.log('esviji versions: JS = ' + ESVIJI.settings.version + ' / HTML = ' + $('.version').text());
     viewportOptimize();
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
@@ -202,8 +202,8 @@ ESVIJI.game = (function () {
 
   function nextLevel() {
     gameStatus.playing = true;
+    eraseBalls();
     if (!useStored) {
-      eraseBalls();
       initBalls();
       drawBalls();
       getValidBalls();
@@ -739,15 +739,7 @@ ESVIJI.game = (function () {
   }
 
   function eraseBalls() {
-    for (x = 1; x <= 9; x++) {
-      if (drawnCurrentBalls[x] !== undefined) {
-        for (y = 1; y <= 13; y++) {
-          if (drawnCurrentBalls[x][y] !== null && drawnCurrentBalls[x][y] !== undefined) {
-            drawnCurrentBalls[x][y].remove();
-          }
-        }
-      }
-    }
+    $('#play use').remove();
   }
 
   function getValidBalls() {
