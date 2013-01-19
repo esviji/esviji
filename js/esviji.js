@@ -1,4 +1,4 @@
-// **esviji** is a mashup of Tetris and Bubble Bobble in which you have to destroy balls and gain points as long as you can!
+// **esviji** is a variation around the famous Bubble Bobble game, in which you have to destroy balls and gain points as long as you can!
 //
 // It is [Nicolas Hoizey](http://gasteroprod.com/)'s silly pet project attempting to develop a cross device/browser game with SVG
 //
