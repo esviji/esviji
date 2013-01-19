@@ -1,4 +1,6 @@
-// **esviji** is [Nicolas Hoizey](http://gasteroprod.com/)'s silly pet project attempting to develop a cross device/browser game with SVG
+// **esviji** is a mashup of Tetris and Bubble Bobble in which you have to destroy balls and gain points as long as you can!
+//
+// It is [Nicolas Hoizey](http://gasteroprod.com/)'s silly pet project attempting to develop a cross device/browser game with SVG
 //
 // This game came out of my mind 20 years ago thanks to the great platform that were
 // [HP 48 calculators](http://en.wikipedia.org/wiki/HP-48_series) (I've had 3 of them).
