@@ -16,6 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
+  version: '0.5.6',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -89,6 +90,7 @@ ESVIJI.game = (function () {
 
   // Initialization
   function init() {
+    console.log('esviji versions: JS = ' + ESVIJI.settings.version + ' / HTML = ' + $('.version'));
     viewportOptimize();
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
