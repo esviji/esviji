@@ -1,3 +1,9 @@
-AddType text/x-component htc
-AddType application/x-shockwave-flash swf
 AddType image/svg+xml svg
+AddType text/cache-manifest appcache
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 year"
+  ExpiresByType text/cache-manifest  "access plus 5 seconds"
+</IfModule>
+FileETag None
