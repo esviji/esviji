@@ -336,7 +336,8 @@ ESVIJI.game = (function () {
       } else if (event.originalEvent.changedTouches && event.originalEvent.changedTouches.length) {
         event = event.originalEvent.changedTouches[0];
       }
-      if (event.pageY !== 0) {
+      // event.pageY seems to be returning weird values when movement starts
+      if (Math.abs(pixelsToSvgY(event.pageY) - yToSvg(currentPosY)) <= 16) {
         cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
         currentPosY = svgToY(cursorY);
         drawnCurrentBall.attr({
