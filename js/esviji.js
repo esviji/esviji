@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '0.5.9',
+  version: '0.6.1',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -90,7 +90,7 @@ ESVIJI.game = (function () {
 
   // Initialization
   function init() {
-    console.log('esviji versions: JS = ' + ESVIJI.settings.version + ' / HTML = ' + $('.version').text());
+    $('.version').text(ESVIJI.settings.version);
     viewportOptimize();
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
@@ -274,7 +274,8 @@ ESVIJI.game = (function () {
           if (drawnCurrentBall === null) {
             drawnCurrentBall = drawBall(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
           }
-          drawnCurrentBall.on('mousedown touchstart', cursorStart);
+          // TODO: don't apply when touching the pause button
+          $("#board").on('mousedown touchstart', cursorStart);
           $("#board").on('mousemove touchmove', cursorMove);
           $("#board").on('mouseup touchend', cursorEnd);
           Mousetrap.bind('up', keyUp);
@@ -322,10 +323,16 @@ ESVIJI.game = (function () {
   function cursorStart(event) {
     event.preventDefault();
     dragged = true;
+    if (event.originalEvent.touches && event.originalEvent.touches.length) {
+      event = event.originalEvent.touches[0];
+    } else if (event.originalEvent.changedTouches && event.originalEvent.changedTouches.length) {
+      event = event.originalEvent.changedTouches[0];
+    }
+    cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
     drawnCurrentBall.attr({
-      'class': 'dragged'
+      'class': 'dragged',
+      y: cursorY
     });
-    drawBall(xToSvg(currentPosX) - 48, yToSvg(currentPosY), 'arrow', 'showAim');
   }
 
   function cursorMove(event) {
@@ -337,16 +344,13 @@ ESVIJI.game = (function () {
         event = event.originalEvent.changedTouches[0];
       }
       // event.pageY seems to be returning weird values when movement starts
-      if (Math.abs(pixelsToSvgY(event.pageY) - yToSvg(ESVIJI.settings.turn.posY)) <= 16) {
-        cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
-        currentPosY = svgToY(cursorY);
-        drawnCurrentBall.attr({
-          y: cursorY
-        });
-        $('#showAim').attr({
-          y: yToSvg(currentPosY)
-        });
-      }
+      cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
+      currentPosY = svgToY(cursorY);
+      drawnCurrentBall.attr({
+        y: cursorY
+      });
+    } else {
+      console.log('cursorMove without cursorStart… :-/');
     }
   }
 
@@ -373,7 +377,6 @@ ESVIJI.game = (function () {
       moveCount = 0;
       oldPosX = currentPosX;
       oldPosY = currentPosY;
-      $('#showAim').remove();
       playUserChoice();
     }
   }
