@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '0.6.1',
+  version: '0.6.2',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -274,10 +274,9 @@ ESVIJI.game = (function () {
           if (drawnCurrentBall === null) {
             drawnCurrentBall = drawBall(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
           }
-          // TODO: don't apply when touching the pause button
-          $("#board").on('mousedown touchstart', cursorStart);
-          $("#board").on('mousemove touchmove', cursorMove);
-          $("#board").on('mouseup touchend', cursorEnd);
+          $('#play .playzone').on('mousedown touchstart', cursorStart);
+          $('#play .playzone').on('mousemove touchmove', cursorMove);
+          $('#play .playzone').on('mouseup touchend', cursorEnd);
           Mousetrap.bind('up', keyUp);
           Mousetrap.bind('down', keyDown);
           Mousetrap.bind(['enter', 'space'], keyEnter);
@@ -366,9 +365,9 @@ ESVIJI.game = (function () {
       drawnCurrentBall.attr({
         'class': ''
       });
-      drawnCurrentBall.off('mousedown touchstart');
-      $("#board").off('mousemove touchmove');
-      $("#board").off('mouseup touchend');
+      $('#play .playzone').off('mousedown touchstart');
+      $('#play .playzone').off('mousemove touchmove');
+      $('#play .playzone').off('mouseup touchend');
       cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
       currentPosY = svgToY(cursorY);
       drawnCurrentBall.attr({
