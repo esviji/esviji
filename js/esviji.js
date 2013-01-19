@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '0.5.8',
+  version: '0.5.9',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -337,7 +337,7 @@ ESVIJI.game = (function () {
         event = event.originalEvent.changedTouches[0];
       }
       // event.pageY seems to be returning weird values when movement starts
-      if (Math.abs(pixelsToSvgY(event.pageY) - yToSvg(currentPosY)) <= 16) {
+      if (Math.abs(pixelsToSvgY(event.pageY) - yToSvg(ESVIJI.settings.turn.posY)) <= 16) {
         cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
         currentPosY = svgToY(cursorY);
         drawnCurrentBall.attr({
