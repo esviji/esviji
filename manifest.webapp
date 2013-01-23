@@ -1,0 +1,24 @@
+{
+  "version": "0.5.7",
+  "name": "esviji",
+  "description": "esviji is a variation around the famous Bubble Bobble game, in which you have to destroy balls and gain points as long as you can!",
+  "launch_path": "/",
+  "fullscreen": "true",
+  "orientation": ["portrait"],
+  "icons": {
+    "60": "/img/firefoxos/icon-60.png",
+    "128": "/img/firefoxos/icon-128.png"
+  },
+  "developer": {
+    "name": "Nicolas Hoizey",
+    "url": "http://gasteroprod.com"
+  },
+  "installs_allowed_from": ["*"],
+  "appcache_path": "/cache.manifest",
+  "locales": {
+    "fr": {
+      "description": "esviji est une variante du célèbre jeu Bubble Bobble, où vous devez détruire des balles et gagner des points aussi longtemps que possible!",
+    }
+  },
+  "default_locale": "en"
+}
