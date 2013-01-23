@@ -334,21 +334,17 @@ ESVIJI.game = (function () {
 
   function cursorMove(event) {
     event.preventDefault();
-    if (dragged) {
-      if (event.originalEvent.touches && event.originalEvent.touches.length) {
-        event = event.originalEvent.touches[0];
-      } else if (event.originalEvent.changedTouches && event.originalEvent.changedTouches.length) {
-        event = event.originalEvent.changedTouches[0];
-      }
-      // event.pageY seems to be returning weird values when movement starts
-      cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
-      currentPosY = svgToY(cursorY);
-      drawnCurrentBall.attr({
-        y: cursorY
-      });
-    } else {
-      console.log('cursorMove without cursorStart… :-/');
+    if (event.originalEvent.touches && event.originalEvent.touches.length) {
+      event = event.originalEvent.touches[0];
+    } else if (event.originalEvent.changedTouches && event.originalEvent.changedTouches.length) {
+      event = event.originalEvent.changedTouches[0];
     }
+    // event.pageY seems to be returning weird values when movement starts
+    cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
+    currentPosY = svgToY(cursorY);
+    drawnCurrentBall.attr({
+      y: cursorY
+    });
   }
 
   function cursorEnd(event) {
