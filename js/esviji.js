@@ -111,11 +111,9 @@ ESVIJI.game = (function () {
       }
     };
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
-      _gaq.push(['_trackEvent', 'Init', 'Init']);
       $('#main .start').on('click touchstart', startPlaying);
       $('#main .tutorial').on('click touchstart', startTutorial);
     } else {
-      _gaq.push(['_trackEvent', 'Init', 'Restore']);
       useStored = true;
       startPlaying();
     }
@@ -145,7 +143,6 @@ ESVIJI.game = (function () {
   function startPlaying() {
     hidePanel('main');
     if (!useStored) {
-      _gaq.push(['_trackEvent', 'Play', 'Start']);
       gameStatus.level = ESVIJI.settings.launch.level;
       gameStatus.score = ESVIJI.settings.launch.score;
       gameStatus.lives = ESVIJI.settings.launch.lives;
@@ -164,7 +161,6 @@ ESVIJI.game = (function () {
   }
 
   function startTutorial() {
-    _gaq.push(['_trackEvent', 'Tutorial', 'Start']);
     hidePanel('main');
     showPanel('tutorial');
     $('#tutorial .pauseButton').on('click touchstart', endTutorial);
@@ -173,7 +169,6 @@ ESVIJI.game = (function () {
   }
 
   function endTutorial() {
-    _gaq.push(['_trackEvent', 'Tutorial', 'End']);
     hidePanel('tutorial');
     showPanel('main');
     $('#main .start').on('click touchstart', startPlaying);
@@ -808,16 +803,13 @@ ESVIJI.game = (function () {
   }
 
   function pause() {
-    _gaq.push(['_trackEvent', 'Pause', 'Start']);
     showPanel('pause');
     $('#pause .resume').on('click touchstart', function(e) {
       e.preventDefault();
-      _gaq.push(['_trackEvent', 'Pause', 'Resume']);
       hidePanel('pause');
     });
     $('#pause .restart').on('click touchstart', function(e) {
       e.preventDefault();
-      _gaq.push(['_trackEvent', 'Pause', 'Restart']);
       hidePanel('pause');
       store.set('gameStatus', {
         'playing': false
@@ -826,14 +818,12 @@ ESVIJI.game = (function () {
     });
     $('#pause .exit').on('click touchstart', function(e) {
       e.preventDefault();
-      _gaq.push(['_trackEvent', 'Pause', 'Exit']);
       hidePanel('pause');
       stopPlaying();
     });
   }
 
   function gameOver() {
-    _gaq.push(['_trackEvent', 'Play', 'Game Over', 'Score', gameStatus.score]);
     showPanel('gameOver');
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
     $('.playagain').on('click touchstart', function() {
