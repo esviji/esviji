@@ -140,7 +140,8 @@ ESVIJI.game = (function () {
     }
   }
 
-  function startPlaying() {
+  function startPlaying(event) {
+    event.preventDefault();
     hidePanel('main');
     if (!useStored) {
       gameStatus.level = ESVIJI.settings.launch.level;
@@ -160,7 +161,8 @@ ESVIJI.game = (function () {
     nextLevel();
   }
 
-  function startTutorial() {
+  function startTutorial(event) {
+    event.preventDefault();
     hidePanel('main');
     showPanel('tutorial');
     $('#tutorial .pauseButton').on('click touchstart', endTutorial);
@@ -168,7 +170,8 @@ ESVIJI.game = (function () {
     $('#tutoAnimStart')[0].beginElement();
   }
 
-  function endTutorial() {
+  function endTutorial(event) {
+    event.preventDefault();
     hidePanel('tutorial');
     showPanel('main');
     $('#main .start').on('click touchstart', startPlaying);
