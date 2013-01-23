@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '0.6.2',
+  version: '0.6.3',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
