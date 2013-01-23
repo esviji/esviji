@@ -140,8 +140,7 @@ ESVIJI.game = (function () {
     }
   }
 
-  function startPlaying(event) {
-    event.preventDefault();
+  function startPlaying() {
     hidePanel('main');
     if (!useStored) {
       gameStatus.level = ESVIJI.settings.launch.level;
