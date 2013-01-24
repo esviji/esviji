@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '0.6.5',
+  version: '0.6.6',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -477,13 +477,17 @@ ESVIJI.game = (function () {
     startNewTurn();
   }
 
-  function svgAnimate(settings) {
-    var anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+  function svgAnimate(settings, type) {
+    var anim = document.createElementNS("http://www.w3.org/2000/svg", type || "animate");
     anim.setAttributeNS(null, "attributeType", "xml");
     for (var key in settings) {
       anim.setAttributeNS(null, key, settings[key]);
     }
     return anim;
+  }
+
+  function svgAnimateTransform(settings) {
+    return svgAnimate(settings, 'animateTransform');
   }
 
   function animStackMove(ball, duration, attribute, from, to, begin) {
@@ -571,13 +575,13 @@ ESVIJI.game = (function () {
     begin = begin || ("anim" + lastStackedAnimation + ".end");
 
     // rotate
-    var animRotate = svgAnimate({
+    var animRotate = svgAnimateTransform({
       "attributeName": "transform",
       "type": "rotate",
       "from": "0 " + (parseInt(ball.attr('x'), 10) + 16) + " " + (parseInt(ball.attr('y'), 10) + 16),
       "to": "360 " + (parseInt(ball.attr('x'), 10) + 16) + " " + (parseInt(ball.attr('y'), 10) + 16),
       "begin": begin,
-      "dur": ESVIJI.settings.durationMove + "s",
+      "dur": ESVIJI.settings.durationMove * 2 + "s",
       "fill": "freeze",
       "id": "anim" + (lastStackedAnimation + 1)
     });
@@ -591,7 +595,7 @@ ESVIJI.game = (function () {
       "attributeName": "opacity",
       "to": "0",
       "begin": begin,
-      "dur": ESVIJI.settings.durationMove + "s",
+      "dur": ESVIJI.settings.durationMove * 2 + "s",
       "fill": "freeze",
       "id": "anim" + (lastStackedAnimation + 2)
     });
