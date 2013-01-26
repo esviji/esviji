@@ -997,7 +997,7 @@ window.addEventListener('load', function installLoad(evt) {
     var request = window.navigator.mozApps.install(manifestUrl);
     request.onsuccess = function() {
       var appRecord = this.result;
-      console.log('Installation successful!');
+      alert('Installation successful!');
       var button = document.getElementById('installButton');
       button.style.display = 'none';
     };
