@@ -108,7 +108,8 @@ body {
   fill: #fff;
   stroke-width: 0;
 }
-#playable:hover {
+#playable:hover,
+.button:hover {
   cursor: pointer;
 }
 #gameOverBackground,
@@ -189,4 +190,7 @@ body {
 .step text {
   font-weight: normal;
   fill: #333;
+}
+#installButton {
+  display: none;
 }
