@@ -15,7 +15,7 @@
     "url": "http://gasteroprod.com"
   },
   "installs_allowed_from": ["*"],
-  "appcache_path": "/cache.manifest",
+  "appcache_path": "/manifest.appcache",
   "locales": {
     "fr": {
       "description": "esviji est une variante du célèbre jeu Bubble Bobble, où vous devez détruire des balles et gagner des points aussi longtemps que possible!"
