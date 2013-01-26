@@ -1,23 +1,28 @@
 # esviji
 
-## [Nicolas Hoizey](http://gasteroprod.com/)'s silly pet project attempting to develop a cross device/browser game with SVG
+A variation around the famous Bubble Bobble game, in which you have to destroy balls and gain points as long as you can!
 
-This game came out of my mind 20 years ago thanks to the great platform that were [HP 48 calculators](http://en.wikipedia.org/wiki/HP-48_series) (I've had 3 of them). I loved playing Tetris on my HP, but was also eager to develop my own game (a sily habit I have to develop games to discover new platforms/languages), and came with this idea of a kind of mashup of Tetris and Bubble Bobble.
-
-I never found a satisfying name for this game, so I now took "esviji", a word game on "SVG".
+To know how to play, please run the tutorial available on the launch screen of the game.
 
 ## Features
 
-- Vectorial interface, scalled to fit any viewport size without any visual loss
-- Multiple interaction options: keyboard, mouse &amp; touch
-- Offline support
+- Vectorial interface, scalled to fit any viewport size without any visual loss, optimized for portrait orientation
+- Multiple interaction options: keyboard, mouse & touch
+- Current game persistence: close your browser and resume your game when you return
+- Full off-line support
+
+This game came out of my mind 20 years ago thanks to the great platform that were [HP 48 calculators](http://en.wikipedia.org/wiki/HP-48_series) (I've had 3 of them). I loved playing Bubble Bobble, Tetris and other casual game on my HP, but was also eager to develop my own game (a sily habit I have to develop games to discover new platforms/languages), and came with this idea of a kind of mashup of Tetris and Bubble Bobble.
+
+I never found a satisfying name for this game, so I now took "esviji", a word game on "SVG".
+
+esviji is open source, under MIT licence, feel free to <a href="https://github.com/nhoizey/esviji">fork it on Github</a>, make pull requests and open issues for bugs and improvement ideas.
 
 ## Supported platforms
 
 ### Known to work on
 
 - Most recent desktop browsers: Firefox, Chrome, Safari, Maxthon (this one's for Matthias)
-- Some mobile browsers: iOS Safari, Android stock browser
+- Some mobile browsers: iOS Safari, Firefox Mobile
 - [Tell us!](http://twitter.com/esviji)
 
 ### Known to NOT work on
