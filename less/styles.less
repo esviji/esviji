@@ -100,9 +100,14 @@ html, body {
   }
 }
 
-#playable:hover, .button:hover {
-  cursor: pointer;
+#playable {
+  pointer-events: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
+
 
 #gameOverBackground, #pauseBackground {
   opacity: 0.7;
@@ -158,6 +163,8 @@ html, body {
   }
 
   &:hover {
+    cursor: pointer;
+
     rect {
       fill: #fff;
       stroke-width: 3;

@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '0.7.0',
+  version: '0.8.0',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -86,10 +86,14 @@ ESVIJI.game = (function () {
       'playing': false
     },
     useStored = false,
-    sounds = {};
+    sounds = {},
+    clickType = 'click';
 
   // Initialization
   function init() {
+    if (Modernizr.touch) {
+      clickType = 'touchstart';
+    }
     $('.version').text(ESVIJI.settings.version);
     viewportOptimize();
     cursorMinY = yToSvg(1);
@@ -111,8 +115,8 @@ ESVIJI.game = (function () {
       }
     };
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
-      $('#main .start').one('click touchstart', startPlaying);
-      $('#main .tutorial').one('click touchstart', startTutorial);
+      $('#main .start').one(clickType, startPlaying);
+      $('#main .tutorial').one(clickType, startTutorial);
     } else {
       useStored = true;
       startPlaying();
@@ -140,7 +144,10 @@ ESVIJI.game = (function () {
     }
   }
 
-  function startPlaying() {
+  function startPlaying(event) {
+    if (undefined !== event) {
+      event.preventDefault();
+    }
     hidePanel('main');
     if (!useStored) {
       gameStatus.level = ESVIJI.settings.launch.level;
@@ -156,15 +163,14 @@ ESVIJI.game = (function () {
     drawLevel();
     drawScore();
     drawLives();
-    $('#play .pauseButton').one('click touchstart', pause);
+    $('#play .pauseButton').one(clickType, pause);
     nextLevel();
   }
 
   function startTutorial() {
-    $('#main .tutorial').off('click touchstart');
     hidePanel('main');
     showPanel('tutorial');
-    $('#tutorial .pauseButton').one('click touchstart', endTutorial);
+    $('#tutorial .pauseButton').one(clickType, endTutorial);
     $('#tutoAnimEnd')[0].addEventListener('endEvent', endTutorial, false);
     $('#tutoAnimStart')[0].beginElement();
   }
@@ -173,8 +179,8 @@ ESVIJI.game = (function () {
     event.preventDefault();
     hidePanel('tutorial');
     showPanel('main');
-    $('#main .start').one('click touchstart', startPlaying);
-    $('#main .tutorial').one('click touchstart', startTutorial);
+    $('#main .start').one(clickType, startPlaying);
+    $('#main .tutorial').one(clickType, startTutorial);
   }
 
   function showPanel(panel) {
@@ -806,12 +812,12 @@ ESVIJI.game = (function () {
 
   function pause() {
     showPanel('pause');
-    $('#pause .resume').one('click touchstart', function(e) {
+    $('#pause .resume').one(clickType, function(e) {
       e.preventDefault();
       hidePanel('pause');
-      $('#play .pauseButton').one('click touchstart', pause);
+      $('#play .pauseButton').one(clickType, pause);
     });
-    $('#pause .restart').one('click touchstart', function(e) {
+    $('#pause .restart').one(clickType, function(e) {
       e.preventDefault();
       hidePanel('pause');
       store.set('gameStatus', {
@@ -819,7 +825,7 @@ ESVIJI.game = (function () {
       });
       startPlaying();
     });
-    $('#pause .exit').one('click touchstart', function(e) {
+    $('#pause .exit').one(clickType, function(e) {
       e.preventDefault();
       hidePanel('pause');
       stopPlaying();
@@ -829,11 +835,11 @@ ESVIJI.game = (function () {
   function gameOver() {
     showPanel('gameOver');
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
-    $('.playagain').one('click touchstart', function() {
+    $('.playagain').one(clickType, function() {
       hidePanel('gameOver');
       startPlaying();
     });
-    $('.exit').one('click touchstart', function() {
+    $('.exit').one(clickType, function() {
       hidePanel('gameOver');
       stopPlaying();
     });

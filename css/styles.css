@@ -108,8 +108,10 @@ body {
   fill: #fff;
   stroke-width: 0;
 }
-#playable:hover,
-.button:hover {
+#playable {
+  pointer-events: none;
+}
+#playable:hover {
   cursor: pointer;
 }
 #gameOverBackground,
@@ -156,6 +158,9 @@ body {
   fill: #ddd;
   stroke-width: 3;
   stroke: #666;
+}
+.button:hover {
+  cursor: pointer;
 }
 .button:hover rect {
   fill: #fff;
