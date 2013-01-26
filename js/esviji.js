@@ -141,7 +141,6 @@ ESVIJI.game = (function () {
   }
 
   function startPlaying() {
-    $('#main .start').off('click touchstart');
     hidePanel('main');
     if (!useStored) {
       gameStatus.level = ESVIJI.settings.launch.level;
@@ -986,3 +985,40 @@ window.addEventListener('load', function(e) {
     }
   }, false);
 }, false);
+
+/***************************************************************************************
+ * Firefox Install
+ * https://github.com/Rik/qr-gaia/blob/master/js/install.js
+ ***************************************************************************************/
+
+window.addEventListener('load', function installLoad(evt) {
+  function install() {
+    var manifestUrl = location.href.substring(0, location.href.lastIndexOf('/')) + '/manifest.webapp';
+    var request = window.navigator.mozApps.install(manifestUrl);
+    request.onsuccess = function() {
+      var appRecord = this.result;
+      console.log('Installation successful!');
+      var button = document.getElementById('installButton');
+      button.style.display = 'none';
+    };
+    request.onerror = function() {
+      // Display the error information from the DOMError object
+      console.log('Install failed, error: ' + this.error.name);
+    };
+  }
+
+  var request = navigator.mozApps.getSelf();
+  request.onsuccess = function() {
+    if (request.result) {
+      // we're installed, nothing to do
+    } else {
+      var button = document.getElementById('installButton');
+      button.addEventListener('click', install);
+      button.addEventListener('touchstart', install);
+      button.style.display = 'block';
+    }
+  };
+  request.onerror = function() {
+    console.log('Error checking installation status: ' + this.error.message);
+  };
+});
