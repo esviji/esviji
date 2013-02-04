@@ -1,6 +1,6 @@
 # esviji
 
-A variation around the famous Bubble Bobble game, in which you have to destroy balls and gain points as long as you can!
+A variation around the famous [Puzzle Bobble](http://en.wikipedia.org/wiki/Puzzle_Bobble) game (a.k.a. Bust-a-Move), in which you have to destroy balls and gain points as long as you can!
 
 To know how to play, please run the tutorial available on the launch screen of the game.
 
@@ -11,7 +11,7 @@ To know how to play, please run the tutorial available on the launch screen of t
 - Current game persistence: close your browser and resume your game when you return
 - Full off-line support
 
-This game came out of my mind 20 years ago thanks to the great platform that were [HP 48 calculators](http://en.wikipedia.org/wiki/HP-48_series) (I've had 3 of them). I loved playing Bubble Bobble, Tetris and other casual game on my HP, but was also eager to develop my own game (a sily habit I have to develop games to discover new platforms/languages), and came with this idea of a kind of mashup of Tetris and Bubble Bobble.
+This game came out of my mind 20 years ago thanks to the great platform that were [HP 48 calculators](http://en.wikipedia.org/wiki/HP-48_series) (I've had 3 of them). I loved playing Puzzle Bobble, Tetris and other casual game on my HP, but was also eager to develop my own game (a sily habit I have to develop games to discover new platforms/languages), and came with this idea of a kind of mashup of Puzzle Bobble and other games.
 
 I never found a satisfying name for this game, so I now took "esviji", a word game on "SVG".
 
