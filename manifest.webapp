@@ -6,9 +6,9 @@
   "fullscreen": "true",
   "orientation": ["portrait"],
   "icons": {
-    "60": "/img/icons/ffos/icon-60.png",
-    "128": "/img/icons/ffos/icon-128.png",
-    "512": "/img/icons/ffos/icon-512.png"
+    "60": "/img/firefox-os/icon-60.png",
+    "128": "/img/firefox-os/icon-128.png",
+    "512": "/img/firefox-os/icon-512.png"
   },
   "developer": {
     "name": "Nicolas Hoizey",
