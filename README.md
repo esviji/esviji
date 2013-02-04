@@ -32,9 +32,9 @@ esviji is open source, under MIT licence, feel free to <a href="https://github.c
 - [Open issues](https://github.com/nhoizey/esviji/issues?labels=Broken+browser+support&page=1&state=open)
 - [Open a new issue!](https://github.com/nhoizey/esviji/issues/new)
 
-## To do
+## Privacy policy
 
-Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direction=asc&page=1&sort=due_date).
+Aggregated analytics data is collected through Google Analytics and is only used to improve the product and develop features for the app.
 
 ## Building blocks
 
@@ -49,6 +49,10 @@ Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direct
 - [Karl](http://twitter.com/karlpro) for his kind assistance on Opera issues (some were real bugs, some were my own mistakes)
 - [Anthony](http://twitter.com/rik24d) for his kind assistance on Firefox issues (again, some were real bugs, some where MDN errors, some were my own mistakes)
 - [Matthias](http://twitter.com/madsgraphics) for his SVG animate events polyfil
+
+## To do
+
+Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direction=asc&page=1&sort=due_date).
 
 ## Contributing
 
