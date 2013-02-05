@@ -1,11 +1,11 @@
-// **esviji** is a variation around the famous Bubble Bobble game, in which you have to destroy balls and gain points as long as you can!
+// **esviji** is a variation around the famous Puzzle Bobble game (a.k.a. Bust-a-Move), in which you have to destroy balls and gain points as long as you can!
 //
 // It is [Nicolas Hoizey](http://gasteroprod.com/)'s silly pet project attempting to develop a cross device/browser game with SVG
 //
 // This game came out of my mind 20 years ago thanks to the great platform that were
 // [HP 48 calculators](http://en.wikipedia.org/wiki/HP-48_series) (I've had 3 of them).
-// I loved playing Tetris on my HP, but was also eager to develop my own game (a sily habit I have to develop games to discover
-// new platforms & languages), and came with this idea of a kind of mashup of Tetris and Bubble Bobble.
+// I loved playing Puzzle Bobble and Tetris on my HP, but was also eager to develop my own game (a sily habit I have to develop games to discover
+// new platforms & languages), and came with this idea of a kind of mashup of Puzzle Bobble and other games.
 //
 // I never found a satisfying name for this game, so I now took "esviji", a word game on "SVG".
 
@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.1.0',
+  version: '1.2.0',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -76,7 +76,7 @@ ESVIJI.game = (function () {
     nbBalls = 0,
     scoreThisTurn = 0,
     lastHitBall = ESVIJI.settings.rockId,
-    storageScores = store.get('scores') || [ ],
+    highScores = store.get('highScores') || [ ],
     gameStatus = store.get('gameStatus') || {
       'currentBalls': [],
       'currentBall': 0,
@@ -838,8 +838,31 @@ ESVIJI.game = (function () {
   }
 
   function gameOver() {
+    var l = highScores.length,
+        positioned = false,
+        gameDate = Date();
     showPanel('gameOver');
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
+    for (i = 0; i < l; i++) {
+      if (!positioned && (highScores[i] === undefined || highScores[i].score <= gameStatus.score)) {
+        for (j = l; j > i; j--) {
+          highScores[j] = highScores[j - 1];
+        }
+        highScores[i] = { 'score': gameStatus.score, 'date': gameDate};
+        positioned = true;
+      }
+    }
+    if (!positioned) {
+      highScores[l] = { 'score': gameStatus.score, 'date': gameDate};
+    }
+    store.set('highScores', highScores);
+    var scoresToShow = Math.min(l, 5);
+    for (i = 0; i < scoresToShow; i++) {
+      $('#gameOver .highscores text').eq(i).text(highScores[i].score);
+      if (gameDate === highScores[i].date) {
+        $('#gameOver .highscores text').eq(i).attr('class', 'thisone');
+      }
+    }
     $('.playagain').one(clickType, function() {
       hidePanel('gameOver');
       startPlaying();

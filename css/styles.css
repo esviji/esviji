@@ -145,6 +145,19 @@ body {
   fill: #eee;
   text-anchor: middle;
 }
+#gameOver .previoushigh {
+  font-size: 18px;
+  fill: #eee;
+  text-anchor: middle;
+}
+#gameOver .highscores {
+  font-size: 18px;
+  fill: #eee;
+  text-anchor: end;
+}
+#gameOver .highscores .thisone {
+  fill: #3c3;
+}
 .button {
   pointer-events: visible;
 }

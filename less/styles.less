@@ -140,10 +140,28 @@ html, body {
   stroke-width: 0;
 }
 
-#gameOver .score {
-  font-size: 34px;
-  fill: #eee;
-  text-anchor: middle;
+#gameOver {
+  .score {
+    font-size: 34px;
+    fill: #eee;
+    text-anchor: middle;
+  }
+
+  .previoushigh {
+    font-size: 18px;
+    fill: #eee;
+    text-anchor: middle;
+  }
+
+  .highscores {
+    font-size: 18px;
+    fill: #eee;
+    text-anchor: end;
+
+    .thisone {
+      fill: #3c3;
+    }
+  }
 }
 
 .button {
