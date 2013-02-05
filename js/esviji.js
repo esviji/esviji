@@ -856,7 +856,7 @@ ESVIJI.game = (function () {
       highScores[l] = { 'score': gameStatus.score, 'date': gameDate};
     }
     store.set('highScores', highScores);
-    var scoresToShow = Math.min(l, 5);
+    var scoresToShow = Math.min(l + 1, 5);
     for (i = 0; i < scoresToShow; i++) {
       $('#gameOver .highscores text').eq(i).text(highScores[i].score);
       if (gameDate === highScores[i].date) {
