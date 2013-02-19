@@ -1,6 +1,3 @@
-@bodyBkgBegin: #555;
-@bodyBkgEnd: #333;
-
 @font-face {
   font-family: 'SansitaOneRegular';
   src: url('font/sansitaone-webfont.woff') format('woff'),
@@ -12,34 +9,17 @@
 html, body {
   font-family: SansitaOneRegular;
   font-size: 18px;
+  background-color: #555;
   color:  #fff;
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
-
-  background: @bodyBkgBegin; // Old browsers
-  background: -moz-radial-gradient(center, ellipse cover, @bodyBkgBegin 0%, @bodyBkgEnd 100%); /* FF3.6+ */
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,@bodyBkgBegin), color-stop(100%,@bodyBkgEnd)); /* Chrome,Safari4+ */
-  background: -webkit-radial-gradient(center, ellipse cover, @bodyBkgBegin 0%,@bodyBkgEnd 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-radial-gradient(center, ellipse cover, @bodyBkgBegin 0%,@bodyBkgEnd 100%); /* Opera 12+ */
-  background: -ms-radial-gradient(center, ellipse cover, @bodyBkgBegin 0%,@bodyBkgEnd 100%); /* IE10+ */
-  background: radial-gradient(ellipse at center, @bodyBkgBegin 0%,@bodyBkgEnd 100%); /* W3C */
 }
 
 #board {
   stroke-width: 0;
-}
-
-#playzoneGradient {
-  stop.begin {
-    stop-color: #333;
-  }
-
-  stop.end {
-    stop-color: #111;
-  }
 }
 
 #play, #tutorial {

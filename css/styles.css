@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'SansitaOneRegular';
-  src: url('font/sansitaone-webfont.woff') format('woff'), url('fonts/sansitaone-webfont.svg#SansitaOneRegular') format('svg');
+  src: url('font/sansitaone-webfont.woff') format('woff'), url('font/sansitaone-webfont.svg#SansitaOneRegular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -8,40 +8,16 @@ html,
 body {
   font-family: SansitaOneRegular;
   font-size: 18px;
+  background-color: #555;
   color: #fff;
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #555555;
-  background: -moz-radial-gradient(center, ellipse cover, #555555 0%, #333333 100%);
-  /* FF3.6+ */
-
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #555555), color-stop(100%, #333333));
-  /* Chrome,Safari4+ */
-
-  background: -webkit-radial-gradient(center, ellipse cover, #555555 0%, #333333 100%);
-  /* Chrome10+,Safari5.1+ */
-
-  background: -o-radial-gradient(center, ellipse cover, #555555 0%, #333333 100%);
-  /* Opera 12+ */
-
-  background: -ms-radial-gradient(center, ellipse cover, #555555 0%, #333333 100%);
-  /* IE10+ */
-
-  background: radial-gradient(ellipse at center, #555555 0%, #333333 100%);
-  /* W3C */
-
 }
 #board {
   stroke-width: 0;
-}
-#playzoneGradient stop.begin {
-  stop-color: #333;
-}
-#playzoneGradient stop.end {
-  stop-color: #111;
 }
 #play .title,
 #tutorial .title {
