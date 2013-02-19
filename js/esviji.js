@@ -880,6 +880,7 @@ ESVIJI.game = (function () {
   function removeLife() {
     gameStatus.lives--;
     playSound('lostLife');
+    vibrate(500);
     drawLives();
     $('#play .lives').attr('class', 'lives changeDown');
     window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
@@ -950,6 +951,12 @@ ESVIJI.game = (function () {
   function playSound(type) {
     sounds[type].sound.play();
     window.setTimeout(function() { sounds[type].sound.pause(); }, sounds[type].dur);
+  }
+
+  function vibrate(duration) {
+    if ('function' === typeof(navigator.vibrate)) {
+      navigator.vibrate(duration);
+    }
   }
 
   function debug(string) {
