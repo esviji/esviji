@@ -110,7 +110,8 @@ body {
   fill: none;
 }
 #gameOver .title,
-#pause .title {
+#pause .title,
+#scores .title {
   font-size: 48px;
   text-anchor: middle;
   fill: #fff;
@@ -121,17 +122,12 @@ body {
   fill: #eee;
   text-anchor: middle;
 }
-#gameOver .previoushigh {
-  font-size: 18px;
-  fill: #eee;
-  text-anchor: middle;
-}
-#gameOver .highscores {
+#scores .highscores {
   font-size: 18px;
   fill: #eee;
   text-anchor: end;
 }
-#gameOver .highscores .thisone {
+#scores .highscores .thisone {
   fill: #3c3;
 }
 .button {

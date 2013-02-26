@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.3.0',
+  version: '1.4.0',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -77,6 +77,7 @@ ESVIJI.game = (function () {
     scoreThisTurn = 0,
     lastHitBall = ESVIJI.settings.rockId,
     highScores = store.get('highScores') || [ ],
+    lastGameDate = '',
     gameStatus = store.get('gameStatus') || {
       'currentBalls': [],
       'currentBall': 0,
@@ -120,8 +121,7 @@ ESVIJI.game = (function () {
   function run() {
     showInstall();
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
-      $('#main .start').one(clickType, startPlaying);
-      $('#main .tutorial').one(clickType, startTutorial);
+      startMain();
     } else {
       useStored = true;
       startPlaying();
@@ -147,6 +147,12 @@ ESVIJI.game = (function () {
         $('body').addClass('large').removeClass('tall');
       }
     }
+  }
+
+  function startMain() {
+    $('#main .start').one(clickType, startPlaying);
+    $('#main .tutorial').one(clickType, startTutorial);
+    $('#main .scores').one(clickType, startScores);
   }
 
   function startPlaying(event) {
@@ -184,8 +190,30 @@ ESVIJI.game = (function () {
     event.preventDefault();
     hidePanel('tutorial');
     showPanel('main');
-    $('#main .start').one(clickType, startPlaying);
-    $('#main .tutorial').one(clickType, startTutorial);
+    startMain(event);
+  }
+
+  function startScores() {
+    var l = highScores.length,
+        scoresToShow = Math.min(l + 1, 10);
+
+    hidePanel('main');
+    showPanel('scores');
+
+    for (i = 0; i < scoresToShow; i++) {
+      $('#scores .highscores text').eq(i).text(highScores[i].score);
+      if (lastGameDate === highScores[i].date) {
+        $('#gameOver .highscores text').eq(i).attr('class', 'thisone');
+      }
+    }
+    $('#scores .exit').one(clickType, endScores);
+  }
+
+  function endScores(event) {
+    event.preventDefault();
+    hidePanel('scores');
+    showPanel('main');
+    startMain();
   }
 
   function showPanel(panel) {
@@ -839,8 +867,9 @@ ESVIJI.game = (function () {
 
   function gameOver() {
     var l = highScores.length,
-        positioned = false,
-        gameDate = Date();
+        positioned = false;
+
+    lastGameDate = Date();
     showPanel('gameOver');
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
     for (i = 0; i < l; i++) {
@@ -848,21 +877,18 @@ ESVIJI.game = (function () {
         for (j = l; j > i; j--) {
           highScores[j] = highScores[j - 1];
         }
-        highScores[i] = { 'score': gameStatus.score, 'date': gameDate};
+        highScores[i] = { 'score': gameStatus.score, 'date': lastGameDate};
         positioned = true;
       }
     }
     if (!positioned) {
-      highScores[l] = { 'score': gameStatus.score, 'date': gameDate};
+      highScores[l] = { 'score': gameStatus.score, 'date': lastGameDate};
     }
     store.set('highScores', highScores);
-    var scoresToShow = Math.min(l + 1, 5);
-    for (i = 0; i < scoresToShow; i++) {
-      $('#gameOver .highscores text').eq(i).text(highScores[i].score);
-      if (gameDate === highScores[i].date) {
-        $('#gameOver .highscores text').eq(i).attr('class', 'thisone');
-      }
-    }
+    $('.scores').one(clickType, function() {
+      hidePanel('gameOver');
+      startScores();
+    });
     $('.playagain').one(clickType, function() {
       hidePanel('gameOver');
       startPlaying();
