@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.4.3',
+  version: '1.4.4',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -203,7 +203,7 @@ ESVIJI.game = (function () {
     for (i = 0; i < scoresToShow; i++) {
       $('#scores .highscores text').eq(i).text(highScores[i].score);
       if (lastGameDate === highScores[i].date) {
-        $('#gameOver .highscores text').eq(i).attr('class', 'thisone');
+        $('#scores .highscores text').eq(i).attr('class', 'thisone');
       }
     }
     $('#scores .exit').one(clickType, endScores);
