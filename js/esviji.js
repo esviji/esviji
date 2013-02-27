@@ -199,8 +199,8 @@ ESVIJI.game = (function () {
 
     hidePanel('main');
     showPanel('scores');
+    console.log(highScores);
     for (i = 0; i < scoresToShow; i++) {
-      console.log(i);
       $('#scores .highscores text').eq(i).text(highScores[i].score);
       if (lastGameDate === highScores[i].date) {
         $('#gameOver .highscores text').eq(i).attr('class', 'thisone');
