@@ -885,21 +885,25 @@ ESVIJI.game = (function () {
       highScores[l] = { 'score': gameStatus.score, 'date': lastGameDate};
     }
     store.set('highScores', highScores);
-    $('.scores').one(clickType, function() {
-      hidePanel('gameOver');
-      startScores();
-    });
-    $('.playagain').one(clickType, function() {
-      hidePanel('gameOver');
-      startPlaying();
-    });
-    $('.exit').one(clickType, function() {
-      hidePanel('gameOver');
-      stopPlaying();
-    });
     gameStatus.playing = false;
     store.set('gameStatus', {
       'playing': false
+    });
+
+    // buttons
+    $('#gameOver .scores').one(clickType, function() {
+      hidePanel('gameOver');
+      hidePanel('play');
+      showPanel('main');
+      startScores();
+    });
+    $('#gameOver .playagain').one(clickType, function() {
+      hidePanel('gameOver');
+      startPlaying();
+    });
+    $('#gameOver .exit').one(clickType, function() {
+      hidePanel('gameOver');
+      stopPlaying();
     });
   }
 
