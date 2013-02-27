@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.4.1',
+  version: '1.4.2',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -199,7 +199,7 @@ ESVIJI.game = (function () {
 
     hidePanel('main');
     showPanel('scores');
-    console.log(highScores);
+
     for (i = 0; i < scoresToShow; i++) {
       $('#scores .highscores text').eq(i).text(highScores[i].score);
       if (lastGameDate === highScores[i].date) {
