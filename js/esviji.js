@@ -197,6 +197,10 @@ ESVIJI.game = (function () {
     var l = highScores.length,
         scoresToShow = Math.min(l, 9);
 
+    console.log('ici');
+    console.log(highScores);
+    console.log('là');
+
     hidePanel('main');
     showPanel('scores');
 
