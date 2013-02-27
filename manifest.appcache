@@ -1,8 +1,14 @@
 CACHE MANIFEST
 # v1.4.5
+
+NETWORK:
+*
+
+CACHE:
 index.html
 css/styles.css
 css/font/sansitaone-webfont.svg
 css/font/sansitaone-webfont.woff
 js/vendor.js
 js/esviji.js
+
