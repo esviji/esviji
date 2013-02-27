@@ -195,11 +195,10 @@ ESVIJI.game = (function () {
 
   function startScores() {
     var l = highScores.length,
-        scoresToShow = Math.min(l + 1, 10);
+        scoresToShow = Math.min(l, 9);
 
     hidePanel('main');
     showPanel('scores');
-
     for (i = 0; i < scoresToShow; i++) {
       $('#scores .highscores text').eq(i).text(highScores[i].score);
       if (lastGameDate === highScores[i].date) {
