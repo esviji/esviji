@@ -224,7 +224,7 @@ ESVIJI.game = (function () {
         $('#play').css('opacity', 0.3);
       }
       // Google Analytics tracking of activated panel
-      _gaq.push(['_trackPageview', '/' + panel]);
+      _gaq.push(['_trackPageview', '/' + panel + '/']);
     }
   }
 
