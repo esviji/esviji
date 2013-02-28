@@ -223,6 +223,8 @@ ESVIJI.game = (function () {
       if (panel === 'pause' || panel === 'gameOver') {
         $('#play').css('opacity', 0.3);
       }
+      // Google Analytics tracking of activated panel
+      _gaq.push(['_trackPageview', '/' + panel]);
     }
   }
 
