@@ -16,7 +16,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.4.5',
+  version: '1.4.6',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -251,10 +251,6 @@ ESVIJI.game = (function () {
     }
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
-
-    // Google Analytics tracking of current level
-    _gaq.push(['_trackPageview', '/play/level-' + gameStatus.level]);
-
     startNewTurn();
   }
 
@@ -877,6 +873,11 @@ ESVIJI.game = (function () {
 
     lastGameDate = Date();
     showPanel('gameOver');
+
+    // Google Analytics tracking of level and score at the end of the game
+    _gaq.push(['_trackPageview', '/play/level/' + gameStatus.level]);
+    _gaq.push(['_trackPageview', '/play/score/' + gameStatus.score]);
+
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
     for (i = 0; i < l; i++) {
       if (!positioned && (highScores[i] === undefined || highScores[i].score <= gameStatus.score)) {
