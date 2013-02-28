@@ -251,6 +251,10 @@ ESVIJI.game = (function () {
     }
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
+
+    // Google Analytics tracking of current level
+    _gaq.push(['_trackPageview', '/play/level-' + gameStatus.level]);
+
     startNewTurn();
   }
 
