@@ -85,6 +85,8 @@ ESVIJI.game = (function () {
       clickType = 'touchstart';
     }
     $('.version').text(ESVIJI.settings.version);
+    _gaq.push(['_setCustomVar', 5, 'Version', ESVIJI.settings.version, 2]);
+
     viewportOptimize();
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
@@ -860,12 +862,12 @@ ESVIJI.game = (function () {
     var l = highScores.length,
         positioned = false;
 
+    // Google Analytics tracking of level and score at the end of the game
+    _gaq.push(['_setCustomVar', 2, 'Level', gameStatus.level, 3]);
+    _gaq.push(['_setCustomVar', 3, 'Score', gameStatus.score, 3]);
+
     lastGameDate = Date();
     showPanel('gameOver');
-
-    // Google Analytics tracking of level and score at the end of the game
-    _gaq.push(['_setCustomVar', 1, 'Level', gameStatus.level, 3]);
-    _gaq.push(['_setCustomVar', 1, 'Score', gameStatus.score, 3]);
 
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
     for (i = 0; i < l; i++) {
