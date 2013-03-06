@@ -55,7 +55,7 @@ body {
 #tutorial .level.changeDown,
 #play .lives.changeDown,
 #tutorial .lives.changeDown {
-  fill: #f00;
+  fill: #c0392b;
 }
 #play .score.changeUp,
 #tutorial .score.changeUp,
@@ -63,7 +63,7 @@ body {
 #tutorial .level.changeUp,
 #play .lives.changeUp,
 #tutorial .lives.changeUp {
-  fill: #0f0;
+  fill: #27ae60;
 }
 .pauseButton {
   pointer-events: visible;
