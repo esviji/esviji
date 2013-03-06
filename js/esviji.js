@@ -1,14 +1,3 @@
-// **esviji** is a variation around the famous Puzzle Bobble game (a.k.a. Bust-a-Move), in which you have to destroy balls and gain points as long as you can!
-//
-// It is [Nicolas Hoizey](http://gasteroprod.com/)'s silly pet project attempting to develop a cross device/browser game with SVG
-//
-// This game came out of my mind 20 years ago thanks to the great platform that were
-// [HP 48 calculators](http://en.wikipedia.org/wiki/HP-48_series) (I've had 3 of them).
-// I loved playing Puzzle Bobble and Tetris on my HP, but was also eager to develop my own game (a sily habit I have to develop games to discover
-// new platforms & languages), and came with this idea of a kind of mashup of Puzzle Bobble and other games.
-//
-// I never found a satisfying name for this game, so I now took "esviji", a word game on "SVG".
-
 // ## Create the main object
 
 var ESVIJI = {};
@@ -16,7 +5,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.5.0',
+  version: '1.5.1',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
