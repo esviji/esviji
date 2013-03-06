@@ -35,7 +35,7 @@ ESVIJI.settings = {
   'launch': {
     'lives': 9,
     'score': 0,
-    'level': 10
+    'level': 1
   },
   // game info at new turn start
   'turn': {
