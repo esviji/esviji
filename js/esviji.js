@@ -5,7 +5,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.5.1',
+  version: '1.5.2',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -864,8 +864,8 @@ ESVIJI.game = (function () {
     showPanel('gameOver');
 
     // Google Analytics tracking of level and score at the end of the game
-    _gaq.push(['_trackPageview', '/play/level/' + gameStatus.level]);
-    _gaq.push(['_trackPageview', '/play/score/' + gameStatus.score]);
+    _gaq.push(['_setCustomVar', 1, 'Level', gameStatus.level, 3]);
+    _gaq.push(['_setCustomVar', 1, 'Score', gameStatus.score, 3]);
 
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
     for (i = 0; i < l; i++) {
