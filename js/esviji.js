@@ -41,6 +41,7 @@ ESVIJI.settings = {
     'PixelRatio': 1,
     'Level': 2,
     'Score': 3,
+    'PlayableLevels': 4,
     'Version': 5
   }
 };
@@ -80,6 +81,7 @@ ESVIJI.game = (function () {
       'level': 0,
       'score': 0,
       'lives': 0,
+      'levelLostLives': 0,
       'playing': false
     },
     useStored = false,
@@ -98,6 +100,7 @@ ESVIJI.game = (function () {
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailableBalls = ESVIJI.settings.balls.length;
+
     // Available sounds
     sounds = {
       'error': {
@@ -114,16 +117,6 @@ ESVIJI.game = (function () {
       }
     };
     run();
-  }
-
-  function run() {
-    if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
-      showPanel('main');
-      startMain();
-    } else {
-      useStored = true;
-      startPlaying();
-    }
   }
 
   function viewportOptimize() {
@@ -144,6 +137,16 @@ ESVIJI.game = (function () {
         boardOffsetY = 0;
         $('body').addClass('large').removeClass('tall');
       }
+    }
+  }
+
+  function run() {
+    if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
+      showPanel('main');
+      startMain();
+    } else {
+      useStored = true;
+      startPlaying();
     }
   }
 
@@ -298,11 +301,13 @@ ESVIJI.game = (function () {
       drawBalls();
       getValidBalls();
       gameStatus.currentBall = validBalls[Math.floor(Math.random() * validBalls.length)];
+      gameStatus.playableLevel = { 'balls': gameStatus.currentBalls, 'ball': gameStatus.currentBall };
     } else {
       drawBalls();
     }
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
+    gameStatus.levelLostLives = 0;
     startNewTurn();
   }
 
@@ -327,6 +332,12 @@ ESVIJI.game = (function () {
       drawLives();
       $('#play .lives').attr('class', 'lives changeUp');
       window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
+
+      // Push to Google Analytics levels completed without any life lost
+      if (gameStatus.levelLostLives === 0) {
+        _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.PlayableLevels, 'PlayableLevels', JSON.stringify(gameStatus.playableLevel), 3]);
+      }
+
       nextLevel();
     } else {
       if (validBalls.indexOf(gameStatus.currentBall) == -1) {
@@ -929,6 +940,7 @@ ESVIJI.game = (function () {
 
   function removeLife() {
     gameStatus.lives--;
+    gameStatus.levelLostLives++;
     playSound('lostLife');
     vibrate(500);
     drawLives();
