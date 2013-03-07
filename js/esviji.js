@@ -187,7 +187,6 @@ ESVIJI.game = (function () {
       drawnCurrentBall.remove();
     }
     hidePanel('play');
-    showPanel('main');
     store.set('gameStatus', {
       'playing': false
     });
