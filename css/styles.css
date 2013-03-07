@@ -84,6 +84,30 @@ body {
   fill: #fff;
   stroke-width: 0;
 }
+.ball1 {
+  fill: #f39c12;
+  stroke: #e67e22;
+}
+.ball2 {
+  fill: #2ecc71;
+  stroke: #27ae60;
+}
+.ball3 {
+  fill: #3498db;
+  stroke: #2980b9;
+}
+.ball4 {
+  fill: #9b59b6;
+  stroke: #8e44ad;
+}
+.ball5 {
+  fill: #aa8866;
+  stroke: #776655;
+}
+.ball6 {
+  fill: #e74c3c;
+  stroke: #c0392b;
+}
 #playable {
   pointer-events: none;
 }
@@ -105,10 +129,6 @@ body {
 }
 #main .title {
   fill: #fff;
-}
-#main use text,
-#main .ball text {
-  fill: none;
 }
 #gameOver .title,
 #pause .title,
