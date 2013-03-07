@@ -5,7 +5,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.6.1',
+  version: '1.6.2',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -111,6 +111,7 @@ ESVIJI.game = (function () {
 
   function run() {
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
+      showPanel('main');
       startMain();
     } else {
       useStored = true;
@@ -140,6 +141,7 @@ ESVIJI.game = (function () {
   }
 
   function startMain() {
+    $('#pulse')[0].beginElement();
     $('#main .start').one(clickType, startPlaying);
     $('#main .scores').one(clickType, startScores);
     $('#main .settings').one(clickType, startSettings);
