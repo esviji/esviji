@@ -41,6 +41,7 @@ Aggregated analytics data is collected through Google Analytics and is only used
 - JavaScript, with a little bit of jQuery
 - [Matthias](http://twitter.com/madsgraphics)'s awesome [SVGEventListener polyfil](https://github.com/madsgraphics/SVGEventListener) for SVG animate events in webkit (once again)
 - [Craig Campbell](http://craig.is/)'s [mousetrap](http://craig.is/killing/mice) for keyboard controls
+- [Marcus Westin](http://twitter.com/marcuswestin)'s [store.js](https://github.com/marcuswestin/store.js) for localStorage wrapper
 - [mohayonao](http://twitter.com/mohayonao)'s [Timbre.js](https://github.com/mohayonao/timbre) for sounds
 
 ## Thanks a lot to…
