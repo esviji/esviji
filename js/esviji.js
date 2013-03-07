@@ -5,7 +5,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.5.2',
+  version: '1.6.0',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -110,7 +110,6 @@ ESVIJI.game = (function () {
   }
 
   function run() {
-    showInstall();
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
       startMain();
     } else {
@@ -142,8 +141,8 @@ ESVIJI.game = (function () {
 
   function startMain() {
     $('#main .start').one(clickType, startPlaying);
-    $('#main .tutorial').one(clickType, startTutorial);
     $('#main .scores').one(clickType, startScores);
+    $('#main .settings').one(clickType, startSettings);
   }
 
   function startPlaying(event) {
@@ -170,7 +169,7 @@ ESVIJI.game = (function () {
   }
 
   function startTutorial() {
-    hidePanel('main');
+    hidePanel('settings');
     showPanel('tutorial');
     $('#tutorial .pauseButton').one(clickType, endTutorial);
     $('#tutoAnimEnd')[0].addEventListener('endEvent', endTutorial, false);
@@ -180,8 +179,8 @@ ESVIJI.game = (function () {
   function endTutorial(event) {
     event.preventDefault();
     hidePanel('tutorial');
-    showPanel('main');
-    startMain(event);
+    showPanel('settings');
+    startSettings();
   }
 
   function startScores() {
@@ -203,6 +202,21 @@ ESVIJI.game = (function () {
   function endScores(event) {
     event.preventDefault();
     hidePanel('scores');
+    showPanel('main');
+    startMain();
+  }
+
+  function startSettings() {
+    hidePanel('main');
+    showPanel('settings');
+    $('#settings .tutorial').one(clickType, startTutorial);
+    $('#settings .exit').one(clickType, endSettings);
+    showInstall();
+  }
+
+  function endSettings(event) {
+    event.preventDefault();
+    hidePanel('settings');
     showPanel('main');
     startMain();
   }

@@ -106,12 +106,14 @@ body {
 #main .title {
   fill: #fff;
 }
-#main use text {
+#main use text,
+#main .ball text {
   fill: none;
 }
 #gameOver .title,
 #pause .title,
-#scores .title {
+#scores .title,
+#settings .title {
   font-size: 48px;
   text-anchor: middle;
   fill: #fff;
