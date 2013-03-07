@@ -5,7 +5,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.6.4',
+  version: '1.6.5',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -35,7 +35,14 @@ ESVIJI.settings = {
   },
   // animation settings
   'durationMove': 0.15,
-  'durationMorph': 0.5
+  'durationMorph': 0.5,
+  // Google Analytics custom vars slots
+  'GASlots': {
+    'PixelRatio': 1,
+    'Level': 2,
+    'Score': 3,
+    'Version': 5
+  }
 };
 
 // ## Add the game engine
@@ -85,7 +92,7 @@ ESVIJI.game = (function () {
       clickType = 'touchstart';
     }
     $('.version').text(ESVIJI.settings.version);
-    _gaq.push(['_setCustomVar', 5, 'Version', ESVIJI.settings.version, 2]);
+    _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Version, 'Version', ESVIJI.settings.version, 2]);
 
     viewportOptimize();
     cursorMinY = yToSvg(1);
@@ -166,8 +173,25 @@ ESVIJI.game = (function () {
     drawLevel();
     drawScore();
     drawLives();
-    $('#play .pauseButton').one(clickType, pause);
+    $('#play .pauseButton').one(clickType, startPause);
     nextLevel();
+  }
+
+  function stopPlaying() {
+    gameStatus.playing = false;
+    gameStatus.level = 0;
+    gameStatus.score = 0;
+    gameStatus.lives = 0;
+    eraseBalls();
+    if (drawnCurrentBall !== null) {
+      drawnCurrentBall.remove();
+    }
+    hidePanel('play');
+    showPanel('main');
+    store.set('gameStatus', {
+      'playing': false
+    });
+    run();
   }
 
   function startTutorial() {
@@ -221,6 +245,28 @@ ESVIJI.game = (function () {
     hidePanel('settings');
     showPanel('main');
     startMain();
+  }
+
+  function startPause() {
+    showPanel('pause');
+    $('#pause .resume').one(clickType, function(e) {
+      e.preventDefault();
+      hidePanel('pause');
+      $('#play .pauseButton').one(clickType, startPause);
+    });
+    $('#pause .restart').one(clickType, function(e) {
+      e.preventDefault();
+      hidePanel('pause');
+      store.set('gameStatus', {
+        'playing': false
+      });
+      startPlaying();
+    });
+    $('#pause .exit').one(clickType, function(e) {
+      e.preventDefault();
+      hidePanel('pause');
+      stopPlaying();
+    });
   }
 
   function showPanel(panel) {
@@ -835,52 +881,13 @@ ESVIJI.game = (function () {
     }
   }
 
-  function stopPlaying() {
-    gameStatus.playing = false;
-    gameStatus.level = 0;
-    gameStatus.score = 0;
-    gameStatus.lives = 0;
-    eraseBalls();
-    if (drawnCurrentBall !== null) {
-      drawnCurrentBall.remove();
-    }
-    hidePanel('play');
-    showPanel('main');
-    store.set('gameStatus', {
-      'playing': false
-    });
-    run();
-  }
-
-  function pause() {
-    showPanel('pause');
-    $('#pause .resume').one(clickType, function(e) {
-      e.preventDefault();
-      hidePanel('pause');
-      $('#play .pauseButton').one(clickType, pause);
-    });
-    $('#pause .restart').one(clickType, function(e) {
-      e.preventDefault();
-      hidePanel('pause');
-      store.set('gameStatus', {
-        'playing': false
-      });
-      startPlaying();
-    });
-    $('#pause .exit').one(clickType, function(e) {
-      e.preventDefault();
-      hidePanel('pause');
-      stopPlaying();
-    });
-  }
-
   function gameOver() {
     var l = highScores.length,
         positioned = false;
 
     // Google Analytics tracking of level and score at the end of the game
-    _gaq.push(['_setCustomVar', 2, 'Level', gameStatus.level, 3]);
-    _gaq.push(['_setCustomVar', 3, 'Score', gameStatus.score, 3]);
+    _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Level, 'Level', gameStatus.level, 3]);
+    _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Score, 'Score', gameStatus.score, 3]);
 
     lastGameDate = Date();
     showPanel('gameOver');
