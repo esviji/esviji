@@ -319,10 +319,12 @@ ESVIJI.game = (function () {
       getValidBalls();
       gameStatus.currentBall = validBalls[Math.floor(Math.random() * validBalls.length)];
     }
+
+    // TODO: remove "null" values from gameStatus.currentBalls
     gameStatus.levelReplay = {
       'lostLives': 0,
       'level': gameStatus.level,
-      'balls': gameStatus.currentBalls.clone(), // clone the array
+      'balls': gameStatus.currentBalls.map(function(a) { return a === null ? null : a.slice(); }), // clone the array (https://twitter.com/naholyr/status/311112698421198848)
       'sequence': []
     };
     stackedAnimationToStart = 1;
@@ -1150,20 +1152,3 @@ window.addEventListener('load', function(e) {
     }
   }, false);
 }, false);
-
-/***************************************************************************************
- * utility functions
- ***************************************************************************************/
-
-// http://stackoverflow.com/a/6082463/717195
-if (!Array.prototype.clone) {
-  Array.prototype.clone = function() {
-    var arr = this.slice(0);
-    for(var i = 0; i < this.length; i++) {
-      if (undefined !== this[i] && null !== this[i] && this[i].clone) {
-        arr[i] = this[i].clone();
-      }
-    }
-    return arr;
-  };
-}
