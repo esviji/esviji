@@ -5,7 +5,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.6.6',
+  version: '1.6.7',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -41,7 +41,6 @@ ESVIJI.settings = {
     'PixelRatio': 1,
     'Level': 2,
     'Score': 3,
-    'PlayableLevels': 4,
     'Version': 5
   }
 };
@@ -81,8 +80,13 @@ ESVIJI.game = (function () {
       'level': 0,
       'score': 0,
       'lives': 0,
-      'levelLostLives': 0,
-      'playing': false
+      'playing': false,
+      'levelReplay': {
+        'lostLives': 0,
+        'level': 0,
+        'balls': [],
+        'sequence': []
+      }
     },
     useStored = false,
     sounds = {},
@@ -100,6 +104,17 @@ ESVIJI.game = (function () {
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailableBalls = ESVIJI.settings.balls.length;
+
+    // Deal with localStore content that has been set when there was less data
+    if (undefined === gameStatus.levelReplay) {
+      // v1.6.7
+      gameStatus.levelReplay = {
+        'lostLives': 0,
+        'level': 0,
+        'balls': [],
+        'sequence': []
+      };
+    }
 
     // Available sounds
     sounds = {
@@ -296,18 +311,22 @@ ESVIJI.game = (function () {
   function nextLevel() {
     gameStatus.playing = true;
     eraseBalls();
-    if (!useStored) {
+    if (useStored) {
+      drawBalls();
+    } else {
       initBalls();
       drawBalls();
       getValidBalls();
       gameStatus.currentBall = validBalls[Math.floor(Math.random() * validBalls.length)];
-      gameStatus.playableLevel = { 'balls': gameStatus.currentBalls, 'ball': gameStatus.currentBall };
-    } else {
-      drawBalls();
     }
+    gameStatus.levelReplay = {
+      'lostLives': 0,
+      'level': gameStatus.level,
+      'balls': gameStatus.currentBalls.clone(), // clone the array
+      'sequence': []
+    };
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
-    gameStatus.levelLostLives = 0;
     startNewTurn();
   }
 
@@ -333,9 +352,10 @@ ESVIJI.game = (function () {
       $('#play .lives').attr('class', 'lives changeUp');
       window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
 
-      // Push to Google Analytics levels completed without any life lost
-      if (gameStatus.levelLostLives === 0) {
-        _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.PlayableLevels, 'PlayableLevels', JSON.stringify(gameStatus.playableLevel), 3]);
+      // Push to the server levels completed without any lost life
+      if (gameStatus.levelReplay.lostLives === 0) {
+        // call the API
+        //console.log(JSON.stringify(gameStatus.levelReplay));
       }
 
       nextLevel();
@@ -417,6 +437,12 @@ ESVIJI.game = (function () {
     moveCount = 0;
     oldPosX = currentPosX;
     oldPosY = currentPosY;
+
+    gameStatus.levelReplay.sequence.push({
+      'ball': gameStatus.currentBall,
+      'position': currentPosY
+    });
+
     playUserChoice();
   }
 
@@ -473,6 +499,12 @@ ESVIJI.game = (function () {
       moveCount = 0;
       oldPosX = currentPosX;
       oldPosY = currentPosY;
+
+      gameStatus.levelReplay.sequence.push({
+        'ball': gameStatus.currentBall,
+        'position': currentPosY
+      });
+
       playUserChoice();
     }
   }
@@ -1118,3 +1150,20 @@ window.addEventListener('load', function(e) {
     }
   }, false);
 }, false);
+
+/***************************************************************************************
+ * utility functions
+ ***************************************************************************************/
+
+// http://stackoverflow.com/a/6082463/717195
+if (!Array.prototype.clone) {
+  Array.prototype.clone = function() {
+    var arr = this.slice(0);
+    for(var i = 0; i < this.length; i++) {
+      if (undefined !== this[i] && null !== this[i] && this[i].clone) {
+        arr[i] = this[i].clone();
+      }
+    }
+    return arr;
+  };
+}
