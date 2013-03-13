@@ -6,9 +6,10 @@ NETWORK:
 
 CACHE:
 index.html
+favicon.ico
+img/favicon.png
 css/styles.css
 css/font/sansitaone-webfont.svg
 css/font/sansitaone-webfont.woff
 js/vendor.js
 js/esviji.js
-
