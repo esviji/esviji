@@ -228,7 +228,7 @@ ESVIJI.game = (function () {
 
   function startScores() {
     var l = highScores.length,
-        scoresToShow = Math.min(l, 9);
+        scoresToShow = Math.min(l, 10);
 
     hidePanel('main');
     showPanel('scores');
