@@ -119,15 +119,15 @@ ESVIJI.game = (function () {
     // Available sounds
     sounds = {
       'error': {
-        'sound': T("tri", T("tri", 2, 30, 880).kr(), 0.25),
-        'dur': 1000
+        'sound': T("tri", T("tri", 2, 100, 440), 0.25),
+        'dur': 1500
       },
       'destroy': {
         'sound': T("*", T("sin", 440), T("sin", 880)).set({mul: 0.25}),
-        'dur': 100
+        'dur': 80
       },
       'lostLife': {
-        'sound': T("*", T("sin", 523.35), T("sin", 659.25), T("sin", 783.99)).set({mul: 0.25}),
+        'sound': T("*", T("sin", 523.35), T("sin", 659.25)).set({mul: 0.25}),
         'dur': 300
       }
     };
