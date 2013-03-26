@@ -5,7 +5,7 @@ var ESVIJI = {};
 // ## Add default settings
 
 ESVIJI.settings = {
-  version: '1.6.7',
+  version: '1.6.8',
   // board size and according ball extreme positions
   'board': {
     'width': 320,
@@ -86,6 +86,9 @@ ESVIJI.game = (function () {
         'level': 0,
         'balls': [],
         'sequence': []
+      },
+      preferences: {
+        'sound': true
       }
     },
     useStored = false,
@@ -113,6 +116,12 @@ ESVIJI.game = (function () {
         'level': 0,
         'balls': [],
         'sequence': []
+      };
+    }
+    if (undefined === gameStatus.preferences) {
+      // v1.6.8
+      gameStatus.preferences = {
+        'sound': true
       };
     }
 
@@ -252,6 +261,11 @@ ESVIJI.game = (function () {
   function startSettings() {
     hidePanel('main');
     showPanel('settings');
+    $('#settings .prefsSound text').text('Sound is ' + (gameStatus.preferences.sound ? 'on' : 'off'));
+    $('#settings .prefsSound').bind(clickType, function() {
+      gameStatus.preferences.sound = !gameStatus.preferences.sound;
+      $('#settings .prefsSound text').text('Sound is ' + (gameStatus.preferences.sound ? 'on' : 'off'));
+    });
     $('#settings .tutorial').one(clickType, startTutorial);
     $('#settings .exit').one(clickType, endSettings);
     showInstall();
@@ -286,6 +300,7 @@ ESVIJI.game = (function () {
     });
   }
 
+  // There is no z-index in SVG, so we need to "create" panel we want on top of all others
   function showPanel(panel) {
     if ( $('#' + panel).length === 0 && $('#' + panel + 'Panel').length === 1) {
       $('#' + panel + 'Panel').clone().attr('id', panel).appendTo('#board');
@@ -1045,8 +1060,10 @@ ESVIJI.game = (function () {
   }
 
   function playSound(type) {
-    sounds[type].sound.play();
-    window.setTimeout(function() { sounds[type].sound.pause(); }, sounds[type].dur);
+    if (gameStatus.preferences.sound) {
+      sounds[type].sound.play();
+      window.setTimeout(function() { sounds[type].sound.pause(); }, sounds[type].dur);
+    }
   }
 
   function vibrate(duration) {
