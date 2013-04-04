@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     copy: {
       dist: {
         files: [
-          { expand: true, cwd: 'src/', src: ['.htaccess', 'esviji-icon.png', 'favicon.ico'], dest: 'dist/' },
+          { expand: true, cwd: 'src/', src: ['.htaccess', 'esviji-icon.png', 'favicon.ico', 'manifest.webapp'], dest: 'dist/' },
           { expand: true, cwd: 'src/', src: ['css/font/*'], dest: 'dist/' },
           { expand: true, cwd: 'src/', src: ['img/favicon.png', 'img/firefox-os/*', 'img/ios/*', 'img/windows-8/*'], dest: 'dist/' }
         ]
@@ -81,6 +81,15 @@ module.exports = function(grunt) {
         ],
         dest: 'dist/manifest.appcache'
       }
+    },
+
+    sed: {
+      version: {
+        path: 'dist/',
+        recursive: true,
+        pattern: '%VERSION%',
+        replacement: '<%= pkg.version %>'
+      }
     }
   });
 
@@ -91,6 +100,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-manifest');
+  grunt.loadNpmTasks('grunt-sed');
 
-  grunt.registerTask('default', ['clean:dist', 'copy:dist', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'htmlmin:dist', 'manifest']);
+  grunt.registerTask('default', ['clean:dist', 'copy:dist', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'htmlmin:dist', 'manifest', 'sed:version']);
 };
