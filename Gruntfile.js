@@ -63,6 +63,22 @@ module.exports = function(grunt) {
       }
     },
 
+    rev: {
+      options: {
+        algorithm: 'md5',
+        length: 8
+      },
+      assets: {
+        files: [{
+          src: [
+            'dist/img/**/*.{jpg,jpeg,gif,png}',
+            'dist/css/**/*.{css}',
+            'dist/js/**/*.{js}'
+          ]
+        }]
+      }
+    },
+
     manifest: {
       generate: {
         options: {
@@ -99,8 +115,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-rev');
   grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-sed');
 
-  grunt.registerTask('default', ['clean:dist', 'copy:dist', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'htmlmin:dist', 'manifest', 'sed:version']);
+  grunt.registerTask('default', ['clean:dist', 'copy:dist', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'htmlmin:dist', /*'rev',*/ 'manifest', 'sed:version']);
 };
