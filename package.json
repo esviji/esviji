@@ -1,0 +1,28 @@
+{
+  "name": "esviji",
+  "version": "1.6.8",
+  "description": "esviji is a variation around the famous Puzzle Bobble game (a.k.a. Bust-a-Move), in which you have to destroy balls and gain points as long as you can!",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nhoizey/esviji.git"
+  },
+  "keywords": [
+    "game",
+    "svg"
+  ],
+  "author": "Nicolas Hoizey",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.1.3",
+    "uglify-js": "~2.2.5",
+    "grunt-manifest": "~0.4.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-cssmin": "~0.5.0",
+    "grunt-contrib-htmlmin": "~0.1.1"
+  }
+}
