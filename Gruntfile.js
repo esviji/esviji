@@ -67,7 +67,6 @@ module.exports = function(grunt) {
       generate: {
         options: {
           basePath: 'dist/',
-          cache: ['index.html', 'favicon.ico', 'img/favicon.png', 'js/app.js', 'css/styles.css', 'css/font/sansitaone-webfont.svg', 'css/font/sansitaone-webfont.woff'],
           network: ['*'],
           verbose: true,
           timestamp: true
@@ -77,7 +76,7 @@ module.exports = function(grunt) {
           'favicon.ico',
           'img/favicon.png',
           'js/app.js',
-          'css/style.css',
+          'css/styles.css',
           'css/font/*'
         ],
         dest: 'dist/manifest.appcache'
