@@ -36,11 +36,11 @@ module.exports = function(grunt) {
 
     growl: {
       less: {
-        message : "Recompilation LESS",
+        message : "LESS compilation…",
         title : "Grunt watcher"
       },
       manifest: {
-        message : "Mise à jour de manifest.appcache",
+        message : "Updating manifest.appcache…",
         title : "Grunt watcher"
       }
     },
@@ -165,10 +165,6 @@ module.exports = function(grunt) {
         }
       }
     }
-  });
-
-  grunt.event.on('watch', function(action, filepath) {
-    grunt.log.writeln(filepath + ' has ' + action);
   });
 
   grunt.registerTask('default', ['less', 'manifest:src', 'watch']);
