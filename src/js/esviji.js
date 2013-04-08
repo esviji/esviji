@@ -191,10 +191,10 @@ ESVIJI.game = (function () {
       gameStatus.score = ESVIJI.settings.launch.score;
       gameStatus.lives = ESVIJI.settings.launch.lives;
       hidePanel('play');
-      if (drawnCurrentBall !== null) {
+      if (null !== drawnCurrentBall) {
         drawnCurrentBall.remove();
-        drawnCurrentBall = null;
       }
+      drawnCurrentBall = null;
     }
     showPanel('play');
     drawLevel();
@@ -210,7 +210,7 @@ ESVIJI.game = (function () {
     gameStatus.score = 0;
     gameStatus.lives = 0;
     eraseBalls();
-    if (drawnCurrentBall !== null) {
+    if (null !== drawnCurrentBall) {
       drawnCurrentBall.remove();
     }
     hidePanel('play');
@@ -358,7 +358,9 @@ ESVIJI.game = (function () {
 
     if (validBalls.length === 0) {
       // no more valid ball, end of the turn
-      drawnCurrentBall.remove(); // TODO: animate
+      if (null !== drawnCurrentBall) {
+        drawnCurrentBall.remove(); // TODO: animate
+      }
       drawnCurrentBall = null;
       gameStatus.level++;
       drawLevel();
@@ -390,7 +392,9 @@ ESVIJI.game = (function () {
         });
         notPlayableAnimMain.addEventListener("beginEvent", function () { playSound('error'); }, false);
         notPlayableAnimMain.addEventListener("endEvent", notPlayable, false);
-        drawnCurrentBall.append(notPlayableAnimMain);
+        if (null !== drawnCurrentBall) {
+          drawnCurrentBall.append(notPlayableAnimMain);
+        }
         $('[data-valid=true]').each(function() {
           that = $(this);
           var notPlayableAnim = svgAnimate({
@@ -409,7 +413,7 @@ ESVIJI.game = (function () {
         store.set('gameStatus', gameStatus);
         useStored = false;
         if (gameStatus.playing) {
-          if (drawnCurrentBall === null) {
+          if (null === drawnCurrentBall) {
             drawnCurrentBall = drawBall(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
           }
           $('#play .playzone').on('mousedown touchstart', cursorStart);
@@ -424,7 +428,9 @@ ESVIJI.game = (function () {
   }
 
   function notPlayable() {
-    drawnCurrentBall.remove();
+    if (null !== drawnCurrentBall) {
+      drawnCurrentBall.remove();
+    }
     drawnCurrentBall = null;
     removeLife();
     gameStatus.currentBall = validBalls[Math.floor(Math.random() * validBalls.length)];
