@@ -8,3 +8,4 @@ AddType application/x-web-app-manifest+json webapp
   #ExpiresByType text/cache-manifest  "access plus 5 seconds"
 </IfModule>
 FileETag None
+
