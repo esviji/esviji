@@ -1,65 +1,99 @@
 module.exports = function(grunt) {
 
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-rev');
+  grunt.loadNpmTasks('grunt-manifest');
+  grunt.loadNpmTasks('grunt-sed');
+  grunt.loadNpmTasks('grunt-docco');
+  grunt.loadNpmTasks('grunt-growl');
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    watch: {
+      less: {
+        options: {
+          debounceDelay: 250
+        },
+        files: 'src/less/*.less',
+        tasks: ['growl:less', 'less']
+      },
+      manifest: {
+        options: {
+          debounceDelay: 250
+        },
+        files: ['src/index.html', 'src/css/**', 'src/js/**', 'src/img/**'],
+        tasks: ['growl:manifest', 'manifest:src']
+      }
+    },
+
+    growl: {
+      less: {
+        message : "Recompilation LESS",
+        title : "Grunt watcher"
+      },
+      manifest: {
+        message : "Mise à jour de manifest.appcache",
+        title : "Grunt watcher"
+      }
+    },
+
+    less: {
+      src: {
+        files: {
+          "src/css/styles.css": "src/less/styles.less"
+        }
+      }
+    },
+
     clean: {
       dist: {
-        src: ['dist/']
+        src: 'dist/'
       }
     },
 
     copy: {
       dist: {
         files: [
-          { expand: true, cwd: 'src/', src: ['.htaccess', 'esviji-icon.png', 'favicon.ico', 'manifest.webapp'], dest: 'dist/' },
+          { expand: true, cwd: 'src/', src: ['.htaccess', 'esviji-icon.png', 'favicon.ico', 'index.html', 'manifest.webapp'], dest: 'dist/' },
           { expand: true, cwd: 'src/', src: ['css/font/*'], dest: 'dist/' },
           { expand: true, cwd: 'src/', src: ['img/favicon.png', 'img/firefox-os/*', 'img/ios/*', 'img/windows-8/*'], dest: 'dist/' }
         ]
       }
     },
 
+    useminPrepare: {
+      options: {
+        dest: 'dist/'
+      },
+      html: 'src/index.html'
+    },
+    usemin: {
+      html: 'dist/index.html'
+    },
+
     concat: {
       options: {
         separator: ';'
-      },
-      dist: {
-        src: ['src/js/vendor/*.js', 'src/js/esviji.js'],
-        dest: 'dist/js/app.js'
       }
     },
 
     uglify: {
-      dist: {
-        options: {
-          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'
-        },
-        files: {
-          'dist/js/app.js': ['dist/js/app.js']
-        }
+      options: {
+        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'
       }
     },
 
     cssmin: {
-      dist: {
-        options: {
-          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'
-        },
-        files: {
-          'dist/css/styles.css': ['src/css/styles.css']
-        }
-      }
-    },
-
-    htmlmin: {
-      dist: {
-        options: {
-          removeComments: true,
-          collapseWhitespace: true
-        },
-        files: {
-          'dist/index.html': 'src/index.html'
-        }
+      options: {
+        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'
       }
     },
 
@@ -80,7 +114,23 @@ module.exports = function(grunt) {
     },
 
     manifest: {
-      generate: {
+      src: {
+        options: {
+          basePath: 'src/',
+          network: ['*'],
+          verbose: true,
+          timestamp: true
+        },
+        src: [
+          'favicon.ico',
+          'img/favicon.png',
+          'js/**/*.js',
+          'css/styles.css',
+          'css/font/*'
+        ],
+        dest: 'src/manifest.appcache'
+      },
+      dist: {
         options: {
           basePath: 'dist/',
           network: ['*'],
@@ -88,7 +138,6 @@ module.exports = function(grunt) {
           timestamp: true
         },
         src: [
-          'index.html',
           'favicon.ico',
           'img/favicon.png',
           'js/app.js',
@@ -106,18 +155,22 @@ module.exports = function(grunt) {
         pattern: '%VERSION%',
         replacement: '<%= pkg.version %>'
       }
+    },
+
+    docco: {
+      debug: {
+        src: ['src/js/esviji.js'],
+        options: {
+          output: 'docs/'
+        }
+      }
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-htmlmin');
-  grunt.loadNpmTasks('grunt-rev');
-  grunt.loadNpmTasks('grunt-manifest');
-  grunt.loadNpmTasks('grunt-sed');
+  grunt.event.on('watch', function(action, filepath) {
+    grunt.log.writeln(filepath + ' has ' + action);
+  });
 
-  grunt.registerTask('default', ['clean:dist', 'copy:dist', 'concat:dist', 'uglify:dist', 'cssmin:dist', 'htmlmin:dist', /*'rev',*/ 'manifest', 'sed:version']);
+  grunt.registerTask('default', ['less', 'manifest:src', 'watch']);
+  grunt.registerTask('package', ['less', 'clean', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin', /*'rev',*/ 'manifest:dist', 'sed', 'docco']);
 };
