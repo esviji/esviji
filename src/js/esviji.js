@@ -197,7 +197,7 @@ ESVIJI.game = (function () {
       // v1.8.0
       gameStatus.preferences.difficulty = 'Beginner';
     }
-    if (highScores.length > 0 && undefined !== highScores[0].score) {
+    if (highScores.length === 0 || (highScores.length > 0 && undefined === highScores.Beginner)) {
       // v1.8.1
       oldHighScores = highScores;
       highScores = {
