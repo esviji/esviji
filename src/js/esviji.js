@@ -320,23 +320,41 @@ ESVIJI.game = (function () {
   }
 
   function startScores() {
-    var l = highScores[gameStatus.preferences.difficulty].length,
-        scoresToShow = Math.min(l, 10);
+    var difficulty = gameStatus.preferences.difficulty;
 
     hidePanel('main');
     showPanel('scores');
 
-    for (i = 0; i < 10; i++) {
-      $('#scores .highscores text').eq(i).text('-');
-    }
+    $('#scores .difficulty text').text(difficulty);
+    $('#scores .difficulty').bind(clickType, function() {
+      var nextDifficulty = {
+            Beginner: 'Easy',
+            Easy: 'Hard',
+            Hard: 'Crazy',
+            Crazy: 'Beginner'
+          },
+          difficulty = nextDifficulty[$(this).find('text').text()];
 
-    for (i = 0; i < scoresToShow; i++) {
-      $('#scores .highscores text').eq(i).text(highScores[gameStatus.preferences.difficulty][i].score);
-      if (lastGameDate === highScores[gameStatus.preferences.difficulty][i].date) {
-        $('#scores .highscores text').eq(i).attr('class', 'thisone');
+      $('#scores .difficulty text').text(difficulty);
+      writeScores(difficulty);
+    });
+
+    writeScores(difficulty);
+
+    $('#scores .exit').one(clickType, endScores);
+  }
+
+  function writeScores(difficulty) {
+    for (i = 0; i < 10; i++) {
+      if (undefined !== highScores[difficulty][i]) {
+        $('#scores .highscores text').eq(i).text(highScores[difficulty][i].score);
+        if (difficulty === gameStatus.preferences.difficulty && lastGameDate === highScores[difficulty][i].date) {
+          $('#scores .highscores text').eq(i).attr('class', 'thisone');
+        }
+      } else {
+        $('#scores .highscores text').eq(i).text('-').attr('class', '');
       }
     }
-    $('#scores .exit').one(clickType, endScores);
   }
 
   function endScores(event) {
@@ -927,7 +945,6 @@ ESVIJI.game = (function () {
 
   function initBalls(thisLevel) {
     thisLevel = thisLevel || gameStatus.level;
-    console.log(gameStatus.preferences.difficulty);
     nbBalls = ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].balls(thisLevel);
     gameStatus.currentBalls = [];
 
