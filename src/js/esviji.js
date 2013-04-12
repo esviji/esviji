@@ -1286,8 +1286,8 @@ window.addEventListener('orientationchange', hideAddressBar);
  * appcache
  ***************************************************************************************/
 
-// Check if a new cache is available on page load.
-window.addEventListener('load', function(e) {
+// Check if a new cache is available
+if (window.applicationCache) {
   window.applicationCache.addEventListener('updateready', function(e) {
     if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
       // Browser downloaded a new app cache.
@@ -1298,4 +1298,4 @@ window.addEventListener('load', function(e) {
       }
     }
   }, false);
-}, false);
+}
