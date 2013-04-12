@@ -1256,6 +1256,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 window.addEventListener('resize', ESVIJI.game.viewportOptimize);
+window.addEventListener('orientationchange', ESVIJI.game.viewportOptimize);
 
 /***************************************************************************************
  * Hide address bar in mobile browsers
