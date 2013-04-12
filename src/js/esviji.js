@@ -26,6 +26,73 @@ ESVIJI.settings = {
     'score': 0,
     'level': 1
   },
+  // game difficulty levels
+  'difficulties': {
+    Beginner: {
+      rows: function rows(level) {
+        return 3;
+      },
+      columns: function columns(level) {
+        return 3;
+      },
+      balls: function balls(level) {
+        return Math.max(2, Math.min(3, 2 + Math.floor((level - 1) / 3)));
+      },
+      rocks: function rocks(level) {
+        return 0;
+      },
+      extraLifePoints: 200,
+      extraLifeLevel: 0
+    },
+    Easy: {
+      rows: function rows(level) {
+        return Math.max(3, Math.min(6, 3 + Math.floor((level - 1) / 3)));
+      },
+      columns: function columns(level) {
+        return Math.max(3, Math.min(6, 3 + Math.floor((level - 1) / 3)));
+      },
+      balls: function balls(level) {
+        return Math.max(2, Math.min(5, 2 + Math.floor((level - 1) / 2)));
+      },
+      rocks: function rocks(level) {
+        return Math.min(5, Math.floor((level - 1) / 5));
+      },
+      extraLifePoints: 200,
+      extraLifeLevel: 1
+    },
+    Hard: {
+      rows: function rows(level) {
+        return Math.max(5, Math.min(7, 5 + Math.floor((level - 1) / 3)));
+      },
+      columns: function columns(level) {
+        return Math.max(5, Math.min(6, 5 + Math.floor((level - 1) / 3)));
+      },
+      balls: function balls(level) {
+        return Math.max(4, Math.min(6, 4 + Math.floor((level - 1) / 2)));
+      },
+      rocks: function rocks(level) {
+        return Math.min(10, Math.floor((level - 1) / 4));
+      },
+      extraLifePoints: 100,
+      extraLifeLevel: 1
+    },
+    Crazy: {
+      rows: function rows(level) {
+        return 7;
+      },
+      columns: function columns(level) {
+        return 7;
+      },
+      balls: function balls(level) {
+        return 6;
+      },
+      rocks: function rocks(level) {
+        return Math.min(20, level);
+      },
+      extraLifePoints: 50,
+      extraLifeLevel: 1
+    }
+  },
   // game info at new turn start
   'turn': {
     'posX': 10,
@@ -41,6 +108,7 @@ ESVIJI.settings = {
     'PixelRatio': 1,
     'Level': 2,
     'Score': 3,
+    'Difficulty': 4,
     'Version': 5
   }
 };
@@ -75,20 +143,21 @@ ESVIJI.game = (function () {
     highScores = store.get('highScores') || [ ],
     lastGameDate = '',
     gameStatus = store.get('gameStatus') || {
-      'currentBalls': [],
-      'currentBall': 0,
-      'level': 0,
-      'score': 0,
-      'lives': 0,
-      'playing': false,
-      'levelReplay': {
-        'lostLives': 0,
-        'level': 0,
-        'balls': [],
-        'sequence': []
+      currentBalls: [],
+      currentBall: 0,
+      level: 0,
+      score: 0,
+      lives: 0,
+      playing: false,
+      levelReplay: {
+        lostLives: 0,
+        level: 0,
+        balls: [],
+        sequence: []
       },
       preferences: {
-        'sound': true
+        sound: true,
+        difficulty: 'Beginner'
       }
     },
     useStored = false,
@@ -123,6 +192,21 @@ ESVIJI.game = (function () {
       gameStatus.preferences = {
         'sound': true
       };
+    }
+    if (undefined === gameStatus.preferences.difficulty) {
+      // v1.8.0
+      gameStatus.preferences.difficulty = 'Beginner';
+    }
+    if (highScores.length > 0 && undefined !== highScores[0].score) {
+      // v1.8.1
+      oldHighScores = highScores;
+      highScores = {
+        Beginner: [],
+        Easy: [],
+        Hard: oldHighScores,
+        Crazy: []
+      };
+      store.set('highScores', highScores);
     }
 
     // Available sounds
@@ -236,15 +320,19 @@ ESVIJI.game = (function () {
   }
 
   function startScores() {
-    var l = highScores.length,
+    var l = highScores[gameStatus.preferences.difficulty].length,
         scoresToShow = Math.min(l, 10);
 
     hidePanel('main');
     showPanel('scores');
 
+    for (i = 0; i < 10; i++) {
+      $('#scores .highscores text').eq(i).text('-');
+    }
+
     for (i = 0; i < scoresToShow; i++) {
-      $('#scores .highscores text').eq(i).text(highScores[i].score);
-      if (lastGameDate === highScores[i].date) {
+      $('#scores .highscores text').eq(i).text(highScores[gameStatus.preferences.difficulty][i].score);
+      if (lastGameDate === highScores[gameStatus.preferences.difficulty][i].date) {
         $('#scores .highscores text').eq(i).attr('class', 'thisone');
       }
     }
@@ -261,10 +349,25 @@ ESVIJI.game = (function () {
   function startSettings() {
     hidePanel('main');
     showPanel('settings');
-    $('#settings .prefsSound text').text('Sound is ' + (gameStatus.preferences.sound ? 'on' : 'off'));
+
+    $('#settings .prefsDifficulty text').text(gameStatus.preferences.difficulty);
+    $('#settings .prefsDifficulty').bind(clickType, function() {
+      var nextDifficulty = {
+        Beginner: 'Easy',
+        Easy: 'Hard',
+        Hard: 'Crazy',
+        Crazy: 'Beginner'
+      };
+      gameStatus.preferences.difficulty = nextDifficulty[gameStatus.preferences.difficulty];
+      store.set('gameStatus', gameStatus);
+      $('#settings .prefsDifficulty text').text(gameStatus.preferences.difficulty);
+    });
+
+    $('#settings .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
     $('#settings .prefsSound').bind(clickType, function() {
       gameStatus.preferences.sound = !gameStatus.preferences.sound;
-      $('#settings .prefsSound text').text('Sound is ' + (gameStatus.preferences.sound ? 'on' : 'off'));
+      store.set('gameStatus', gameStatus);
+      $('#settings .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
     });
     $('#settings .tutorial').one(clickType, startTutorial);
     $('#settings .exit').one(clickType, endSettings);
@@ -366,13 +469,17 @@ ESVIJI.game = (function () {
       drawLevel();
       $('#play .level').attr('class', 'level changeUp');
       window.setTimeout(function() { $('#play .level').attr('class', 'level'); }, 2000);
-      gameStatus.lives++;
-      drawLives();
-      $('#play .lives').attr('class', 'lives changeUp');
-      window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
+
+      if (ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].extraLifeLevel > 0) {
+        gameStatus.lives += ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].extraLifeLevel;
+        drawLives();
+        $('#play .lives').attr('class', 'lives changeUp');
+        window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
+      }
 
       // Push to the server levels completed without any lost life
       if (gameStatus.levelReplay.lostLives === 0) {
+        // TODO
         // call the API
         //console.log(JSON.stringify(gameStatus.levelReplay));
       }
@@ -780,7 +887,7 @@ ESVIJI.game = (function () {
     var aboveBalls;
 
     lastStackedAnimationBeforeFall = lastStackedAnimation;
-    for (x = 1; x <= 6; x++) {
+    for (x = 1; x <= 7; x++) {
       for (y = 1; y <= 7; y++) {
         if (gameStatus.currentBalls[x][y] == ESVIJI.settings.emptyId) {
           aboveBalls = 0;
@@ -820,7 +927,8 @@ ESVIJI.game = (function () {
 
   function initBalls(thisLevel) {
     thisLevel = thisLevel || gameStatus.level;
-    nbBalls = Math.min(maxAvailableBalls, Math.floor(3 + (thisLevel / 3)));
+    console.log(gameStatus.preferences.difficulty);
+    nbBalls = ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].balls(thisLevel);
     gameStatus.currentBalls = [];
 
     for (x = 1; x <= ESVIJI.settings.board.xMax; x++) {
@@ -830,7 +938,7 @@ ESVIJI.game = (function () {
           // put the "stair" rocks
           gameStatus.currentBalls[x][y] = ESVIJI.settings.rockId;
         } else {
-          if ((x <= Math.max(Math.min(thisLevel, 6), 3)) && (y <= Math.max(Math.min(thisLevel, 7), 3))) {
+          if ((x <= ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].columns(thisLevel)) && (y <= ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].rows(thisLevel))) {
             // a ball
             gameStatus.currentBalls[x][y] = 1 + Math.floor(Math.random() * nbBalls);
           } else {
@@ -840,17 +948,15 @@ ESVIJI.game = (function () {
         }
       }
     }
-    // add rocks in the middle after level 10
-    if (thisLevel > 8) {
-      nbRocks = Math.floor((thisLevel - 6) / 3);
-      positionedRocks = 0;
-      while (positionedRocks < nbRocks) {
-        rock_x = 1 + Math.floor(Math.random() * 6);
-        rock_y = 1 + Math.floor(Math.random() * 6);
-        if (gameStatus.currentBalls[rock_x][rock_y] !== ESVIJI.settings.rockId) {
-          gameStatus.currentBalls[rock_x][rock_y] = ESVIJI.settings.rockId;
-          positionedRocks++;
-        }
+    // add rocks
+    nbRocks = ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].rocks(thisLevel);
+    positionedRocks = 0;
+    while (positionedRocks < nbRocks) {
+      rock_x = 1 + Math.floor(Math.random() * ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].rows(thisLevel));
+      rock_y = 1 + Math.floor(Math.random() * ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].columns(thisLevel));
+      if (gameStatus.currentBalls[rock_x][rock_y] !== ESVIJI.settings.rockId) {
+        gameStatus.currentBalls[rock_x][rock_y] = ESVIJI.settings.rockId;
+        positionedRocks++;
       }
     }
   }
@@ -947,10 +1053,11 @@ ESVIJI.game = (function () {
   }
 
   function gameOver() {
-    var l = highScores.length,
+    var l = highScores[gameStatus.preferences.difficulty].length,
         positioned = false;
 
     // Google Analytics tracking of level and score at the end of the game
+    _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Difficulty, 'Difficulty', gameStatus.preferences.difficulty, 3]);
     _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Level, 'Level', gameStatus.level, 3]);
     _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Score, 'Score', gameStatus.score, 3]);
 
@@ -959,16 +1066,16 @@ ESVIJI.game = (function () {
 
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
     for (i = 0; i < l; i++) {
-      if (!positioned && (highScores[i] === undefined || highScores[i].score <= gameStatus.score)) {
+      if (!positioned && (highScores[gameStatus.preferences.difficulty][i] === undefined || highScores[gameStatus.preferences.difficulty][i].score <= gameStatus.score)) {
         for (j = l; j > i; j--) {
-          highScores[j] = highScores[j - 1];
+          highScores[gameStatus.preferences.difficulty][j] = highScores[gameStatus.preferences.difficulty][j - 1];
         }
-        highScores[i] = { 'score': gameStatus.score, 'date': lastGameDate};
+        highScores[gameStatus.preferences.difficulty][i] = { 'score': gameStatus.score, 'date': lastGameDate};
         positioned = true;
       }
     }
     if (!positioned) {
-      highScores[l] = { 'score': gameStatus.score, 'date': lastGameDate};
+      highScores[gameStatus.preferences.difficulty][l] = { 'score': gameStatus.score, 'date': lastGameDate};
     }
     store.set('highScores', highScores);
     gameStatus.playing = false;
@@ -1019,7 +1126,7 @@ ESVIJI.game = (function () {
     increaseScore();
     $('#play .score').attr('class', 'score changeUp');
     window.setTimeout(function() { $('#play .score').attr('class', 'score'); }, 2000);
-    hundreds = Math.floor(gameStatus.score / 100) - Math.floor(oldScore / 100);
+    hundreds = Math.floor(gameStatus.score / ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].extraLifePoints) - Math.floor(oldScore / ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].extraLifePoints);
     if (hundreds > 0) {
       addLives(hundreds);
     }
