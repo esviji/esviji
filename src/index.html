@@ -274,17 +274,26 @@
 
     <g id="pausePanel">
       <text x="160" y="140" class="title">Pause</text>
+
       <g class="resume button">
-        <rect x="100" y="200" width="120" height="40" />
-        <text x="160" y="225">Resume</text>
+        <rect x="100" y="200" width="120" height="30" />
+        <text x="160" y="220">Resume</text>
       </g>
+
       <g class="restart button">
-        <rect x="100" y="250" width="120" height="40" />
-        <text x="160" y="275">Restart</text>
+        <rect x="100" y="250" width="120" height="30" />
+        <text x="160" y="270">Restart</text>
       </g>
+
+      <text x="150" y="320" class="label">Sound is:</text>
+      <g class="prefsSound button">
+        <rect x="170" y="300" width="120" height="30" />
+        <text x="230" y="320"></text>
+      </g>
+
       <g class="exit button">
-        <rect x="100" y="300" width="120" height="40" />
-        <text x="160" y="325">Exit</text>
+        <rect x="100" y="400" width="120" height="30" />
+        <text x="160" y="420">Exit</text>
       </g>
     </g>
 
@@ -292,16 +301,16 @@
       <text x="160" y="100" class="title">Game Over</text>
       <text class="score" x="160" y="150"></text>
       <g class="scores button">
-        <rect x="100" y="260" width="120" height="40" />
-        <text x="160" y="285">High scores</text>
+        <rect x="100" y="250" width="120" height="30" />
+        <text x="160" y="270">High scores</text>
       </g>
       <g class="playagain button">
-        <rect x="100" y="320" width="120" height="40" />
-        <text x="160" y="345">Play again</text>
+        <rect x="100" y="300" width="120" height="30" />
+        <text x="160" y="320">Play again</text>
       </g>
       <g class="exit button">
-        <rect x="100" y="380" width="120" height="40" />
-        <text x="160" y="405">Exit</text>
+        <rect x="100" y="350" width="120" height="30" />
+        <text x="160" y="370">Exit</text>
       </g>
     </g>
 
@@ -327,19 +336,13 @@
         <text x="200" y="370">-</text>
       </g>
       <g class="exit button">
-        <rect x="100" y="380" width="120" height="40" />
-        <text x="160" y="405">Exit</text>
+        <rect x="100" y="380" width="120" height="30" />
+        <text x="160" y="400">Exit</text>
       </g>
     </g>
 
     <g id="settingsPanel">
       <text x="160" y="100" class="title">Settings</text>
-
-      <text x="150" y="180" class="label">Difficulty:</text>
-      <g class="prefsDifficulty button">
-        <rect x="170" y="160" width="120" height="30" />
-        <text x="230" y="180"></text>
-      </g>
 
       <text x="150" y="230" class="label">Sound is:</text>
       <g class="prefsSound button">
@@ -354,6 +357,35 @@
       <g class="install button" id="installButton">
         <rect x="100" y="330" width="120" height="30" />
         <text x="160" y="350">Install</text>
+      </g>
+
+      <g class="exit button">
+        <rect x="100" y="400" width="120" height="30" />
+        <text x="160" y="420">Exit</text>
+      </g>
+    </g>
+
+    <g id="difficultyPanel">
+      <text x="160" y="100" class="title">Difficulty</text>
+
+      <g class="beginner button">
+        <rect x="100" y="150" width="120" height="30" />
+        <text x="160" y="170">Beginner</text>
+      </g>
+
+      <g class="easy button">
+        <rect x="100" y="200" width="120" height="30" />
+        <text x="160" y="220">Easy</text>
+      </g>
+
+      <g class="hard button">
+        <rect x="100" y="250" width="120" height="30" />
+        <text x="160" y="270">Hard</text>
+      </g>
+
+      <g class="crazy button">
+        <rect x="100" y="300" width="120" height="30" />
+        <text x="160" y="320">Crazy</text>
       </g>
 
       <g class="exit button">

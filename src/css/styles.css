@@ -130,6 +130,7 @@ body {
 #main .title {
   fill: #fff;
 }
+#difficulty .title,
 #gameOver .title,
 #pause .title,
 #scores .title,

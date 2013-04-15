@@ -41,7 +41,10 @@ ESVIJI.settings = {
       rocks: function rocks(level) {
         return 0;
       },
-      extraLifePoints: 200,
+      points: function points(nbHits) {
+        return nbHits;
+      },
+      extraLifePoints: 100,
       extraLifeLevel: 0
     },
     Easy: {
@@ -57,7 +60,10 @@ ESVIJI.settings = {
       rocks: function rocks(level) {
         return Math.min(5, Math.floor((level - 1) / 5));
       },
-      extraLifePoints: 200,
+      points: function points(nbHits) {
+        return Math.pow(nbHits, 2);
+      },
+      extraLifePoints: 100,
       extraLifeLevel: 1
     },
     Hard: {
@@ -72,6 +78,9 @@ ESVIJI.settings = {
       },
       rocks: function rocks(level) {
         return Math.min(10, Math.floor((level - 1) / 4));
+      },
+      points: function points(nbHits) {
+        return Math.pow(nbHits, 3);
       },
       extraLifePoints: 100,
       extraLifeLevel: 1
@@ -89,8 +98,11 @@ ESVIJI.settings = {
       rocks: function rocks(level) {
         return Math.min(20, level);
       },
-      extraLifePoints: 50,
-      extraLifeLevel: 1
+      points: function points(nbHits) {
+        return Math.pow(nbHits, 4);
+      },
+      extraLifePoints: 100,
+      extraLifeLevel: 0
     }
   },
   // game info at new turn start
@@ -258,18 +270,51 @@ ESVIJI.game = (function () {
     }
   }
 
-  function startMain() {
+  function startMain(difficulty) {
     $('#pulse')[0].beginElement();
-    $('#main .start').one(clickType, startPlaying);
+    $('#main .start').one(clickType, startDifficulty);
     $('#main .scores').one(clickType, startScores);
     $('#main .settings').one(clickType, startSettings);
+  }
+
+  function startDifficulty() {
+    hidePanel('main');
+    showPanel('difficulty');
+    $('#difficulty .beginner').one(clickType, function () {
+      gameStatus.preferences.difficulty = 'Beginner';
+      hidePanel('difficulty');
+      startPlaying();
+    });
+    $('#difficulty .easy').one(clickType, function () {
+      gameStatus.preferences.difficulty = 'Easy';
+      hidePanel('difficulty');
+      startPlaying();
+    });
+    $('#difficulty .hard').one(clickType, function () {
+      gameStatus.preferences.difficulty = 'Hard';
+      hidePanel('difficulty');
+      startPlaying();
+    });
+    $('#difficulty .crazy').one(clickType, function () {
+      gameStatus.preferences.difficulty = 'Crazy';
+      hidePanel('difficulty');
+      startPlaying();
+    });
+    $('#difficulty .exit').one(clickType, endDifficulty);
+  }
+
+  function endDifficulty(event) {
+    event.preventDefault();
+    hidePanel('difficulty');
+    showPanel('main');
+    startMain();
   }
 
   function startPlaying(event) {
     if (undefined !== event) {
       event.preventDefault();
     }
-    hidePanel('main');
+//    hidePanel('main');
     if (!useStored) {
       gameStatus.level = ESVIJI.settings.launch.level;
       gameStatus.score = ESVIJI.settings.launch.score;
@@ -368,27 +413,17 @@ ESVIJI.game = (function () {
     hidePanel('main');
     showPanel('settings');
 
-    $('#settings .prefsDifficulty text').text(gameStatus.preferences.difficulty);
-    $('#settings .prefsDifficulty').bind(clickType, function() {
-      var nextDifficulty = {
-        Beginner: 'Easy',
-        Easy: 'Hard',
-        Hard: 'Crazy',
-        Crazy: 'Beginner'
-      };
-      gameStatus.preferences.difficulty = nextDifficulty[gameStatus.preferences.difficulty];
-      store.set('gameStatus', gameStatus);
-      $('#settings .prefsDifficulty text').text(gameStatus.preferences.difficulty);
-    });
-
     $('#settings .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
     $('#settings .prefsSound').bind(clickType, function() {
       gameStatus.preferences.sound = !gameStatus.preferences.sound;
       store.set('gameStatus', gameStatus);
       $('#settings .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
     });
+
     $('#settings .tutorial').one(clickType, startTutorial);
+
     $('#settings .exit').one(clickType, endSettings);
+
     showInstall();
   }
 
@@ -406,6 +441,7 @@ ESVIJI.game = (function () {
       hidePanel('pause');
       $('#play .pauseButton').one(clickType, startPause);
     });
+
     $('#pause .restart').one(clickType, function(e) {
       e.preventDefault();
       hidePanel('pause');
@@ -414,6 +450,14 @@ ESVIJI.game = (function () {
       });
       startPlaying();
     });
+
+    $('#pause .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
+    $('#pause .prefsSound').bind(clickType, function() {
+      gameStatus.preferences.sound = !gameStatus.preferences.sound;
+      store.set('gameStatus', gameStatus);
+      $('#pause .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
+    });
+
     $('#pause .exit').one(clickType, function(e) {
       e.preventDefault();
       hidePanel('pause');
@@ -944,6 +988,7 @@ ESVIJI.game = (function () {
   }
 
   function initBalls(thisLevel) {
+
     thisLevel = thisLevel || gameStatus.level;
     nbBalls = ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].balls(thisLevel);
     gameStatus.currentBalls = [];
@@ -1139,7 +1184,8 @@ ESVIJI.game = (function () {
 
   function addScore(scoreToAdd) {
     oldScore = gameStatus.score;
-    gameStatus.score += Math.pow(scoreToAdd, 3);
+    gameStatus.score += ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].points(scoreToAdd);
+//    gameStatus.score += Math.pow(scoreToAdd, 3);
     increaseScore();
     $('#play .score').attr('class', 'score changeUp');
     window.setTimeout(function() { $('#play .score').attr('class', 'score'); }, 2000);
