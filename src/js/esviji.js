@@ -87,16 +87,16 @@ ESVIJI.settings = {
     },
     Crazy: {
       rows: function rows(level) {
-        return 7;
+        return Math.min(7, 2 + level);
       },
       columns: function columns(level) {
-        return 7;
+        return Math.min(7, 2 + level);
       },
       balls: function balls(level) {
-        return 6;
+        return Math.min(6, 1 + level);
       },
       rocks: function rocks(level) {
-        return Math.min(20, level);
+        return Math.max(0, Math.min(20, level - 6));
       },
       points: function points(nbHits) {
         return Math.pow(nbHits, 4);

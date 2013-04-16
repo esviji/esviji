@@ -2,6 +2,10 @@
 
 ## v1.8.x
 
+### 2013-04-16 v1.8.6
+
+[ENHANCEMENT] Adjusting rules for "Crazy" difficulty level
+
 ### 2013-04-16 v1.8.5
 
 [FIXED] Cursor was still active (and ball could be launched) when pause and game over panel were displayed
