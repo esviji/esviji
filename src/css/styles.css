@@ -114,9 +114,9 @@ body {
 #playable:hover {
   cursor: pointer;
 }
-#gameOverBackground,
-#pauseBackground {
-  opacity: 0.7;
+.panelBackground {
+  pointer-events: visible;
+  fill: transparent;
 }
 #main .title-shadow,
 #main .title {

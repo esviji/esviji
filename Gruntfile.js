@@ -87,13 +87,13 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'
+        banner: '/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> - Copyright (c) 1992-<%= grunt.template.today("yyyy") %> Nicolas Hoizey <nicolas@hoizey.com> */'
       }
     },
 
     cssmin: {
       options: {
-        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'
+        banner: '/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> - Copyright (c) 1992-<%= grunt.template.today("yyyy") %> Nicolas Hoizey <nicolas@hoizey.com> */'
       }
     },
 

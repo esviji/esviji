@@ -17,6 +17,8 @@ I never found a satisfying name for this game, so I now took "esviji", a word ga
 
 esviji is open source, under MIT licence, feel free to <a href="https://github.com/nhoizey/esviji">fork it on Github</a>, make pull requests and open issues for bugs and improvement ideas.
 
+You can "love" [the palette of balls colors on COLOURlovers](http://www.colourlovers.com/palette/2807157/esviji).
+
 ## Supported platforms
 
 ### Known to work on
@@ -27,7 +29,7 @@ esviji is open source, under MIT licence, feel free to <a href="https://github.c
 
 ### Known to NOT work on
 
-- Some desktop browsers: Opera (a bug on score handling)
+- Some desktop browsers: Opera
 - Some mobile browsers: Chrome Android
 - [Open issues](https://github.com/nhoizey/esviji/issues?labels=Broken+browser+support&page=1&state=open)
 - [Open a new issue!](https://github.com/nhoizey/esviji/issues/new)
