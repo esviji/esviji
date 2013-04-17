@@ -182,7 +182,7 @@ ESVIJI.game = (function () {
       clickType = 'touchstart';
     }
     $('.version').text(ESVIJI.settings.version);
-    _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Version, 'Version', ESVIJI.settings.version, 2]);
+    _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Version, 'Version', ESVIJI.settings.version, 2]);
 
     viewportOptimize();
     cursorMinY = yToSvg(1);
@@ -474,7 +474,7 @@ ESVIJI.game = (function () {
         $('#play').css('opacity', 0.3);
       }
       // Google Analytics tracking of activated panel
-      _gaq.push(['_trackPageview', '/' + panel + '/']);
+      _ogaq.push(['_trackPageview', '/' + panel + '/']);
     }
   }
 
@@ -1119,9 +1119,9 @@ ESVIJI.game = (function () {
         positioned = false;
 
     // Google Analytics tracking of level and score at the end of the game
-    _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Difficulty, 'Difficulty', gameStatus.preferences.difficulty, 3]);
-    _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Level, 'Level', gameStatus.level, 3]);
-    _gaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Score, 'Score', gameStatus.score, 3]);
+    _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Difficulty, 'Difficulty', gameStatus.preferences.difficulty, 3]);
+    _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Level, 'Level', gameStatus.level, 3]);
+    _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Score, 'Score', gameStatus.score, 3]);
 
     lastGameDate = Date();
     showPanel('gameOver');
@@ -1185,7 +1185,6 @@ ESVIJI.game = (function () {
   function addScore(scoreToAdd) {
     oldScore = gameStatus.score;
     gameStatus.score += ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].points(scoreToAdd);
-//    gameStatus.score += Math.pow(scoreToAdd, 3);
     increaseScore();
     $('#play .score').attr('class', 'score changeUp');
     window.setTimeout(function() { $('#play .score').attr('class', 'score'); }, 2000);
