@@ -182,7 +182,9 @@ ESVIJI.game = (function () {
       clickType = 'touchstart';
     }
     $('.version').text(ESVIJI.settings.version);
-    _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Version, 'Version', ESVIJI.settings.version, 2]);
+    if (ESVIJI.settings.version !== '%VERSION%') {
+      _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Version, 'Version', ESVIJI.settings.version, 2]);
+    }
 
     viewportOptimize();
     cursorMinY = yToSvg(1);
