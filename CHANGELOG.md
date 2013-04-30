@@ -2,6 +2,10 @@
 
 ## v1.8.x
 
+### 2013-04-30 v1.8.8
+
+- [ENHANCEMENT] Add grunt rev to the packaging process for a cleaner cache update
+
 ### 2013-04-17 v1.8.7
 
 - [ENHANCEMENT] Store Google Analytics data in localStorage when offline

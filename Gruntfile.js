@@ -99,15 +99,16 @@ module.exports = function(grunt) {
 
     rev: {
       options: {
+        encoding: 'utf8',
         algorithm: 'md5',
         length: 8
       },
       assets: {
         files: [{
           src: [
-            'dist/img/**/*.{jpg,jpeg,gif,png}',
-            'dist/css/**/*.{css}',
-            'dist/js/**/*.{js}'
+            'dist/css/styles.css',
+            'dist/css/font/*.{svg,woff}',
+            'dist/js/app.js'
           ]
         }]
       }
@@ -168,5 +169,5 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['less', 'manifest:src', 'watch']);
-  grunt.registerTask('package', ['less', 'clean', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin', /*'rev',*/ 'manifest:dist', 'sed', 'docco']);
+  grunt.registerTask('package', ['less', 'clean', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'rev', 'usemin', 'manifest:dist', 'sed', 'docco']);
 };
