@@ -2,6 +2,10 @@
 
 ## v1.8.x
 
+### 2013-04-30 v1.8.9
+
+- [FIXED] Prevent default event behavior when chosing the difficulty level
+
 ### 2013-04-30 v1.8.8
 
 - [ENHANCEMENT] Add grunt rev to the packaging process for a cleaner cache update

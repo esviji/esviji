@@ -282,22 +282,26 @@ ESVIJI.game = (function () {
   function startDifficulty() {
     hidePanel('main');
     showPanel('difficulty');
-    $('#difficulty .beginner').one(clickType, function () {
+    $('#difficulty .beginner').one(clickType, function (event) {
+      event.preventDefault();
       gameStatus.preferences.difficulty = 'Beginner';
       hidePanel('difficulty');
       startPlaying();
     });
-    $('#difficulty .easy').one(clickType, function () {
+    $('#difficulty .easy').one(clickType, function (event) {
+      event.preventDefault();
       gameStatus.preferences.difficulty = 'Easy';
       hidePanel('difficulty');
       startPlaying();
     });
-    $('#difficulty .hard').one(clickType, function () {
+    $('#difficulty .hard').one(clickType, function (event) {
+      event.preventDefault();
       gameStatus.preferences.difficulty = 'Hard';
       hidePanel('difficulty');
       startPlaying();
     });
-    $('#difficulty .crazy').one(clickType, function () {
+    $('#difficulty .crazy').one(clickType, function (event) {
+      event.preventDefault();
       gameStatus.preferences.difficulty = 'Crazy';
       hidePanel('difficulty');
       startPlaying();
