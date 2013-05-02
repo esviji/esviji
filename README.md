@@ -4,9 +4,10 @@ A variation around the famous [Puzzle Bobble](http://en.wikipedia.org/wiki/Puzzl
 
 To know how to play, please run the tutorial available on the launch screen of the game.
 
-<img src="https://github.com/nhoizey/esviji/raw/master/src/img/screenshots/launch-screen.png" alt="Launch screen" width="100" />
-<img src="https://github.com/nhoizey/esviji/raw/master/src/img/screenshots/easy-start.png" alt="Easy start" width="100" />
-<img src="https://github.com/nhoizey/esviji/raw/master/src/img/screenshots/unbreakable-blocks.png" alt="Unbreakable blocks" width="100" />
+<img src="https://github.com/nhoizey/esviji/raw/master/images/screenshots/01-launch-screen.png" alt="Launch screen" width="100" />
+<img src="https://github.com/nhoizey/esviji/raw/master/images/screenshots/02-easy-start.png" alt="Easy start" width="100" />
+<img src="https://github.com/nhoizey/esviji/raw/master/images/screenshots/03-a-lot-of-balls.png" alt="A lot of balls" width="100" />
+<img src="https://github.com/nhoizey/esviji/raw/master/images/screenshots/04-unbreakable-blocks.png" alt="Unbreakable blocks" width="100" />
 
 ## Features
 
