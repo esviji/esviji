@@ -64,7 +64,8 @@ module.exports = function(grunt) {
         files: [
           { expand: true, cwd: 'src/', src: ['.htaccess', 'esviji-icon.png', 'favicon.ico', 'index.html', 'manifest.webapp'], dest: 'dist/' },
           { expand: true, cwd: 'src/', src: ['css/font/*'], dest: 'dist/' },
-          { expand: true, cwd: 'src/', src: ['img/favicon.png', 'img/firefox-os/*', 'img/ios/*', 'img/windows-8/*'], dest: 'dist/' }
+          { expand: true, cwd: 'src/', src: ['img/favicon.png', 'img/firefox-os/*', 'img/ios/*', 'img/windows-8/*'], dest: 'dist/' },
+          { expand: true, cwd: 'src/', src: ['sounds/sprite.{mp3,ogg}'], dest: 'dist/' }
         ]
       }
     },
