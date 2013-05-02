@@ -1,6 +1,7 @@
 #!/bin/sh
 # This script generates an MP3 & OGG sprite from a folder of WAVs and the json needed by Howler.js
 # Uses ffmpeg + ffmpeg2theora + audiosprite (https://github.com/tonistiigi/audiosprite) + underscore-cli
+# audiosprite might generate Howler.js configuration soon: https://github.com/tonistiigi/audiosprite/issues/6
 #
 # On a Mac:
 #   install http://v2v.cc/~j/ffmpeg2theora/
