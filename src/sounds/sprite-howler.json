@@ -1,0 +1,15 @@
+{
+  "urls": ["sounds/sprite.mp3", "sounds/sprite.ogg"],
+  "sprite": {
+    "fall": [0, 0.20405895691609977],
+    "hit-floor": [2, 4],
+    "hit-other-ball-ko": [5, 5.468752834467121],
+    "hit-other-ball-ok": [7, 7.5],
+    "hit-same-ball": [9, 10],
+    "hit-wall": [11, 12.835941043083901],
+    "level": [14, 16.947006802721088],
+    "life-down": [18, 19],
+    "life-up": [20, 21],
+    "throw": [22, 22.797120181405894]
+  }
+}

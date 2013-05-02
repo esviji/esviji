@@ -173,7 +173,7 @@ ESVIJI.game = (function () {
       }
     },
     useStored = false,
-    sounds = {},
+    sounds,
     clickType = 'click';
 
   // Initialization
@@ -224,20 +224,27 @@ ESVIJI.game = (function () {
     }
 
     // Available sounds
-    sounds = {
-      'error': {
-        'sound': T("tri", T("tri", 2, 100, 440), 0.25),
-        'dur': 1500
+    sounds = new Howl({
+      "urls": ["sounds/sprite.ogg", "sounds/sprite.mp3"],
+      "sprite": {
+        "fall": [0, 0.20405895691609977],
+        "hit-floor": [2, 4],
+        "hit-other-ball-ko": [5, 5.468752834467121],
+        "hit-other-ball-ok": [7, 7.5],
+        "hit-same-ball": [9, 10],
+        "hit-wall": [11, 12.835941043083901],
+        "level": [14, 16.947006802721088],
+        "life-down": [18, 19],
+        "life-up": [20, 21],
+        "throw": [22, 22.789478458049885]
       },
-      'destroy': {
-        'sound': T("*", T("sin", 440), T("sin", 880)).set({mul: 0.25}),
-        'dur': 80
-      },
-      'lostLife': {
-        'sound': T("*", T("sin", 523.35), T("sin", 659.25)).set({mul: 0.25}),
-        'dur': 300
-      }
-    };
+      buffer: true,
+      volume: 1,
+      onload: function () { console.log(':)'); },
+      onloaderror: function () { console.log(':('); }
+    });
+    sounds.play('level');
+
     run();
   }
 
@@ -919,7 +926,7 @@ ESVIJI.game = (function () {
       "id": "anim" + (lastStackedAnimation + 1)
     });
     animRotate.addEventListener("beginEvent", function(event) {
-      playSound('destroy');
+      playSound('hit-same-ball');
     }, false);
     ball.append(animRotate);
 
@@ -1171,7 +1178,7 @@ ESVIJI.game = (function () {
   function removeLife() {
     gameStatus.lives--;
     gameStatus.levelLostLives++;
-    playSound('lostLife');
+    playSound('life-down');
     vibrate(500);
     drawLives();
     $('#play .lives').attr('class', 'lives changeDown');
@@ -1242,8 +1249,7 @@ ESVIJI.game = (function () {
 
   function playSound(type) {
     if (gameStatus.preferences.sound) {
-      sounds[type].sound.play();
-      window.setTimeout(function() { sounds[type].sound.pause(); }, sounds[type].dur);
+      sounds.play(type);
     }
   }
 

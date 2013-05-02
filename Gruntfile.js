@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         options: {
           debounceDelay: 250
         },
-        files: ['src/index.html', 'src/css/**', 'src/js/**', 'src/img/**'],
+        files: ['src/index.html', 'src/css/**', 'src/js/**', 'src/img/**', 'src/sounds/**'],
         tasks: ['growl:manifest', 'manifest:src']
       }
     },
@@ -127,7 +127,8 @@ module.exports = function(grunt) {
           'img/favicon.png',
           'js/**/*.js',
           'css/styles.css',
-          'css/font/*'
+          'css/font/*',
+          'sounds/*.{ogg,mp3}'
         ],
         dest: 'src/manifest.appcache'
       },
@@ -143,7 +144,8 @@ module.exports = function(grunt) {
           'img/favicon.png',
           'js/app.js',
           'css/styles.css',
-          'css/font/*'
+          'css/font/*',
+          'sounds/*.{ogg,mp3}'
         ],
         dest: 'dist/manifest.appcache'
       }
