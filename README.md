@@ -1,8 +1,14 @@
 # esviji
 
+<img src="http://play.esviji.com/img/firefox-os/icon-128.png" width="128" height="128" style="float: right" />
+
 A variation around the famous [Puzzle Bobble](http://en.wikipedia.org/wiki/Puzzle_Bobble) game (a.k.a. Bust-a-Move), in which you have to destroy balls and gain points as long as you can!
 
 To know how to play, please run the tutorial available on the launch screen of the game.
+
+<img src="https://github.com/nhoizey/esviji/raw/master/src/img/screenshots/launch-screen.png" alt="Launch screen" style="max-width: 30%" />
+<img src="https://github.com/nhoizey/esviji/raw/master/src/img/screenshots/easy-start.png" alt="Easy start" style="max-width: 30%" />
+<img src="https://github.com/nhoizey/esviji/raw/master/src/img/screenshots/unbreakable-blocks.png" alt="Unbreakable blocks" style="max-width: 30%" />
 
 ## Features
 
