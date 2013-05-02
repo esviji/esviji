@@ -2,7 +2,7 @@
 
 A variation around the famous [Puzzle Bobble](http://en.wikipedia.org/wiki/Puzzle_Bobble) game (a.k.a. Bust-a-Move), in which you have to destroy balls and gain points as long as you can!
 
-To know how to play, please run the tutorial available on the launch screen of the game.
+To know how to play, please run the tutorial available in the setting panel of the game.
 
 <img src="https://github.com/nhoizey/esviji/raw/master/images/screenshots/01-launch-screen.png" alt="Launch screen" width="200" />
 <img src="https://github.com/nhoizey/esviji/raw/master/images/screenshots/02-easy-start.png" alt="Easy start" width="200" />
