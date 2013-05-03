@@ -1,5 +1,12 @@
 # esviji changelog
 
+## v1.9.x
+
+### 2013-05-02 v1.9.0
+
+- [ENHANCEMENT] Now uses [howler.js](https://github.com/goldfire/howler.js) for sounds
+- [NEW] Great sounds created specificaly for esviji by [@cedricponspolo](https://twitter.com/cedricponspolo) of [Panel Sonore](http://www.panel-sonore.com/)
+
 ## v1.8.x
 
 ### 2013-04-30 v1.8.9

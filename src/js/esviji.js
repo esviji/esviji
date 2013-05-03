@@ -227,23 +227,19 @@ ESVIJI.game = (function () {
     sounds = new Howl({
       "urls": ["sounds/sprite.ogg", "sounds/sprite.mp3"],
       "sprite": {
-        "fall": [0, 0.20405895691609977],
-        "hit-floor": [2, 4],
-        "hit-other-ball-ko": [5, 5.468752834467121],
-        "hit-other-ball-ok": [7, 7.5],
-        "hit-same-ball": [9, 10],
-        "hit-wall": [11, 12.835941043083901],
-        "level": [14, 16.947006802721088],
-        "life-down": [18, 19],
-        "life-up": [20, 21],
-        "throw": [22, 22.789478458049885]
+        "fall": [0, 204.05895691609976],
+        "hit-floor": [2000, 2000],
+        "hit-other-ball-ko": [5000, 468.7528344671206],
+        "hit-other-ball-ok": [7000, 500],
+        "hit-same-ball": [9000, 1000],
+        "hit-wall": [11000, 1835.941043083901],
+        "level": [14000, 2947.0068027210878],
+        "life-down": [18000, 1000],
+        "life-up": [20000, 1000],
+        "throw": [22000, 797.1201814058943]
       },
-      buffer: true,
-      volume: 1,
-      onload: function () { console.log(':)'); },
-      onloaderror: function () { console.log(':('); }
+      buffer: true
     });
-    sounds.play('level');
 
     run();
   }
@@ -523,6 +519,7 @@ ESVIJI.game = (function () {
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
     startNewTurn();
+    playSound('level');
   }
 
   function startNewTurn() {
@@ -648,6 +645,7 @@ ESVIJI.game = (function () {
       'position': currentPosY
     });
 
+    playSound('throw');
     playUserChoice();
   }
 
@@ -710,6 +708,7 @@ ESVIJI.game = (function () {
         'position': currentPosY
       });
 
+      playSound('throw');
       playUserChoice();
     }
   }
@@ -721,6 +720,9 @@ ESVIJI.game = (function () {
       if (oldPosY != 1) {
         animStackMove(drawnCurrentBall, (oldPosY - currentPosY) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
       }
+      $('#anim' + lastStackedAnimation)[0].addEventListener("beginEvent", function(event) {
+        playSound('hit-floor');
+      });
       endOfMove();
     } else {
       if (currentPosX == 1 && currentDirX == -1) {
@@ -728,6 +730,9 @@ ESVIJI.game = (function () {
         currentDirX = 0;
         currentDirY = -1;
         animStackMove(drawnCurrentBall, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
+        $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
+          playSound('hit-wall');
+        }, false);
         oldPosX = currentPosX;
         playUserChoice();
       } else {
@@ -742,12 +747,18 @@ ESVIJI.game = (function () {
               currentDirY = -1;
               animStackMove(drawnCurrentBall, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
               oldPosX = currentPosX;
+              $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
+                playSound('hit-wall');
+              }, false);
               playUserChoice();
             } else {
               // ...under us, no more possible move
               if (oldPosY != currentPosY) {
                 animStackMove(drawnCurrentBall, (oldPosY - currentPosY) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
               }
+              $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
+                playSound('hit-floor');
+              }, false);
               endOfMove();
             }
             break;
@@ -773,6 +784,7 @@ ESVIJI.game = (function () {
             }
             animStackDestroy(drawnCurrentBalls[currentPosX][currentPosY]);
             scoreThisTurn++;
+            playSound('hit-same-ball');
             playUserChoice();
             break;
           default:
@@ -906,6 +918,9 @@ ESVIJI.game = (function () {
       "fill": "freeze",
       "id": "anim" + (lastStackedAnimation + 4)
     });
+    animMoveTo.addEventListener("beginEvent", function(event) {
+      playSound('hit-other-ball-ok');
+    }, false);
     ballTo.append(animMoveTo);
 
     lastStackedAnimation += 4;
@@ -952,6 +967,9 @@ ESVIJI.game = (function () {
     $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
       drawnCurrentBall.remove();
       $('#morph').remove();
+      if (scoreThisTurn === 0) {
+        playSound('hit-other-ball-ko');
+      }
       drawnCurrentBall = drawBall(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
     });
 
@@ -977,6 +995,9 @@ ESVIJI.game = (function () {
                 // Follow through and overlapping action: http://uxdesign.smashingmagazine.com/2012/10/30/motion-animation-new-mobile-ux-design-material/
                 dur = ESVIJI.settings.durationMove * (1 + aboveBalls / 3);
                 animStackMove(drawnCurrentBalls[x][z + 1], dur, 'y', yToSvg(z + 1), yToSvg(z), 'anim' + lastStackedAnimationBeforeFall + '.end');
+                $('#anim' + lastStackedAnimation)[0].addEventListener("beginEvent", function(event) {
+                  playSound('fall');
+                });
                 drawnCurrentBalls[x][z] = drawnCurrentBalls[x][z + 1];
                 drawnCurrentBalls[x][z + 1] = null;
               }
@@ -1190,6 +1211,7 @@ ESVIJI.game = (function () {
 
   function addLives(nbLives) {
     gameStatus.lives += nbLives;
+    playSound('life-up');
     drawLives();
     $('#play .lives').attr('class', 'lives changeUp');
     window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);

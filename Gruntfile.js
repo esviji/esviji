@@ -108,7 +108,6 @@ module.exports = function(grunt) {
         files: [{
           src: [
             'dist/css/styles.css',
-            'dist/css/font/*.{svg,woff}',
             'dist/js/app.js'
           ]
         }]
