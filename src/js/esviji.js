@@ -183,6 +183,7 @@ ESVIJI.game = (function () {
     }
     $('.version').text(ESVIJI.settings.version);
     if (ESVIJI.settings.version !== '%VERSION%') {
+      // Send version to Google Analitycs only if it is set in the source
       _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Version, 'Version', ESVIJI.settings.version, 2]);
     }
 
