@@ -323,7 +323,6 @@ ESVIJI.game = (function () {
     if (undefined !== event) {
       event.preventDefault();
     }
-//    hidePanel('main');
     if (!useStored) {
       gameStatus.level = ESVIJI.settings.launch.level;
       gameStatus.score = ESVIJI.settings.launch.score;
