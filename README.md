@@ -41,15 +41,16 @@ You can "love" [the palette of balls colors on COLOURlovers](http://www.colourlo
 
 ## Privacy policy
 
-Aggregated analytics data is collected through Google Analytics and is only used to improve the product and develop features for the app.
+Aggregated analytics data is collected through Google Analytics and is only used to improve the game and develop new features.
 
 ## Building blocks
 
 - JavaScript, with a little bit of jQuery
-- [Matthias](http://twitter.com/madsgraphics)'s awesome [SVGEventListener polyfil](https://github.com/madsgraphics/SVGEventListener) for SVG animate events in webkit (once again)
+- [Matthias](http://twitter.com/madsgraphics)'s awesome [SVGEventListener polyfil](https://github.com/madsgraphics/SVGEventListener) for SVG animate events in webkit
 - [Craig Campbell](http://craig.is/)'s [mousetrap](http://craig.is/killing/mice) for keyboard controls
 - [Marcus Westin](http://twitter.com/marcuswestin)'s [store.js](https://github.com/marcuswestin/store.js) for localStorage wrapper
-- [mohayonao](http://twitter.com/mohayonao)'s [Timbre.js](https://github.com/mohayonao/timbre) for sounds
+- [GoldFire Studios](https://twitter.com/GoldFireStudios)'s [Howler.js](https://github.com/goldfire/howler.js) for sounds playing
+- [Cédric Pons Polo](https://twitter.com/cedricponspolo)'s awesome sound design. Check his other creations on [Panel Sonore](http://www.panel-sonore.com/)
 
 ## Thanks a lot to…
 
@@ -61,17 +62,21 @@ Aggregated analytics data is collected through Google Analytics and is only used
 
 ## To do
 
-Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direction=asc&page=1&sort=due_date).
+Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direction=asc&page=1&sort=completeness).
 
 ## Contributing
 
-Please feel free to fork, fix and send me pull requests. Alternatively, [open issues](https://github.com/nhoizey/esviji/issues/new) for bugs and feature requests.
+Feel free to fork, fix and [submit a pull requests](https://github.com/nhoizey/esviji/issues). Alternatively, [open issues](https://github.com/nhoizey/esviji/issues/new) for bugs and feature requests.
+
+[@necolas](https://github.com/necolas) wrote down [some good guidelines for contributing](https://github.com/necolas/issue-guidelines). Please keep these in mind when contributing to this project.
+
+Please use the ```.editorconfig``` file in order to set the right usage of tabs/spaces aso. in your editor. Visit [editorconfig.org](http://editorconfig.org/) for more information.
 
 ## License
 
 esviji is released under the MIT License.
 
-Copyright (c) 1992 Nicolas Hoizey <nicolas@hoizey.com>
+Copyright (c) 1992-2013 Nicolas Hoizey <nicolas@hoizey.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
