@@ -2,6 +2,10 @@
 
 ## v1.9.x
 
+### 2013-05-14 v1.9.1
+
+- [FIXED] No error when using private browsing, which disables localStorage
+
 ### 2013-05-02 v1.9.0
 
 - [ENHANCEMENT] Now uses [howler.js](https://github.com/goldfire/howler.js) for sounds
