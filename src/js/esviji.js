@@ -152,9 +152,9 @@ ESVIJI.game = (function () {
     nbBalls = 0,
     scoreThisTurn = 0,
     lastHitBall = ESVIJI.settings.rockId,
-    highScores = store.get('highScores') || [ ],
+    highScores = (!store.disabled && store.get('highScores')) || [ ],
     lastGameDate = '',
-    gameStatus = store.get('gameStatus') || {
+    gameStatus = (!store.disabled && store.get('gameStatus')) || {
       currentBalls: [],
       currentBall: 0,
       level: 0,
@@ -221,7 +221,7 @@ ESVIJI.game = (function () {
         Hard: oldHighScores,
         Crazy: []
       };
-      store.set('highScores', highScores);
+      storeSet('highScores', highScores);
     }
 
     // Available sounds
@@ -243,6 +243,12 @@ ESVIJI.game = (function () {
     });
 
     run();
+  }
+
+  function storeSet(item, value) {
+    if (!store.disabled) {
+      store.set(item, value);
+    }
   }
 
   function viewportOptimize() {
@@ -352,7 +358,7 @@ ESVIJI.game = (function () {
       drawnCurrentBall.remove();
     }
     hidePanel('play');
-    store.set('gameStatus', {
+    storeSet('gameStatus', {
       'playing': false
     });
     run();
@@ -425,7 +431,7 @@ ESVIJI.game = (function () {
     $('#settings .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
     $('#settings .prefsSound').bind(clickType, function() {
       gameStatus.preferences.sound = !gameStatus.preferences.sound;
-      store.set('gameStatus', gameStatus);
+      storeSet('gameStatus', gameStatus);
       $('#settings .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
     });
 
@@ -454,7 +460,7 @@ ESVIJI.game = (function () {
     $('#pause .restart').one(clickType, function(e) {
       e.preventDefault();
       hidePanel('pause');
-      store.set('gameStatus', {
+      storeSet('gameStatus', {
         'playing': false
       });
       startPlaying();
@@ -463,7 +469,7 @@ ESVIJI.game = (function () {
     $('#pause .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
     $('#pause .prefsSound').bind(clickType, function() {
       gameStatus.preferences.sound = !gameStatus.preferences.sound;
-      store.set('gameStatus', gameStatus);
+      storeSet('gameStatus', gameStatus);
       $('#pause .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
     });
 
@@ -589,7 +595,7 @@ ESVIJI.game = (function () {
         });
         notPlayableAnimMain.beginElement();
       } else {
-        store.set('gameStatus', gameStatus);
+        storeSet('gameStatus', gameStatus);
         useStored = false;
         if (gameStatus.playing) {
           if (null === drawnCurrentBall) {
@@ -1173,9 +1179,9 @@ ESVIJI.game = (function () {
     if (!positioned) {
       highScores[gameStatus.preferences.difficulty][l] = { 'score': gameStatus.score, 'date': lastGameDate};
     }
-    store.set('highScores', highScores);
+    storeSet('highScores', highScores);
     gameStatus.playing = false;
-    store.set('gameStatus', {
+    storeSet('gameStatus', {
       'playing': false
     });
 
