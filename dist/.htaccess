@@ -1,0 +1,13 @@
+AddType image/svg+xml svg
+AddType text/cache-manifest appcache
+AddType application/x-web-app-manifest+json webapp
+AddType audio/mpeg mp3
+AddType application/ogg .ogg
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 5 seconds"
+  #ExpiresByType text/cache-manifest  "access plus 5 seconds"
+</IfModule>
+FileETag None
+
