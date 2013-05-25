@@ -164,7 +164,6 @@
       if ( isArray( this._listeners[event.type] ) ) {
         var listeners = this._listeners[event.type];
         for ( var l in listeners ) {
-          console.log(this.parent.id, event.type);
           listeners[l].call( this, event );
         }
       }

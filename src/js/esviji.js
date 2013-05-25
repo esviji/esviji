@@ -256,6 +256,7 @@ ESVIJI.game = (function () {
       viewportWidth = document.body.clientWidth;
       viewportHeight = document.body.clientHeight;
       //console.log(viewportWidth + ' / ' + viewportHeight);
+      //if (DEBUG) { console.log(viewportWidth + ' / ' + viewportHeight); }
       if (viewportHeight / viewportWidth > ESVIJI.settings.board.height / ESVIJI.settings.board.width) {
         // tall
         boardWidth = viewportWidth;
@@ -560,6 +561,7 @@ ESVIJI.game = (function () {
         // TODO
         // call the API
         //console.log(JSON.stringify(gameStatus.levelReplay));
+        //if (DEBUG) { console.log(JSON.stringify(gameStatus.levelReplay)); }
       }
 
       nextLevel();
@@ -1287,19 +1289,6 @@ ESVIJI.game = (function () {
     }
   }
 
-  function debug(string) {
-    console.log(string);
-    matrix = '';
-    for (y = ESVIJI.settings.board.yMax; y >= 1; y--) {
-      for (x = 1; x <= ESVIJI.settings.board.xMax; x++) {
-        matrix += gameStatus.currentBalls[x][y] + ' ';
-      }
-      matrix += "\n";
-    }
-    console.log(matrix);
-    console.log('ball: ' + gameStatus.currentBall + ' | posXY: ' + currentPosX + '/' + currentPosY + ' | dirXY: ' + currentDirX + '/' + currentDirY + ' | stackedAnimationToStart: ' + stackedAnimationToStart + ' | lastStackedAnimation: ' + lastStackedAnimation);
-  }
-
   function install() {
     var manifestUrl = location.href.substring(0, location.href.lastIndexOf('/')) + '/manifest.webapp';
     var request = window.navigator.mozApps.install(manifestUrl);
@@ -1310,7 +1299,7 @@ ESVIJI.game = (function () {
     };
     request.onerror = function() {
       // Display the error information from the DOMError object
-      console.log('Install failed, error: ' + this.error.name);
+      console.error('Install failed, error: ' + this.error.name);
     };
   }
 
@@ -1325,7 +1314,7 @@ ESVIJI.game = (function () {
         }
       };
       request.onerror = function() {
-        console.log('Error checking installation status: ' + this.error.message);
+        console.error('Error checking installation status: ' + this.error.message);
       };
     }
   }
