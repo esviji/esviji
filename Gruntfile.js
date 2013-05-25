@@ -13,6 +13,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sed');
   grunt.loadNpmTasks('grunt-docco');
   grunt.loadNpmTasks('grunt-growl');
+  grunt.loadNpmTasks('grunt-strip');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -88,7 +89,13 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> - Copyright (c) 1992-<%= grunt.template.today("yyyy") %> Nicolas Hoizey <nicolas@hoizey.com> */'
+        banner: '/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> - Copyright (c) 1992-<%= grunt.template.today("yyyy") %> Nicolas Hoizey <nicolas@hoizey.com> */',
+        report:'min',
+        compress: {
+          global_defs: {
+            'DEBUG': false
+          }
+        }
       }
     },
 
