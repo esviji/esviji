@@ -115,21 +115,29 @@ body {
   cursor: pointer;
 }
 #playable.dragged {
-  -moz-animation-duration: 0.7s;
-  -webkit-animation-duration: 0.7s;
-  -o-animation-duration: 0.7s;
-  animation-duration: 0.7s;
-  -moz-animation-name: ready;
+  -webkit-animation-duration: 0.75s;
+  -o-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  -webkit-animation-timing-function: ease-out;
+  -o-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
   -webkit-animation-name: ready;
   -o-animation-name: ready;
   animation-name: ready;
-  -moz-animation-iteration-count: infinite;
   -webkit-animation-iteration-count: infinite;
   -o-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
 }
 .ready-keyframes from {
   transform: translate(0, 0);
+  opacity: 1;
+}
+.ready-keyframes 25% {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+.ready-keyframes 50% {
+  transform: translate(-32px, 0);
   opacity: 1;
 }
 .ready-keyframes to {
@@ -139,6 +147,14 @@ body {
 @-webkit-keyframes ready {
   from {
     transform: translate(0, 0);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-32px, 0);
     opacity: 1;
   }
   to {
@@ -151,6 +167,14 @@ body {
     transform: translate(0, 0);
     opacity: 1;
   }
+  25% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-32px, 0);
+    opacity: 1;
+  }
   to {
     transform: translate(-64px, 0);
     opacity: .3;
@@ -159,6 +183,14 @@ body {
 @-ms-keyframes ready {
   from {
     transform: translate(0, 0);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-32px, 0);
     opacity: 1;
   }
   to {
@@ -171,6 +203,14 @@ body {
     transform: translate(0, 0);
     opacity: 1;
   }
+  25% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-32px, 0);
+    opacity: 1;
+  }
   to {
     transform: translate(-64px, 0);
     opacity: .3;
@@ -179,6 +219,14 @@ body {
 @keyframes ready {
   from {
     transform: translate(0, 0);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-32px, 0);
     opacity: 1;
   }
   to {

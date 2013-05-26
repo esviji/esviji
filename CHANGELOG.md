@@ -2,6 +2,10 @@
 
 ## v1.9.x
 
+### 2013-05-26 v1.9.2
+
+- [ENHANCEMENT] Show an animation when chosing the position of the ball before launching it
+
 ### 2013-05-14 v1.9.1
 
 - [FIXED] No error when using private browsing, which disables localStorage
