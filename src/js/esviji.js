@@ -683,6 +683,7 @@ ESVIJI.game = (function () {
     cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
     currentPosY = svgToY(cursorY);
     drawnCurrentBall.attr({
+      'class': 'dragged',
       y: cursorY
     });
   }

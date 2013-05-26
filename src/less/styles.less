@@ -116,7 +116,31 @@ html, body {
   &:hover {
     cursor: pointer;
   }
+
+  &.dragged {
+    .animation-duration(.7s);
+    .animation-name(ready);
+    .animation-iteration-count(infinite);
+ }
 }
+
+.ready-keyframes {
+  from {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translate(-64px, 0);
+    opacity: .3;
+  }
+}
+
+@-webkit-keyframes ready { .ready-keyframes; }
+@-moz-keyframes ready { .ready-keyframes; }
+@-ms-keyframes ready { .ready-keyframes; }
+@-o-keyframes ready { .ready-keyframes; }
+@keyframes ready { .ready-keyframes; }
 
 .panelBackground {
   pointer-events: visible;
@@ -234,3 +258,27 @@ html, body {
 #installButton {
   display: none;
 }
+
+// mixins
+
+.animation-name(@name) {
+  -moz-animation-name: @name;
+  -webkit-animation-name: @name;
+  -o-animation-name: @name;
+  animation-name: @name;
+}
+
+.animation-duration(@duration: 30s) {
+  -moz-animation-duration: @duration;
+  -webkit-animation-duration: @duration;
+  -o-animation-duration: @duration;
+  animation-duration: @duration;
+}
+
+.animation-iteration-count(@count: infinite) {
+  -moz-animation-iteration-count: @count;
+  -webkit-animation-iteration-count: @count;
+  -o-animation-iteration-count: @count;
+  animation-iteration-count: @count;
+}
+
