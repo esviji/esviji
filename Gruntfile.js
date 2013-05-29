@@ -13,7 +13,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sed');
   grunt.loadNpmTasks('grunt-docco');
   grunt.loadNpmTasks('grunt-growl');
-  grunt.loadNpmTasks('grunt-strip');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
