@@ -1,5 +1,11 @@
 # esviji changelog
 
+## v1.10.x
+
+### 2013-06-14 v1.10.0
+
+- [FIXED] endEvent callback was called several times instead of one single on webkit with SVGEventListener polyfil
+
 ## v1.9.x
 
 ### 2013-05-30 v1.9.3
