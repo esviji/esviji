@@ -2,6 +2,10 @@
 
 ## v1.10.x
 
+### 2013-06-18 v1.10.1
+
+- [FIXED] destroy animation was broken on latest column
+
 ### 2013-06-14 v1.10.0
 
 - [FIXED] endEvent callback was called several times instead of one single on webkit with SVGEventListener polyfil
