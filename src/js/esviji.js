@@ -941,16 +941,18 @@ ESVIJI.game = (function () {
     begin = begin || ("anim" + lastStackedAnimation + ".end");
 
     // rotate
-    var animRotate = svgAnimateTransform({
-      "attributeName": "transform",
-      "type": "rotate",
-      "from": "0 " + (parseInt(ball.attr('x'), 10) + 16) + " " + (parseInt(ball.attr('y'), 10) + 16),
-      "to": "360 " + (parseInt(ball.attr('x'), 10) + 16) + " " + (parseInt(ball.attr('y'), 10) + 16),
-      "begin": begin,
-      "dur": ESVIJI.settings.durationMove * 2 + "s",
-      "fill": "freeze",
-      "id": "anim" + (lastStackedAnimation + 1)
-    });
+    var centerX = parseInt(ball.attr('x'), 10) + 16,
+        centerY = parseInt(ball.attr('y'), 10) + 16,
+        animRotate = svgAnimateTransform({
+          "attributeName": "transform",
+          "type": "rotate",
+          "from": "0 " + centerX + " " + centerY,
+          "to": "360 " + centerX + " " + centerY,
+          "begin": begin,
+          "dur": ESVIJI.settings.durationMove * 2 + "s",
+          "fill": "freeze",
+          "id": "anim" + (lastStackedAnimation + 1)
+        });
     animRotate.addEventListener("beginEvent", function(event) {
       playSound('hit-same-ball');
     }, false);
