@@ -860,6 +860,8 @@ ESVIJI.game = (function () {
       }
     }
 
+    lastStackedAnimation++;
+
     anim = svgAnimate({
       "attributeName": attribute,
       "from": from,
@@ -867,7 +869,7 @@ ESVIJI.game = (function () {
       "begin": begin,
       "dur": duration + "s",
       "fill": "freeze",
-      "id": "anim" + (lastStackedAnimation + 1)
+      "id": "anim" + lastStackedAnimation
     });
     ball.append(anim);
 
