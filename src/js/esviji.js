@@ -818,15 +818,15 @@ ESVIJI.game = (function () {
   }
 
   function endOfTurn() {
-    for (x = 1; x <= 6; x++) {
-      for (y = 1; y <= 7; y++) {
-        if (drawnCurrentBalls[x][y] !== null) {
-          drawnCurrentBalls[x][y].attr({
-            'y': yToSvg(y)
-          });
-        }
-      }
-    }
+    // for (x = 1; x <= ESVIJI.settings.board.xMax; x++) {
+    //   for (y = 1; y <= ESVIJI.settings.board.yMax; y++) {
+    //     if (drawnCurrentBalls[x][y] !== null) {
+    //       drawnCurrentBalls[x][y].attr({
+    //         'y': yToSvg(y)
+    //       });
+    //     }
+    //   }
+    // }
     if (scoreThisTurn === 0) {
       if (lastHitBall != ESVIJI.settings.rockId) {
         removeLife();
@@ -871,9 +871,13 @@ ESVIJI.game = (function () {
       "fill": "freeze",
       "id": "anim" + lastStackedAnimation
     });
+    anim.attribute = attribute;
+    anim.attributeTo = to;
+    anim.addEventListener('endEvent', function (event) {
+      // set new attribute value at the end of the movement
+      $(event.currentTarget.parentElement).attr(event.currentTarget.attribute, event.currentTarget.attributeTo);
+    }, false);
     ball.append(anim);
-
-    lastStackedAnimation++;
   }
 
   function animStackMorph(ballFrom, ballToId, x, y, attribute, from, to) {
