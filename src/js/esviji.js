@@ -152,26 +152,9 @@ ESVIJI.game = (function () {
     nbBalls = 0,
     scoreThisTurn = 0,
     lastHitBall = ESVIJI.settings.rockId,
-    highScores = (!store.disabled && store.get('highScores')) || [ ],
+    highScores = [ ],
     lastGameDate = '',
-    gameStatus = (!store.disabled && store.get('gameStatus')) || {
-      currentBalls: [],
-      currentBall: 0,
-      level: 0,
-      score: 0,
-      lives: 0,
-      playing: false,
-      levelReplay: {
-        lostLives: 0,
-        level: 0,
-        balls: [],
-        sequence: []
-      },
-      preferences: {
-        sound: true,
-        difficulty: 'Beginner'
-      }
-    },
+    gameStatus = { },
     useStored = false,
     sounds,
     clickType = 'click';
@@ -185,6 +168,28 @@ ESVIJI.game = (function () {
       $('.version').text(ESVIJI.settings.version);
       // Send version to Google Analitycs only if it is set in the source
       _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Version, 'Version', ESVIJI.settings.version, 2]);
+    }
+
+    if (!store.disabled) {
+      highScores = store.get('highScores') || [ ];
+      gameStatus = store.get('gameStatus') || {
+        currentBalls: [],
+        currentBall: 0,
+        level: 0,
+        score: 0,
+        lives: 0,
+        playing: false,
+        levelReplay: {
+          lostLives: 0,
+          level: 0,
+          balls: [],
+          sequence: []
+        },
+        preferences: {
+          sound: true,
+          difficulty: 'Beginner'
+        }
+      }
     }
 
     viewportOptimize();
