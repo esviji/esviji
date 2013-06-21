@@ -238,16 +238,10 @@ body {
   pointer-events: visible;
   fill: transparent;
 }
-#main .title-shadow,
 #main .title {
   font-size: 96px;
   text-anchor: middle;
   stroke-width: 0;
-}
-#main .title-shadow {
-  fill: #333;
-}
-#main .title {
   fill: #fff;
 }
 #difficulty .title,
