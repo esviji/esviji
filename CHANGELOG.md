@@ -2,9 +2,13 @@
 
 ## v1.10.x
 
+### 2013-06-22 v1.10.2
+
+- [FIXED] typo in code was breaking everything
+
 ### 2013-06-18 v1.10.1
 
-- [FIXED] destroy animation was broken on latest column
+- [FIXED] Destroy animation was broken on latest column
 
 ### 2013-06-14 v1.10.0
 
