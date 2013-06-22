@@ -261,7 +261,6 @@ ESVIJI.game = (function () {
       viewportWidth = document.body.clientWidth;
       viewportHeight = document.body.clientHeight;
       //console.log(viewportWidth + ' / ' + viewportHeight);
-      //if (DEBUG) { console.log(viewportWidth + ' / ' + viewportHeight); }
       if (viewportHeight / viewportWidth > ESVIJI.settings.board.height / ESVIJI.settings.board.width) {
         // tall
         boardWidth = viewportWidth;
@@ -566,7 +565,6 @@ ESVIJI.game = (function () {
         // TODO
         // call the API
         //console.log(JSON.stringify(gameStatus.levelReplay));
-        //if (DEBUG) { console.log(JSON.stringify(gameStatus.levelReplay)); }
       }
 
       nextLevel();
