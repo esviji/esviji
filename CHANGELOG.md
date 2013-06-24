@@ -2,6 +2,10 @@
 
 ## v1.10.x
 
+### 2013-06-24 v1.10.3
+
+- [FIXED] New (fav)icons matching redesign, thanks to @htmlzg
+
 ### 2013-06-22 v1.10.2
 
 - [FIXED] typo in code was breaking everything
