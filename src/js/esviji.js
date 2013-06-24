@@ -546,8 +546,8 @@ ESVIJI.game = (function () {
       // no more valid ball, end of the turn
       if (null !== drawnCurrentBall) {
         drawnCurrentBall.remove(); // TODO: animate
+        drawnCurrentBall = null;
       }
-      drawnCurrentBall = null;
       gameStatus.level++;
       drawLevel();
       $('#play .level').attr('class', 'level changeUp');
