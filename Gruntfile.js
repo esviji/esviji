@@ -25,6 +25,13 @@ module.exports = function(grunt) {
         files: 'src/less/*.less',
         tasks: ['growl:less', 'less']
       },
+      js: {
+        options: {
+          debounceDelay: 250
+        },
+        files: 'src/js/*.js',
+        tasks: ['growl:js', 'jshint']
+      },
       manifest: {
         options: {
           debounceDelay: 250
@@ -36,12 +43,16 @@ module.exports = function(grunt) {
 
     growl: {
       less: {
-        message : "LESS compilation…",
-        title : "Grunt watcher"
+        title : "Grunt watcher",
+        message : "LESS compilation…"
+      },
+      js: {
+        title : "Grunt watcher",
+        message : "JS hint…"
       },
       manifest: {
-        message : "Updating manifest.appcache…",
-        title : "Grunt watcher"
+        title : "Grunt watcher",
+        message : "Updating manifest.appcache…"
       }
     },
 
