@@ -580,8 +580,8 @@ ESVIJI.game = (function () {
           "fill": "freeze",
           "id": "notPlayableAnim"
         });
-        notPlayableAnimMain.addEventListener("beginEvent", function () { playSound('error'); }, false);
-        notPlayableAnimMain.addEventListener("endEvent", notPlayable, false);
+        notPlayableAnimMain.addEventListener('beginEvent', function () { playSound('error'); }, false);
+        notPlayableAnimMain.addEventListener('endEvent', notPlayable, false);
         if (null !== drawnCurrentBall) {
           drawnCurrentBall.append(notPlayableAnimMain);
         }
@@ -732,7 +732,7 @@ ESVIJI.game = (function () {
       if (oldPosY != 1) {
         animStackMove(drawnCurrentBall, (oldPosY - currentPosY) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
       }
-      $('#anim' + lastStackedAnimation)[0].addEventListener("beginEvent", function(event) {
+      $('#anim' + lastStackedAnimation)[0].addEventListener('beginEvent', function(event) {
         playSound('hit-floor');
       });
       endOfMove();
@@ -742,7 +742,7 @@ ESVIJI.game = (function () {
         currentDirX = 0;
         currentDirY = -1;
         animStackMove(drawnCurrentBall, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
-        $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
+        $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
           playSound('hit-wall');
         }, false);
         oldPosX = currentPosX;
@@ -759,7 +759,7 @@ ESVIJI.game = (function () {
               currentDirY = -1;
               animStackMove(drawnCurrentBall, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
               oldPosX = currentPosX;
-              $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
+              $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
                 playSound('hit-wall');
               }, false);
               playUserChoice();
@@ -768,7 +768,7 @@ ESVIJI.game = (function () {
               if (oldPosY != currentPosY) {
                 animStackMove(drawnCurrentBall, (oldPosY - currentPosY) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
               }
-              $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
+              $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
                 playSound('hit-floor');
               }, false);
               endOfMove();
@@ -936,7 +936,7 @@ ESVIJI.game = (function () {
       "fill": "freeze",
       "id": "anim" + (lastStackedAnimation + 4)
     });
-    animMoveTo.addEventListener("beginEvent", function(event) {
+    animMoveTo.addEventListener('beginEvent', function(event) {
       playSound('hit-other-ball-ok');
     }, false);
     ballTo.append(animMoveTo);
@@ -960,7 +960,7 @@ ESVIJI.game = (function () {
           "fill": "freeze",
           "id": "anim" + (lastStackedAnimation + 1)
         });
-    animRotate.addEventListener("beginEvent", function(event) {
+    animRotate.addEventListener('beginEvent', function(event) {
       playSound('hit-same-ball');
     }, false);
     ball.append(animRotate);
@@ -974,7 +974,7 @@ ESVIJI.game = (function () {
       "fill": "freeze",
       "id": "anim" + (lastStackedAnimation + 2)
     });
-    animOpacity.addEventListener("endEvent", function(event) {
+    animOpacity.addEventListener('endEvent', function(event) {
       thisBall = $(event.currentTarget.parentElement);
       thisBall.remove();
     }, false);
@@ -984,7 +984,7 @@ ESVIJI.game = (function () {
   }
 
   function endOfMove() {
-    $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
+    $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
       drawnCurrentBall.remove();
       $('#morph').remove();
       if (scoreThisTurn === 0) {
@@ -1015,7 +1015,7 @@ ESVIJI.game = (function () {
                 // Follow through and overlapping action: http://uxdesign.smashingmagazine.com/2012/10/30/motion-animation-new-mobile-ux-design-material/
                 dur = ESVIJI.settings.durationMove * (1 + aboveBalls / 3);
                 animStackMove(drawnCurrentBalls[x][z + 1], dur, 'y', yToSvg(z + 1), yToSvg(z), 'anim' + lastStackedAnimationBeforeFall + '.end');
-                $('#anim' + lastStackedAnimation)[0].addEventListener("beginEvent", function(event) {
+                $('#anim' + lastStackedAnimation)[0].addEventListener('beginEvent', function(event) {
                   playSound('fall');
                 });
                 drawnCurrentBalls[x][z] = drawnCurrentBalls[x][z + 1];
@@ -1032,7 +1032,7 @@ ESVIJI.game = (function () {
     }
 
     if (lastStackedAnimation >= stackedAnimationToStart) {
-      $('#anim' + lastStackedAnimation)[0].addEventListener("endEvent", function(event) {
+      $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
         endOfTurn();
       }, false);
       $('#anim' + stackedAnimationToStart)[0].beginElement();
