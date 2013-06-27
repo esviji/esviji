@@ -1349,8 +1349,7 @@ window.addEventListener('orientationchange', ESVIJI.game.viewportOptimize);
  * http://mobile.tutsplus.com/tutorials/mobile-web-apps/remove-address-bar/
  ***************************************************************************************/
 
-function hideAddressBar()
-{
+function hideAddressBar() {
   if (!window.location.hash) {
       // Enlarge desktop browser viewport
       // if (document.height < window.outerHeight) {
