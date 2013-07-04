@@ -2,6 +2,10 @@
 
 ## v1.10.x
 
+### 2013-07-04 v1.10.4
+
+- [NEW] Use @codepo8's https://github.com/codepo8/mozVibrate-polyfill to simulate vibrations on devices that don't have a vibrator
+
 ### 2013-06-24 v1.10.3
 
 - [FIXED] New (fav)icons matching redesign, thanks to @htmlzg
