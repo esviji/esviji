@@ -647,6 +647,9 @@ ESVIJI.game = (function () {
     Mousetrap.unbind('up');
     Mousetrap.unbind('down');
     Mousetrap.unbind(['enter', 'space']);
+    drawnCurrentBall.attr({
+      'class': ''
+    });
     moveCount = 0;
     oldPosX = currentPosX;
     oldPosY = currentPosY;
