@@ -963,7 +963,7 @@ ESVIJI.game = (function () {
     var animOpacity = svgAnimate({
       "attributeName": "opacity",
       "to": "0",
-      "begin": begin,
+      "begin": "anim" + (lastStackedAnimation + 1) + ".begin",
       "dur": ESVIJI.settings.durationMove * 2 + "s",
       "fill": "freeze",
       "id": "anim" + (lastStackedAnimation + 2)
