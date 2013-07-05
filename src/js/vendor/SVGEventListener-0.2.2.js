@@ -1,5 +1,5 @@
 // SVGEventListener.js
-// Version - 0.2.1
+// Version - 0.2.2
 //
 // by MAD - @madsgraphics - ecrire[at]madsgraphics[dot]com
 //
@@ -162,6 +162,8 @@
       // if the lanch depends of the end of another animation
       else if ( (index = begin.indexOf( '.end' )) !== -1 ) {
         var previousAnimate = document.getElementById( begin.substr(0, index) );
+        // Early exit if there is no previousAnimate element available
+        if (previousAnimate == null) { return; }
         // Add an endEvent that launch the next animation
         previousAnimate.addEventListener( 'endEvent', function () {
           that.fire( 'beginEvent' );
