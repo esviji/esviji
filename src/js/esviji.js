@@ -824,15 +824,6 @@ ESVIJI.game = (function () {
   }
 
   function endOfTurn() {
-    // for (x = 1; x <= ESVIJI.settings.board.xMax; x++) {
-    //   for (y = 1; y <= ESVIJI.settings.board.yMax; y++) {
-    //     if (drawnCurrentBalls[x][y] !== null) {
-    //       drawnCurrentBalls[x][y].attr({
-    //         'y': yToSvg(y)
-    //       });
-    //     }
-    //   }
-    // }
     if (scoreThisTurn === 0) {
       if (lastHitBall != ESVIJI.settings.rockId) {
         removeLife();
