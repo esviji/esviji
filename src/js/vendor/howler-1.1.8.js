@@ -1,5 +1,5 @@
 /*!
- *  howler.js v1.1.7
+ *  howler.js v1.1.8
  *  howlerjs.com
  *
  *  (c) 2013, James Simpson of GoldFire Studios
@@ -284,9 +284,9 @@
       var self = this;
 
       if (urls) {
-        self._urls = urls;
-        self._loaded = false;
         self.stop();
+        self._urls = (typeof urls === 'string') ? [urls] : urls;
+        self._loaded = false;
         self.load();
 
         return self;
@@ -396,7 +396,7 @@
             node.currentTime = pos;
             node.muted = Howler._muted;
             node.volume = self._volume * Howler.volume();
-            node.play();
+            setTimeout(function() { node.play(); }, 0);
           } else {
             self._clearEndTimer(timerId);
 
