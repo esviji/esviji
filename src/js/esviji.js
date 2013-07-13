@@ -514,6 +514,10 @@ ESVIJI.game = (function () {
     if (useStored) {
       drawBalls();
     } else {
+      gameStatus.level++;
+      drawLevel();
+      $('#play .level').attr('class', 'level changeUp');
+      window.setTimeout(function() { $('#play .level').attr('class', 'level'); }, 2000);
       initBalls();
       drawBalls();
       getValidBalls();
@@ -548,10 +552,6 @@ ESVIJI.game = (function () {
         drawnCurrentBall.remove(); // TODO: animate
         drawnCurrentBall = null;
       }
-      gameStatus.level++;
-      drawLevel();
-      $('#play .level').attr('class', 'level changeUp');
-      window.setTimeout(function() { $('#play .level').attr('class', 'level'); }, 2000);
 
       if (ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].extraLifeLevel > 0) {
         gameStatus.lives += ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].extraLifeLevel;
