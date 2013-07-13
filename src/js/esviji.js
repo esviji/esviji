@@ -533,8 +533,8 @@ ESVIJI.game = (function () {
     };
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
-    startNewTurn();
     playSound('level');
+    startNewTurn();
   }
 
   function startNewTurn() {
