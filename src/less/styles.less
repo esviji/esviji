@@ -118,42 +118,7 @@ html, body {
   &:hover {
     cursor: pointer;
   }
-
-  &.dragged {
-    .animation-duration(.75s);
-    .animation-timing-function(ease-out);
-    .animation-name(ready);
-    .animation-iteration-count(infinite);
- }
 }
-
-.ready-keyframes {
-  from {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-
-  25% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-
-  50% {
-    transform: translate(-32px, 0);
-    opacity: 1;
-  }
-
-  to {
-    transform: translate(-64px, 0);
-    opacity: .3;
-  }
-}
-
-@-webkit-keyframes ready { .ready-keyframes; }
-@-moz-keyframes ready { .ready-keyframes; }
-@-ms-keyframes ready { .ready-keyframes; }
-@-o-keyframes ready { .ready-keyframes; }
-@keyframes ready { .ready-keyframes; }
 
 .panelBackground {
   pointer-events: visible;

@@ -673,7 +673,6 @@ ESVIJI.game = (function () {
     }
     cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
     drawnCurrentBall.attr({
-      'class': 'dragged',
       y: cursorY
     });
   }
@@ -689,7 +688,6 @@ ESVIJI.game = (function () {
     cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
     currentPosY = svgToY(cursorY);
     drawnCurrentBall.attr({
-      'class': 'dragged',
       y: cursorY
     });
   }
@@ -703,9 +701,6 @@ ESVIJI.game = (function () {
         event = event.originalEvent.changedTouches[0];
       }
       dragged = false;
-      drawnCurrentBall.attr({
-        'class': ''
-      });
       $('#play .playzone').off('mousedown touchstart');
       $('#play .playzone').off('mousemove touchmove');
       $('#play .playzone').off('mouseup touchend');
