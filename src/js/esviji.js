@@ -570,7 +570,7 @@ ESVIJI.game = (function () {
         //console.log(JSON.stringify(gameStatus.levelReplay));
       }
 
-      nextLevel();
+     makeEverythingFall();
     } else {
       if (validBalls.indexOf(gameStatus.currentBall) == -1) {
         var notPlayableAnimMain = svgAnimate({
@@ -1034,6 +1034,39 @@ ESVIJI.game = (function () {
   }
 
   function initBalls(thisLevel) {
+  function makeEverythingFall() {
+    var ballsUnder;
+
+    stackedAnimationToStart = 1;
+    lastStackedAnimation = 0;
+
+    for (x = 1; x <= 7; x++) {
+      ballsUnder = 0;
+      for (y = 1; y <= 7; y++) {
+        if (gameStatus.currentBalls[x][y] != ESVIJI.settings.emptyId) {
+          dur = ESVIJI.settings.durationMove * (1 + ballsUnder / 3);
+          if (lastStackedAnimation === 0) {
+            animStackMove(drawnCurrentBalls[x][y], dur * 7, 'y', yToSvg(y), yToSvg(y - 7));
+          } else {
+            animStackMove(drawnCurrentBalls[x][y], dur * 7, 'y', yToSvg(y), yToSvg(y - 7), 'anim' + stackedAnimationToStart + '.begin');
+          }
+          drawnCurrentBalls[x][y] = ESVIJI.settings.emptyId;
+          ballsUnder++;
+        } else {
+          ballsUnder = 0;
+        }
+      }
+    }
+
+    if (lastStackedAnimation >= stackedAnimationToStart) {
+      $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
+        nextLevel();
+      }, false);
+      $('#anim' + stackedAnimationToStart)[0].beginElement();
+    } else {
+      nextLevel();
+    }
+  }
 
     thisLevel = thisLevel || gameStatus.level;
     nbBalls = ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].balls(thisLevel);
