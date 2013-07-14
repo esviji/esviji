@@ -531,8 +531,7 @@ ESVIJI.game = (function () {
       'balls': gameStatus.currentBalls.map(function(a) { return a === null ? null : a.slice(); }), // clone the array (https://twitter.com/naholyr/status/311112698421198848)
       'sequence': []
     };
-    stackedAnimationToStart = 1;
-    lastStackedAnimation = 0;
+
     playSound('level');
     startNewTurn();
   }
