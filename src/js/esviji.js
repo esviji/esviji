@@ -1033,7 +1033,6 @@ ESVIJI.game = (function () {
     }
   }
 
-  function initBalls(thisLevel) {
   function makeEverythingFall() {
     var ballsUnder;
 
@@ -1068,6 +1067,7 @@ ESVIJI.game = (function () {
     }
   }
 
+  function initBalls(thisLevel) {
     thisLevel = thisLevel || gameStatus.level;
     nbBalls = ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].balls(thisLevel);
     gameStatus.currentBalls = [];
