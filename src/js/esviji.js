@@ -546,6 +546,10 @@ ESVIJI.game = (function () {
     lastHitBall = ESVIJI.settings.rockId;
     getValidBalls();
 
+    $('#play animate').remove(); // Should not be needed…
+    stackedAnimationToStart = 1;
+    lastStackedAnimation = 0;
+
     if (validBalls.length === 0) {
       // no more valid ball, end of the turn
       if (null !== drawnCurrentBall) {
