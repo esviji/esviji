@@ -606,7 +606,7 @@ ESVIJI.game = (function () {
         storeSet('gameStatus', gameStatus);
         useStored = false;
         if (gameStatus.playing) {
-          if (null === drawnCurrentBall) {
+          if (null === drawnCurrentBall || undefined === drawnCurrentBall ) {
             drawnCurrentBall = drawBall(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
           }
           $('#play .playzone').on('mousedown touchstart', cursorStart);
