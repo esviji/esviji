@@ -24,7 +24,7 @@ ESVIJI.settings = {
   'launch': {
     'lives': 9,
     'score': 0,
-    'level': 1
+    'level': 0
   },
   // game difficulty levels
   'difficulties': {
