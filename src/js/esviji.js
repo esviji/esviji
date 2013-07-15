@@ -657,6 +657,12 @@ ESVIJI.game = (function () {
     oldPosX = currentPosX;
     oldPosY = currentPosY;
 
+    cursorY = yToSvg(currentPosY);
+    drawnCurrentBall.attr({
+      y: cursorY
+    });
+    currentPosY = svgToY(cursorY);
+
     gameStatus.levelReplay.sequence.push({
       'ball': gameStatus.currentBall,
       'position': currentPosY
