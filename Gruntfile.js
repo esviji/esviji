@@ -43,15 +43,15 @@ module.exports = function(grunt) {
 
     growl: {
       less: {
-        title : "Grunt watcher",
+        title : "Grunt",
         message : "LESS compilation…"
       },
       js: {
-        title : "Grunt watcher",
+        title : "Grunt",
         message : "JS hint…"
       },
       manifest: {
-        title : "Grunt watcher",
+        title : "Grunt",
         message : "Updating manifest.appcache…"
       }
     },
@@ -188,5 +188,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['less', 'manifest:src', 'watch']);
+  grunt.registerTask('compile', ['growl:less', 'less', 'growl:manifest', 'manifest:src']);
   grunt.registerTask('package', ['less', 'clean', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'rev', 'usemin', 'manifest:dist', 'sed', 'docco']);
 };
