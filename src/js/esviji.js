@@ -189,7 +189,7 @@ ESVIJI.game = (function () {
           sound: true,
           difficulty: 'Beginner'
         }
-      }
+      };
     }
 
     viewportOptimize();
@@ -943,7 +943,7 @@ ESVIJI.game = (function () {
   }
 
   function animStackDestroy(ball, begin) {
-    begin = begin || ((lastStackedAnimation == 0) ? "indefinite" : ("anim" + lastStackedAnimation + ".end"));
+    begin = begin || ((lastStackedAnimation === 0) ? "indefinite" : ("anim" + lastStackedAnimation + ".end"));
 
     // rotate
     var centerX = parseInt(ball.attr('x'), 10) + 16,
