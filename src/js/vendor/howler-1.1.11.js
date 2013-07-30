@@ -1,5 +1,5 @@
 /*!
- *  howler.js v1.1.8
+ *  howler.js v1.1.11
  *  howlerjs.com
  *
  *  (c) 2013, James Simpson of GoldFire Studios
@@ -378,10 +378,13 @@
         })();
 
         if (self._webAudio) {
+          var loopStart = self._sprite[sprite][0] / 1000,
+            loopEnd = self._sprite[sprite][1] / 1000;
+
           // set the play id to this node and load into context
           node.id = soundId;
           node.paused = false;
-          refreshBuffer(self, [loop, pos, duration], soundId);
+          refreshBuffer(self, [loop, loopStart, loopEnd], soundId);
           self._playStart = ctx.currentTime;
           node.gain.value = self._volume;
 
@@ -451,6 +454,8 @@
 
       var activeNode = (id) ? self._nodeById(id) : self._activeNode();
       if (activeNode) {
+        activeNode._pos = self.pos(null, id);
+
         if (self._webAudio) {
           // make sure the sound has been created
           if (!activeNode.bufferSource) {
@@ -458,14 +463,12 @@
           }
 
           activeNode.paused = true;
-          activeNode._pos += ctx.currentTime - self._playStart;
           if (typeof activeNode.bufferSource.stop === 'undefined') {
             activeNode.bufferSource.noteOff(0);
           } else {
             activeNode.bufferSource.stop(0);
           }
         } else {
-          activeNode._pos = activeNode.currentTime;
           activeNode.pause();
         }
       }
@@ -592,17 +595,17 @@
       // make sure volume is a number
       vol = parseFloat(vol);
 
-      // if the sound hasn't been loaded, add it to the event queue
-      if (!self._loaded) {
-        self.on('play', function() {
-          self.volume(vol, id);
-        });
-
-        return self;
-      }
-
       if (vol >= 0 && vol <= 1) {
         self._volume = vol;
+
+        // if the sound hasn't been loaded, add it to the event queue
+        if (!self._loaded) {
+          self.on('play', function() {
+            self.volume(vol, id);
+          });
+
+          return self;
+        }
 
         var activeNode = (id) ? self._nodeById(id) : self._activeNode();
         if (activeNode) {
@@ -671,8 +674,11 @@
           self.pos(pos);
         });
 
-        return self;
+        return typeof pos === 'number' ? self : self._pos || 0;
       }
+
+      // make sure we are dealing with a number for pos
+      pos = parseFloat(pos);
 
       var activeNode = (id) ? self._nodeById(id) : self._activeNode();
       if (activeNode) {
@@ -692,6 +698,15 @@
             return self;
           } else {
             return activeNode.currentTime;
+          }
+        }
+      } else if (pos >= 0) {
+        return self;
+      } else {
+        // find the first inactive node to return the pos for
+        for (var i=0; i<self._audioNode.length; i++) {
+          if (self._audioNode[i].paused && self._audioNode[i].readyState === 4) {
+            return (self._webAudio) ? self._audioNode[i]._pos : self._audioNode[i].currentTime;
           }
         }
       }
@@ -919,6 +934,11 @@
         }
 
         if (self._audioNode[i].paused) {
+          // disconnect the audio source if using Web Audio
+          if (self._webAudio) {
+            self._audioNode[i].disconnect(0);
+          }
+
           inactive--;
           self._audioNode.splice(i, 1);
         }
@@ -1012,6 +1032,38 @@
       }
 
       return self;
+    },
+
+    /**
+     * Unload and destroy the current Howl object.
+     * This will immediately stop all play instances attached to this sound.
+     */
+    unload: function() {
+      var self = this;
+
+      // stop playing any active nodes
+      var nodes = self._audioNode;
+      for (var i=0; i<self._audioNode.length; i++) {
+        self.stop(nodes[i].id);
+
+        if (!self._webAudio) {
+           // remove the source if using HTML5 Audio
+          nodes[i].src = '';
+        } else {
+          // disconnect the output from the master gain
+          nodes[i].disconnect(0);
+        }
+      }
+
+      // remove the reference in the global Howler object
+      var index = Howler._howls.indexOf(self);
+      if (index) {
+        Howler._howls.splice(index, 1);
+      }
+
+      // delete this sound from the cache
+      delete cache[self._src];
+      self = null;
     }
 
   };
