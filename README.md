@@ -62,6 +62,8 @@ Aggregated analytics data is collected through Google Analytics and is only used
 
 ## To do
 
+[![Code Climate](https://codeclimate.com/github/nhoizey/esviji.png)](https://codeclimate.com/github/nhoizey/esviji)
+
 Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direction=asc&page=1&sort=completeness).
 
 ## Contributing
