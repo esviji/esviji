@@ -150,8 +150,8 @@ module.exports = function(grunt) {
         src: [
           'favicon.ico',
           'img/favicon.png',
-          'js/app.js',
-          'css/styles.css',
+          'js/*.js',
+          'css/*.css',
           'css/font/*',
           'sounds/*.{ogg,mp3}'
         ],
