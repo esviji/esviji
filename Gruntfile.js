@@ -2,16 +2,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-usemin');
-  grunt.loadNpmTasks('grunt-rev');
   grunt.loadNpmTasks('grunt-manifest');
-  grunt.loadNpmTasks('grunt-sed');
-  grunt.loadNpmTasks('grunt-docco');
   grunt.loadNpmTasks('grunt-growl');
 
   grunt.initConfig({
@@ -189,5 +180,17 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['less', 'manifest:src', 'watch']);
   grunt.registerTask('compile', ['growl:less', 'less', 'growl:manifest', 'manifest:src']);
-  grunt.registerTask('package', ['less', 'clean', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'rev', 'usemin', 'manifest:dist', 'sed', 'docco']);
+  grunt.registerTask('package', [], function() {
+    // cf https://github.com/gruntjs/grunt/issues/975#issuecomment-29058707
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-usemin');
+    grunt.loadNpmTasks('grunt-rev');
+    grunt.loadNpmTasks('grunt-sed');
+    grunt.loadNpmTasks('grunt-docco');
+    grunt.task.run('less', 'clean', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'rev', 'usemin', 'manifest:dist', 'sed', 'docco');
+  });
 };
