@@ -2,6 +2,10 @@
 
 ## v1.10.x
 
+### 2013-07-14 v1.10.6
+
+- [FIXED] .js and .css resources weren't listed in the appcache manifest anymore
+
 ### 2013-07-14 v1.10.5
 
 - [NEW] Animate end of level
