@@ -1012,7 +1012,9 @@ ESVIJI.game = (function () {
                 gameStatus.currentBalls[x][z + 1] = ESVIJI.settings.emptyId;
                 // Follow through and overlapping action: http://uxdesign.smashingmagazine.com/2012/10/30/motion-animation-new-mobile-ux-design-material/
                 dur = ESVIJI.settings.durationMove * (1 + aboveBalls / 3);
+                // TODO: add an easing to the fall animation
                 animStackMove(drawnCurrentBalls[x][z + 1], dur, 'y', yToSvg(z + 1), yToSvg(z), 'anim' + lastStackedAnimationBeforeFall + '.end');
+                // TODO: make the sound later as for piles of falling balls
                 $('#anim' + lastStackedAnimation)[0].addEventListener('beginEvent', function(event) {
                   playSound('fall');
                 });
