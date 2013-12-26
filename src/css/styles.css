@@ -45,8 +45,6 @@ body {
   fill: #eee;
   stroke-width: 0;
   -webkit-transition: all 1s ease-out;
-  -moz-transition: all 1s ease-out;
-  -o-transition: all 1s ease-out;
   transition: all 1s ease-out;
 }
 #play .score.changeDown,

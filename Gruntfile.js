@@ -3,6 +3,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-manifest');
+  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-growl');
 
   grunt.initConfig({
@@ -14,7 +15,7 @@ module.exports = function(grunt) {
           debounceDelay: 250
         },
         files: 'src/less/*.less',
-        tasks: ['growl:less', 'less']
+        tasks: ['growl:less', 'less', 'growl:autoprefixer', 'autoprefixer']
       },
       js: {
         options: {
@@ -37,6 +38,10 @@ module.exports = function(grunt) {
         title : "Grunt",
         message : "LESS compilation…"
       },
+      autoprefixer: {
+        title : "Grunt",
+        message : "autoprefixer…"
+      },
       js: {
         title : "Grunt",
         message : "JS hint…"
@@ -52,6 +57,15 @@ module.exports = function(grunt) {
         files: {
           "src/css/styles.css": "src/less/styles.less"
         }
+      }
+    },
+
+    autoprefixer: {
+      options: {
+        browsers: ['> 1%', 'last 2 versions', 'android >= 2']
+      },
+      no_dest: {
+        src: 'src/css/styles.css'
       }
     },
 
@@ -178,8 +192,8 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['less', 'manifest:src', 'watch']);
-  grunt.registerTask('compile', ['growl:less', 'less', 'growl:manifest', 'manifest:src']);
+  grunt.registerTask('default', ['compile', 'watch']);
+  grunt.registerTask('compile', ['growl:less', 'less', 'growl:autoprefixer', 'autoprefixer', 'growl:manifest', 'manifest:src']);
   grunt.registerTask('package', [], function() {
     // cf https://github.com/gruntjs/grunt/issues/975#issuecomment-29058707
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -191,6 +205,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-rev');
     grunt.loadNpmTasks('grunt-sed');
     grunt.loadNpmTasks('grunt-docco');
-    grunt.task.run('less', 'clean', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'rev', 'usemin', 'manifest:dist', 'sed', 'docco');
+    grunt.task.run('less', 'autoprefixer', 'clean', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'rev', 'usemin', 'manifest:dist', 'sed', 'docco');
   });
 };
