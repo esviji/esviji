@@ -102,6 +102,13 @@ module.exports = function(grunt) {
       }
     },
 
+    removelogging: {
+      dist: {
+        src: 'dist/js/app.js',
+        options: {}
+      }
+    },
+
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> - Copyright (c) 1992-<%= grunt.template.today("yyyy") %> Nicolas Hoizey <nicolas@hoizey.com> */',
@@ -199,12 +206,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-remove-logging');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-usemin');
     grunt.loadNpmTasks('grunt-rev');
     grunt.loadNpmTasks('grunt-sed');
     grunt.loadNpmTasks('grunt-docco');
-    grunt.task.run('less', 'autoprefixer', 'clean', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'rev', 'usemin', 'manifest:dist', 'sed', 'docco');
+    grunt.task.run('less', 'autoprefixer', 'clean', 'copy', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'manifest:dist', 'sed', 'docco');
   });
 };

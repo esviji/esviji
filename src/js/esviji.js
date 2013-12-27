@@ -876,6 +876,7 @@ ESVIJI.game = (function () {
     anim.attributeTo = to;
     anim.addEventListener('endEvent', function (event) {
       // set new attribute value at the end of the movement
+      console.log('$(' + event.currentTarget.parentElement.href.baseVal + ').attr(' + event.currentTarget.attribute + ', ' + event.currentTarget.attributeTo + ')');
       $(event.currentTarget.parentElement).attr(event.currentTarget.attribute, event.currentTarget.attributeTo);
     }, false);
     ball.append(anim);
