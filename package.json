@@ -31,6 +31,7 @@
     "grunt-usemin": "~0.1.13",
     "grunt-growl": "~0.1.5",
     "grunt-remove-logging": "~0.2.0",
-    "grunt-autoprefixer": "~0.6.2"
+    "grunt-autoprefixer": "~0.6.2",
+    "grunt-modernizr": "~0.4.1"
   }
 }
