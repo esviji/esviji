@@ -164,7 +164,7 @@ ESVIJI.game = (function () {
     if (Modernizr.touch) {
       clickType = 'touchstart';
     }
-    if (ESVIJI.settings.version !== '%VERSION%') {
+    if (!ESVIJI.settings.version.match(/VERSION/)) {
       $('.version').text(ESVIJI.settings.version);
       // Send version to Google Analitycs only if it is set in the source
       _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Version, 'Version', ESVIJI.settings.version, 2]);
