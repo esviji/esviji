@@ -2,6 +2,10 @@
 
 ## v1.10.x
 
+### 2014-01-10 v1.10.8
+
+- [FIXED] @madsgraphics released a fixed 0.2.3 version of SVGEventListener
+
 ### 2014-01-09 v1.10.7
 
 - [REVERT] Back to SVGEventListener-0.2.js because of regressions in 0.2.1 and 0.2.2
