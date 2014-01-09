@@ -2,6 +2,10 @@
 
 ## v1.10.x
 
+### 2014-01-09 v1.10.7
+
+- [REVERT] Back to SVGEventListener-0.2.js because of regressions in 0.2.1 and 0.2.2
+
 ### 2013-07-14 v1.10.6
 
 - [FIXED] .js and .css resources weren't listed in the appcache manifest anymore
