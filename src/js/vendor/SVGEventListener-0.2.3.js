@@ -279,7 +279,6 @@
   // Overwrite Element.beginElement method to trigger begin event
   SVGAnimateElement.prototype.beginElement = function() {
     if ( !isEventSupported( 'begin' ) && this.listeners !== undefined) {
-      debugger;
       this.listeners.fire('beginEvent');
     }
     return legacy.svgAnimateBeginElement.call(this);
