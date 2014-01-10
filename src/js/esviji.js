@@ -761,7 +761,7 @@ ESVIJI.game = (function () {
           case ESVIJI.settings.rockId:
             // A rock...
             if (currentDirX == -1) {
-              // ...at our left, should no go down
+              // ...at our left, should now go down
               currentDirX = 0;
               currentDirY = -1;
               animStackMove(drawnCurrentBall, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
