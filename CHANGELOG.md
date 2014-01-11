@@ -2,6 +2,10 @@
 
 ## v1.10.x
 
+### 2014-01-11 v1.10.9
+
+- [FIXED] Remove visual emulation of vibrations, only use native ones
+
 ### 2014-01-10 v1.10.8
 
 - [FIXED] @madsgraphics released a fixed 0.2.3 version of SVGEventListener
