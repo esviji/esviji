@@ -1377,30 +1377,6 @@ window.addEventListener('resize', ESVIJI.game.viewportOptimize);
 window.addEventListener('orientationchange', ESVIJI.game.viewportOptimize);
 
 /***************************************************************************************
- * Hide address bar in mobile browsers
- * http://mobile.tutsplus.com/tutorials/mobile-web-apps/remove-address-bar/
- ***************************************************************************************/
-
-function hideAddressBar() {
-  if (!window.location.hash) {
-      // Enlarge desktop browser viewport
-      // if (document.height < window.outerHeight) {
-      //     document.body.style.height = (window.outerHeight + 50) + 'px';
-      // }
-      setTimeout(function() {
-        window.scrollTo(0, 1);
-      }, 50);
-  }
-}
-
-window.addEventListener('load', function() {
-  if (!window.pageYOffset) {
-    hideAddressBar();
-  }
-});
-window.addEventListener('orientationchange', hideAddressBar);
-
-/***************************************************************************************
  * appcache
  ***************************************************************************************/
 
