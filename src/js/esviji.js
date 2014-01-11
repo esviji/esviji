@@ -260,19 +260,16 @@ ESVIJI.game = (function () {
     if (viewportWidth != document.body.clientWidth || viewportHeight != document.body.clientHeight) {
       viewportWidth = document.body.clientWidth;
       viewportHeight = document.body.clientHeight;
-      //console.log(viewportWidth + ' / ' + viewportHeight);
       if (viewportHeight / viewportWidth > ESVIJI.settings.board.height / ESVIJI.settings.board.width) {
         // tall
         boardWidth = viewportWidth;
         boardHeight = ESVIJI.settings.board.height / ESVIJI.settings.board.width * boardWidth;
         boardOffsetY = viewportHeight - boardHeight; // top empty area height
-        $('body').addClass('tall').removeClass('large');
       } else {
         // large
         boardHeight = viewportHeight;
         boardWidth = ESVIJI.settings.board.width / ESVIJI.settings.board.height * boardHeight;
         boardOffsetY = 0;
-        $('body').addClass('large').removeClass('tall');
       }
     }
   }
