@@ -647,6 +647,9 @@ ESVIJI.game = (function () {
     Mousetrap.unbind('up');
     Mousetrap.unbind('down');
     Mousetrap.unbind(['enter', 'space']);
+    $('#play .playzone').off('mousedown touchstart');
+    $('#play .playzone').off('mousemove touchmove');
+    $('#play .playzone').off('mouseup touchend');
     drawnCurrentBall.attr({
       'class': ''
     });
@@ -707,6 +710,9 @@ ESVIJI.game = (function () {
         event = event.originalEvent.changedTouches[0];
       }
       dragged = false;
+      Mousetrap.unbind('up');
+      Mousetrap.unbind('down');
+      Mousetrap.unbind(['enter', 'space']);
       $('#play .playzone').off('mousedown touchstart');
       $('#play .playzone').off('mousemove touchmove');
       $('#play .playzone').off('mouseup touchend');
