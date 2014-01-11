@@ -1329,9 +1329,8 @@ ESVIJI.game = (function () {
   }
 
   function vibrate(duration) {
-    if ('function' === typeof(navigator.vibrate)) {
-      navigator.vibrate(duration);
-    }
+    var crossVibrate = navigator.vibrate || navigator.mozVibrate || navigator.webkitVibrate || function(){};
+    crossVibrate(duration);
   }
 
   function install() {
