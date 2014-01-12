@@ -542,7 +542,6 @@ ESVIJI.game = (function () {
     lastHitBall = ESVIJI.settings.rockId;
     getValidBalls();
 
-    $('#play animate').remove(); // Should not be needed…
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
 
@@ -978,6 +977,8 @@ ESVIJI.game = (function () {
     animOpacity.addEventListener('endEvent', function(event) {
       thisBall = $(event.currentTarget.parentElement);
       thisBall.remove();
+      // Remove the ball after the animation
+      $(event.currentTarget.parentElement).remove();
     }, false);
     ball.append(animOpacity);
 
