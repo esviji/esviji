@@ -877,8 +877,10 @@ ESVIJI.game = (function () {
     anim.attribute = attribute;
     anim.attributeTo = to;
     anim.addEventListener('endEvent', function (event) {
-      // set new attribute value at the end of the movement
+      // Set new attribute value at the end of the animation
       $(event.currentTarget.parentElement).attr(event.currentTarget.attribute, event.currentTarget.attributeTo);
+      // Remove the animation
+      $(event.currentTarget).remove();
     }, false);
     ball.append(anim);
   }
@@ -975,8 +977,6 @@ ESVIJI.game = (function () {
       "id": "anim" + (lastStackedAnimation + 2)
     });
     animOpacity.addEventListener('endEvent', function(event) {
-      thisBall = $(event.currentTarget.parentElement);
-      thisBall.remove();
       // Remove the ball after the animation
       $(event.currentTarget.parentElement).remove();
     }, false);
@@ -1039,6 +1039,7 @@ ESVIJI.game = (function () {
       $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
         endOfTurn();
       }, false);
+      // Launch the animation
       $('#anim' + stackedAnimationToStart)[0].beginElement();
     } else {
       endOfTurn();
