@@ -1,5 +1,13 @@
 # esviji changelog
 
+## v1.11.x
+
+### 2014-01-12 v1.11.0
+
+- [FIXED] Some balls where fallen but getting back up
+- [FIXED] It was possible to move the ball with the mouse or the keyboard after launch when it had been launched with the other interface (the mouse or the keyboard)
+- [CHANGE] The "visual" emulation of vibration has been removed
+
 ## v1.10.x
 
 ### 2014-01-11 v1.10.9
