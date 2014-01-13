@@ -81,25 +81,13 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: "src/",
-            src: [".htaccess", "esviji-icon.png", "favicon.ico", "index.html", "manifest.webapp"],
-            dest: "dist/"
-          },
-          {
-            expand: true, 
-            cwd: "src/",
-            src: ["css/font/*"],
+            src: ["index.html", ".htaccess", "manifest.webapp", "css/font/*", "sounds/sprite.{mp3,ogg}"],
             dest: "dist/"
           },
           {
             expand: true,
-            cwd: "src/",
-            src: ["img/favicon.png", "img/firefox-os/*", "img/ios/*", "img/windows-8/*"],
-            dest: "dist/"
-          },
-          {
-            expand: true,
-            cwd: "src/",
-            src: ["sounds/sprite.{mp3,ogg}"],
+            cwd: "src/favicons/",
+            src: "*",
             dest: "dist/"
           }
         ]
@@ -180,8 +168,6 @@ module.exports = function(grunt) {
           timestamp: true
         },
         src: [
-          "favicon.ico",
-          "img/favicon.png",
           "js/**/*.js",
           "css/styles.css",
           "css/font/*",
@@ -197,8 +183,6 @@ module.exports = function(grunt) {
           timestamp: true
         },
         src: [
-          "favicon.ico",
-          "img/favicon.png",
           "js/*.js",
           "css/*.css",
           "css/font/*",
@@ -214,6 +198,11 @@ module.exports = function(grunt) {
         recursive: true,
         pattern: "%VERSION%",
         replacement: "<%= pkg.version %>"
+      },
+      favicons: {
+        path: "dist/index.html",
+        pattern: "/favicons",
+        replacement: ""
       }
     },
 
