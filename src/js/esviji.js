@@ -162,12 +162,14 @@ ESVIJI.game = (function () {
   // Initialization
   function init() {
     if (Modernizr.touch) {
+      // TODO: Should not be necessary, devices can have both mouse and touch
       clickType = 'touchstart';
     }
     if (!ESVIJI.settings.version.match(/VERSION/)) {
-      $('.version').text(ESVIJI.settings.version);
-      // Send version to Google Analitycs only if it is set in the source
-      _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Version, 'Version', ESVIJI.settings.version, 2]);
+      if ($('.version') === ESVIJI.settings.version) {
+        // Send version to Google Analitycs only if it is set in the source
+        _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Version, 'Version', ESVIJI.settings.version, 2]);
+      }
     }
 
     if (!store.disabled) {
