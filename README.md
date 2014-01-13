@@ -1,17 +1,12 @@
 #esviji
 
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
-
-<img src="http://play.esviji.com/img/firefox-os/icon-128.png" alt="esviji" width="128" height="128" style="float: right" />
+<img src="https://raw2.github.com/nhoizey/esviji/master/src/favicons/favicon-160x160.png" alt="esviji" width="160" height="160" style="float: right" />
 
 A variation around the famous [Puzzle Bobble](http://en.wikipedia.org/wiki/Puzzle_Bobble) game (a.k.a. Bust-a-Move), in which you have to destroy balls and gain points as long as you can!
 
 To know how to play, please run the tutorial available in the setting panel of the game.
 
-<img src="https://github.com/nhoizey/esviji/raw/master/images/screenshots/01-launch-screen.png" alt="Launch screen" width="150" />
-<img src="https://github.com/nhoizey/esviji/raw/master/images/screenshots/02-easy-start.png" alt="Easy start" width="150" />
-<img src="https://github.com/nhoizey/esviji/raw/master/images/screenshots/03-a-lot-of-balls.png" alt="A lot of balls" width="150" />
-<img src="https://github.com/nhoizey/esviji/raw/master/images/screenshots/04-unbreakable-blocks.png" alt="Unbreakable blocks" width="150" />
+<img src="https://raw2.github.com/nhoizey/esviji.com/master/img/screenshots/05-crazy-blocks.png" alt="Crazy blocks" width="150" style="float: right;" />
 
 ## Features
 
@@ -65,8 +60,6 @@ Aggregated analytics data is collected through Google Analytics and is only used
 - [Vincent](http://twitter.com/htmlzg) for the logo following [Firefox OS app icon design principles](http://www.mozilla.org/en-US/styleguide/products/firefoxos/icons/)
 
 ## To do
-
-[![Code Climate](https://codeclimate.com/github/nhoizey/esviji.png)](https://codeclimate.com/github/nhoizey/esviji)
 
 Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direction=asc&page=1&sort=completeness).
 
