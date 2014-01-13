@@ -242,6 +242,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-rev");
     grunt.loadNpmTasks("grunt-sed");
     grunt.loadNpmTasks("grunt-docco");
-    grunt.task.run("less", "autoprefixer", "clean", "copy", /*"modernizr",*/ "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "manifest:dist", "sed", "docco");
+    grunt.task.run("less", "autoprefixer", "clean", "copy", /*"modernizr",*/ "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco");
   });
 };
