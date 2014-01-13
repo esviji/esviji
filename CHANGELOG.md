@@ -1,5 +1,12 @@
 # esviji changelog
 
+## v1.12.x
+
+### 2014-01-13 v1.12.0
+
+- [ENHANCEMENT] Better favicons
+- [ENHANCEMENT] Better source code tree and packaging process
+
 ## v1.11.x
 
 ### 2014-01-12 v1.11.0
