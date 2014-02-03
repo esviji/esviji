@@ -3,3 +3,4 @@ node_modules/
 docs/
 deploy.sh
 dist/
+src/manifest.appcache
