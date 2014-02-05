@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-less");
+  grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-manifest");
   grunt.loadNpmTasks("grunt-autoprefixer");
   grunt.loadNpmTasks("grunt-growl");
@@ -31,6 +32,10 @@ module.exports = function(grunt) {
         files: ["src/index.html", "src/css/**", "src/js/**", "src/img/**", "src/sounds/**"],
         tasks: ["growl:manifest", "manifest:src"]
       }
+    },
+
+    jshint: {
+      all: ['Gruntfile.js', 'src/js/*.js']
     },
 
     growl: {
