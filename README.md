@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/nhoizey/esviji.png?label=ready)](https://waffle.io/nhoizey/esviji)
 #esviji
 
 <img src="https://raw2.github.com/nhoizey/esviji/master/src/favicons/favicon-160x160.png" alt="esviji" width="160" height="160" style="float: right" />
