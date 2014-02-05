@@ -218,7 +218,15 @@ module.exports = function(grunt) {
           output: "docs/"
         }
       }
+    },
+
+    curl: {
+      google_analytics: {
+        src: "http://www.google-analytics.com/analytics.js",
+        dest: "src/js/vendor/analytics.js"
+      }
     }
+
   });
 
   grunt.registerTask("default", ["compile", "watch"]);
@@ -237,5 +245,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-sed");
     grunt.loadNpmTasks("grunt-docco");
     grunt.task.run("less", "autoprefixer", "clean", "copy", /*"modernizr",*/ "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco");
+  });
+  grunt.registerTask("vendors", [], function() {
+    grunt.loadNpmTasks("grunt-curl");
+    grunt.task.run("curl");
   });
 };
