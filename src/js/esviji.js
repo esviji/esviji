@@ -7,27 +7,27 @@ var ESVIJI = {};
 ESVIJI.settings = {
   version: '%VERSION%',
   // board size and according ball extreme positions
-  'board': {
-    'width': 320,
-    'height': 460,
-    'xMax': 10,
-    'yMax': 13
+  board: {
+    width: 320,
+    height: 460,
+    xMax: 10,
+    yMax: 13
   },
   // list of available ball "names"
-  'balls': ['ball1', 'ball2', 'ball3', 'ball4', 'ball5', 'ball6'],
+  balls: ['ball1', 'ball2', 'ball3', 'ball4', 'ball5', 'ball6'],
   // list of available rock "names" (only one for now)
-  'rocks': ['rock'],
+  rocks: ['rock'],
   // special ids for the game matrix
-  'emptyId': 0,
-  'rockId': -1,
+  emptyId: 0,
+  rockId: -1,
   // game info at launch time
-  'launch': {
-    'lives': 9,
-    'score': 0,
-    'level': 0
+  launch: {
+    lives: 9,
+    score: 0,
+    level: 0
   },
   // game difficulty levels
-  'difficulties': {
+  difficulties: {
     Beginner: {
       rows: function rows(level) {
         return 3;
@@ -106,23 +106,15 @@ ESVIJI.settings = {
     }
   },
   // game info at new turn start
-  'turn': {
-    'posX': 10,
-    'dirX': -1,
-    'posY': 8,
-    'dirY': 0
+  turn: {
+    posX: 10,
+    dirX: -1,
+    posY: 8,
+    dirY: 0
   },
   // animation settings
-  'durationMove': 0.15,
-  'durationMorph': 0.5,
-  // Google Analytics custom vars slots
-  'GASlots': {
-    'PixelRatio': 1,
-    'Level': 2,
-    'Score': 3,
-    'Difficulty': 4,
-    'Version': 5
-  }
+  durationMove: 0.15,
+  durationMorph: 0.5
 };
 
 // ## Add the game engine
