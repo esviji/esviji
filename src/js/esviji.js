@@ -596,15 +596,18 @@ ESVIJI.game = (function () {
         storeSet('gameStatus', gameStatus);
         useStored = false;
         if (gameStatus.playing) {
-          if (null === drawnCurrentBall || undefined === drawnCurrentBall ) {
-            drawnCurrentBall = drawBall(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
+          if (null !== drawnCurrentBall && undefined !== drawnCurrentBall) {
+            drawnCurrentBall.remove();
           }
+          drawnCurrentBall = drawBall(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
           $('#play .playzone').on('mousedown touchstart', cursorStart);
           $('#play .playzone').on('mousemove touchmove', cursorMove);
           $('#play .playzone').on('mouseup touchend', cursorEnd);
+          $('#play .playzone').on('touchcancel', startNewTurn);
           Mousetrap.bind('up', keyUp);
           Mousetrap.bind('down', keyDown);
           Mousetrap.bind(['enter', 'space'], keyEnter);
+          Mousetrap.bind('esc', function() { console.log('esc'); startNewTurn(); });
         }
       }
     }
