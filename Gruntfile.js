@@ -86,7 +86,14 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: "src/",
-            src: ["index.html", ".htaccess", "manifest.webapp", "css/font/*", "sounds/sprite.{mp3,ogg}"],
+            src: [
+              "index.html",
+              ".htaccess",
+              "manifest.webapp",
+              "css/font/*",
+              "sounds/sprite.{mp3,ogg}",
+              "js/vendor/analytics.js"
+            ],
             dest: "dist/"
           },
           {

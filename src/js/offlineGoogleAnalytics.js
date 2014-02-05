@@ -3,41 +3,49 @@
 // - http://stackoverflow.com/questions/8114809/tracking-offline-event-with-google-analytics
 // - http://stackoverflow.com/questions/11500438/checking-if-google-analytics-library-has-already-been-included
 
-var _ogaq = {
+var offlineAnalytics = {
   push: function(arr) {
     if((navigator.onLine || !('onLine' in navigator)) && !(window._gaq instanceof Array)) {
       // Online or browser doesn't support onLine/offLine detection and GA loaded
-      _gaq.push(arr);
+      var l = arr.length;
+      for (var i = 0; i < l; i++) {
+        var elt = arr[i];
+        switch (elt.name) {
+          case 'version':
+            ga('set', 'dimension1', elt.value);
+            break;
+          case 'level':
+            ga('set', 'dimension2', elt.value);
+            break;
+          case 'score':
+            ga('set', 'dimension3', elt.value);
+            break;
+          case 'view':
+            ga('send', 'pageview', elt.value);
+            break;
+        }
+      }
     } else {
       this.store(arr);
     }
   },
+
   store: function(arr) {
-    var stored = store.get('offlineGA') || [];
+    var stored = store.get('offlineAnalytics') || [];
     stored.push(arr);
-    store.set('offlineGA', stored);
+    store.set('offlineAnalytics', stored);
     this.sync();
   },
+
   sync: function() {
-    if (window._gaq instanceof Array) {
-      // GA not loaded
-      this.loadGA();
-    } else {
-      // GA loaded
-      if(navigator.onLine || !('onLine' in navigator)) {
-        // Online or browser doesn't support onLine/offLine detection
-        _gaq.push(store.get('offlineGA'));
-        store.remove('offlineGA');
-      }
+    if(navigator.onLine || !('onLine' in navigator)) {
+      // Online or browser doesn't support onLine/offLine detection
+      _gaq.push(store.get('offlineAnalytics'));
+      store.remove('offlineAnalytics');
     }
-  },
-  loadGA: function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   }
 };
 
 $(window).bind('online', function() {
-  _ogaq.sync();
+  offlineAnalytics.sync();
 });

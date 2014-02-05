@@ -168,7 +168,7 @@ ESVIJI.game = (function () {
     if (!ESVIJI.settings.version.match(/VERSION/)) {
       if ($('.version') === ESVIJI.settings.version) {
         // Send version to Google Analitycs only if it is set in the source
-        _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Version, 'Version', ESVIJI.settings.version, 2]);
+        offlineAnalytics.push({name: 'version', value: ESVIJI.settings.version });
       }
     }
 
@@ -493,7 +493,7 @@ ESVIJI.game = (function () {
         $('#play').css('opacity', 0.3);
       }
       // Google Analytics tracking of activated panel
-      _ogaq.push(['_trackPageview', '/' + panel + '/']);
+      offlineAnalytics.push({ name: 'view', value: '/' + panel + '/' });
     }
   }
 
@@ -1213,9 +1213,8 @@ ESVIJI.game = (function () {
         positioned = false;
 
     // Google Analytics tracking of level and score at the end of the game
-    _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Difficulty, 'Difficulty', gameStatus.preferences.difficulty, 3]);
-    _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Level, 'Level', gameStatus.level, 3]);
-    _ogaq.push(['_setCustomVar', ESVIJI.settings.GASlots.Score, 'Score', gameStatus.score, 3]);
+    offlineAnalytics.push({ name: 'level', value: gameStatus.level });
+    offlineAnalytics.push({ name: 'score', value: gameStatus.score });
 
     lastGameDate = Date();
     showPanel('gameOver');
