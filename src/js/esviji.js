@@ -157,6 +157,10 @@ ESVIJI.game = (function () {
       // TODO: Should not be necessary, devices can have both mouse and touch
       clickType = 'touchstart';
     }
+    if (!Modernizr.testProp('vibrate')) {
+      $('.prefsVibration,.label.vibration').hide();
+    }
+
     if (!ESVIJI.settings.version.match(/VERSION/)) {
       if ($('.version') === ESVIJI.settings.version) {
         // Send version to Google Analitycs only if it is set in the source
@@ -181,6 +185,7 @@ ESVIJI.game = (function () {
         },
         preferences: {
           sound: true,
+          vibration: true,
           difficulty: 'Beginner'
         }
       };
@@ -221,6 +226,10 @@ ESVIJI.game = (function () {
         Crazy: []
       };
       storeSet('highScores', highScores);
+    }
+    if (undefined === gameStatus.preferences.vibration) {
+      // v1.13.0
+      gameStatus.preferences.vibration = true;
     }
 
     // Available sounds
@@ -431,6 +440,13 @@ ESVIJI.game = (function () {
       $('#settings .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
     });
 
+    $('#settings .prefsVibration text').text(gameStatus.preferences.vibration ? 'On' : 'Off');
+    $('#settings .prefsVibration').bind(clickType, function() {
+      gameStatus.preferences.vibration = !gameStatus.preferences.vibration;
+      storeSet('gameStatus', gameStatus);
+      $('#settings .prefsVibration text').text(gameStatus.preferences.vibration ? 'On' : 'Off');
+    });
+
     $('#settings .tutorial').one(clickType, startTutorial);
 
     $('#settings .exit').one(clickType, endSettings);
@@ -467,6 +483,13 @@ ESVIJI.game = (function () {
       gameStatus.preferences.sound = !gameStatus.preferences.sound;
       storeSet('gameStatus', gameStatus);
       $('#pause .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
+    });
+
+    $('#pause .prefsVibration text').text(gameStatus.preferences.vibration ? 'On' : 'Off');
+    $('#pause .prefsVibration').bind(clickType, function() {
+      gameStatus.preferences.vibration = !gameStatus.preferences.vibration;
+      storeSet('gameStatus', gameStatus);
+      $('#pause .prefsVibration text').text(gameStatus.preferences.vibration ? 'On' : 'Off');
     });
 
     $('#pause .exit').one(clickType, function(e) {
@@ -1330,8 +1353,8 @@ ESVIJI.game = (function () {
   }
 
   function vibrate(duration) {
-    navigator.vibrate = navigator.vibrate || navigator.mozVibrate || navigator.webkitVibrate;
-    if (navigator.vibrate) {
+    if (Modernizr.testProp('vibrate') && gameStatus.preferences.vibration) {
+      navigator.vibrate = navigator.vibrate || navigator.mozVibrate || navigator.webkitVibrate;
       navigator.vibrate(duration);
     }
   }
