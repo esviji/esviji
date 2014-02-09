@@ -106,19 +106,6 @@ module.exports = function(grunt) {
       }
     },
 
-    modernizr: {
-      "devFile" : "src/js/vendor/modernizr-*.js",
-      "outputFile" : "build/modernizr-custom.js",
-      "extra" : {
-        "shiv" : true,
-        "printshiv" : false,
-        "load" : true,
-        "mq" : false,
-        "cssclasses" : true
-      },
-      "uglify" : false
-    },
-
     useminPrepare: {
       options: {
         dest: "dist/"
@@ -246,7 +233,6 @@ module.exports = function(grunt) {
     // cf https://github.com/gruntjs/grunt/issues/975#issuecomment-29058707
     grunt.loadNpmTasks("grunt-contrib-clean");
     grunt.loadNpmTasks("grunt-contrib-copy");
-//    grunt.loadNpmTasks("grunt-modernizr");
     grunt.loadNpmTasks("grunt-contrib-concat");
     grunt.loadNpmTasks("grunt-remove-logging");
     grunt.loadNpmTasks("grunt-contrib-uglify");
