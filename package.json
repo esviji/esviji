@@ -1,7 +1,7 @@
 {
   "name": "esviji",
   "version": "1.12.0",
-  "description": "esviji is a variation around the famous Puzzle Bobble game (a.k.a. Bust-a-Move), in which you have to destroy balls and gain points as long as you can!",
+  "description": "A free HTML5 and SVG puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can!",
   "main": "index.html",
   "repository": {
     "type": "git",

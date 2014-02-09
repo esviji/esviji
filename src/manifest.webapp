@@ -1,7 +1,7 @@
 {
   "version": "%VERSION%",
   "name": "esviji",
-  "description": "esviji is a variation around the famous Puzzle Bobble game —a.k.a. Bust-a-Move—, in which you have to destroy balls and gain points as long as you can!",
+  "description": "esviji is A free HTML5 and SVG puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can!",
   "launch_path": "/",
   "fullscreen": "true",
   "orientation": ["portrait"],
@@ -18,7 +18,7 @@
   "appcache_path": "/manifest.appcache",
   "locales": {
     "fr": {
-      "description": "esviji est une variante du célèbre jeu Bust-a-Move —connu aussi sous le nom Puzzle Bobble—, où vous devez détruire des balles et gagner des points aussi longtemps que possible!"
+      "description": "esviji est un jeu gratuit développé en HTML5 et SVG dans lequel vous devez détruire des balles pour gagner des points et progresser dans autant de niveaux que possible!"
     }
   },
   "default_locale": "en"
