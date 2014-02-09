@@ -1,5 +1,11 @@
 # esviji changelog
 
+## v1.13.x
+
+### 2014-02-09 v1.13.0
+
+- [ENHANCEMENT] Add a setting option to active or not vibration on capable devices
+
 ## v1.12.x
 
 ### 2014-01-13 v1.12.0
