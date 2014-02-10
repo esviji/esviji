@@ -2,7 +2,6 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-less");
-  grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-manifest");
   grunt.loadNpmTasks("grunt-autoprefixer");
   grunt.loadNpmTasks("grunt-growl");
@@ -18,13 +17,6 @@ module.exports = function(grunt) {
         files: "src/less/*.less",
         tasks: ["growl:less", "less", "growl:autoprefixer", "autoprefixer"]
       },
-      js: {
-        options: {
-          debounceDelay: 250
-        },
-        files: "src/js/*.js",
-        tasks: ["growl:js", "jshint"]
-      },
       manifest: {
         options: {
           debounceDelay: 250
@@ -32,10 +24,6 @@ module.exports = function(grunt) {
         files: ["src/index.html", "src/css/**", "src/js/**", "src/img/**", "src/sounds/**"],
         tasks: ["growl:manifest", "manifest:src"]
       }
-    },
-
-    jshint: {
-      all: ['Gruntfile.js', 'src/js/*.js']
     },
 
     growl: {
@@ -46,10 +34,6 @@ module.exports = function(grunt) {
       autoprefixer: {
         title : "Grunt",
         message : "autoprefixer…"
-      },
-      js: {
-        title : "Grunt",
-        message : "JS hint…"
       },
       manifest: {
         title : "Grunt",
@@ -241,7 +225,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-rev");
     grunt.loadNpmTasks("grunt-sed");
     grunt.loadNpmTasks("grunt-docco");
-    grunt.task.run("less", "autoprefixer", "clean", "copy", /*"modernizr",*/ "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco");
+    grunt.task.run("less", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco");
   });
   grunt.registerTask("vendors", [], function() {
     grunt.loadNpmTasks("grunt-curl");
