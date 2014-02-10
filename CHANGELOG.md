@@ -2,6 +2,10 @@
 
 ## v1.13.x
 
+### 2014-02-10 v1.13.1
+
+- [FIXED] Balls where not all falling as they should, complete rewrite of the makeBallsFall() method
+
 ### 2014-02-09 v1.13.0
 
 - [ENHANCEMENT] Add a setting option to active or not vibration on capable devices
@@ -17,7 +21,7 @@
 
 ### 2014-01-12 v1.11.0
 
-- [FIXED] Some balls where fallen but getting back up
+- [FIXED] Some balls where falling but getting back up
 - [FIXED] It was possible to move the ball with the mouse or the keyboard after launch when it had been launched with the other interface (the mouse or the keyboard)
 - [CHANGE] The "visual" emulation of vibration has been removed
 

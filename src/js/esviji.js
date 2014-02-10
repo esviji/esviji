@@ -1022,34 +1022,48 @@ ESVIJI.game = (function () {
     var aboveBalls;
 
     lastStackedAnimationBeforeFall = lastStackedAnimation;
-    for (x = 1; x <= 7; x++) {
-      for (y = 1; y <= 7; y++) {
-        if (gameStatus.currentBalls[x][y] == ESVIJI.settings.emptyId) {
-          aboveBalls = 0;
-          for (z = y; z <= 6; z++) {
-            if (gameStatus.currentBalls[x][z + 1] == ESVIJI.settings.rockId) {
-              z = 7;
-            } else {
-              if (gameStatus.currentBalls[x][z + 1] != ESVIJI.settings.emptyId) {
+    for (var x = 1; x <= 7; x++) {
+      aboveBalls = 0;
+      for (var y = 1; y <= 6; y++) {
+        // No need to check if there is a hole in the top line, no ball upper to make fall
+        if (gameStatus.currentBalls[x][y] === ESVIJI.settings.emptyId) {
+          // There's a hole, let's see if there are balls above
+          for (var z = y + 1; z <= 7; z++) {
+            switch (gameStatus.currentBalls[x][z]) {
+              case ESVIJI.settings.rockId:
+                // It's a rock, we can bypass it
+                y = z;
+                z = 8;
+                break;
+              case ESVIJI.settings.emptyId:
+                // It's empty
+                if (z === 7) {
+                  // Only empty places, no need to test further this column
+                  y = 7;
+                }
+                break;
+              default:
+                // Neither rock nor empty, so there's a ball
                 aboveBalls++;
-                gameStatus.currentBalls[x][z] = gameStatus.currentBalls[x][z + 1];
-                gameStatus.currentBalls[x][z + 1] = ESVIJI.settings.emptyId;
+                gameStatus.currentBalls[x][y] = gameStatus.currentBalls[x][z];
+                drawnCurrentBalls[x][y] = drawnCurrentBalls[x][z];
+                for (var a = y + 1; a <= z; a++) {
+                  gameStatus.currentBalls[x][a] = ESVIJI.settings.emptyId;
+                  drawnCurrentBalls[x][a] = null;
+                }
+                dur = ESVIJI.settings.durationMove * (z - y);
                 // Follow through and overlapping action: http://uxdesign.smashingmagazine.com/2012/10/30/motion-animation-new-mobile-ux-design-material/
-                dur = ESVIJI.settings.durationMove * (1 + aboveBalls / 3);
+                dur = dur * (1 + aboveBalls / 3);
                 // TODO: add an easing to the fall animation
-                animStackMove(drawnCurrentBalls[x][z + 1], dur, 'y', yToSvg(z + 1), yToSvg(z), 'anim' + lastStackedAnimationBeforeFall + '.end');
+                animStackMove(drawnCurrentBalls[x][y], dur, 'y', yToSvg(z), yToSvg(y), 'anim' + lastStackedAnimationBeforeFall + '.end');
                 // TODO: make the sound later as for piles of falling balls
                 $('#anim' + lastStackedAnimation)[0].addEventListener('beginEvent', function(event) {
                   playSound('fall');
                 });
-                drawnCurrentBalls[x][z] = drawnCurrentBalls[x][z + 1];
-                drawnCurrentBalls[x][z + 1] = null;
-              }
+                // Let's try again to see if there are new balls above that have to fall
+                y = 1;
+                z = 8;
             }
-          }
-          if (aboveBalls > 0) {
-            // for multiple empty lines
-            y--;
           }
         }
       }
