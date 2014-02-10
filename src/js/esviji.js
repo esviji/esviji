@@ -583,7 +583,7 @@ ESVIJI.game = (function () {
         //console.log(JSON.stringify(gameStatus.levelReplay));
       }
 
-     makeEverythingFall();
+      makeEverythingFall();
     } else {
       if (validBalls.indexOf(gameStatus.currentBall) == -1) {
         var notPlayableAnimMain = svgAnimate({
