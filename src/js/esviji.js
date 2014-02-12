@@ -153,6 +153,14 @@ ESVIJI.game = (function () {
 
   // Initialization
   function init() {
+    if (Modernizr.inlinesvg) {
+      $('#description').hide();
+    } else {
+      // Add this message using JS to prevent indexing it in search engines
+      $('#description p.icon').before('<p>Your browser doesn\'t seem to support inline SVG. Learn about this game on <a href="http://esviji.com/">esviji.com</a>.</p>');
+      $('svg').hide();
+      return;
+    }
     if (Modernizr.touch) {
       // TODO: Should not be necessary, devices can have both mouse and touch
       clickType = 'touchstart';

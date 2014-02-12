@@ -16,6 +16,28 @@ body {
   height: 100%;
   overflow: hidden;
 }
+#description {
+  padding: 1em;
+}
+#description h1 {
+  font-size: 3em;
+  text-align: center;
+}
+#description h2,
+#description p {
+  font-family: sans-serif;
+}
+#description p.icon {
+  text-align: center;
+}
+#description a:link,
+#description a:visited {
+  color: #ccc;
+}
+#description a:hover,
+#description a:active {
+  color: #fdd;
+}
 #board {
   stroke-width: 0;
 }
