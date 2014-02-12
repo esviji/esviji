@@ -2,6 +2,10 @@
 
 ## v1.13.x
 
+### 2014-02-12 v1.13.2
+
+- [ENHANCEMENT] Show a description and message to users without inline SVG support. Fixes #74
+
 ### 2014-02-10 v1.13.1
 
 - [FIXED] Balls where not all falling as they should, complete rewrite of the makeBallsFall() method
