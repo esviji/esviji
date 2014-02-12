@@ -182,6 +182,12 @@ module.exports = function(grunt) {
         pattern: "%VERSION%",
         replacement: "<%= pkg.version %>"
       },
+      description: {
+        path: "dist/",
+        recursive: true,
+        pattern: "%DESCRIPTION%",
+        replacement: "<%= pkg.description %>"
+      },
       favicons: {
         path: "dist/index.html",
         pattern: "/favicons",
