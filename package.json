@@ -32,6 +32,8 @@
     "grunt-growl": "~0.1.5",
     "grunt-remove-logging": "~0.2.0",
     "grunt-autoprefixer": "~0.6.2",
-    "grunt-curl": "~1.4.0"
+    "grunt-curl": "~1.4.0",
+    "time-grunt": "~0.2.9",
+    "grunt-lazyload": "~1.0.2"
   }
 }

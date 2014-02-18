@@ -1,10 +1,23 @@
 module.exports = function(grunt) {
+  require("time-grunt")(grunt);
+  require("grunt-lazyload")(grunt);
 
-  grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks("grunt-contrib-less");
-  grunt.loadNpmTasks("grunt-manifest");
-  grunt.loadNpmTasks("grunt-autoprefixer");
-  grunt.loadNpmTasks("grunt-growl");
+  grunt.lazyLoadNpmTasks("grunt-contrib-watch" ,"watch");
+  grunt.lazyLoadNpmTasks("grunt-contrib-less", "less");
+  grunt.lazyLoadNpmTasks("grunt-manifest", "manifest");
+  grunt.lazyLoadNpmTasks("grunt-autoprefixer", "autoprefixer");
+  grunt.lazyLoadNpmTasks("grunt-growl", "growl");
+  grunt.lazyLoadNpmTasks("grunt-contrib-clean", "clean");
+  grunt.lazyLoadNpmTasks("grunt-contrib-copy", "copy");
+  grunt.lazyLoadNpmTasks("grunt-contrib-concat", "concat");
+  grunt.lazyLoadNpmTasks("grunt-remove-logging", "removelogging");
+  grunt.lazyLoadNpmTasks("grunt-contrib-uglify", "uglify");
+  grunt.lazyLoadNpmTasks("grunt-contrib-cssmin", "cssmin");
+  grunt.lazyLoadNpmTasks("grunt-usemin", ["useminPrepare", "usemin"]);
+  grunt.lazyLoadNpmTasks("grunt-rev", "rev");
+  grunt.lazyLoadNpmTasks("grunt-sed", "sed");
+  grunt.lazyLoadNpmTasks("grunt-docco", "docco");
+  grunt.lazyLoadNpmTasks("grunt-curl", "curl");
 
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
@@ -219,22 +232,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask("default", ["compile", "watch"]);
   grunt.registerTask("compile", ["growl:less", "less", "growl:autoprefixer", "autoprefixer", "growl:manifest", "manifest:src"]);
-  grunt.registerTask("package", [], function() {
-    // cf https://github.com/gruntjs/grunt/issues/975#issuecomment-29058707
-    grunt.loadNpmTasks("grunt-contrib-clean");
-    grunt.loadNpmTasks("grunt-contrib-copy");
-    grunt.loadNpmTasks("grunt-contrib-concat");
-    grunt.loadNpmTasks("grunt-remove-logging");
-    grunt.loadNpmTasks("grunt-contrib-uglify");
-    grunt.loadNpmTasks("grunt-contrib-cssmin");
-    grunt.loadNpmTasks("grunt-usemin");
-    grunt.loadNpmTasks("grunt-rev");
-    grunt.loadNpmTasks("grunt-sed");
-    grunt.loadNpmTasks("grunt-docco");
-    grunt.task.run("less", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco");
-  });
-  grunt.registerTask("vendors", [], function() {
-    grunt.loadNpmTasks("grunt-curl");
-    grunt.task.run("curl");
-  });
+  grunt.registerTask("package", ["less", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco"]);
+  grunt.registerTask("vendors", ["curl"]);
 };
