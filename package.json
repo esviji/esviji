@@ -1,7 +1,7 @@
 {
   "name": "esviji",
   "version": "1.13.2",
-  "description": "A free HTML5 and SVG puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can!",
+  "description": "A free puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can.",
   "main": "index.html",
   "repository": {
     "type": "git",
