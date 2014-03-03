@@ -1,11 +1,8 @@
-[![Stories in Ready](https://badge.waffle.io/nhoizey/esviji.png?label=ready)](https://waffle.io/nhoizey/esviji)
 #esviji
 
 <img src="https://raw2.github.com/nhoizey/esviji/master/src/favicons/favicon-160x160.png" alt="esviji" width="160" height="160" style="float: right" />
 
-A variation around the famous [Puzzle Bobble](http://en.wikipedia.org/wiki/Puzzle_Bobble) game (a.k.a. Bust-a-Move), in which you have to destroy balls and gain points as long as you can!
-
-To know how to play, please run the tutorial available in the setting panel of the game.
+esviji is a puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can!
 
 <img src="https://raw2.github.com/nhoizey/esviji.com/master/img/screenshots/05-crazy-blocks.png" alt="Crazy blocks" width="150" style="float: right;" />
 
@@ -18,25 +15,22 @@ To know how to play, please run the tutorial available in the setting panel of t
 
 This game came out of my mind 20 years ago thanks to the great platform that were [HP 48 calculators](http://en.wikipedia.org/wiki/HP-48_series) (I've had 3 of them). I loved playing Puzzle Bobble, Tetris and other casual game on my HP, but was also eager to develop my own game (a sily habit I have to develop games to discover new platforms/languages), and came with this idea of a kind of mashup of Puzzle Bobble and other games.
 
-I never found a satisfying name for this game, so I now took "esviji", a word game on "SVG".
+I never found a satisfying name for this game, so I now took "esviji", a word game on "SVG", the technology used for its development.
 
 esviji is open source, under MIT licence, feel free to <a href="https://github.com/nhoizey/esviji">fork it on Github</a>, make pull requests and open issues for bugs and improvement ideas.
 
-You can "love" [the palette of balls colors on COLOURlovers](http://www.colourlovers.com/palette/2807157/esviji).
 
 ## Supported platforms
 
 ### Known to work on
 
 - Most recent desktop browsers: Firefox, Chrome, Safari, Maxthon (this one's for Matthias)
-- Some mobile browsers: iOS Safari, Firefox Mobile
-- [Tell us!](http://twitter.com/esviji)
+- Some mobile browsers: iOS Safari, Chrome Mobile, Firefox Mobile
 
 ### Known to NOT work on
 
 - Some desktop browsers: Opera
-- Some mobile browsers: Chrome Android
-- [Open issues](https://github.com/nhoizey/esviji/issues?labels=Broken+browser+support&page=1&state=open)
+- Some mobile browsers: Android browser
 - [Open a new issue!](https://github.com/nhoizey/esviji/issues/new)
 
 ## Privacy policy
@@ -76,7 +70,7 @@ Please use the ```.editorconfig``` file in order to set the right usage of tabs/
 
 esviji is released under the MIT License.
 
-Copyright (c) 1992-2013 Nicolas Hoizey <nicolas@hoizey.com>
+Copyright (c) 1992-2014 Nicolas Hoizey <nicolas@hoizey.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
