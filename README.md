@@ -1,8 +1,6 @@
-#esviji
+# esviji is a puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can
 
 <img src="https://raw2.github.com/nhoizey/esviji/master/src/favicons/favicon-160x160.png" alt="esviji" width="160" height="160" style="float: right" />
-
-esviji is a puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can!
 
 <img src="https://raw2.github.com/nhoizey/esviji.com/master/img/screenshots/05-crazy-blocks.png" alt="Crazy blocks" width="150" style="float: right;" />
 
