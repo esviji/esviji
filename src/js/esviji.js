@@ -1432,12 +1432,10 @@ window.addEventListener('orientationchange', ESVIJI.game.viewportOptimize);
 if (window.applicationCache) {
   window.applicationCache.addEventListener('updateready', function(e) {
     if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-      // Browser downloaded a new app cache.
-      // Swap it in and reload the page to get the new hotness.
+      // Browser downloaded a new app cache
+      // Swap it in and reload the page to get the new version
       window.applicationCache.swapCache();
-      if (confirm('A new version is available. Do you want it right now, without losing your game?')) {
-        window.location.reload();
-      }
+      window.location.reload();
     }
   }, false);
 }
