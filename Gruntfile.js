@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         options: {
           debounceDelay: 250
         },
-        files: "src/sass/*.scss",
+        files: "src/sass/**",
         tasks: ["growl:sass", "sass", "growl:autoprefixer", "autoprefixer"]
       },
       manifest: {
@@ -57,10 +57,11 @@ module.exports = function(grunt) {
     sass: {
       src: {
         options: {
-          style: 'expanded'
+          style: "expanded"
         },
         files: {
-          "src/css/styles.css": "src/sass/styles.scss"
+          "src/css/styles.css": "src/sass/styles.scss",
+          "src/css/themes/dark.css": "src/sass/themes/dark.scss"
         }
       }
     },
@@ -70,7 +71,7 @@ module.exports = function(grunt) {
         browsers: ["> 1%", "last 2 versions", "android >= 2"]
       },
       no_dest: {
-        src: "src/css/styles.css"
+        src: "src/css/**/*.css"
       }
     },
 

@@ -46,76 +46,25 @@ html, body {
 #play .title, #tutorial .title {
   font-size: 34px;
   text-anchor: end;
-  fill: #fff;
-  stroke-width: 0;
 }
 #play .scoreLabel, #play .levelLabel, #play .livesLabel, #tutorial .scoreLabel, #tutorial .levelLabel, #tutorial .livesLabel {
   text-anchor: end;
-  fill: #ccc;
-  stroke-width: 0;
 }
 #play .score, #play .level, #play .lives, #tutorial .score, #tutorial .level, #tutorial .lives {
-  fill: #eee;
-  stroke-width: 0;
   -webkit-transition: all 1s ease-out;
   transition: all 1s ease-out;
-}
-#play .score.changeDown, #play .level.changeDown, #play .lives.changeDown, #tutorial .score.changeDown, #tutorial .level.changeDown, #tutorial .lives.changeDown {
-  fill: #c0392b;
-}
-#play .score.changeUp, #play .level.changeUp, #play .lives.changeUp, #tutorial .score.changeUp, #tutorial .level.changeUp, #tutorial .lives.changeUp {
-  fill: #27ae60;
 }
 
 .pauseButton {
   pointer-events: visible;
 }
 .pauseButton .fullarea {
-  fill: #fff;
-  opacity: 0;
   pointer-events: visible;
-}
-.pauseButton .icon {
-  stroke-width: 0;
-  fill: #fff;
-  opacity: 0.7;
 }
 
 .ball text {
   font-size: 16px;
   text-anchor: middle;
-  fill: #fff;
-  stroke-width: 0;
-}
-
-.ball1 {
-  fill: #f39c12;
-  stroke: #e67e22;
-}
-
-.ball2 {
-  fill: #2ecc71;
-  stroke: #27ae60;
-}
-
-.ball3 {
-  fill: #3498db;
-  stroke: #2980b9;
-}
-
-.ball4 {
-  fill: #9b59b6;
-  stroke: #8e44ad;
-}
-
-.ball5 {
-  fill: #aa8866;
-  stroke: #776655;
-}
-
-.ball6 {
-  fill: #e74c3c;
-  stroke: #c0392b;
 }
 
 #playable {
@@ -127,36 +76,26 @@ html, body {
 
 .panelBackground {
   pointer-events: visible;
-  fill: transparent;
 }
 
 #main .title {
   font-size: 96px;
   text-anchor: middle;
-  stroke-width: 0;
-  fill: #fff;
 }
 
 #difficulty .title, #gameOver .title, #pause .title, #scores .title, #settings .title {
   font-size: 48px;
   text-anchor: middle;
-  fill: #fff;
-  stroke-width: 0;
 }
 
 #gameOver .score {
   font-size: 34px;
-  fill: #eee;
   text-anchor: middle;
 }
 
 #scores .highscores {
   font-size: 18px;
-  fill: #eee;
   text-anchor: end;
-}
-#scores .highscores .thisone {
-  fill: #3c3;
 }
 
 .button {
@@ -165,59 +104,22 @@ html, body {
 .button text {
   font-size: 18px;
   text-anchor: middle;
-  fill: #333;
-  stroke-width: 0;
-}
-.button rect {
-  fill: #ddd;
-  stroke-width: 3;
-  stroke: #666;
 }
 .button:hover {
   cursor: pointer;
 }
-.button:hover rect {
-  fill: #fff;
-  stroke-width: 3;
-  stroke: #888;
-}
 
 .label {
-  fill: #fff;
   text-anchor: end;
 }
 
-.copyright {
-  font-size: 10px;
-  text-anchor: begin;
-  fill: #888;
-  stroke-width: 0;
-}
-
-.website {
-  font-size: 10px;
-  text-anchor: middle;
-  fill: #888;
-  stroke-width: 0;
-}
-
-.version {
+.copyright, .website, .version {
   font-size: 10px;
   text-anchor: end;
-  fill: #888;
-  stroke-width: 0;
-}
-
-.step rect, .step path {
-  fill: #aaa;
-  fill-opacity: 1;
-  stroke-width: 0;
-  stroke: #aaa;
 }
 
 .step text {
   font-weight: normal;
-  fill: #333;
 }
 
 #installButton {
