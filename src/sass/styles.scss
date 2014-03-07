@@ -1,7 +1,7 @@
 @font-face {
-  font-family: 'SansitaOneRegular';
-  src: url('font/sansitaone-webfont.woff') format('woff'),
-       url('font/sansitaone-webfont.svg#SansitaOneRegular') format('svg'); // only for Android
+  font-family: "SansitaOneRegular";
+  src: url("font/sansitaone-webfont.woff") format("woff"),
+       url("font/sansitaone-webfont.svg#SansitaOneRegular") format("svg"); // only for Android
   font-weight: normal;
   font-style: normal;
 }
@@ -9,6 +9,11 @@
 html, body {
   font-family: SansitaOneRegular;
   font-size: 18px;
+
+  /* http://maximilianhoffmann.com/posts/better-font-rendering-on-osx */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   background-color: #444;
   color:  #fff;
   margin: 0;
@@ -65,10 +70,7 @@ html, body {
     fill: #eee;
     stroke-width: 0;
 
-    -webkit-transition: all 1s ease-out;
-       -moz-transition: all 1s ease-out;
-         -o-transition: all 1s ease-out;
-            transition: all 1s ease-out;
+    transition: all 1s ease-out;
 
     &.changeDown {
       fill: #c0392b;

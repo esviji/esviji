@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   require("grunt-lazyload")(grunt);
 
   grunt.lazyLoadNpmTasks("grunt-contrib-watch" ,"watch");
-  grunt.lazyLoadNpmTasks("grunt-contrib-less", "less");
+  grunt.lazyLoadNpmTasks("grunt-contrib-sass", "sass");
   grunt.lazyLoadNpmTasks("grunt-manifest", "manifest");
   grunt.lazyLoadNpmTasks("grunt-autoprefixer", "autoprefixer");
   grunt.lazyLoadNpmTasks("grunt-growl", "growl");
@@ -23,12 +23,12 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON("package.json"),
 
     watch: {
-      less: {
+      sass: {
         options: {
           debounceDelay: 250
         },
-        files: "src/less/*.less",
-        tasks: ["growl:less", "less", "growl:autoprefixer", "autoprefixer"]
+        files: "src/sass/*.scss",
+        tasks: ["growl:sass", "sass", "growl:autoprefixer", "autoprefixer"]
       },
       manifest: {
         options: {
@@ -40,9 +40,9 @@ module.exports = function(grunt) {
     },
 
     growl: {
-      less: {
+      sass: {
         title : "Grunt",
-        message : "LESS compilation…"
+        message : "Sass compilation…"
       },
       autoprefixer: {
         title : "Grunt",
@@ -54,10 +54,13 @@ module.exports = function(grunt) {
       }
     },
 
-    less: {
+    sass: {
       src: {
+        options: {
+          style: 'expanded'
+        },
         files: {
-          "src/css/styles.css": "src/less/styles.less"
+          "src/css/styles.css": "src/sass/styles.scss"
         }
       }
     },
@@ -231,7 +234,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask("default", ["compile", "watch"]);
-  grunt.registerTask("compile", ["growl:less", "less", "growl:autoprefixer", "autoprefixer", "growl:manifest", "manifest:src"]);
-  grunt.registerTask("package", ["less", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco"]);
+  grunt.registerTask("compile", ["growl:sass", "sass", "growl:autoprefixer", "autoprefixer", "growl:manifest", "manifest:src"]);
+  grunt.registerTask("package", ["sass", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco"]);
   grunt.registerTask("vendors", ["curl"]);
 };

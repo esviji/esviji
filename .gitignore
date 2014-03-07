@@ -4,3 +4,4 @@ docs/
 deploy.sh
 dist/
 src/manifest.appcache
+.sass-cache/
