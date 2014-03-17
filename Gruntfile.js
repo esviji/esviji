@@ -28,29 +28,21 @@ module.exports = function(grunt) {
           debounceDelay: 250
         },
         files: "src/sass/**",
-        tasks: ["growl:sass", "sass", "growl:autoprefixer", "autoprefixer"]
+        tasks: ["growl", "sass", "autoprefixer"]
       },
       manifest: {
         options: {
           debounceDelay: 250
         },
         files: ["src/index.html", "src/css/**", "src/js/**", "src/img/**", "src/sounds/**"],
-        tasks: ["growl:manifest", "manifest:src"]
+        tasks: ["growl", "manifest:src"]
       }
     },
 
     growl: {
-      sass: {
+      watch: {
         title : "Grunt",
-        message : "Sass compilation…"
-      },
-      autoprefixer: {
-        title : "Grunt",
-        message : "autoprefixer…"
-      },
-      manifest: {
-        title : "Grunt",
-        message : "Updating manifest.appcache…"
+        message : "Updating…"
       }
     },
 
@@ -234,7 +226,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask("default", ["compile", "watch"]);
-  grunt.registerTask("compile", ["growl:sass", "sass", "growl:autoprefixer", "autoprefixer", "growl:manifest", "manifest:src"]);
+  grunt.registerTask("compile", ["growl", "sass", "autoprefixer", "manifest:src"]);
   grunt.registerTask("package", ["sass", "autoprefixer", "clean", "copy", "useminPrepare", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco"]);
   grunt.registerTask("vendors", ["curl"]);
 };
