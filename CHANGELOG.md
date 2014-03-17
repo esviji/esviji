@@ -1,5 +1,11 @@
 # esviji changelog
 
+## v1.14.x
+
+### v1.14.0
+
+- [CHANGE] Migrated CSS from LESS to Sass, nothing visible by end users
+
 ## v1.13.x
 
 ### 2014-02-12 v1.13.2
