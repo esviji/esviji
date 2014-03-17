@@ -56,14 +56,28 @@ html, body {
   .title {
     font-size: 34px;
     text-anchor: end;
+    fill: #fff;
+    stroke-width: 0;
   }
 
   .scoreLabel, .levelLabel, .livesLabel {
     text-anchor: end;
+    fill: #ccc;
+    stroke-width: 0;
   }
 
   .score, .level, .lives {
     transition: all 1s ease-out;
+    fill: #eee;
+    stroke-width: 0;
+
+    &.changeDown {
+      fill: #c0392b;
+    }
+
+    &.changeUp {
+      fill: #27ae60;
+    }
   }
 }
 
@@ -72,6 +86,14 @@ html, body {
 
   .fullarea {
     pointer-events: visible;
+    fill: #fff;
+    opacity: 0;
+  }
+
+  .icon {
+    stroke-width: 0;
+    fill: #fff;
+    opacity: 0.7;
   }
 }
 
@@ -79,7 +101,39 @@ html, body {
   text {
     font-size: 16px;
     text-anchor: middle;
+    fill: #fff;
+    stroke-width: 0;
   }
+}
+
+.ball1 {
+  fill: #f39c12;
+  stroke: #e67e22;
+}
+
+.ball2 {
+  fill: #2ecc71;
+  stroke: #27ae60;
+}
+
+.ball3 {
+  fill: #3498db;
+  stroke: #2980b9;
+}
+
+.ball4 {
+  fill: #9b59b6;
+  stroke: #8e44ad;
+}
+
+.ball5 {
+  fill: #aa8866;
+  stroke: #776655;
+}
+
+.ball6 {
+  fill: #e74c3c;
+  stroke: #c0392b;
 }
 
 #playable {
@@ -92,12 +146,15 @@ html, body {
 
 .panelBackground {
   pointer-events: visible;
+  fill: transparent;
 }
 
 #main {
   .title {
     font-size: 96px;
     text-anchor: middle;
+    stroke-width: 0;
+    fill: #fff;
   }
 }
 
@@ -105,6 +162,8 @@ html, body {
   .title {
     font-size: 48px;
     text-anchor: middle;
+    fill: #fff;
+    stroke-width: 0;
   }
 }
 
@@ -112,6 +171,7 @@ html, body {
   .score {
     font-size: 34px;
     text-anchor: middle;
+    fill: #eee;
   }
 }
 
@@ -119,6 +179,11 @@ html, body {
   .highscores {
     font-size: 18px;
     text-anchor: end;
+    fill: #eee;
+
+    .thisone {
+      fill: #3c3;
+    }
   }
 }
 
@@ -128,19 +193,36 @@ html, body {
   text {
     font-size: 18px;
     text-anchor: middle;
+    fill: #333;
+    stroke-width: 0;
+  }
+
+  rect {
+    fill: #ddd;
+    stroke-width: 3;
+    stroke: #666;
   }
 
   &:hover {
     cursor: pointer;
+
+    rect {
+      fill: #fff;
+      stroke-width: 3;
+      stroke: #888;
+    }
   }
 }
 
 .label {
   text-anchor: end;
+  fill: #fff;
 }
 
 .copyright, .website, .version {
   font-size: 10px;
+  fill: #888;
+  stroke-width: 0;
 }
 
 .copyright {
@@ -155,8 +237,18 @@ html, body {
   text-anchor: end;
 }
 
-.step text {
-  font-weight: normal;
+.step {
+  text {
+    font-weight: normal;
+    fill: #333;
+  }
+
+  rect, path {
+    fill: #aaa;
+    fill-opacity: 1;
+    stroke-width: 0;
+    stroke: #aaa;
+  }
 }
 
 #installButton {

@@ -60,8 +60,7 @@ module.exports = function(grunt) {
           style: "expanded"
         },
         files: {
-          "src/css/styles.css": "src/sass/styles.scss",
-          "src/css/themes/dark.css": "src/sass/themes/dark.scss"
+          "src/css/styles.css": "src/sass/styles.scss"
         }
       }
     },
