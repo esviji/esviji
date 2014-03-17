@@ -227,6 +227,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask("default", ["compile", "watch"]);
   grunt.registerTask("compile", ["growl", "sass", "autoprefixer", "manifest:src"]);
-  grunt.registerTask("package", ["sass", "autoprefixer", "clean", "copy", "useminPrepare", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco"]);
+  grunt.registerTask("package", ["sass", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco"]);
   grunt.registerTask("vendors", ["curl"]);
 };
