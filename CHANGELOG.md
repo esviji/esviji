@@ -2,6 +2,10 @@
 
 ## v1.14.x
 
+### v1.14.2
+
+- [ENHANCEMENT] Improving offlineGoogleAnalytics
+
 ### v1.14.1
 
 - [CHANGE] Merge main SCSS and dark theme SCSS to avoid usemin issue [#312](https://github.com/yeoman/grunt-usemin/issues/312)

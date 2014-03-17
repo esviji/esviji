@@ -1,12 +1,12 @@
-// Put Google Analytics events in localStorage when offline
-// Inspired by:
-// - http://stackoverflow.com/questions/8114809/tracking-offline-event-with-google-analytics
-// - http://stackoverflow.com/questions/11500438/checking-if-google-analytics-library-has-already-been-included
+// Put Google Analytics events in localStorage when offline, sync when back online
 
 var offlineAnalytics = {
+  isOnline: function () {
+    return (navigator.onLine || !('onLine' in navigator)) && (typeof window.ga === "function");
+  },
+
   push: function(arr) {
-    if((navigator.onLine || !('onLine' in navigator)) && !(window._gaq instanceof Array)) {
-      // Online or browser doesn't support onLine/offLine detection and GA loaded
+    if(this.isOnline()) {
       var l = arr.length;
       for (var i = 0; i < l; i++) {
         var elt = arr[i];
@@ -21,6 +21,7 @@ var offlineAnalytics = {
             ga('set', 'dimension3', elt.value);
             break;
           case 'view':
+            console.log(elt.value);
             ga('send', 'pageview', elt.value);
             break;
         }
@@ -38,10 +39,12 @@ var offlineAnalytics = {
   },
 
   sync: function() {
-    if(navigator.onLine || !('onLine' in navigator)) {
-      // Online or browser doesn't support onLine/offLine detection
-      _gaq.push(store.get('offlineAnalytics'));
+    if(this.isOnline()) {
+      var stored = store.get('offlineAnalytics') || [];
       store.remove('offlineAnalytics');
+      this.push(stored);
+    } else {
+      window.setTimeout(offlineAnalytics.sync, 1000 * 60);
     }
   }
 };
