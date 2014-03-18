@@ -516,7 +516,7 @@ ESVIJI.game = (function () {
         $('#play').css('opacity', 0.3);
       }
       // Google Analytics tracking of activated panel
-      offlineAnalytics.push({ name: 'view', value: '/' + panel + '/' });
+      offlineAnalytics.push({ name: 'view', value: '/' + (panel === 'main' ? '' : panel + '/') });
     }
   }
 
