@@ -170,7 +170,7 @@ ESVIJI.game = (function () {
     }
 
     if (!ESVIJI.settings.version.match(/VERSION/)) {
-      if ($('.version') === ESVIJI.settings.version) {
+      if ($('.version').text() === ESVIJI.settings.version) {
         // Send version to Google Analitycs only if it is set in the source
         offlineAnalytics.push({name: 'version', value: ESVIJI.settings.version });
       }
