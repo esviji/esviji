@@ -2,6 +2,10 @@
 
 ## v1.14.x
 
+### v1.14.3
+
+- [CHANGE] Howler.js v1.1.18
+
 ### v1.14.2
 
 - [ENHANCEMENT] Improving offlineGoogleAnalytics
