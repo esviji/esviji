@@ -211,6 +211,10 @@
     return void 0;
   };
 
+  Offline.checks.down = Offline.markDown;
+
+  Offline.checks.up = Offline.markUp;
+
   Offline.check = function() {
     Offline.trigger('checking');
     return Offline.checks[Offline.getOption('checks.active')]();
