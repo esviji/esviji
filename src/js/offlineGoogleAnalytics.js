@@ -21,7 +21,6 @@ var offlineAnalytics = {
             ga('set', 'dimension3', elt.value);
             break;
           case 'view':
-            console.log(elt.value);
             ga('send', 'pageview', elt.value);
             break;
         }
