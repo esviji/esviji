@@ -1,5 +1,11 @@
 # esviji changelog
 
+## v1.15.x
+
+### v1.15.0
+
+- [CHANGE] Tutorial button now on home screen
+
 ## v1.14.x
 
 ### v1.14.3
