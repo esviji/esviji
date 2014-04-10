@@ -300,6 +300,7 @@ ESVIJI.game = (function () {
     $('#main .start').one(clickType, startDifficulty);
     $('#main .scores').one(clickType, startScores);
     $('#main .settings').one(clickType, startSettings);
+    $('#main .help').one(clickType, startTutorial);
   }
 
   function startDifficulty() {
@@ -378,7 +379,7 @@ ESVIJI.game = (function () {
   }
 
   function startTutorial() {
-    hidePanel('settings');
+    hidePanel('main');
     showPanel('tutorial');
     $('#tutorial .pauseButton').one(clickType, endTutorial);
     $('#tutoAnimEnd')[0].addEventListener('endEvent', endTutorial, false);
@@ -388,8 +389,8 @@ ESVIJI.game = (function () {
   function endTutorial(event) {
     event.preventDefault();
     hidePanel('tutorial');
-    showPanel('settings');
-    startSettings();
+    showPanel('main');
+    startMain();
   }
 
   function startScores() {
@@ -454,8 +455,6 @@ ESVIJI.game = (function () {
       storeSet('gameStatus', gameStatus);
       $('#settings .prefsVibration text').text(gameStatus.preferences.vibration ? 'On' : 'Off');
     });
-
-    $('#settings .tutorial').one(clickType, startTutorial);
 
     $('#settings .exit').one(clickType, endSettings);
 

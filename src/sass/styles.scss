@@ -156,6 +156,24 @@ html, body {
     stroke-width: 0;
     fill: #fff;
   }
+
+  .button {
+    & > circle {
+      fill: #444;
+    }
+  }
+
+  .copyright {
+    text-anchor: start;
+  }
+
+  .website {
+    text-anchor: middle;
+  }
+
+  .version {
+    text-anchor: end;
+  }
 }
 
 #difficulty, #gameOver, #pause, #scores, #settings {
@@ -223,18 +241,6 @@ html, body {
   font-size: 10px;
   fill: #888;
   stroke-width: 0;
-}
-
-.copyright {
-  text-anchor: start;
-}
-
-.website {
-  text-anchor: middle;
-}
-
-.version {
-  text-anchor: end;
 }
 
 .step {
