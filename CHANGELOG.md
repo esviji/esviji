@@ -2,6 +2,11 @@
 
 ## v1.15.x
 
+### v1.15.1
+
+- [FIXED] Fix the background color of the tutorial
+- [CHANGE] Howler.js v1.1.19
+
 ### v1.15.0
 
 - [CHANGE] Tutorial button now on home screen
