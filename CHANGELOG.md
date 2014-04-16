@@ -2,6 +2,10 @@
 
 ## v1.15.x
 
+### v1.15.2
+
+- [CHANGE] No sound on iOS until further exploration of download/caching issues
+
 ### v1.15.1
 
 - [FIXED] Fix the background color of the tutorial

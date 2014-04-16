@@ -149,10 +149,14 @@ ESVIJI.game = (function () {
     gameStatus = { },
     useStored = false,
     sounds,
-    clickType = 'click';
+    clickType = 'click',
+    iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent );
 
   // Initialization
   function init() {
+    if (iOS) {
+      $('body').addClass('ios');
+    }
     if (Modernizr.inlinesvg) {
       $('#description').hide();
     } else {
@@ -241,22 +245,25 @@ ESVIJI.game = (function () {
     }
 
     // Available sounds
-    sounds = new Howl({
-      "urls": ["sounds/sprite.ogg", "sounds/sprite.mp3"],
-      "sprite": {
-        "fall": [0, 204.05895691609976],
-        "hit-floor": [2000, 2000],
-        "hit-other-ball-ko": [5000, 468.7528344671206],
-        "hit-other-ball-ok": [7000, 500],
-        "hit-same-ball": [9000, 1000],
-        "hit-wall": [11000, 1835.941043083901],
-        "level": [14000, 2947.0068027210878],
-        "life-down": [18000, 1000],
-        "life-up": [20000, 1000],
-        "throw": [22000, 797.1201814058943]
-      },
-      buffer: true
-    });
+    // TODO: find a way to make it work on iOS
+    if (!iOS) {
+      sounds = new Howl({
+        "urls": ["sounds/sprite.ogg", "sounds/sprite.mp3"],
+        "sprite": {
+          "fall": [0, 204.05895691609976],
+          "hit-floor": [2000, 2000],
+          "hit-other-ball-ko": [5000, 468.7528344671206],
+          "hit-other-ball-ok": [7000, 500],
+          "hit-same-ball": [9000, 1000],
+          "hit-wall": [11000, 1835.941043083901],
+          "level": [14000, 2947.0068027210878],
+          "life-down": [18000, 1000],
+          "life-up": [20000, 1000],
+          "throw": [22000, 797.1201814058943]
+        },
+        buffer: true
+      });
+    }
 
     run();
   }
@@ -1368,7 +1375,7 @@ ESVIJI.game = (function () {
   }
 
   function playSound(type) {
-    if (gameStatus.preferences.sound && sounds._loaded) {
+    if (!iOS && gameStatus.preferences.sound && sounds._loaded) {
       sounds.play(type);
     }
   }

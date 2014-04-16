@@ -216,6 +216,10 @@ html, body {
   stroke: #aaa;
 }
 
+.ios .label.sound, .ios .button.prefsSound {
+  display: none;
+}
+
 #installButton {
   display: none;
 }

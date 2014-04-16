@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         options: {
           debounceDelay: 250
         },
-        files: ["src/index.html", "src/css/**", "src/js/**", "src/img/**", "src/sounds/**"],
+        files: ["src/index.html", "src/css/**", "src/js/**", "src/img/**"], //, "src/sounds/**"],
         tasks: ["growl", "manifest:src"]
       }
     },

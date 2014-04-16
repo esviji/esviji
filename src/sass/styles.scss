@@ -257,6 +257,12 @@ html, body {
   }
 }
 
+.ios {
+  .label.sound, .button.prefsSound {
+    display: none;
+  }
+}
+
 #installButton {
   display: none;
 }
