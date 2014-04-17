@@ -2,6 +2,11 @@
 
 ## v1.15.x
 
+### v1.15.3
+
+- [CHANGE] Remove sounds from appcache for iOS (uses User Agent sniffing to deliver a specific appcache file, unfortunately)
+- [CHANGE] Hide settings button/screen from iOS
+
 ### v1.15.2
 
 - [CHANGE] No sound on iOS until further exploration of download/caching issues
