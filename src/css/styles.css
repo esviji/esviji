@@ -219,6 +219,9 @@ html, body {
 .ios .label.sound, .ios .button.prefsSound {
   display: none;
 }
+.ios #settingsButton {
+  display: none;
+}
 
 #installButton {
   display: none;

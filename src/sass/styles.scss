@@ -261,6 +261,10 @@ html, body {
   .label.sound, .button.prefsSound {
     display: none;
   }
+
+  #settingsButton {
+    display: none;
+  }
 }
 
 #installButton {

@@ -156,6 +156,7 @@ ESVIJI.game = (function () {
   function init() {
     if (iOS) {
       $('body').addClass('ios');
+      $('#scoresButton').attr('transform', 'translate(35,0)');
     }
     if (Modernizr.inlinesvg) {
       $('#description').hide();
