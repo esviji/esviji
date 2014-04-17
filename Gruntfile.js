@@ -166,6 +166,20 @@ module.exports = function(grunt) {
         ],
         dest: "src/manifest.appcache"
       },
+      src_ios: {
+        options: {
+          basePath: "src/",
+          network: ["*"],
+          verbose: true,
+          timestamp: true
+        },
+        src: [
+          "js/**/*.js",
+          "css/styles.css",
+          "css/font/*"
+        ],
+        dest: "src/manifest_ios.appcache"
+      },
       dist: {
         options: {
           basePath: "dist/",
@@ -180,6 +194,20 @@ module.exports = function(grunt) {
           "sounds/*.{ogg,mp3}"
         ],
         dest: "dist/manifest.appcache"
+      },
+      dist_ios: {
+        options: {
+          basePath: "dist/",
+          network: ["*"],
+          verbose: true,
+          timestamp: true
+        },
+        src: [
+          "js/*.js",
+          "css/*.css",
+          "css/font/*"
+        ],
+        dest: "dist/manifest_ios.appcache"
       }
     },
 
@@ -226,7 +254,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask("default", ["compile", "watch"]);
-  grunt.registerTask("compile", ["growl", "sass", "autoprefixer", "manifest:src"]);
-  grunt.registerTask("package", ["sass", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "docco"]);
+  grunt.registerTask("compile", ["growl", "sass", "autoprefixer", "manifest:src", "manifest:src_ios"]);
+  grunt.registerTask("package", ["sass", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "manifest:dist_ios", "docco"]);
   grunt.registerTask("vendors", ["curl"]);
 };
