@@ -52,7 +52,8 @@ html, body {
  * For all screens
  * ********************************************************************/
 section {
-  margin: 0;
+  max-width: 150vh;
+  margin: 0 auto;
   padding: 0;
   position: absolute;
   top: 0;
@@ -60,10 +61,193 @@ section {
   left: 0;
   right: 0;
 }
+section .controls {
+  position: absolute;
+  left: 0;
+  bottom: 5vmin;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+section .controls li {
+  text-align: center;
+  padding: 3vmin;
+}
+section .controls img {
+  width: -webkit-calc(20vh - 25vw);
+  width: calc(20vh - 25vw);
+  height: auto;
+}
+@media (min-aspect-ratio: 9 / 24) {
+  section .controls {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  section .controls img {
+    width: 30vmin;
+  }
+}
+@media (min-aspect-ratio: 13 / 24) {
+  section .controls img {
+    width: 18vmin;
+  }
+}
+
+.ball1 {
+  fill: #f39c12;
+  stroke: #e67e22;
+}
+
+.ball2 {
+  fill: #2ecc71;
+  stroke: #27ae60;
+}
+
+.ball3 {
+  fill: #3498db;
+  stroke: #2980b9;
+}
+
+.ball4 {
+  fill: #9b59b6;
+  stroke: #8e44ad;
+}
+
+.ball5 {
+  fill: #aa8866;
+  stroke: #776655;
+}
+
+.ball6 {
+  fill: #e74c3c;
+  stroke: #c0392b;
+}
 
 /* ********************************************************************
  * Home screen
  * ********************************************************************/
+section#home header {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+section#home header h1 {
+  font-size: 25vmin;
+  text-align: center;
+  margin: 3vmin 0;
+}
+section#home header .logo {
+  display: block;
+  width: 50vmin;
+  height: auto;
+  margin: 10vmin auto;
+  padding: 0;
+}
+@media (min-aspect-ratio: 18 / 24) {
+  section#home header {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+  }
+  section#home header h1 {
+    font-size: 20vw;
+  }
+  section#home header .logo {
+    width: 20vw;
+    height: 20vw;
+    margin: 3vw 0;
+  }
+  section#home .controls img {
+    width: -webkit-calc(25vh - 5vw);
+    width: calc(25vh - 5vw);
+  }
+}
+@media (min-aspect-ratio: 24 / 24) {
+  section#home .controls img {
+    width: 20vh;
+  }
+}
+@media (min-aspect-ratio: 36 / 24) {
+  section#home header h1 {
+    font-size: 30vh;
+  }
+  section#home header .logo {
+    width: 30vh;
+    height: auto;
+    margin: 4.5vh 0;
+  }
+}
+section#home .controls .play img {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+}
+
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  to {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
 /* ********************************************************************
  * Play screen
  * ********************************************************************/
@@ -144,12 +328,21 @@ section#play .score.changeDown, section#play .lives.changeDown, section#play .le
 section#play .score.changeUp, section#play .lives.changeUp, section#play .level.changeUp {
   color: #27ae60;
 }
+section#play .controls {
+  position: static;
+}
 section#play .controls .pause {
   position: absolute;
   top: 3vmin;
+  bottom: auto;
+  left: auto;
   right: 3vmin;
   width: 20vmin;
   height: 20vmin;
+}
+section#play .controls .pause img {
+  width: 100%;
+  height: 100%;
 }
 section#play svg#board {
   position: absolute;
@@ -167,30 +360,6 @@ section#play svg#board .ball text {
   text-anchor: middle;
   fill: #fff;
   stroke-width: 0;
-}
-section#play svg#board .ball1 {
-  fill: #f39c12;
-  stroke: #e67e22;
-}
-section#play svg#board .ball2 {
-  fill: #2ecc71;
-  stroke: #27ae60;
-}
-section#play svg#board .ball3 {
-  fill: #3498db;
-  stroke: #2980b9;
-}
-section#play svg#board .ball4 {
-  fill: #9b59b6;
-  stroke: #8e44ad;
-}
-section#play svg#board .ball5 {
-  fill: #aa8866;
-  stroke: #776655;
-}
-section#play svg#board .ball6 {
-  fill: #e74c3c;
-  stroke: #c0392b;
 }
 section#play svg#board #playable {
   pointer-events: none;
@@ -317,6 +486,20 @@ section#play svg#board #spring {
     width: calc(150vh - 2 * 3vmin - 74.4186vh);
     font-size: 9vh;
   }
+}
+
+/* ********************************************************************
+ * Pause screen
+ * ********************************************************************/
+section#pause h1 {
+  font-size: 25vmin;
+}
+section#pause h2 {
+  font-size: 10vmin;
+}
+section#pause h1, section#pause h2 {
+  text-align: center;
+  margin: 3vmin 0;
 }
 
 /* ********************************************************************

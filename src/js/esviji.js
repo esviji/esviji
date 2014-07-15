@@ -151,7 +151,7 @@ ESVIJI.game = (function () {
     useStored = false,
     sounds,
     clickType = 'click',
-    iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent );
+    iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent ); // Just for sounds
 
   // Initialization
   function init() {
@@ -176,7 +176,7 @@ ESVIJI.game = (function () {
 
     if (!ESVIJI.settings.version.match(/VERSION/)) {
       if ($('.version').text() === ESVIJI.settings.version) {
-        // Send version to Google Analitycs only if it is set in the source
+        // Send version to Google Analytics only if it is set in the source
         offlineAnalytics.push({name: 'version', value: ESVIJI.settings.version });
       }
     }
@@ -208,6 +208,8 @@ ESVIJI.game = (function () {
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailableBalls = ESVIJI.settings.balls.length;
+
+    initBindings();
 
     // Deal with localStore content that has been set when there was less data
     if (undefined === gameStatus.levelReplay) {
@@ -275,27 +277,84 @@ ESVIJI.game = (function () {
     }
   }
 
-  function viewportOptimize() {
-    if (viewportWidth != document.body.clientWidth || viewportHeight != document.body.clientHeight) {
-      viewportWidth = document.body.clientWidth;
-      viewportHeight = document.body.clientHeight;
-      if (viewportHeight / viewportWidth > ESVIJI.settings.board.height / ESVIJI.settings.board.width) {
-        // tall
-        boardWidth = viewportWidth;
-        boardHeight = ESVIJI.settings.board.height / ESVIJI.settings.board.width * boardWidth;
-        boardOffsetY = viewportHeight - boardHeight; // top empty area height
+  function initBindings() {
+    // Home screen buttons
+    $('#home .controls .play').bind('click', startPlaying);
+    $('#home .controls .scores').bind('click', startScores);
+    $('#home .controls .settings').bind('click', startSettings);
+    $('#home .controls .tutorial').bind('click', startTutorial);
+    $('#home .controls .about').bind('click', function(e) {
+      e.preventDefault();
+      showScreen('about');
+    });
+
+    // Play screen buttons
+    $('#play .controls .pause').bind('click', function(e) {
+      e.preventDefault();
+      showScreen('pause');
+    });
+
+    // Pause screen buttons
+    $('#pause .controls .resume').bind('click', function(e) {
+      e.preventDefault();
+      showScreen('play');
+    });
+    $('#pause .controls .restart').bind('click', function(e) {
+      e.preventDefault();
+      storeSet('gameStatus', {
+        'playing': false
+      });
+      startPlaying();
+    });
+    $('#pause .controls .settings').bind('click', function(e) {
+      e.preventDefault();
+      startSettings();
+    });
+    $('#pause .controls .exit').bind('click', function(e) {
+      e.preventDefault();
+      stopPlaying();
+    });
+
+    // Settings screen buttons
+    $('#settings .controls .exit').bind('click', function(e) {
+      event.preventDefault();
+      if (gameStatus.playing) {
+        showScreen('pause');
       } else {
-        // large
-        boardHeight = viewportHeight;
-        boardWidth = ESVIJI.settings.board.width / ESVIJI.settings.board.height * boardHeight;
-        boardOffsetY = 0;
+        showScreen('home');
       }
+    });
+
+    // About screen buttons
+    $('#about .controls .exit').bind('click', function(e) {
+      event.preventDefault();
+      showScreen('home');
+    });
+  }
+
+  function viewportOptimize() {
+    var vw = document.body.clientWidth,
+        vh = document.body.clientHeight;
+
+    if (viewportWidth != vw || viewportHeight != vh) {
+      var b = document.getElementById('board'),
+          c = getComputedStyle(b);
+
+      viewportWidth = vw;
+      viewportHeight = vh;
+
+      boardWidth = parseInt(c.width, 10);
+      boardHeight = ESVIJI.settings.board.height / ESVIJI.settings.board.width * boardWidth;
+
+      boardOffsetY = vh - boardHeight;
+
+      console.log('Aspect ratio: ' + vw / (vh / 24) + '/24');
     }
   }
 
   function run() {
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
-      startHome();
+      showScreen('home');
     } else {
       useStored = true;
       startPlaying();
@@ -308,20 +367,9 @@ ESVIJI.game = (function () {
     }
     $('#' + screen).css('display', 'block');
     gameStatus.currentScreen = screen;
-    window.location.history.pushState(screen);
-
-    console.log('Showing screen ' + screen);
 
     // Google Analytics tracking of activated screen
     offlineAnalytics.push({ name: 'view', value: '/' + (screen === 'home' ? '' : screen + '/') });
-  }
-
-  function startHome(difficulty) {
-    showScreen('home');
-    $('#home .play').one('click', startPlaying);
-    $('#home .scores').one('click', startScores);
-    $('#home .settings').one('click', startSettings);
-    $('#home .help').one('click', startTutorial);
   }
 
   function startPlaying(event) {
@@ -342,7 +390,6 @@ ESVIJI.game = (function () {
     drawLevel();
     drawScore();
     drawLives();
-    $('#play .controls .pause').bind(clickType, startPause);
     nextLevel();
   }
 
@@ -370,7 +417,7 @@ ESVIJI.game = (function () {
 
   function endTutorial(event) {
     event.preventDefault();
-    startHome();
+    showScreen('home');
   }
 
   function startScores() {
@@ -412,7 +459,7 @@ ESVIJI.game = (function () {
 
   function endScores(event) {
     event.preventDefault();
-    startHome();
+    showScreen('home');
   }
 
   function startSettings() {
@@ -432,49 +479,7 @@ ESVIJI.game = (function () {
       $('#settings .prefsVibration text').text(gameStatus.preferences.vibration ? 'On' : 'Off');
     });
 
-    $('#settings .exit').one(clickType, endSettings);
-
     showInstall();
-  }
-
-  function endSettings(event) {
-    event.preventDefault();
-    startHome();
-  }
-
-  function startPause() {
-    showScreen('pause');
-    $('#pause .resume').bind(clickType, function(e) {
-      e.preventDefault();
-      showScreen('play');
-    });
-
-    $('#pause .restart').bind(clickType, function(e) {
-      e.preventDefault();
-      storeSet('gameStatus', {
-        'playing': false
-      });
-      startPlaying();
-    });
-
-    $('#pause .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
-    $('#pause .prefsSound').bind(clickType, function() {
-      gameStatus.preferences.sound = !gameStatus.preferences.sound;
-      storeSet('gameStatus', gameStatus);
-      $('#pause .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
-    });
-
-    $('#pause .prefsVibration text').text(gameStatus.preferences.vibration ? 'On' : 'Off');
-    $('#pause .prefsVibration').bind(clickType, function() {
-      gameStatus.preferences.vibration = !gameStatus.preferences.vibration;
-      storeSet('gameStatus', gameStatus);
-      $('#pause .prefsVibration text').text(gameStatus.preferences.vibration ? 'On' : 'Off');
-    });
-
-    $('#pause .exit').bind(clickType, function(e) {
-      e.preventDefault();
-      stopPlaying();
-    });
   }
 
   function nextLevel() {
@@ -1291,19 +1296,19 @@ ESVIJI.game = (function () {
   }
 
   function xToSvg(x) {
-    return (x - 1) * 32 + 4;
+    return (x - 1) * 32 + 6;
   }
 
   function yToSvg(y) {
-    return ESVIJI.settings.board.height - 32 * y - 4;
+    return ESVIJI.settings.board.height - 32 * y - 6;
   }
 
   function svgToX(coordX) {
-    return (coordX - 4) / 32 + 1;
+    return (coordX - 6) / 32 + 1;
   }
 
   function svgToY(coordY) {
-    return Math.round((ESVIJI.settings.board.height - coordY - 4) / 32);
+    return Math.round((ESVIJI.settings.board.height - coordY - 6) / 32);
   }
 
   function pixelsToSvgY(coordY) {

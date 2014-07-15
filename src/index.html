@@ -52,38 +52,34 @@ section {
   <p class="icon"><img src="favicon-160x160.png" width="160" height="160" /></p>
 </header>
 <section id="home">
-  <h1>esviji</h1>
-  <svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" id="logo" viewBox="0 0 320 320" preserveAspectRatio="xMidYMid meet">
-    <circle class="ball3" stroke-width="2" cx="94" cy="148" r="20" />
-    <circle class="ball2" stroke-width="2" cx="138" cy="148" r="20" />
-    <circle class="ball4" stroke-width="2" cx="182" cy="148" r="20" />
-    <circle class="ball2" stroke-width="2" cx="226" cy="148" r="20" />
-    <circle class="ball1" stroke-width="2" cx="94" cy="192" r="20" />
-    <circle class="ball3" stroke-width="2" cx="138" cy="192" r="20" />
-    <circle class="ball6" stroke-width="2" cx="182" cy="192" r="20" />
-    <circle class="ball3" stroke-width="2" cx="226" cy="192" r="20" />
-    <circle class="ball3" stroke-width="2" cx="94" cy="236" r="20" />
-    <circle class="ball2" stroke-width="2" cx="138" cy="236" r="20" />
-    <circle class="ball4" stroke-width="2" cx="182" cy="236" r="20" />
-    <circle class="ball1" stroke-width="2" cx="226" cy="236" r="20" />
-    <circle class="ball2" stroke-width="2" cx="94" cy="280" r="20" />
-    <circle class="ball4" stroke-width="2" cx="138" cy="280" r="20" />
-    <circle class="ball1" stroke-width="2" cx="182" cy="280" r="20" />
-    <circle class="ball4" stroke-width="2" cx="226" cy="280" r="20" />
-  </svg>
+  <header>
+    <h1>esviji</h1>
+    <svg class="logo" version="1.1" viewBox="0 0 176 176">
+      <circle class="ball3" stroke-width="2" cx="22" cy="22" r="20" />
+      <circle class="ball2" stroke-width="2" cx="66" cy="22" r="20" />
+      <circle class="ball4" stroke-width="2" cx="110" cy="22" r="20" />
+      <circle class="ball2" stroke-width="2" cx="154" cy="22" r="20" />
+      <circle class="ball1" stroke-width="2" cx="22" cy="66" r="20" />
+      <circle class="ball3" stroke-width="2" cx="66" cy="66" r="20" />
+      <circle class="ball6" stroke-width="2" cx="110" cy="66" r="20" />
+      <circle class="ball3" stroke-width="2" cx="154" cy="66" r="20" />
+      <circle class="ball3" stroke-width="2" cx="22" cy="110" r="20" />
+      <circle class="ball2" stroke-width="2" cx="66" cy="110" r="20" />
+      <circle class="ball4" stroke-width="2" cx="110" cy="110" r="20" />
+      <circle class="ball1" stroke-width="2" cx="154" cy="110" r="20" />
+      <circle class="ball2" stroke-width="2" cx="22" cy="154" r="20" />
+      <circle class="ball4" stroke-width="2" cx="66" cy="154" r="20" />
+      <circle class="ball1" stroke-width="2" cx="110" cy="154" r="20" />
+      <circle class="ball4" stroke-width="2" cx="154" cy="154" r="20" />
+    </svg>
+  </header>
   <ul class="controls">
-    <li><img src="img/play.svg" class="play" /></li>
-    <li><img src="img/ribbon.svg" class="scores" /></li>
-    <li><img src="img/gears.svg" class="settings" /></li>
-    <li><img src="img/play.svg" class="tutorial" /></li>
+    <li><a href="/play" class="play"><img src="img/play.svg" /></a></li>
+    <li><a href="/scores" class="scores"><img src="img/ribbon.svg" /></a></li>
+    <li><a href="/settings" class="settings"><img src="img/gears.svg" /></a></li>
+    <!-- <li><a href="/tutorial" class="tutorial"><img src="img/play.svg" /></a></li> -->
+    <li><a href="/about" class="about"><img src="img/information.svg" /></a></li>
   </ul>
-  <footer>
-    <ul>
-      <li>&copy; 1992-2014 Nicolas Hoizey</li>
-      <li>esviji.com</li>
-      <li>%VERSION%</li>
-    </ul>
-  </footer>
 </section>
 <section id="play">
   <h1>esviji</h1>
@@ -100,9 +96,9 @@ section {
       </li>
     </ul>
   </div>
-  <div class="controls">
-    <img src="img/pause.svg" class="icon pause" alt="pause" />
-  </div>
+  <ul class="controls">
+    <li><a href="/pause" class="pause"><img src="img/pause.svg" class="icon" alt="pause" /></a></li>
+  </ul>
   <svg id="board" version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 320 430" width="100%" height="100%" preserveAspectRatio="xMidYMax meet">
     <defs>
       <polygon id="rock" points="0,0 0,32 32,32 32,0" stroke-width="0" fill="#444" />
@@ -152,18 +148,18 @@ section {
   <h1>esviji</h1>
   <h2>Game paused</h2>
   <ul class="controls">
-    <li><img src="img/play.svg" class="icon resume" /></li>
-    <li><img src="img/restart.svg" class="icon restart" /></li>
-    <li><img src="img/gears.svg" class="icon settings" /></li>
-    <li><img src="img/exit.svg" class="icon exit" /></li>
+    <li><a href="/play" class="resume"><img src="img/play.svg" /></a></li>
+    <li><a href="/play" class="restart"><img src="img/reload.svg" /></a></li>
+    <li><a href="/settings" class="settings"><img src="img/gears.svg" /></a></li>
+    <li><a href="/" class="exit"><img src="img/home.svg" /></a></li>
   </ul>
 </section>
 <section id="gameover">
   <h1>Game over</h1>
   <h2 class="score"></h2>
   <ul class="controls">
-    <li><img src="img/restart.svg" class="icon restart" /></li>
-    <li><img src="img/exit.svg" class="icon exit" /></li>
+    <li><a href="/play" class="restart"><img src="img/restart.svg" /></a></li>
+    <li><a href="/" class="exit"><img src="img/exit.svg" /></a></li>
   </ul>
 </section>
 <section id="scores">
@@ -171,7 +167,7 @@ section {
   <ol>
   </ol>
   <ul class="controls">
-    <li><img src="img/exit.svg" class="icon exit" /></li>
+    <li><a href="/" class="exit"><img src="img/exit.svg" /></a></li>
   </ul>
 </section>
 <section id="settings">
@@ -194,7 +190,18 @@ section {
     <button>Install</button>
   </section>
   <ul class="controls">
-    <li><img src="img/exit.svg" class="icon exit" /></li>
+    <li><a href="/" class="exit"><img src="img/home.svg" /></a></li>
+  </ul>
+</section>
+<section id="about">
+  <h1>About esviji</h1>
+  <ul>
+    <li>&copy; 1992-2014 Nicolas Hoizey</li>
+    <li>esviji.com</li>
+    <li>%VERSION%</li>
+  </ul>
+  <ul class="controls">
+    <li><a href="/" class="exit"><img src="img/home.svg" /></a></li>
   </ul>
 </section>
 <!-- build:js js/app.js -->
