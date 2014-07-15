@@ -6,6 +6,10 @@
   font-style: normal;
 }
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 html, body {
   font-family: SansitaOneRegular;
   font-size: 18px;
@@ -22,6 +26,10 @@ html, body {
   height: 100%;
   overflow: hidden;
 }
+
+/* ********************************************************************
+ * Description for browsers lacking some support for SVG, flexbox, etc.
+ * ********************************************************************/
 
 #description {
   padding: 1em;
@@ -48,214 +56,330 @@ html, body {
   }
 }
 
-#board {
-  stroke-width: 0;
+/* ********************************************************************
+ * For all screens
+ * ********************************************************************/
+
+section {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-#play, #tutorial {
-  .title {
-    font-size: 34px;
-    text-anchor: end;
-    fill: #fff;
-    stroke-width: 0;
+/* ********************************************************************
+ * Home screen
+ * ********************************************************************/
+
+
+
+/* ********************************************************************
+ * Play screen
+ * ********************************************************************/
+
+// A few variables
+$margins: 3vmin;
+$headerSize: 20vmin;
+$fixedHeaderSize: 15 / 24 * 20vh;
+$lineHeight: 1.5;
+$portraitSvgHeight: (100 * 430 / 320) * 1vw;
+$landscapeSvgWith: (100 * 320 / 430) * 1vh;
+
+// Calculated variables
+$headerHeight: $headerSize * $lineHeight;
+$fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
+
+section#play {
+
+  // default layout (mobile first)
+  font-size: 15vmin;
+  line-height: $lineHeight;
+
+
+  h1, ul, .score, .level, .lives {
+    margin: 0;
+    padding: 0;
   }
 
-  .scoreLabel, .levelLabel, .livesLabel {
-    text-anchor: end;
-    fill: #ccc;
-    stroke-width: 0;
+  h1 {
+    font-size: $headerSize;
+    color: #ccc;
+    padding: 0 $margins;
+    height: $headerHeight;
   }
 
-  .score, .level, .lives {
+  .progress {
+    position: absolute;
+    top: $headerHeight;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - #{$headerHeight} - #{$portraitSvgHeight});
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .score {
+      padding: 0 $margins;
+      font-size: 1.5em;
+      text-align: center;
+    }
+
+    ul {
+      width: 100%;
+      list-style-type: none;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      color: #ccc;
+
+      li {
+        text-align: center;
+      }
+
+      span {
+        color: #eee;
+      }
+    }
+
+    .icon {
+      margin-right: $margins;
+      width: .75em;
+      height: .75em;
+    }
+  }
+
+  .score, .lives, .level {
     transition: all 1s ease-out;
-    fill: #eee;
-    stroke-width: 0;
 
     &.changeDown {
-      fill: #c0392b;
+      color: #c0392b;
     }
 
     &.changeUp {
-      fill: #27ae60;
+      color: #27ae60;
+    }
+  }
+
+  .controls .pause {
+    position: absolute;
+    top: $margins;
+    right: $margins;
+    width: $headerSize;
+    height: $headerSize;
+  }
+
+  svg#board {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: $portraitSvgHeight;
+
+    .playzone {
+      stroke-width: 0;
+      fill: #777;
+    }
+
+    .ball {
+      text {
+        font-size: 16px;
+        text-anchor: middle;
+        fill: #fff;
+        stroke-width: 0;
+      }
+    }
+
+    .ball1 {
+      fill: #f39c12;
+      stroke: #e67e22;
+    }
+
+    .ball2 {
+      fill: #2ecc71;
+      stroke: #27ae60;
+    }
+
+    .ball3 {
+      fill: #3498db;
+      stroke: #2980b9;
+    }
+
+    .ball4 {
+      fill: #9b59b6;
+      stroke: #8e44ad;
+    }
+
+    .ball5 {
+      fill: #aa8866;
+      stroke: #776655;
+    }
+
+    .ball6 {
+      fill: #e74c3c;
+      stroke: #c0392b;
+    }
+
+    #playable {
+      pointer-events: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    #spring {
+      stroke-width: 2;
+      stroke: #333;
+      fill: none;
+    }
+  }
+
+  // Portrait mode above 8/24
+  @media (min-aspect-ratio: 8/24) {
+    .progress ul {
+      flex-direction: row;
+    }
+  }
+
+  // Portrait mode above 11/24
+  @media (min-aspect-ratio: 11/24) {
+    font-size: 10vmin;
+
+    .progress {
+      ul {
+        position: absolute;
+        left: $margins;
+        width: 25vw;
+
+        flex-direction: column;
+      }
+    }
+  }
+
+  // Portrait mode above 13/24
+  @media (min-aspect-ratio: 13/24) {
+    font-size: calc(13 / 24 * 10vh - 2vw);
+
+    .progress {
+      position: absolute;
+      left: $margins;
+      height: auto;
+      text-align: left;
+
+      .score {
+        padding: 0;
+        text-align: left;
+      }
+
+      ul {
+        position: static;
+        line-height: 1.2;
+
+        li {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  // Portrait mode above 15/24
+  @media (min-aspect-ratio: 15/24) {
+
+    h1 {
+      font-size: $fixedHeaderSize;
+      height: $fixedHeaderHeight;
+    }
+
+    .progress {
+      font-size: 6vw;
+    }
+
+    .controls .pause {
+      width: $fixedHeaderSize;
+      height: $fixedHeaderSize;
+    }
+
+    svg#board {
+      width: 15 / 24 * 100vh;
+      left: auto;
+      right: 0;
+    }
+  }
+
+  // Portrait mode above 19/24
+  @media (min-aspect-ratio: 19/24) {
+    .progress {
+      top: calc(#{$fixedHeaderHeight} + #{$margins});
+      width: calc(100vw - #{$margins} - 19 / 24 * 100vw);
+
+      ul {
+        width: 100%;
+
+        li {
+          text-align: center;
+        }
+      }
+    }
+
+    .controls .pause {
+      top: auto;
+      left: $margins;
+      right: auto;
+      bottom: $margins;
+    }
+
+    svg#board {
+      width: 19 / 24 * 100vw;
+      max-width: $landscapeSvgWith;
+    }
+  }
+
+  // Above 24/24, landscape mode
+  @media (min-aspect-ratio: 24/24) {
+    .progress {
+      width: calc(100vw - 2 * #{$margins} - #{$landscapeSvgWith});
+      height: calc(100vh - #{$fixedHeaderHeight} - 3 * #{$margins} - #{$fixedHeaderSize});
+      display: flex;
+      flex-orientation: column;
+
+      .score {
+        text-align: center;
+      }
+    }
+  }
+
+  // Landscape mode above 36/24
+  @media (min-aspect-ratio: 36/24) {
+    max-width: 150vh;
+
+    .progress {
+      width: calc(150vh - 2 * #{$margins} - #{$landscapeSvgWith});
+      font-size: 9vh;
     }
   }
 }
 
-.pauseButton {
-  pointer-events: visible;
+/* ********************************************************************
+ * Scores screen
+ * ********************************************************************/
 
-  .fullarea {
-    pointer-events: visible;
-    fill: #fff;
-    opacity: 0;
-  }
 
-  .icon {
-    stroke-width: 0;
-    fill: #fff;
-    opacity: 0.7;
-  }
-}
+/* ********************************************************************
+ * Settings screen
+ * ********************************************************************/
 
-.ball {
-  text {
-    font-size: 16px;
-    text-anchor: middle;
-    fill: #fff;
-    stroke-width: 0;
-  }
-}
 
-.ball1 {
-  fill: #f39c12;
-  stroke: #e67e22;
-}
+/* ********************************************************************
+ * Tutorial screen
+ * ********************************************************************/
 
-.ball2 {
-  fill: #2ecc71;
-  stroke: #27ae60;
-}
 
-.ball3 {
-  fill: #3498db;
-  stroke: #2980b9;
-}
-
-.ball4 {
-  fill: #9b59b6;
-  stroke: #8e44ad;
-}
-
-.ball5 {
-  fill: #aa8866;
-  stroke: #776655;
-}
-
-.ball6 {
-  fill: #e74c3c;
-  stroke: #c0392b;
-}
-
-#playable {
-  pointer-events: none;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.panelBackground {
-  pointer-events: visible;
-  fill: transparent;
-}
-
-#main {
-  .title {
-    font-size: 96px;
-    text-anchor: middle;
-    stroke-width: 0;
-    fill: #fff;
-  }
-
-  .button {
-    & > circle {
-      fill: #444;
-    }
-  }
-
-  .copyright {
-    text-anchor: start;
-  }
-
-  .website {
-    text-anchor: middle;
-  }
-
-  .version {
-    text-anchor: end;
-  }
-}
-
-#difficulty, #gameOver, #pause, #scores, #settings {
-  .title {
-    font-size: 48px;
-    text-anchor: middle;
-    fill: #fff;
-    stroke-width: 0;
-  }
-}
-
-#gameOver {
-  .score {
-    font-size: 34px;
-    text-anchor: middle;
-    fill: #eee;
-  }
-}
-
-#scores {
-  .highscores {
-    font-size: 18px;
-    text-anchor: end;
-    fill: #eee;
-
-    .thisone {
-      fill: #3c3;
-    }
-  }
-}
-
-.button {
-  pointer-events: visible;
-
-  text {
-    font-size: 18px;
-    text-anchor: middle;
-    fill: #333;
-    stroke-width: 0;
-  }
-
-  rect {
-    fill: #ddd;
-    stroke-width: 3;
-    stroke: #666;
-  }
-
-  &:hover {
-    cursor: pointer;
-
-    rect {
-      fill: #fff;
-      stroke-width: 3;
-      stroke: #888;
-    }
-  }
-}
-
-.label {
-  text-anchor: end;
-  fill: #fff;
-}
-
-.copyright, .website, .version {
-  font-size: 10px;
-  fill: #888;
-  stroke-width: 0;
-}
-
-.step {
-  text {
-    font-weight: normal;
-    fill: #333;
-  }
-
-  rect, path {
-    fill: #aaa;
-    fill-opacity: 1;
-    stroke-width: 0;
-    stroke: #aaa;
-  }
-}
 
 .ios {
   .label.sound, .button.prefsSound {

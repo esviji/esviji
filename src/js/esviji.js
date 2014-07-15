@@ -9,8 +9,8 @@ ESVIJI.settings = {
   // board size and according ball extreme positions
   board: {
     width: 320,
-    height: 460,
-    xMax: 10,
+    height: 430,
+    xMax: 9,
     yMax: 13
   },
   // list of available ball "names"
@@ -107,7 +107,7 @@ ESVIJI.settings = {
   },
   // game info at new turn start
   turn: {
-    posX: 10,
+    posX: 9,
     dirX: -1,
     posY: 8,
     dirY: 0
@@ -121,6 +121,7 @@ ESVIJI.settings = {
 ESVIJI.game = (function () {
   // Initial values
   var
+    currentScreen = '',
     viewportWidth = 0,
     viewportHeight = 0,
     boardWidth,
@@ -156,14 +157,13 @@ ESVIJI.game = (function () {
   function init() {
     if (iOS) {
       $('body').addClass('ios');
-      $('#scoresButton').attr('transform', 'translate(35,0)');
     }
     if (Modernizr.inlinesvg) {
       $('#description').hide();
     } else {
       // Add this message using JS to prevent indexing it in search engines
       $('#description p.icon').before('<p>Your browser doesn\'t seem to support inline SVG. Learn about this game on <a href="http://esviji.com/">esviji.com</a>.</p>');
-      $('svg').hide();
+      // $('svg').hide();
       return;
     }
     if (Modernizr.touch) {
@@ -295,60 +295,37 @@ ESVIJI.game = (function () {
 
   function run() {
     if (typeof gameStatus.playing === 'undefined' || gameStatus.playing === false) {
-      showPanel('main');
-      startMain();
+      startHome();
     } else {
       useStored = true;
       startPlaying();
     }
   }
 
-  function startMain(difficulty) {
-    $('#pulse')[0].beginElement();
-    $('#main .start').one(clickType, startDifficulty);
-    $('#main .scores').one(clickType, startScores);
-    $('#main .settings').one(clickType, startSettings);
-    $('#main .help').one(clickType, startTutorial);
+  function showScreen(screen) {
+    if ( gameStatus.currentScreen !== '' ) {
+      $('#' + gameStatus.currentScreen).css('display', 'none');
+    }
+    $('#' + screen).css('display', 'block');
+    gameStatus.currentScreen = screen;
+    window.location.history.pushState(screen);
+
+    console.log('Showing screen ' + screen);
+
+    // Google Analytics tracking of activated screen
+    offlineAnalytics.push({ name: 'view', value: '/' + (screen === 'home' ? '' : screen + '/') });
   }
 
-  function startDifficulty() {
-    hidePanel('main');
-    showPanel('difficulty');
-    $('#difficulty .beginner').one(clickType, function (event) {
-      event.preventDefault();
-      gameStatus.preferences.difficulty = 'Beginner';
-      hidePanel('difficulty');
-      startPlaying();
-    });
-    $('#difficulty .easy').one(clickType, function (event) {
-      event.preventDefault();
-      gameStatus.preferences.difficulty = 'Easy';
-      hidePanel('difficulty');
-      startPlaying();
-    });
-    $('#difficulty .hard').one(clickType, function (event) {
-      event.preventDefault();
-      gameStatus.preferences.difficulty = 'Hard';
-      hidePanel('difficulty');
-      startPlaying();
-    });
-    $('#difficulty .crazy').one(clickType, function (event) {
-      event.preventDefault();
-      gameStatus.preferences.difficulty = 'Crazy';
-      hidePanel('difficulty');
-      startPlaying();
-    });
-    $('#difficulty .exit').one(clickType, endDifficulty);
-  }
-
-  function endDifficulty(event) {
-    event.preventDefault();
-    hidePanel('difficulty');
-    showPanel('main');
-    startMain();
+  function startHome(difficulty) {
+    showScreen('home');
+    $('#home .play').one('click', startPlaying);
+    $('#home .scores').one('click', startScores);
+    $('#home .settings').one('click', startSettings);
+    $('#home .help').one('click', startTutorial);
   }
 
   function startPlaying(event) {
+    gameStatus.preferences.difficulty = 'Crazy'; // TODO: supprimer
     if (undefined !== event) {
       event.preventDefault();
     }
@@ -356,17 +333,16 @@ ESVIJI.game = (function () {
       gameStatus.level = ESVIJI.settings.launch.level;
       gameStatus.score = ESVIJI.settings.launch.score;
       gameStatus.lives = ESVIJI.settings.launch.lives;
-      hidePanel('play');
       if (null !== drawnCurrentBall) {
         drawnCurrentBall.remove();
       }
       drawnCurrentBall = null;
     }
-    showPanel('play');
+    showScreen('play');
     drawLevel();
     drawScore();
     drawLives();
-    $('#play .pauseButton').one(clickType, startPause);
+    $('#play .controls .pause').bind(clickType, startPause);
     nextLevel();
   }
 
@@ -379,7 +355,6 @@ ESVIJI.game = (function () {
     if (null !== drawnCurrentBall) {
       drawnCurrentBall.remove();
     }
-    hidePanel('play');
     storeSet('gameStatus', {
       'playing': false
     });
@@ -387,8 +362,7 @@ ESVIJI.game = (function () {
   }
 
   function startTutorial() {
-    hidePanel('main');
-    showPanel('tutorial');
+    showScreen('tutorial');
     $('#tutorial .pauseButton').one(clickType, endTutorial);
     $('#tutoAnimEnd')[0].addEventListener('endEvent', endTutorial, false);
     $('#tutoAnimStart')[0].beginElement();
@@ -396,16 +370,13 @@ ESVIJI.game = (function () {
 
   function endTutorial(event) {
     event.preventDefault();
-    hidePanel('tutorial');
-    showPanel('main');
-    startMain();
+    startHome();
   }
 
   function startScores() {
     var difficulty = gameStatus.preferences.difficulty;
 
-    hidePanel('main');
-    showPanel('scores');
+    showScreen('scores');
 
     $('#scores .difficulty text').text(difficulty);
     $('#scores .difficulty').bind(clickType, function() {
@@ -441,14 +412,11 @@ ESVIJI.game = (function () {
 
   function endScores(event) {
     event.preventDefault();
-    hidePanel('scores');
-    showPanel('main');
-    startMain();
+    startHome();
   }
 
   function startSettings() {
-    hidePanel('main');
-    showPanel('settings');
+    showScreen('settings');
 
     $('#settings .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
     $('#settings .prefsSound').bind(clickType, function() {
@@ -471,22 +439,18 @@ ESVIJI.game = (function () {
 
   function endSettings(event) {
     event.preventDefault();
-    hidePanel('settings');
-    showPanel('main');
-    startMain();
+    startHome();
   }
 
   function startPause() {
-    showPanel('pause');
-    $('#pause .resume').one(clickType, function(e) {
+    showScreen('pause');
+    $('#pause .resume').bind(clickType, function(e) {
       e.preventDefault();
-      hidePanel('pause');
-      $('#play .pauseButton').one(clickType, startPause);
+      showScreen('play');
     });
 
-    $('#pause .restart').one(clickType, function(e) {
+    $('#pause .restart').bind(clickType, function(e) {
       e.preventDefault();
-      hidePanel('pause');
       storeSet('gameStatus', {
         'playing': false
       });
@@ -507,34 +471,10 @@ ESVIJI.game = (function () {
       $('#pause .prefsVibration text').text(gameStatus.preferences.vibration ? 'On' : 'Off');
     });
 
-    $('#pause .exit').one(clickType, function(e) {
+    $('#pause .exit').bind(clickType, function(e) {
       e.preventDefault();
-      hidePanel('pause');
       stopPlaying();
     });
-  }
-
-  // There is no z-index in SVG, so we need to "create" panel we want on top of all others
-  function showPanel(panel) {
-    if ( $('#' + panel).length === 0 && $('#' + panel + 'Panel').length === 1) {
-      $('#' + panel + 'Panel').clone().attr('id', panel).appendTo('#board');
-      $('#' + panel + 'Panel').remove();
-      if (panel === 'pause' || panel === 'gameOver') {
-        $('#play').css('opacity', 0.3);
-      }
-      // Google Analytics tracking of activated panel
-      offlineAnalytics.push({ name: 'view', value: '/' + (panel === 'main' ? '' : panel + '/') });
-    }
-  }
-
-  function hidePanel(panel) {
-    if ($('#' + panel).length === 1 && $('#' + panel + 'Panel').length === 0) {
-      $('#' + panel).clone().attr('id', panel + 'Panel').appendTo('#board defs');
-      $('#' + panel).remove();
-      if (panel === 'pause' || panel === 'gameOver') {
-        $('#play').css('opacity', 1);
-      }
-    }
   }
 
   function nextLevel() {
@@ -1170,7 +1110,7 @@ ESVIJI.game = (function () {
       x: x,
       y: y
     });
-    $("#play").append(ball);
+    $("#board").append(ball);
     return ball;
   }
 
@@ -1264,7 +1204,7 @@ ESVIJI.game = (function () {
     offlineAnalytics.push({ name: 'score', value: gameStatus.score });
 
     lastGameDate = Date();
-    showPanel('gameOver');
+    showScreen('gameOver');
 
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
     for (i = 0; i < l; i++) {
@@ -1287,17 +1227,12 @@ ESVIJI.game = (function () {
 
     // buttons
     $('#gameOver .scores').one(clickType, function() {
-      hidePanel('gameOver');
-      hidePanel('play');
-      showPanel('main');
       startScores();
     });
     $('#gameOver .playagain').one(clickType, function() {
-      hidePanel('gameOver');
       startPlaying();
     });
     $('#gameOver .exit').one(clickType, function() {
-      hidePanel('gameOver');
       stopPlaying();
     });
   }
@@ -1356,19 +1291,19 @@ ESVIJI.game = (function () {
   }
 
   function xToSvg(x) {
-    return (x - 1) * 32;
+    return (x - 1) * 32 + 4;
   }
 
   function yToSvg(y) {
-    return ESVIJI.settings.board.height - 32 * y;
+    return ESVIJI.settings.board.height - 32 * y - 4;
   }
 
   function svgToX(coordX) {
-    return coordX / 32 + 1;
+    return (coordX - 4) / 32 + 1;
   }
 
   function svgToY(coordY) {
-    return Math.round((ESVIJI.settings.board.height - coordY) / 32);
+    return Math.round((ESVIJI.settings.board.height - coordY - 4) / 32);
   }
 
   function pixelsToSvgY(coordY) {

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <title>esviji</title>
-<meta name="description" content="%DESCRIPTION%">
+<meta name="description" content="%DESCRIPTION%" />
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 <!-- build:css css/styles.css -->
 <link rel="stylesheet" media="all" href="css/styles.css" type="text/css" />
@@ -29,6 +29,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <meta name="apple-mobile-web-app-title" content="esviji" />
 <!-- Google Analytics -->
+<style>
+section {
+  display: none;
+}
+</style>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -46,460 +51,161 @@
   <h2>%DESCRIPTION%</h2>
   <p class="icon"><img src="favicon-160x160.png" width="160" height="160" /></p>
 </header>
-<svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="board" viewBox="0 0 320 460" width="100%" height="100%" preserveAspectRatio="xMidYMax meet">
-  <defs>
-    <polygon id="rock" points="0,0 0,32 32,32 32,0" stroke-width="0" fill="#444" />
-    <svg id="ball1" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-      <circle class="ball1" stroke-width="1" cx="16" cy="16" r="15" />
-      <text x="16" y="21">1</text>
-    </svg>
-    <svg id="ball2" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-      <circle class="ball2" stroke-width="1" cx="16" cy="16" r="15" />
-      <text x="16" y="21">2</text>
-    </svg>
-    <svg id="ball3" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-      <circle class="ball3" stroke-width="1" cx="16" cy="16" r="15" />
-      <text x="16" y="21">3</text>
-    </svg>
-    <svg id="ball4" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-      <circle class="ball4" stroke-width="1" cx="16" cy="16" r="15" />
-      <text x="16" y="21">4</text>
-    </svg>
-    <svg id="ball5" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-      <circle class="ball5" stroke-width="1" cx="16" cy="16" r="15" />
-      <text x="16" y="21">5</text>
-    </svg>
-    <svg id="ball6" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-      <circle class="ball6" stroke-width="1" cx="16" cy="16" r="15" />
-      <text x="16" y="21">6</text>
-    </svg>
-
-    <g id="playPanel">
-      <polygon class="playzone" points="0,461 0,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 321,42 321,461" style="stroke-width: 0; fill: #777;" />
-
-      <g class="pauseButton" transform="translate(285, 5)">
-        <rect class="fullarea" x="0" y="0" width="32" height="32" />
-        <rect class="icon" x="7" y="6" width="7" height="20" />
-        <rect class="icon" x="19" y="6" width="7" height="20" />
-      </g>
-
-      <text class="title" x="250" y="30">esviji</text>
-      <text class="scoreLabel" x="65" y="25">score:</text>
-      <text class="score" x="75" y="25"></text>
-      <text class="levelLabel" x="65" y="50">level:</text>
-      <text class="level" x="75" y="50"></text>
-      <text class="livesLabel" x="65" y="75">lives:</text>
-      <text class="lives" x="75" y="75"></text>
-    </g>
-
-    <g id="tutorialPanel" opacity="0">
-      <polygon class="playzone" points="-1,461 -1,204 32,204 32,170 64,170 64,138 96,138 96,106 128,106 128,74 160,74 160,42 321,42 321,461" style="stroke-width: 0; fill: #777;" />
-
-      <g class="pauseButton" transform="translate(285, 5)">
-        <rect x="0" y="0" width="32" height="32" style="fill: #fff; opacity: 0;" />
-        <rect x="7" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
-        <rect x="19" y="6" width="7" height="20" style="stroke-width: 0; fill: #fff; opacity: 0.7" />
-      </g>
-
-      <text class="title" x="250" y="30">esviji</text>
-      <text class="scoreLabel" x="65" y="25">score:</text>
-      <text id="score1" class="score" x="75" y="25">0</text>
-      <text id="score2" class="score" x="75" y="25" opacity="0">9</text>
-      <text class="levelLabel" x="65" y="50">level:</text>
-      <text class="level" x="75" y="50">1</text>
-      <text class="livesLabel" x="65" y="75">lives:</text>
-      <text class="lives" x="75" y="75">9</text>
-
-      <use id="tutoBall11" xlink:href="#ball2" x="0" y="428"/>
-      <use id="tutoBall12" xlink:href="#ball5" x="0" y="396"/>
-      <use id="tutoBall13" xlink:href="#ball1" x="0" y="364"/>
-      <use id="tutoBall14" xlink:href="#ball2" x="0" y="332"/>
-      <use id="tutoBall15" xlink:href="#ball2" x="0" y="300"/>
-      <use id="tutoBall16" xlink:href="#ball1" x="0" y="268"/>
-      <use id="tutoBall17" xlink:href="#ball4" x="0" y="236"/>
-      <use id="tutoBall21" xlink:href="#ball4" x="32" y="428"/>
-      <use id="tutoBall22" xlink:href="#ball6" x="32" y="396"/>
-      <use id="tutoBall23" xlink:href="#ball3" x="32" y="364"/>
-      <use id="tutoBall24" xlink:href="#ball5" x="32" y="332"/>
-      <use id="tutoBall25" xlink:href="#ball3" x="32" y="300"/>
-      <use id="tutoBall26" xlink:href="#ball5" x="32" y="268"/>
-      <use id="tutoBall27" xlink:href="#ball4" x="32" y="236"/>
-      <use id="tutoBall31" xlink:href="#ball5" x="64" y="428"/>
-      <use id="tutoBall32" xlink:href="#ball2" x="64" y="396"/>
-      <use id="tutoBall33" xlink:href="#ball2" x="64" y="364"/>
-      <use id="tutoBall34" xlink:href="#ball6" x="64" y="332"/>
-      <use id="tutoBall35" xlink:href="#ball2" x="64" y="300"/>
-      <use id="tutoBall36" xlink:href="#ball4" x="64" y="268"/>
-      <use id="tutoBall37" xlink:href="#ball5" x="64" y="236"/>
-      <use id="tutoBall41" xlink:href="#ball5" x="96" y="428"/>
-      <use id="tutoBall42" xlink:href="#ball5" x="96" y="396"/>
-      <use id="tutoBall43" xlink:href="#ball4" x="96" y="364" />
-      <use id="tutoBall43Morph" xlink:href="#ball2" x="96" y="364" opacity="0" />
-      <use id="tutoBall44" xlink:href="#ball1" x="96" y="332" />
-      <use id="tutoBall45" xlink:href="#ball4" x="96" y="300" />
-      <use id="tutoBall46" xlink:href="#ball3" x="96" y="268" />
-      <use id="tutoBall47" xlink:href="#ball1" x="96" y="236" />
-      <use id="tutoBall51" xlink:href="#ball2" x="128" y="428"/>
-      <use id="tutoBall52" xlink:href="#rock" x="128" y="396"/>
-      <use id="tutoBall53" xlink:href="#ball4" x="128" y="364" />
-      <use id="tutoBall54" xlink:href="#ball4" x="128" y="332" />
-      <use id="tutoBall55" xlink:href="#ball3" x="128" y="300" />
-      <use id="tutoBall56" xlink:href="#ball2" x="128" y="268" />
-      <use id="tutoBall57" xlink:href="#ball3" x="128" y="236" />
-      <use id="tutoBall61" xlink:href="#ball2" x="160" y="428"/>
-      <use id="tutoBall62" xlink:href="#ball1" x="160" y="396"/>
-      <use id="tutoBall63" xlink:href="#ball4" x="160" y="364" />
-      <use id="tutoBall64" xlink:href="#ball2" x="160" y="332" />
-      <use id="tutoBall65" xlink:href="#ball5" x="160" y="300" />
-      <use id="tutoBall66" xlink:href="#ball2" x="160" y="268" />
-      <use id="tutoBall67" xlink:href="#ball2" x="160" y="236" />
-
-      <use id="tutoPlayable" xlink:href="#ball4" x="288" y="204" />
-      <use id="tutoPlayable2" xlink:href="#ball2" x="288" y="204" opacity="0" />
-
-      <g id="tutoBallsText" class="step" opacity="0">
-        <rect x="50" y="100" width="250" height="90" />
-        <text>
-          <tspan x="70" y="130">These are the balls you</tspan>
-          <tspan x="70" y="150">have to destroy to finish</tspan>
-          <tspan x="70" y="170">the turn.</tspan>
-        </text>
-        <path d="M 70 190 L 100 190 L 70 220 z" />
-      </g>
-      <g id="tutoPlayableText" class="step" opacity="0">
-        <rect x="20" y="140" width="230" height="110" />
-        <path d="M 250 220 L 250 190 L 280 220 z" />
-        <text>
-          <tspan x="40" y="170">This is the ball you</tspan>
-          <tspan x="40" y="190">can move up or down</tspan>
-          <tspan x="40" y="210">and then release to</tspan>
-          <tspan x="40" y="230">destroy the others.</tspan>
-        </text>
-      </g>
-      <g id="tutoPlayText" class="step" opacity="0">
-        <rect x="20" y="140" width="230" height="110" />
-        <text>
-          <tspan x="40" y="170">You can use your</tspan>
-          <tspan x="40" y="190">mouse, finger or</tspan>
-          <tspan x="40" y="210">keyboard to move the</tspan>
-          <tspan x="40" y="230">ball.</tspan>
-        </text>
-      </g>
-      <g id="tutoMoveText" class="step" opacity="0">
-        <rect x="20" y="140" width="230" height="110" />
-        <text>
-          <tspan x="40" y="170">The ball then goes to</tspan>
-          <tspan x="40" y="190">the left until it hits</tspan>
-          <tspan x="40" y="210">something: ball,</tspan>
-          <tspan x="40" y="230">rock or wall.</tspan>
-        </text>
-      </g>
-      <g id="tutoHitText" class="step" opacity="0">
-        <rect x="20" y="140" width="230" height="110" />
-        <text>
-          <tspan x="40" y="170">You have to hit same</tspan>
-          <tspan x="40" y="190">balls to destroy them.</tspan>
-          <tspan x="40" y="210">Hit more balls to</tspan>
-          <tspan x="40" y="230">gain more points.</tspan>
-        </text>
-      </g>
-      <g id="tutoMorphText" class="step" opacity="0">
-        <rect x="20" y="140" width="230" height="110" />
-        <text>
-          <tspan x="40" y="170">The ball morphes</tspan>
-          <tspan x="40" y="190">into the next ball it</tspan>
-          <tspan x="40" y="210">hits, becoming the</tspan>
-          <tspan x="40" y="230">new playable ball.</tspan>
-        </text>
-      </g>
-      <g id="tutoFallText" class="step" opacity="0">
-        <rect x="20" y="140" width="230" height="90" />
-        <text>
-          <tspan x="40" y="170">Balls that now have</tspan>
-          <tspan x="40" y="190">holes under them</tspan>
-          <tspan x="40" y="210">fall.</tspan>
-        </text>
-      </g>
-      <g id="tutoScoreText" class="step" opacity="0">
-        <rect x="20" y="140" width="230" height="90" />
-        <text>
-          <tspan x="40" y="170">Score is increased</tspan>
-          <tspan x="40" y="190">with (# hit balls)^3</tspan>
-        </text>
-      </g>
-      <animate id="tutoAnimStart" attributeType="xml" attributeName="opacity" to="1" begin="indefinite" dur="1s" fill="freeze" />
-
-      <animate id="tutoBallsAnimStart" xlink:href="#tutoBallsText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoAnimStart.end" dur="2s" fill="freeze" />
-      <animate id="tutoBallsAnimEnd" xlink:href="#tutoBallsText" attributeType="xml" attributeName="opacity" to="0" begin="tutoBallsAnimStart.end+2s" dur="2s" fill="freeze" />
-
-      <animate id="tutoPlayableAnimStart" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoBallsAnimEnd.end" dur="2s" fill="freeze" />
-      <animate id="tutoPlayableMove1" xlink:href="#tutoPlayable" attributeType="xml" attributeName="y" to="428" begin="tutoPlayableAnimStart.end+2s" dur="1.5s" fill="freeze" />
-      <animate id="tutoPlayableMove2" xlink:href="#tutoPlayable" attributeType="xml" attributeName="y" to="44" begin="tutoPlayableMove1.end" dur="3s" fill="freeze" />
-      <animate id="tutoPlayableMove3" xlink:href="#tutoPlayable" attributeType="xml" attributeName="y" to="364" begin="tutoPlayableMove2.end" dur="2s" fill="freeze" />
-      <animate id="tutoPlayableAnimEnd" xlink:href="#tutoPlayableText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableAnimStart.end+2s" dur="2s" fill="freeze" />
-      <animate id="tutoPlayAnimStart" xlink:href="#tutoPlayText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoPlayableAnimEnd.end" dur="4s" fill="freeze" />
-      <animate id="tutoPlayAnimEnd" xlink:href="#tutoPlayText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayAnimStart.end" dur="2s" fill="freeze" />
-
-      <animate id="tutoMoveAnimStart" xlink:href="#tutoMoveText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoPlayAnimEnd.end" dur="4s" fill="freeze" />
-      <animate id="tutoPlayableMove4" xlink:href="#tutoPlayable" attributeType="xml" attributeName="x" to="192" begin="tutoMoveAnimStart.end" dur="1.5s" fill="freeze" />
-      <animate id="tutoMoveAnimEnd" xlink:href="#tutoMoveText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMove4.end" dur="2s" fill="freeze" />
-
-      <animate id="tutoHitAnimStart" xlink:href="#tutoHitText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoPlayableMove4.end" dur="4s" fill="freeze" />
-      <animate id="tutoHitBall1" xlink:href="#tutoBall63" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMove4.end" dur="0.8s" fill="freeze" />
-      <animateTransform id="tutoHitBall2" xlink:href="#tutoBall63" attributeType="xml" attributeName="transform" type="rotate" from="0 176 380" to="360 176 380" begin="tutoPlayableMove4.end" dur="0.8s" />
-      <animate id="tutoPlayableHit1" xlink:href="#tutoPlayable" attributeType="xml" attributeName="x" to="160" begin="tutoPlayableMove4.end" dur="0.8s" fill="freeze" />
-      <animate id="tutoHitBall3" xlink:href="#tutoBall53" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableHit1.end" dur="0.8s" fill="freeze" />
-      <animateTransform id="tutoHitBall4" xlink:href="#tutoBall53" attributeType="xml" attributeName="transform" type="rotate" from="0 144 380" to="360 144 380" begin="tutoPlayableHit1.end" dur="0.8s" />
-      <animate id="tutoPlayableHit2" xlink:href="#tutoPlayable" attributeType="xml" attributeName="x" to="128" begin="tutoPlayableHit1.end" dur="0.8s" fill="freeze" />
-      <animate id="tutoHitBall5" xlink:href="#tutoBall43" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableHit2.end" dur="0.8s" fill="freeze" />
-      <animateTransform id="tutoHitBall6" xlink:href="#tutoBall43" attributeType="xml" attributeName="transform" type="rotate" from="0 112 380" to="360 112 380" begin="tutoPlayableHit2.end" dur="0.8s" />
-      <animate id="tutoPlayableHit3" xlink:href="#tutoPlayable" attributeType="xml" attributeName="x" to="96" begin="tutoPlayableHit2.end" dur="0.8s" fill="freeze" />
-      <animate id="tutoHitAnimEnd" xlink:href="#tutoHitText" attributeType="xml" attributeName="opacity" to="0" begin="tutoHitAnimStart.end" dur="2s" fill="freeze" />
-
-      <animate id="tutoMorphAnimStart" xlink:href="#tutoMorphText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoHitAnimEnd.end" dur="4s" fill="freeze" />
-      <animate id="tutoPlayableMorph1" xlink:href="#tutoPlayable" attributeType="xml" attributeName="opacity" to="0" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
-      <animate id="tutoPlayableMorph2" xlink:href="#tutoPlayable" attributeType="xml" attributeName="x" to="64" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
-      <animate id="tutoPlayableMorph3" xlink:href="#tutoBall43Morph" attributeType="xml" attributeName="opacity" to="1" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
-      <animate id="tutoPlayableMorph4" xlink:href="#tutoBall43Morph" attributeType="xml" attributeName="x" to="64" begin="tutoMorphAnimStart.end" dur="2s" fill="freeze" />
-      <animate id="tutoPlayableMorph5" xlink:href="#tutoPlayable2" attributeType="xml" attributeName="opacity" to="1" begin="tutoPlayableMorph2.end" dur="1s" fill="freeze" />
-      <animate id="tutoMorphAnimEnd" xlink:href="#tutoMorphText" attributeType="xml" attributeName="opacity" to="0" begin="tutoPlayableMorph2.end" dur="2s" fill="freeze" />
-
-      <animate id="tutoFallAnimStart" xlink:href="#tutoFallText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoMorphAnimEnd.end" dur="4s" fill="freeze" />
-      <animate xlink:href="#tutoBall44" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate xlink:href="#tutoBall45" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate xlink:href="#tutoBall46" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate xlink:href="#tutoBall47" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate xlink:href="#tutoBall54" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate xlink:href="#tutoBall55" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate xlink:href="#tutoBall56" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate xlink:href="#tutoBall57" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate xlink:href="#tutoBall64" attributeType="xml" attributeName="y" to="364" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate xlink:href="#tutoBall65" attributeType="xml" attributeName="y" to="332" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate xlink:href="#tutoBall66" attributeType="xml" attributeName="y" to="300" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate xlink:href="#tutoBall67" attributeType="xml" attributeName="y" to="268" begin="tutoFallAnimStart.end" dur="0.8s" fill="freeze" />
-      <animate id="tutoFallAnimEnd" xlink:href="#tutoFallText" attributeType="xml" attributeName="opacity" to="0" begin="tutoFallAnimStart.end" dur="2s" fill="freeze" />
-
-      <animate id="tutoScoreAnimStart" xlink:href="#tutoScoreText" attributeType="xml" attributeName="opacity" to=".9" begin="tutoFallAnimEnd.end" dur="2s" fill="freeze" />
-
-      <animate xlink:href="#score1" attributeType="xml" attributeName="opacity" to="0" begin="tutoScoreAnimStart.start" dur="1s" fill="freeze" />
-      <animate xlink:href="#score2" attributeType="xml" attributeName="opacity" to="1" begin="tutoScoreAnimStart.start" dur="1s" fill="freeze" />
-
-      <animate id="tutoAnimEnd" attributeType="xml" attributeName="opacity" to="0" begin="tutoScoreAnimStart.end" dur="3s" fill="freeze" />
-    </g>
-
-    <g id="pausePanel">
-      <rect x="0" y="0" width="320" height="460" class="panelBackground" />
-      <text x="160" y="90" class="title">Pause</text>
-
-      <g class="resume button">
-        <rect x="100" y="150" width="120" height="30" />
-        <text x="160" y="170">Resume</text>
-      </g>
-
-      <g class="restart button">
-        <rect x="100" y="200" width="120" height="30" />
-        <text x="160" y="220">Restart</text>
-      </g>
-
-      <text x="150" y="270" class="label sound">Sound is:</text>
-      <g class="prefsSound button">
-        <rect x="170" y="250" width="120" height="30" />
-        <text x="230" y="270"></text>
-      </g>
-
-      <text x="150" y="320" class="label vibration">Vibration is:</text>
-      <g class="prefsVibration button">
-        <rect x="170" y="300" width="120" height="30" />
-        <text x="230" y="320"></text>
-      </g>
-
-      <g class="exit button">
-        <rect x="100" y="400" width="120" height="30" />
-        <text x="160" y="420">Exit</text>
-      </g>
-    </g>
-
-    <g id="gameOverPanel">
-      <rect x="0" y="0" width="320" height="460" class="panelBackground" />
-      <text x="160" y="100" class="title">Game Over</text>
-      <text class="score" x="160" y="150"></text>
-      <g class="scores button">
-        <rect x="100" y="250" width="120" height="30" />
-        <text x="160" y="270">High scores</text>
-      </g>
-      <g class="playagain button">
-        <rect x="100" y="300" width="120" height="30" />
-        <text x="160" y="320">Play again</text>
-      </g>
-      <g class="exit button">
-        <rect x="100" y="350" width="120" height="30" />
-        <text x="160" y="370">Exit</text>
-      </g>
-    </g>
-
-    <g id="scoresPanel">
-      <text x="160" y="100" class="title">High scores</text>
-
-      <text x="150" y="150" class="label">Difficulty:</text>
-      <g class="difficulty button">
-        <rect x="170" y="130" width="120" height="30" />
-        <text x="230" y="150"></text>
-      </g>
-
-      <g class="highscores">
-        <text x="200" y="190">-</text>
-        <text x="200" y="210">-</text>
-        <text x="200" y="230">-</text>
-        <text x="200" y="250">-</text>
-        <text x="200" y="270">-</text>
-        <text x="200" y="290">-</text>
-        <text x="200" y="310">-</text>
-        <text x="200" y="330">-</text>
-        <text x="200" y="350">-</text>
-        <text x="200" y="370">-</text>
-      </g>
-      <g class="exit button">
-        <rect x="100" y="380" width="120" height="30" />
-        <text x="160" y="400">Exit</text>
-      </g>
-    </g>
-
-    <g id="settingsPanel">
-      <text x="160" y="80" class="title">Settings</text>
-
-      <text x="150" y="150" class="label sound">Sound is:</text>
-      <g class="prefsSound button">
-        <rect x="170" y="130" width="120" height="30" />
-        <text x="230" y="150"></text>
-      </g>
-
-      <text x="150" y="200" class="label vibration">Vibration is:</text>
-      <g class="prefsVibration button">
-        <rect x="170" y="180" width="120" height="30" />
-        <text x="230" y="200"></text>
-      </g>
-
-      <g class="install button" id="installButton">
-        <rect x="100" y="330" width="120" height="30" />
-        <text x="160" y="350">Install</text>
-      </g>
-
-      <g class="exit button">
-        <rect x="100" y="400" width="120" height="30" />
-        <text x="160" y="420">Exit</text>
-      </g>
-    </g>
-
-    <g id="difficultyPanel">
-      <text x="160" y="100" class="title">Difficulty</text>
-
-      <g class="beginner button">
-        <rect x="100" y="150" width="120" height="30" />
-        <text x="160" y="170">Beginner</text>
-      </g>
-
-      <g class="easy button">
-        <rect x="100" y="200" width="120" height="30" />
-        <text x="160" y="220">Easy</text>
-      </g>
-
-      <g class="hard button">
-        <rect x="100" y="250" width="120" height="30" />
-        <text x="160" y="270">Hard</text>
-      </g>
-
-      <g class="crazy button">
-        <rect x="100" y="300" width="120" height="30" />
-        <text x="160" y="320">Crazy</text>
-      </g>
-
-      <g class="exit button">
-        <rect x="100" y="400" width="120" height="30" />
-        <text x="160" y="420">Exit</text>
-      </g>
-    </g>
-
-    <g id="mainPanel">
-      <g>
-        <circle class="ball3" stroke-width="2" cx="94" cy="148" r="20" />
-        <circle class="ball2" stroke-width="2" cx="138" cy="148" r="20" />
-        <circle class="ball4" stroke-width="2" cx="182" cy="148" r="20" />
-        <circle class="ball2" stroke-width="2" cx="226" cy="148" r="20" />
-        <circle class="ball1" stroke-width="2" cx="94" cy="192" r="20" />
-        <circle class="ball3" stroke-width="2" cx="138" cy="192" r="20" />
-        <circle class="ball6" stroke-width="2" cx="182" cy="192" r="20" />
-        <circle class="ball3" stroke-width="2" cx="226" cy="192" r="20" />
-        <circle class="ball3" stroke-width="2" cx="94" cy="236" r="20" />
-        <circle class="ball2" stroke-width="2" cx="138" cy="236" r="20" />
-        <circle class="ball4" stroke-width="2" cx="182" cy="236" r="20" />
-        <circle class="ball1" stroke-width="2" cx="226" cy="236" r="20" />
-        <circle class="ball2" stroke-width="2" cx="94" cy="280" r="20" />
-        <circle class="ball4" stroke-width="2" cx="138" cy="280" r="20" />
-        <circle class="ball1" stroke-width="2" cx="182" cy="280" r="20" />
-        <circle class="ball4" stroke-width="2" cx="226" cy="280" r="20" />
-      </g>
-      <text x="160" y="90" class="title">esviji</text>
-
-      <svg id="playButton" class="start button" x="10" y="340" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" />
-        <g transform="scale(.5) translate(30,30)">
-          <path fill="#cccccc" d="M50.002,3.162c-25.826,0-46.835,21.009-46.835,46.841c0,25.826,21.009,46.835,46.835,46.835  c25.826,0,46.83-21.009,46.83-46.835C96.832,24.171,75.828,3.162,50.002,3.162z M50.002,86.871  c-20.36,0-36.875-16.508-36.875-36.868c0-20.369,16.515-36.874,36.875-36.874c20.361,0,36.873,16.505,36.873,36.874  C86.875,70.363,70.363,86.871,50.002,86.871z"/>
-          <path fill="#cccccc" d="M40.563,34.64c-0.829-0.833-2.949-0.833-2.949,0v33.845c0,0.834,2.125,0.834,2.957,0l27.781-15.417  c0.832-0.829,0.846-2.178,0.016-3.01L40.563,34.64z"/>
-          <animateTransform id="pulse" attributeType="xml" attributeName="transform" repeatCount="indefinite" type="translate" additive="sum" values="0,0;-5,-5;0,0" dur="2s" begin="indefinite" />
-          <animateTransform attributeType="xml" attributeName="transform" repeatCount="indefinite" type="scale" additive="sum" values="1;1.1;1" dur="2s" begin="pulse.begin" />
-        </g>
+<section id="home">
+  <h1>esviji</h1>
+  <svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" id="logo" viewBox="0 0 320 320" preserveAspectRatio="xMidYMid meet">
+    <circle class="ball3" stroke-width="2" cx="94" cy="148" r="20" />
+    <circle class="ball2" stroke-width="2" cx="138" cy="148" r="20" />
+    <circle class="ball4" stroke-width="2" cx="182" cy="148" r="20" />
+    <circle class="ball2" stroke-width="2" cx="226" cy="148" r="20" />
+    <circle class="ball1" stroke-width="2" cx="94" cy="192" r="20" />
+    <circle class="ball3" stroke-width="2" cx="138" cy="192" r="20" />
+    <circle class="ball6" stroke-width="2" cx="182" cy="192" r="20" />
+    <circle class="ball3" stroke-width="2" cx="226" cy="192" r="20" />
+    <circle class="ball3" stroke-width="2" cx="94" cy="236" r="20" />
+    <circle class="ball2" stroke-width="2" cx="138" cy="236" r="20" />
+    <circle class="ball4" stroke-width="2" cx="182" cy="236" r="20" />
+    <circle class="ball1" stroke-width="2" cx="226" cy="236" r="20" />
+    <circle class="ball2" stroke-width="2" cx="94" cy="280" r="20" />
+    <circle class="ball4" stroke-width="2" cx="138" cy="280" r="20" />
+    <circle class="ball1" stroke-width="2" cx="182" cy="280" r="20" />
+    <circle class="ball4" stroke-width="2" cx="226" cy="280" r="20" />
+  </svg>
+  <ul class="controls">
+    <li><img src="img/play.svg" class="play" /></li>
+    <li><img src="img/ribbon.svg" class="scores" /></li>
+    <li><img src="img/gears.svg" class="settings" /></li>
+    <li><img src="img/play.svg" class="tutorial" /></li>
+  </ul>
+  <footer>
+    <ul>
+      <li>&copy; 1992-2014 Nicolas Hoizey</li>
+      <li>esviji.com</li>
+      <li>%VERSION%</li>
+    </ul>
+  </footer>
+</section>
+<section id="play">
+  <h1>esviji</h1>
+  <div class="progress">
+    <p class="score">0</p>
+    <ul>
+      <li>
+        <img src="img/heart.svg" class="icon heart" alt="lives: " />
+        <span class="lives">3</span>
+      </li>
+      <li>
+        <img src="img/ladder.svg" class="icon ladder" alt="level: " />
+        <span class="level">12</span>
+      </li>
+    </ul>
+  </div>
+  <div class="controls">
+    <img src="img/pause.svg" class="icon pause" alt="pause" />
+  </div>
+  <svg id="board" version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 320 430" width="100%" height="100%" preserveAspectRatio="xMidYMax meet">
+    <defs>
+      <polygon id="rock" points="0,0 0,32 32,32 32,0" stroke-width="0" fill="#444" />
+      <svg id="ball1" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <circle class="ball1" stroke-width="1" cx="16" cy="16" r="15" />
+        <text x="16" y="21">1</text>
       </svg>
-
-      <svg id="scoresButton" class="scores button" x="85" y="340" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" />
-        <g transform="scale(.6) translate(16,16)">
-          <path fill="#cccccc" d="M74.757,37.876c2.541-2.101,3.692-5.598,2.608-8.923c-1.078-3.326-4.066-5.479-7.355-5.681   c0.827-3.194-0.3-6.697-3.13-8.752c-2.829-2.055-6.504-2.04-9.291-0.272c-1.206-3.069-4.177-5.243-7.675-5.243   c-3.494,0-6.471,2.174-7.677,5.236c-2.781-1.764-6.462-1.776-9.291,0.279c-2.827,2.055-3.954,5.558-3.133,8.752   c-3.286,0.202-6.275,2.355-7.353,5.684c-1.078,3.323,0.071,6.82,2.609,8.92c-2.542,2.098-3.693,5.595-2.609,8.924   c1.078,3.319,4.067,5.476,7.353,5.681c-0.821,3.19,0.306,6.7,3.136,8.749c2.826,2.055,6.507,2.046,9.291,0.272   c1.209,3.068,4.183,5.242,7.677,5.242c3.496,0,6.466-2.174,7.672-5.242c2.787,1.773,6.468,1.782,9.297-0.275   c2.824-2.052,3.951-5.556,3.13-8.749c3.289-0.205,6.278-2.358,7.355-5.687C78.449,43.471,77.298,39.971,74.757,37.876z    M49.914,56.379c-10.216,0-18.5-8.284-18.5-18.503c0-10.216,8.283-18.499,18.5-18.499c10.217,0,18.498,8.283,18.498,18.499   C68.411,48.095,60.131,56.379,49.914,56.379z" />
-          <path fill="#cccccc" d="M33.9,64.228c0,0,3.262,1.365,7.255,0c0,0,2.523,4.306,7.251,4.306l-1.785,22.603l-9.043-9.462H23.81 L33.9,64.228z" />
-          <path fill="#cccccc" d="M65.643,64.228c0,0-3.252,1.365-7.251,0c0,0-2.523,4.306-7.25,4.306l1.788,22.603l9.038-9.462h13.769 L65.643,64.228z" />
-          <path fill="#cccccc" d="M49.914,23.3c-8.051,0-14.574,6.525-14.574,14.576c0,8.048,6.522,14.577,14.574,14.577  c8.049,0,14.578-6.529,14.578-14.577C64.491,29.825,57.963,23.3,49.914,23.3z M55.391,45.786l-5.318-2.643l-5.194,2.875l0.873-5.871  l-4.342-4.051l5.855-0.983l2.511-5.383l2.747,5.264l5.894,0.723l-4.159,4.241L55.391,45.786z" />
-          <animateTransform attributeType="xml" attributeName="transform" repeatCount="indefinite" type="translate" additive="sum" values="0,0;-5,-5;0,0" dur="2.1s" begin="pulse.begin" />
-          <animateTransform attributeType="xml" attributeName="transform" repeatCount="indefinite" type="scale" additive="sum" values="1;1.1;1" dur="2.1s" begin="pulse.begin" />
-        </g>
+      <svg id="ball2" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <circle class="ball2" stroke-width="1" cx="16" cy="16" r="15" />
+        <text x="16" y="21">2</text>
       </svg>
-
-      <svg id="settingsButton" class="settings button" x="160" y="340" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" />
-        <g transform="scale(.5) translate(30,30)">
-          <path fill="#cccccc" d="M96.323,68.662l-6.3-3.697c0.209-2.538-0.101-5.015-0.84-7.312l5.281-5.034l-3.648-5.766l-6.807,2.615  c-1.778-1.659-3.897-2.999-6.247-3.888c-0.002,0-0.003-0.001-0.004-0.002l-0.644-7.275l-6.782-0.743l-2.203,6.96  c-2.489,0.361-4.838,1.211-6.937,2.45c-0.001,0.001-0.002,0.001-0.003,0.002l-6.086-4.03l-4.81,4.84l4.067,6.059  c-1.219,2.089-2.048,4.427-2.398,6.955l-6.956,2.248l0.785,6.775l7.27,0.599c0,0.001,0,0.002,0,0.002  c0.9,2.312,2.24,4.431,3.94,6.221l-2.574,6.829l5.788,3.611l5.008-5.32c1.16,0.37,2.359,0.62,3.618,0.76  c1.249,0.141,2.488,0.15,3.697,0.051l3.731,6.268l6.433-2.272l-1.034-7.221c2.037-1.38,3.815-3.157,5.193-5.225v-0.001l7.226,0.99  L96.323,68.662z M70.313,69.04l-3.08-0.14l-1.48-2.7l-1.8-2.5l1.18-2.84l0.83-2.971l2.96-0.85l2.84-1.2l2.511,1.79l2.71,1.46  l0.159,3.08l0.551,3.03l-2.311,2.05l-2.03,2.32L70.313,69.04z"/>
-          <path fill="#cccccc" d="M46.214,24.47l-4.468,1.601l0.648,4.385l4.739,0.24c0,0,0,0.001,0,0.001  c0.629,1.489,1.549,2.829,2.679,3.958l-1.534,4.488l3.832,2.228l3.145-3.554h0.001c0.761,0.221,1.551,0.36,2.36,0.42  c0.82,0.061,1.61,0.051,2.4-0.05h0.004l2.554,3.999l4.131-1.606l-0.817-4.663c1.299-0.939,2.408-2.129,3.269-3.499  c0.001-0.001,0.001-0.003,0.002-0.003l4.707,0.495l1.319-4.231l-4.168-2.276c0-0.001,0-0.003,0-0.005c0.08-1.66-0.17-3.25-0.69-4.72  c-0.001-0.001-0.001-0.003-0.002-0.005l3.328-3.375l-2.486-3.67l-4.372,1.839c-1.197-1.048-2.586-1.878-4.134-2.407l-0.565-4.705  l-4.418-0.345l-1.291,4.567c-1.61,0.28-3.122,0.881-4.462,1.721c-0.002,0.001-0.004,0.003-0.006,0.004l-4.024-2.488l-3.025,3.24  l2.765,3.853l0,0.001C46.884,21.285,46.385,22.822,46.214,24.47z M54.775,24.247l0.471-1.95l1.91-0.61l1.82-0.84l1.66,1.11  l1.79,0.899l0.17,1.99l0.42,1.96l-1.46,1.38l-1.271,1.54l-1.979-0.28l-2-0.029l-1.021-1.721l-1.223-1.59L54.775,24.247z"/>
-          <path fill="#cccccc" d="M46.893,57.644l1.704-5.491l-5.402-2.94c0-0.002,0-0.005,0-0.007c0.094-2.143-0.23-4.215-0.911-6.129  l4.309-4.382l-3.229-4.756l-5.667,2.392c-1.549-1.357-3.36-2.428-5.365-3.116l-0.74-6.1l-5.732-0.439l-1.66,5.913  c-0.002,0.001-0.003,0.001-0.004,0.001c-2.09,0.374-4.042,1.155-5.776,2.261l-5.234-3.226L9.266,35.83l3.589,4.99  c-0.961,1.788-1.606,3.781-1.83,5.924l-5.793,2.082l0.847,5.686l6.138,0.304c0.001,0.001,0.001,0.002,0.002,0.004  c0.821,1.924,2.009,3.659,3.49,5.117l0,0l-1.984,5.832l4.975,2.884l4.061-4.606c0.985,0.27,2.01,0.447,3.071,0.535  c1.062,0.077,2.102,0.055,3.12-0.058c0.001,0,0.003,0,0.005,0l3.311,5.17l5.354-2.092l-1.07-6.054 c1.683-1.227,3.12-2.757,4.231-4.539c0,0,0-0.001,0.001-0.001L46.893,57.644z M26.706,53.18l-2.592-0.035l-1.328-2.232l-1.585-2.056 l0.919-2.421l0.616-2.523l2.473-0.794l2.357-1.091l2.161,1.435l2.315,1.161l0.226,2.585l0.545,2.539l-1.892,1.791l-1.648,2.007 L26.706,53.18z"/>
-          <animateTransform attributeType="xml" attributeName="transform" repeatCount="indefinite" type="translate" additive="sum" values="0,0;-5,-5;0,0" dur="2.2s" begin="pulse.begin" />
-          <animateTransform attributeType="xml" attributeName="transform" repeatCount="indefinite" type="scale" additive="sum" values="1;1.1;1" dur="2.2s" begin="pulse.begin" />
-        </g>
+      <svg id="ball3" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <circle class="ball3" stroke-width="1" cx="16" cy="16" r="15" />
+        <text x="16" y="21">3</text>
       </svg>
-
-      <svg id="helpButton" class="help button" x="235" y="340" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" />
-        <g transform="scale(.5) translate(35,35)">
-          <polygon fill="#cccccc" points="49.361,41.747 49.361,36.802 36.163,36.802 36.163,41.878 39.209,41.878 39.209,60.152
-            36.163,60.152 36.163,65.229 52.407,65.229 52.407,60.152 49.361,60.152   "/>
-          <circle fill="#cccccc" cx="44.285" cy="28.549" r="5.076"/>
-          <path fill="#cccccc" d="M88.57,44.285C88.57,19.866,68.704,0,44.285,0C19.866,0,0,19.866,0,44.285 c0,19.692,12.92,36.414,30.727,42.154L44.285,100l13.559-13.559C75.65,80.699,88.57,63.978,88.57,44.285z M44.285,77.144 c-18.118,0-32.856-14.743-32.856-32.858c0-18.117,14.739-32.857,32.856-32.857s32.856,14.74,32.856,32.857 C77.142,62.401,62.402,77.144,44.285,77.144z"/>
-          <animateTransform attributeType="xml" attributeName="transform" repeatCount="indefinite" type="translate" additive="sum" values="0,0;-5,-5;0,0" dur="2.3s" begin="pulse.begin" />
-          <animateTransform attributeType="xml" attributeName="transform" repeatCount="indefinite" type="scale" additive="sum" values="1;1.1;1" dur="2.3s" begin="pulse.begin" />
-        </g>
+      <svg id="ball4" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <circle class="ball4" stroke-width="1" cx="16" cy="16" r="15" />
+        <text x="16" y="21">4</text>
       </svg>
+      <svg id="ball5" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <circle class="ball5" stroke-width="1" cx="16" cy="16" r="15" />
+        <text x="16" y="21">5</text>
+      </svg>
+      <svg id="ball6" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+        <circle class="ball6" stroke-width="1" cx="16" cy="16" r="15" />
+        <text x="16" y="21">6</text>
+      </svg>
+      <symbol id="spring" width="32" height="16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 L0,16 L8,0 L8,16 L16,0 L16,16 L24,0 L24,16 L32,0 L32,16" style="stroke-width: 2; stroke: #333; fill: none;" />
+      </symbol>
+    </defs>
+    <g>
+      <path class="playzone" d="M4,426 L4,184 Q4,166 20,166 L36,166 L36,150 Q36,132 52,132 L68,132 L68,116 Q68,100 84,100 L100,100 L100,84 Q100,68 116,68 L132,68 L132,52 Q132,36 148,36 L164,36 L164,20 Q164,4 180,4 L316,4 L316,426" />
 
-      <text class="copyright" x="10" y="455">&copy; 1992-2014 Nicolas Hoizey</text>
-      <text class="website" x="200" y="455">esviji.com</text>
-      <text class="version" x="310" y="455">%VERSION%</text>
+      <use id="tutoPlayable" xlink:href="#ball4" x="252" y="170" />
+      <use id="tutoSpring" xlink:href="#spring" />
+
+      <animateTransform id="bounceBall" xlink:href="#tutoPlayable" attributeType="xml" attributeName="transform" type="translate" calcMode="spline" keySplines="0 0.25 0.75 1;0 0.25 0.75 1" keyTimes="0;0.6;1" values="0,0;16,0;0,0" begin="0" dur="0.8s" repeatCount="indefinite" />
+
+      <animateTransform id="bounceSpring1" xlink:href="#tutoSpring" attributeType="xml" attributeName="transform" type="translate" values="316,194" begin="bounceBall.begin" dur="0.8s" repeatCount="indefinite" />
+      <animateTransform id="bounceSpring2" xlink:href="#tutoSpring" attributeType="xml" attributeName="transform" type="scale" values="-1;-1" begin="bounceBall.begin" dur="0.8s" repeatCount="indefinite" additive="sum" />
+      <animateTransform id="bounceSpring3" xlink:href="#tutoSpring" attributeType="xml" attributeName="transform" type="scale" calcMode="spline" keySplines="0 0.25 0.75 1;0 0.25 0.75 1" keyTimes="0;0.6;1" values="1,1;0.5,1;1,1" begin="bounceBall.begin" dur="0.8s" repeatCount="indefinite" additive="sum" />
     </g>
-  </defs>
-</svg>
+  </svg>
+</section>
+<section id="pause">
+  <h1>esviji</h1>
+  <h2>Game paused</h2>
+  <ul class="controls">
+    <li><img src="img/play.svg" class="icon resume" /></li>
+    <li><img src="img/restart.svg" class="icon restart" /></li>
+    <li><img src="img/gears.svg" class="icon settings" /></li>
+    <li><img src="img/exit.svg" class="icon exit" /></li>
+  </ul>
+</section>
+<section id="gameover">
+  <h1>Game over</h1>
+  <h2 class="score"></h2>
+  <ul class="controls">
+    <li><img src="img/restart.svg" class="icon restart" /></li>
+    <li><img src="img/exit.svg" class="icon exit" /></li>
+  </ul>
+</section>
+<section id="scores">
+  <h1>Best scores</h1>
+  <ol>
+  </ol>
+  <ul class="controls">
+    <li><img src="img/exit.svg" class="icon exit" /></li>
+  </ul>
+</section>
+<section id="settings">
+  <h1>Settings</h1>
+  <section class="sound">
+    <h2>Sound is</dt>
+    <ul>
+      <li><input type="radio" name="sound" id="soundon" value="on" checked="checked" /> <label for="soundon">on</label></li>
+      <li><input type="radio" name="sound" id="soundoff" value="off" /> <label for="soundoff">off</label></li>
+    </ul>
+  </section>
+  <section class="vibration">
+    <h2>Vibration is</h2>
+    <ul>
+      <li><input type="radio" name="vibration" id="vibrationon" value="on" checked="checked" /> <label for="vibrationon">on</label></li>
+      <li><input type="radio" name="vibration" id="vibrationoff" value="off" /> <label for="vibrationoff">off</label></li>
+    </ul>
+  </section>
+  <section class="installation">
+    <button>Install</button>
+  </section>
+  <ul class="controls">
+    <li><img src="img/exit.svg" class="icon exit" /></li>
+  </ul>
+</section>
 <!-- build:js js/app.js -->
-<script type="text/javascript" src="js/vendor/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/vendor/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="js/vendor/offline.js"></script>
 <script type="text/javascript" src="js/offlineGoogleAnalytics.js"></script>
 <script type="text/javascript" src="js/vendor/modernizr.inlinesvg-smil-svg-touch-vibration-2.7.1.js"></script>
 <script type="text/javascript" src="js/vendor/mousetrap-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/vendor/store+json2-1.3.7.min.js"></script>
 <script type="text/javascript" src="js/vendor/SVGEventListener-0.2.3.js"></script>
-<script type="text/javascript" src="js/vendor/howler-1.1.19.js"></script>
+<script type="text/javascript" src="js/vendor/howler-1.1.21.js"></script>
 <script type="text/javascript" src="js/esviji.js"></script>
 <!-- endbuild -->
 </body>

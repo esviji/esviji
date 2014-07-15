@@ -1,5 +1,11 @@
 # esviji changelog
 
+## v2.0.0
+
+Most of the interface is now built using HTML, styled with viewport relative units, only the board zone still using SVG.
+
+This allowed a great enhancement of the game interface for any device and browser aspect ratio, from large landscape — 16/9th — to tall portrait. Responsive Web Design in its full glory.
+
 ## v1.15.x
 
 ### v1.15.3

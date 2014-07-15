@@ -4,6 +4,12 @@
   font-weight: normal;
   font-style: normal;
 }
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 html, body {
   font-family: SansitaOneRegular;
   font-size: 18px;
@@ -19,6 +25,9 @@ html, body {
   overflow: hidden;
 }
 
+/* ********************************************************************
+ * Description for browsers lacking some support for SVG, flexbox, etc.
+ * ********************************************************************/
 #description {
   padding: 1em;
 }
@@ -39,183 +48,286 @@ html, body {
   color: #fdd;
 }
 
-#board {
-  stroke-width: 0;
+/* ********************************************************************
+ * For all screens
+ * ********************************************************************/
+section {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-#play .title, #tutorial .title {
-  font-size: 34px;
-  text-anchor: end;
-  fill: #fff;
-  stroke-width: 0;
+/* ********************************************************************
+ * Home screen
+ * ********************************************************************/
+/* ********************************************************************
+ * Play screen
+ * ********************************************************************/
+section#play {
+  font-size: 15vmin;
+  line-height: 1.5;
 }
-#play .scoreLabel, #play .levelLabel, #play .livesLabel, #tutorial .scoreLabel, #tutorial .levelLabel, #tutorial .livesLabel {
-  text-anchor: end;
-  fill: #ccc;
-  stroke-width: 0;
+section#play h1, section#play ul, section#play .score, section#play .level, section#play .lives {
+  margin: 0;
+  padding: 0;
 }
-#play .score, #play .level, #play .lives, #tutorial .score, #tutorial .level, #tutorial .lives {
+section#play h1 {
+  font-size: 20vmin;
+  color: #ccc;
+  padding: 0 3vmin;
+  height: 30vmin;
+}
+section#play .progress {
+  position: absolute;
+  top: 30vmin;
+  left: 0;
+  width: 100vw;
+  height: -webkit-calc(100vh - 30vmin - 134.375vw);
+  height: calc(100vh - 30vmin - 134.375vw);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+section#play .progress .score {
+  padding: 0 3vmin;
+  font-size: 1.5em;
+  text-align: center;
+}
+section#play .progress ul {
+  width: 100%;
+  list-style-type: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  color: #ccc;
+}
+section#play .progress ul li {
+  text-align: center;
+}
+section#play .progress ul span {
+  color: #eee;
+}
+section#play .progress .icon {
+  margin-right: 3vmin;
+  width: .75em;
+  height: .75em;
+}
+section#play .score, section#play .lives, section#play .level {
   -webkit-transition: all 1s ease-out;
   transition: all 1s ease-out;
-  fill: #eee;
+}
+section#play .score.changeDown, section#play .lives.changeDown, section#play .level.changeDown {
+  color: #c0392b;
+}
+section#play .score.changeUp, section#play .lives.changeUp, section#play .level.changeUp {
+  color: #27ae60;
+}
+section#play .controls .pause {
+  position: absolute;
+  top: 3vmin;
+  right: 3vmin;
+  width: 20vmin;
+  height: 20vmin;
+}
+section#play svg#board {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 134.375vw;
+}
+section#play svg#board .playzone {
   stroke-width: 0;
+  fill: #777;
 }
-#play .score.changeDown, #play .level.changeDown, #play .lives.changeDown, #tutorial .score.changeDown, #tutorial .level.changeDown, #tutorial .lives.changeDown {
-  fill: #c0392b;
-}
-#play .score.changeUp, #play .level.changeUp, #play .lives.changeUp, #tutorial .score.changeUp, #tutorial .level.changeUp, #tutorial .lives.changeUp {
-  fill: #27ae60;
-}
-
-.pauseButton {
-  pointer-events: visible;
-}
-.pauseButton .fullarea {
-  pointer-events: visible;
-  fill: #fff;
-  opacity: 0;
-}
-.pauseButton .icon {
-  stroke-width: 0;
-  fill: #fff;
-  opacity: 0.7;
-}
-
-.ball text {
+section#play svg#board .ball text {
   font-size: 16px;
   text-anchor: middle;
   fill: #fff;
   stroke-width: 0;
 }
-
-.ball1 {
+section#play svg#board .ball1 {
   fill: #f39c12;
   stroke: #e67e22;
 }
-
-.ball2 {
+section#play svg#board .ball2 {
   fill: #2ecc71;
   stroke: #27ae60;
 }
-
-.ball3 {
+section#play svg#board .ball3 {
   fill: #3498db;
   stroke: #2980b9;
 }
-
-.ball4 {
+section#play svg#board .ball4 {
   fill: #9b59b6;
   stroke: #8e44ad;
 }
-
-.ball5 {
+section#play svg#board .ball5 {
   fill: #aa8866;
   stroke: #776655;
 }
-
-.ball6 {
+section#play svg#board .ball6 {
   fill: #e74c3c;
   stroke: #c0392b;
 }
-
-#playable {
+section#play svg#board #playable {
   pointer-events: none;
 }
-#playable:hover {
+section#play svg#board #playable:hover {
   cursor: pointer;
 }
-
-.panelBackground {
-  pointer-events: visible;
-  fill: transparent;
+section#play svg#board #spring {
+  stroke-width: 2;
+  stroke: #333;
+  fill: none;
+}
+@media (min-aspect-ratio: 8 / 24) {
+  section#play .progress ul {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+@media (min-aspect-ratio: 11 / 24) {
+  section#play {
+    font-size: 10vmin;
+  }
+  section#play .progress ul {
+    position: absolute;
+    left: 3vmin;
+    width: 25vw;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+@media (min-aspect-ratio: 13 / 24) {
+  section#play {
+    font-size: -webkit-calc(13 / 24 * 10vh - 2vw);
+    font-size: calc(13 / 24 * 10vh - 2vw);
+  }
+  section#play .progress {
+    position: absolute;
+    left: 3vmin;
+    height: auto;
+    text-align: left;
+  }
+  section#play .progress .score {
+    padding: 0;
+    text-align: left;
+  }
+  section#play .progress ul {
+    position: static;
+    line-height: 1.2;
+  }
+  section#play .progress ul li {
+    text-align: left;
+  }
+}
+@media (min-aspect-ratio: 15 / 24) {
+  section#play h1 {
+    font-size: 12.5vh;
+    height: 18.75vh;
+  }
+  section#play .progress {
+    font-size: 6vw;
+  }
+  section#play .controls .pause {
+    width: 12.5vh;
+    height: 12.5vh;
+  }
+  section#play svg#board {
+    width: 62.5vh;
+    left: auto;
+    right: 0;
+  }
+}
+@media (min-aspect-ratio: 19 / 24) {
+  section#play .progress {
+    top: -webkit-calc(18.75vh + 3vmin);
+    top: calc(18.75vh + 3vmin);
+    width: -webkit-calc(100vw - 3vmin - 19 / 24 * 100vw);
+    width: calc(100vw - 3vmin - 19 / 24 * 100vw);
+  }
+  section#play .progress ul {
+    width: 100%;
+  }
+  section#play .progress ul li {
+    text-align: center;
+  }
+  section#play .controls .pause {
+    top: auto;
+    left: 3vmin;
+    right: auto;
+    bottom: 3vmin;
+  }
+  section#play svg#board {
+    width: 79.16667vw;
+    max-width: 74.4186vh;
+  }
+}
+@media (min-aspect-ratio: 24 / 24) {
+  section#play .progress {
+    width: -webkit-calc(100vw - 2 * 3vmin - 74.4186vh);
+    width: calc(100vw - 2 * 3vmin - 74.4186vh);
+    height: -webkit-calc(100vh - 18.75vh - 3 * 3vmin - 12.5vh);
+    height: calc(100vh - 18.75vh - 3 * 3vmin - 12.5vh);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-orientation: column;
+  }
+  section#play .progress .score {
+    text-align: center;
+  }
+}
+@media (min-aspect-ratio: 36 / 24) {
+  section#play {
+    max-width: 150vh;
+  }
+  section#play .progress {
+    width: -webkit-calc(150vh - 2 * 3vmin - 74.4186vh);
+    width: calc(150vh - 2 * 3vmin - 74.4186vh);
+    font-size: 9vh;
+  }
 }
 
-#main .title {
-  font-size: 96px;
-  text-anchor: middle;
-  stroke-width: 0;
-  fill: #fff;
-}
-#main .button > circle {
-  fill: #444;
-}
-#main .copyright {
-  text-anchor: start;
-}
-#main .website {
-  text-anchor: middle;
-}
-#main .version {
-  text-anchor: end;
-}
-
-#difficulty .title, #gameOver .title, #pause .title, #scores .title, #settings .title {
-  font-size: 48px;
-  text-anchor: middle;
-  fill: #fff;
-  stroke-width: 0;
-}
-
-#gameOver .score {
-  font-size: 34px;
-  text-anchor: middle;
-  fill: #eee;
-}
-
-#scores .highscores {
-  font-size: 18px;
-  text-anchor: end;
-  fill: #eee;
-}
-#scores .highscores .thisone {
-  fill: #3c3;
-}
-
-.button {
-  pointer-events: visible;
-}
-.button text {
-  font-size: 18px;
-  text-anchor: middle;
-  fill: #333;
-  stroke-width: 0;
-}
-.button rect {
-  fill: #ddd;
-  stroke-width: 3;
-  stroke: #666;
-}
-.button:hover {
-  cursor: pointer;
-}
-.button:hover rect {
-  fill: #fff;
-  stroke-width: 3;
-  stroke: #888;
-}
-
-.label {
-  text-anchor: end;
-  fill: #fff;
-}
-
-.copyright, .website, .version {
-  font-size: 10px;
-  fill: #888;
-  stroke-width: 0;
-}
-
-.step text {
-  font-weight: normal;
-  fill: #333;
-}
-.step rect, .step path {
-  fill: #aaa;
-  fill-opacity: 1;
-  stroke-width: 0;
-  stroke: #aaa;
-}
-
+/* ********************************************************************
+ * Scores screen
+ * ********************************************************************/
+/* ********************************************************************
+ * Settings screen
+ * ********************************************************************/
+/* ********************************************************************
+ * Tutorial screen
+ * ********************************************************************/
 .ios .label.sound, .ios .button.prefsSound {
   display: none;
 }
