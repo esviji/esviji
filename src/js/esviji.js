@@ -283,40 +283,40 @@ ESVIJI.game = (function () {
     $('#home .controls .scores').bind('click', startScores);
     $('#home .controls .settings').bind('click', startSettings);
     $('#home .controls .tutorial').bind('click', startTutorial);
-    $('#home .controls .about').bind('click', function(e) {
-      e.preventDefault();
+    $('#home .controls .about').bind('click', function(event) {
+      event.preventDefault();
       showScreen('about');
     });
 
     // Play screen buttons
-    $('#play .controls .pause').bind('click', function(e) {
-      e.preventDefault();
+    $('#play .controls .pause').bind('click', function(event) {
+      event.preventDefault();
       showScreen('pause');
     });
 
     // Pause screen buttons
-    $('#pause .controls .resume').bind('click', function(e) {
-      e.preventDefault();
+    $('#pause .controls .resume').bind('click', function(event) {
+      event.preventDefault();
       showScreen('play');
     });
-    $('#pause .controls .restart').bind('click', function(e) {
-      e.preventDefault();
+    $('#pause .controls .restart').bind('click', function(event) {
+      event.preventDefault();
       storeSet('gameStatus', {
         'playing': false
       });
       startPlaying();
     });
-    $('#pause .controls .settings').bind('click', function(e) {
-      e.preventDefault();
+    $('#pause .controls .settings').bind('click', function(event) {
+      event.preventDefault();
       startSettings();
     });
-    $('#pause .controls .exit').bind('click', function(e) {
-      e.preventDefault();
+    $('#pause .controls .exit').bind('click', function(event) {
+      event.preventDefault();
       stopPlaying();
     });
 
     // Settings screen buttons
-    $('#settings .controls .exit').bind('click', function(e) {
+    $('#settings .controls .exit').bind('click', function(event) {
       event.preventDefault();
       if (gameStatus.playing) {
         showScreen('pause');
@@ -326,7 +326,7 @@ ESVIJI.game = (function () {
     });
 
     // About screen buttons
-    $('#about .controls .exit').bind('click', function(e) {
+    $('#about .controls .exit').bind('click', function(event) {
       event.preventDefault();
       showScreen('home');
     });
@@ -420,7 +420,9 @@ ESVIJI.game = (function () {
     showScreen('home');
   }
 
-  function startScores() {
+  function startScores(event) {
+    event.preventDefault();
+
     var difficulty = gameStatus.preferences.difficulty;
 
     showScreen('scores');
@@ -462,7 +464,8 @@ ESVIJI.game = (function () {
     showScreen('home');
   }
 
-  function startSettings() {
+  function startSettings(event) {
+    event.preventDefault();
     showScreen('settings');
 
     $('#settings .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
