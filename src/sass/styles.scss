@@ -90,28 +90,89 @@ section {
     flex-direction: column;
     justify-content: space-around;
 
+    font-size: calc(4vh - 5vw);
+    line-height: 2;
+
     li {
       text-align: center;
-      padding: 3vmin;
-    }
+      width: 99vw;
+      padding: 3vw;
 
-    img {
-      width: calc(20vh - 25vw);
-      height: auto;
-    }
-
-    @media (min-aspect-ratio: 9/24) {
-      flex-direction: row;
-      flex-wrap: wrap;
+      a {
+        display: flex;
+        flex-direction: column;
+        color: #ccc;
+        text-decoration: none;
+      }
 
       img {
-        width: 30vmin;
+        width: calc(15vh - 25vw);
+        height: auto;
+        margin: 0 auto;
+      }
+
+      span {
+
       }
     }
 
-    @media (min-aspect-ratio: 13/24) {
-      img {
-        width: 18vmin;
+    @media (min-aspect-ratio: 7/24) {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      font-size: 8vw;
+
+      li {
+        width: 49vw;
+
+        img {
+          width: calc(14vh - 10vw);
+        }
+      }
+    }
+
+    @media (min-aspect-ratio: 14/24) {
+      font-size: 5vw;
+
+      li {
+        width: 24vw;
+
+        img {
+          width: 18vw;
+        }
+      }
+    }
+
+    @media (min-aspect-ratio: 17/24) {
+      li {
+        width: 49vw;
+
+        img {
+          width: 25vw;
+        }
+      }
+    }
+
+    @media (min-aspect-ratio: 20/24) {
+      li {
+        width: 24vw;
+
+        img {
+          width: 18vw;
+        }
+      }
+    }
+
+    @media (min-aspect-ratio: 36/24) {
+      font-size: 7vh;
+
+      li {
+        width: 37vh; // ~ 150vh / 4 = max-width
+        padding: 3vh;
+
+        img {
+          width: 25vh; // < 150vh / 4 = max-width
+        }
       }
     }
   }
@@ -167,14 +228,14 @@ section#home {
 
     .logo {
       display: block;
-      width: 50vmin;
+      width: 45vmin;
       height: auto;
       margin: 10vmin auto;
       padding: 0;
     }
   }
 
-  @media (min-aspect-ratio: 18/24) {
+  @media (min-aspect-ratio: 17/24) {
     header {
       flex-direction: row-reverse;
       justify-content: space-around;
@@ -188,16 +249,6 @@ section#home {
         height: 20vw;
         margin: 3vw 0;
       }
-    }
-
-    .controls img {
-      width: calc(25vh - 5vw);
-    }
-  }
-
-  @media (min-aspect-ratio: 24/24) {
-    .controls img {
-      width: 20vh;
     }
   }
 
@@ -511,15 +562,8 @@ section#play {
  * ********************************************************************/
 
 section#pause {
-  h1 {
-    font-size: 25vmin;
-  }
-
   h2 {
     font-size: 10vmin;
-  }
-
-  h1, h2 {
     text-align: center;
     margin: 3vmin 0;
   }
