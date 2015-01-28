@@ -306,14 +306,8 @@ ESVIJI.game = (function () {
       });
       startPlaying();
     });
-    $('#pause .controls .settings').bind('click', function(event) {
-      event.preventDefault();
-      startSettings();
-    });
-    $('#pause .controls .exit').bind('click', function(event) {
-      event.preventDefault();
-      stopPlaying();
-    });
+    $('#pause .controls .settings').bind('click', startSettings);
+    $('#pause .controls .exit').bind('click', stopPlaying);
 
     // Settings screen buttons
     $('#settings .controls .exit').bind('click', function(event) {
@@ -323,6 +317,11 @@ ESVIJI.game = (function () {
       } else {
         showScreen('home');
       }
+    });
+
+    $('#settings input').bind('change', function(event) {
+      gameStatus.preferences[event.currentTarget.name] = ('on' === event.currentTarget.value);
+      storeSet('gameStatus', gameStatus);
     });
 
     // About screen buttons
@@ -468,19 +467,8 @@ ESVIJI.game = (function () {
     event.preventDefault();
     showScreen('settings');
 
-    $('#settings .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
-    $('#settings .prefsSound').bind(clickType, function() {
-      gameStatus.preferences.sound = !gameStatus.preferences.sound;
-      storeSet('gameStatus', gameStatus);
-      $('#settings .prefsSound text').text(gameStatus.preferences.sound ? 'On' : 'Off');
-    });
-
-    $('#settings .prefsVibration text').text(gameStatus.preferences.vibration ? 'On' : 'Off');
-    $('#settings .prefsVibration').bind(clickType, function() {
-      gameStatus.preferences.vibration = !gameStatus.preferences.vibration;
-      storeSet('gameStatus', gameStatus);
-      $('#settings .prefsVibration text').text(gameStatus.preferences.vibration ? 'On' : 'Off');
-    });
+    $('#sound' + (gameStatus.preferences.sound ? 'on' : 'off')).attr('checked', 'checked');
+    $('#vibration' + (gameStatus.preferences.vibration ? 'on' : 'off')).attr('checked', 'checked');
 
     showInstall();
   }
