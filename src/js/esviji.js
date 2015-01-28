@@ -593,7 +593,7 @@ ESVIJI.game = (function () {
           Mousetrap.bind('up', keyUp);
           Mousetrap.bind('down', keyDown);
           Mousetrap.bind(['enter', 'space'], keyEnter);
-          Mousetrap.bind('esc', function() { console.log('esc'); startNewTurn(); });
+          Mousetrap.bind('esc', startNewTurn);
         }
       }
     }
