@@ -347,7 +347,7 @@ ESVIJI.game = (function () {
 
       boardOffsetY = vh - boardHeight;
 
-      console.log('Aspect ratio: ' + vw / (vh / 24) + '/24');
+      console.info('Aspect ratio: ' + vw / (vh / 24) + '/24');
     }
   }
 
