@@ -1,3 +1,6 @@
+$backgroundColor: #444;
+$textColor: #fff;
+
 @font-face {
   font-family: "SansitaOneRegular";
   src: url("font/sansitaone-webfont.woff") format("woff"),
@@ -22,8 +25,8 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: #444;
-  color:  #fff;
+  background-color: $backgroundColor;
+  color:  $textColor;
   margin: 0;
   padding: 0;
   width: 100%;
