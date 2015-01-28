@@ -87,17 +87,35 @@ section .controls {
   -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
   justify-content: space-around;
+  font-size: -webkit-calc(4vh - 5vw);
+  font-size: calc(4vh - 5vw);
+  line-height: 2;
 }
 section .controls li {
   text-align: center;
-  padding: 3vmin;
+  width: 99vw;
+  padding: 3vw;
 }
-section .controls img {
-  width: -webkit-calc(20vh - 25vw);
-  width: calc(20vh - 25vw);
+section .controls li a {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  color: #ccc;
+  text-decoration: none;
+}
+section .controls li img {
+  width: -webkit-calc(15vh - 25vw);
+  width: calc(15vh - 25vw);
   height: auto;
+  margin: 0 auto;
 }
-@media (min-aspect-ratio: 9 / 24) {
+@media (min-aspect-ratio: 7 / 24) {
   section .controls {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -107,14 +125,53 @@ section .controls img {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    font-size: 8vw;
   }
-  section .controls img {
-    width: 30vmin;
+  section .controls li {
+    width: 49vw;
+  }
+  section .controls li img {
+    width: -webkit-calc(14vh - 10vw);
+    width: calc(14vh - 10vw);
   }
 }
-@media (min-aspect-ratio: 13 / 24) {
-  section .controls img {
-    width: 18vmin;
+@media (min-aspect-ratio: 14 / 24) {
+  section .controls {
+    font-size: 5vw;
+  }
+  section .controls li {
+    width: 24vw;
+  }
+  section .controls li img {
+    width: 18vw;
+  }
+}
+@media (min-aspect-ratio: 17 / 24) {
+  section .controls li {
+    width: 49vw;
+  }
+  section .controls li img {
+    width: 25vw;
+  }
+}
+@media (min-aspect-ratio: 20 / 24) {
+  section .controls li {
+    width: 24vw;
+  }
+  section .controls li img {
+    width: 18vw;
+  }
+}
+@media (min-aspect-ratio: 36 / 24) {
+  section .controls {
+    font-size: 7vh;
+  }
+  section .controls li {
+    width: 37vh;
+    padding: 3vh;
+  }
+  section .controls li img {
+    width: 25vh;
   }
 }
 
@@ -172,12 +229,12 @@ section#home header h1 {
 }
 section#home header .logo {
   display: block;
-  width: 50vmin;
+  width: 45vmin;
   height: auto;
   margin: 10vmin auto;
   padding: 0;
 }
-@media (min-aspect-ratio: 18 / 24) {
+@media (min-aspect-ratio: 17 / 24) {
   section#home header {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
@@ -195,15 +252,6 @@ section#home header .logo {
     width: 20vw;
     height: 20vw;
     margin: 3vw 0;
-  }
-  section#home .controls img {
-    width: -webkit-calc(25vh - 5vw);
-    width: calc(25vh - 5vw);
-  }
-}
-@media (min-aspect-ratio: 24 / 24) {
-  section#home .controls img {
-    width: 20vh;
   }
 }
 @media (min-aspect-ratio: 36 / 24) {
@@ -234,7 +282,6 @@ section#home .controls .play img {
     -webkit-transform: scale(1);
     transform: scale(1);
   }
-
   to {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
@@ -247,7 +294,6 @@ section#home .controls .play img {
     -ms-transform: scale(1);
     transform: scale(1);
   }
-
   to {
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
@@ -497,13 +543,8 @@ section#play svg#board #spring {
 /* ********************************************************************
  * Pause screen
  * ********************************************************************/
-section#pause h1 {
-  font-size: 25vmin;
-}
 section#pause h2 {
   font-size: 10vmin;
-}
-section#pause h1, section#pause h2 {
   text-align: center;
   margin: 3vmin 0;
 }
@@ -514,6 +555,52 @@ section#pause h1, section#pause h2 {
 /* ********************************************************************
  * Settings screen
  * ********************************************************************/
+section#settings h2 {
+  font-size: 10vmin;
+  text-align: center;
+  margin: 3vmin 0;
+}
+section#settings fieldset {
+  border: 0;
+  margin: 1em 0 0;
+}
+section#settings legend {
+  font-size: 10vmin;
+}
+section#settings ul {
+  list-style-type: none;
+  text-align: center;
+  padding-left: 0;
+  margin-top: .5em;
+  font-size: 10vmin;
+}
+@media (min-aspect-ratio: 10 / 24) {
+  section#settings legend, section#settings ul {
+    font-size: 8vmin;
+  }
+}
+@media (min-aspect-ratio: 12 / 24) {
+  section#settings li {
+    display: inline;
+    margin-right: 1em;
+  }
+}
+@media (min-aspect-ratio: 15 / 24) {
+  section#settings legend, section#settings ul {
+    font-size: 7vmin;
+  }
+  section#settings legend {
+    clear: both;
+    float: left;
+  }
+  section#settings ul {
+    margin-top: 0;
+  }
+  section#settings li {
+    float: right;
+  }
+}
+
 /* ********************************************************************
  * Tutorial screen
  * ********************************************************************/
@@ -527,3 +614,5 @@ section#pause h1, section#pause h2 {
 #installButton {
   display: none;
 }
+
+/*# sourceMappingURL=styles.css.map */
