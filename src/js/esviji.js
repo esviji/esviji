@@ -875,7 +875,7 @@ ESVIJI.game = (function () {
       y: y,
       opacity: 0
     });
-    $("#play").append(ballTo);
+    $("#board").append(ballTo);
 
     // opacity from
     animOpacityFrom = svgAnimate({
