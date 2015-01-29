@@ -1,0 +1,27 @@
+{
+  "version": "%VERSION%",
+  "short_name": "esviji",
+  "name": "%DESCRIPTION%",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/firefoxos-icon-60.png",
+      "sizes": "60x60",
+      "type": "image/png",
+      "density": "1.0"
+    },
+    {
+      "src": "/firefoxos-icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "density": "1.0"
+    },
+    {
+      "src": "/firefoxos-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "density": "1.0"
+    }
+  ]
+}
