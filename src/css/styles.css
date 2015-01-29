@@ -402,6 +402,10 @@ section#play svg#board {
   bottom: 0;
   width: 100vw;
   height: 134.375vw;
+  pointer-events: none;
+}
+section#play svg#board path {
+  pointer-events: visibleFill;
 }
 section#play svg#board .playzone {
   stroke-width: 0;
@@ -564,7 +568,7 @@ section#settings fieldset {
   border: 0;
   margin: 1em 0 0;
 }
-section#settings legend {
+section#settings legend, section#settings ul, section#settings button {
   font-size: 10vmin;
 }
 section#settings ul {
@@ -572,10 +576,13 @@ section#settings ul {
   text-align: center;
   padding-left: 0;
   margin-top: .5em;
-  font-size: 10vmin;
+}
+section#settings .installation {
+  display: none;
+  text-align: center;
 }
 @media (min-aspect-ratio: 10 / 24) {
-  section#settings legend, section#settings ul {
+  section#settings legend, section#settings ul, section#settings button {
     font-size: 8vmin;
   }
 }
@@ -586,7 +593,7 @@ section#settings ul {
   }
 }
 @media (min-aspect-ratio: 15 / 24) {
-  section#settings legend, section#settings ul {
+  section#settings legend, section#settings ul, section#settings button {
     font-size: 7vmin;
   }
   section#settings legend {
@@ -594,25 +601,20 @@ section#settings ul {
     float: left;
   }
   section#settings ul {
-    margin-top: 0;
-  }
-  section#settings li {
+    margin: 0;
     float: right;
   }
+  section#settings .installation button {
+    float: right;
+  }
+}
+
+.ios .label.sound, .ios .button.prefsSound {
+  display: none;
 }
 
 /* ********************************************************************
  * Tutorial screen
  * ********************************************************************/
-.ios .label.sound, .ios .button.prefsSound {
-  display: none;
-}
-.ios #settingsButton {
-  display: none;
-}
-
-#installButton {
-  display: none;
-}
 
 /*# sourceMappingURL=styles.css.map */

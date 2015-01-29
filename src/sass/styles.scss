@@ -595,7 +595,7 @@ section#settings {
     margin: 1em 0 0;
   }
 
-  legend {
+  legend, ul, button {
     font-size: 10vmin;
   }
 
@@ -604,11 +604,15 @@ section#settings {
     text-align: center;
     padding-left: 0;
     margin-top: .5em;
-    font-size: 10vmin;
+  }
+
+  .installation {
+    display: none;
+    text-align: center;
   }
 
   @media (min-aspect-ratio: 10/24) {
-    legend, ul {
+    legend, ul, button {
       font-size: 8vmin;
     }
   }
@@ -621,7 +625,7 @@ section#settings {
   }
 
   @media (min-aspect-ratio: 15/24) {
-    legend, ul {
+    legend, ul, button {
       font-size: 7vmin;
     }
 
@@ -631,12 +635,19 @@ section#settings {
     }
 
     ul {
-      margin-top: 0;
-    }
-
-    li {
+      margin: 0;
       float: right;
     }
+
+    .installation button {
+      float: right;
+    }
+  }
+}
+
+.ios {
+  .label.sound, .button.prefsSound {
+    display: none;
   }
 }
 
@@ -645,17 +656,3 @@ section#settings {
  * ********************************************************************/
 
 
-
-.ios {
-  .label.sound, .button.prefsSound {
-    display: none;
-  }
-
-  #settingsButton {
-    display: none;
-  }
-}
-
-#installButton {
-  display: none;
-}
