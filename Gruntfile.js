@@ -82,7 +82,9 @@ module.exports = function(grunt) {
               "index.html",
               ".htaccess",
               "manifest.webapp",
+              "manifest.json",
               "css/font/*",
+              "img/*",
               "sounds/sprite.{mp3,ogg}",
               "js/vendor/analytics.js"
             ],
