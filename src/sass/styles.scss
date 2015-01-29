@@ -402,6 +402,11 @@ section#play {
     bottom: 0;
     width: 100vw;
     height: $portraitSvgHeight;
+    pointer-events: none;
+
+    path {
+      pointer-events: visibleFill;
+    }
 
     .playzone {
       stroke-width: 0;
