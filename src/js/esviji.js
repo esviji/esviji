@@ -1340,7 +1340,8 @@ ESVIJI.game = (function () {
         if (request.result) {
           // we're installed, nothing to do
         } else {
-          $('#installButton').css('display', 'block').one(clickType, install);
+          $('#settings .installation').css('display', 'block');
+          $('#settings .installation button').one(clickType, install);
         }
       };
       request.onerror = function() {
