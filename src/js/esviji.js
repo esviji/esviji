@@ -367,6 +367,8 @@ ESVIJI.game = (function () {
     $('#' + screen).attr('aria-hidden', 'false');
     gameStatus.currentScreen = screen;
 
+    // TODO: show current screen in URL
+
     // Google Analytics tracking of activated screen
     offlineAnalytics.push({ name: 'view', value: '/' + (screen === 'home' ? '' : screen + '/') });
   }
