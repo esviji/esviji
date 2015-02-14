@@ -26,85 +26,24 @@ ESVIJI.settings = {
     score: 0,
     level: 0
   },
-  // game difficulty levels
-  difficulties: {
-    Beginner: {
-      rows: function rows(level) {
-        return 3;
-      },
-      columns: function columns(level) {
-        return 3;
-      },
-      balls: function balls(level) {
-        return Math.max(2, Math.min(3, 2 + Math.floor((level - 1) / 3)));
-      },
-      rocks: function rocks(level) {
-        return 0;
-      },
-      points: function points(nbHits) {
-        return nbHits;
-      },
-      extraLifePoints: 100,
-      extraLifeLevel: 0
-    },
-    Easy: {
-      rows: function rows(level) {
-        return Math.max(3, Math.min(6, 3 + Math.floor((level - 1) / 3)));
-      },
-      columns: function columns(level) {
-        return Math.max(3, Math.min(6, 3 + Math.floor((level - 1) / 3)));
-      },
-      balls: function balls(level) {
-        return Math.max(2, Math.min(5, 2 + Math.floor((level - 1) / 2)));
-      },
-      rocks: function rocks(level) {
-        return Math.min(5, Math.floor((level - 1) / 5));
-      },
-      points: function points(nbHits) {
-        return Math.pow(nbHits, 2);
-      },
-      extraLifePoints: 100,
-      extraLifeLevel: 1
-    },
-    Hard: {
-      rows: function rows(level) {
-        return Math.max(5, Math.min(7, 5 + Math.floor((level - 1) / 3)));
-      },
-      columns: function columns(level) {
-        return Math.max(5, Math.min(6, 5 + Math.floor((level - 1) / 3)));
-      },
-      balls: function balls(level) {
-        return Math.max(4, Math.min(6, 4 + Math.floor((level - 1) / 2)));
-      },
-      rocks: function rocks(level) {
-        return Math.min(10, Math.floor((level - 1) / 4));
-      },
-      points: function points(nbHits) {
-        return Math.pow(nbHits, 3);
-      },
-      extraLifePoints: 100,
-      extraLifeLevel: 1
-    },
-    Crazy: {
-      rows: function rows(level) {
-        return Math.min(7, 2 + level);
-      },
-      columns: function columns(level) {
-        return Math.min(7, 2 + level);
-      },
-      balls: function balls(level) {
-        return Math.min(6, 1 + level);
-      },
-      rocks: function rocks(level) {
-        return Math.max(0, Math.min(20, level - 6));
-      },
-      points: function points(nbHits) {
-        return Math.pow(nbHits, 4);
-      },
-      extraLifePoints: 100,
-      extraLifeLevel: 0
-    }
+  // settings based on levels
+  levelRows: function levelRows(level) {
+    return Math.min(7, 2 + level);
   },
+  levelColumns: function levelColumns(level) {
+    return Math.min(7, 2 + level);
+  },
+  levelBalls: function levelBalls(level) {
+    return Math.min(6, 1 + level);
+  },
+  levelRocks: function levelRocks(level) {
+    return Math.max(0, Math.min(20, level - 6));
+  },
+  points: function points(nbHits) {
+    return Math.pow(nbHits, 4);
+  },
+  extraLifePoints: 100,
+  extraLifeLevel: 0,
   // game info at new turn start
   turn: {
     posX: 9,
@@ -198,8 +137,7 @@ ESVIJI.game = (function () {
         },
         preferences: {
           sound: true,
-          vibration: true,
-          difficulty: 'Beginner'
+          vibration: true
         }
       };
     }
@@ -227,24 +165,15 @@ ESVIJI.game = (function () {
         'sound': true
       };
     }
-    if (undefined === gameStatus.preferences.difficulty) {
-      // v1.8.0
-      gameStatus.preferences.difficulty = 'Beginner';
-    }
-    if (highScores.length === 0 || (highScores.length > 0 && undefined === highScores.Beginner)) {
-      // v1.8.1
-      oldHighScores = highScores;
-      highScores = {
-        Beginner: [],
-        Easy: [],
-        Hard: oldHighScores,
-        Crazy: []
-      };
-      storeSet('highScores', highScores);
-    }
     if (undefined === gameStatus.preferences.vibration) {
       // v1.13.0
       gameStatus.preferences.vibration = true;
+    }
+    if (undefined !== gameStatus.preferences.difficulty && undefined !== highScores.Crazy) {
+      // v2.0.0, no more difficulty choice, keep only "crazy" scores
+      gameStatus.preferences.difficulty = undefined;
+      highScores = highScores.Crazy;
+      storeSet('highScores', highScores);
     }
 
     // Available sounds
@@ -374,7 +303,6 @@ ESVIJI.game = (function () {
   }
 
   function startPlaying(event) {
-    gameStatus.preferences.difficulty = 'Crazy'; // TODO: supprimer
     if (undefined !== event) {
       event.preventDefault();
     }
@@ -424,34 +352,18 @@ ESVIJI.game = (function () {
   function startScores(event) {
     event.preventDefault();
 
-    var difficulty = gameStatus.preferences.difficulty;
-
     showScreen('scores');
 
-    $('#scores .difficulty text').text(difficulty);
-    $('#scores .difficulty').bind(clickType, function() {
-      var nextDifficulty = {
-            Beginner: 'Easy',
-            Easy: 'Hard',
-            Hard: 'Crazy',
-            Crazy: 'Beginner'
-          },
-          difficulty = nextDifficulty[$(this).find('text').text()];
-
-      $('#scores .difficulty text').text(difficulty);
-      writeScores(difficulty);
-    });
-
-    writeScores(difficulty);
+    writeScores();
 
     $('#scores .exit').one(clickType, endScores);
   }
 
-  function writeScores(difficulty) {
+  function writeScores() {
     for (i = 0; i < 10; i++) {
-      if (undefined !== highScores[difficulty][i]) {
-        $('#scores .highscores text').eq(i).text(highScores[difficulty][i].score);
-        if (difficulty === gameStatus.preferences.difficulty && lastGameDate === highScores[difficulty][i].date) {
+      if (undefined !== highScores[i]) {
+        $('#scores .highscores text').eq(i).text(highScores[i].score);
+        if (lastGameDate === highScores[i].date) {
           $('#scores .highscores text').eq(i).attr('class', 'thisone');
         }
       } else {
@@ -522,8 +434,8 @@ ESVIJI.game = (function () {
         drawnCurrentBall = null;
       }
 
-      if (ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].extraLifeLevel > 0) {
-        gameStatus.lives += ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].extraLifeLevel;
+      if (ESVIJI.settings.extraLifeLevel > 0) {
+        gameStatus.lives += ESVIJI.settings.extraLifeLevel;
         drawLives();
         $('#play .lives').attr('class', 'lives changeUp');
         window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
@@ -1069,7 +981,7 @@ ESVIJI.game = (function () {
 
   function initBalls(thisLevel) {
     thisLevel = thisLevel || gameStatus.level;
-    nbBalls = ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].balls(thisLevel);
+    nbBalls = ESVIJI.settings.levelBalls(thisLevel);
     gameStatus.currentBalls = [];
 
     for (x = 1; x <= ESVIJI.settings.board.xMax; x++) {
@@ -1079,7 +991,7 @@ ESVIJI.game = (function () {
           // put the "stair" rocks
           gameStatus.currentBalls[x][y] = ESVIJI.settings.rockId;
         } else {
-          if ((x <= ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].columns(thisLevel)) && (y <= ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].rows(thisLevel))) {
+          if ((x <= ESVIJI.settings.levelColumns(thisLevel)) && (y <= ESVIJI.settings.levelRows(thisLevel))) {
             // a ball
             gameStatus.currentBalls[x][y] = 1 + Math.floor(Math.random() * nbBalls);
           } else {
@@ -1090,11 +1002,11 @@ ESVIJI.game = (function () {
       }
     }
     // add rocks
-    nbRocks = ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].rocks(thisLevel);
+    nbRocks = ESVIJI.settings.levelRocks(thisLevel);
     positionedRocks = 0;
     while (positionedRocks < nbRocks) {
-      rock_x = 1 + Math.floor(Math.random() * ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].rows(thisLevel));
-      rock_y = 1 + Math.floor(Math.random() * ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].columns(thisLevel));
+      rock_x = 1 + Math.floor(Math.random() * ESVIJI.settings.levelRows(thisLevel));
+      rock_y = 1 + Math.floor(Math.random() * ESVIJI.settings.levelColumns(thisLevel));
       if (gameStatus.currentBalls[rock_x][rock_y] !== ESVIJI.settings.rockId) {
         gameStatus.currentBalls[rock_x][rock_y] = ESVIJI.settings.rockId;
         positionedRocks++;
@@ -1194,7 +1106,7 @@ ESVIJI.game = (function () {
   }
 
   function gameOver() {
-    var l = highScores[gameStatus.preferences.difficulty].length,
+    var l = highScores.length,
         positioned = false;
 
     // Google Analytics tracking of level and score at the end of the game
@@ -1206,16 +1118,16 @@ ESVIJI.game = (function () {
 
     $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
     for (i = 0; i < l; i++) {
-      if (!positioned && (highScores[gameStatus.preferences.difficulty][i] === undefined || highScores[gameStatus.preferences.difficulty][i].score <= gameStatus.score)) {
+      if (!positioned && (highScores[i] === undefined || highScores[i].score <= gameStatus.score)) {
         for (j = l; j > i; j--) {
-          highScores[gameStatus.preferences.difficulty][j] = highScores[gameStatus.preferences.difficulty][j - 1];
+          highScores[j] = highScores[j - 1];
         }
-        highScores[gameStatus.preferences.difficulty][i] = { 'score': gameStatus.score, 'date': lastGameDate};
+        highScores[i] = { 'score': gameStatus.score, 'date': lastGameDate};
         positioned = true;
       }
     }
     if (!positioned) {
-      highScores[gameStatus.preferences.difficulty][l] = { 'score': gameStatus.score, 'date': lastGameDate};
+      highScores[l] = { 'score': gameStatus.score, 'date': lastGameDate};
     }
     storeSet('highScores', highScores);
     gameStatus.playing = false;
@@ -1258,11 +1170,11 @@ ESVIJI.game = (function () {
 
   function addScore(scoreToAdd) {
     oldScore = gameStatus.score;
-    gameStatus.score += ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].points(scoreToAdd);
+    gameStatus.score += ESVIJI.settings.points(scoreToAdd);
     increaseScore();
     $('#play .score').attr('class', 'score changeUp');
     window.setTimeout(function() { $('#play .score').attr('class', 'score'); }, 2000);
-    hundreds = Math.floor(gameStatus.score / ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].extraLifePoints) - Math.floor(oldScore / ESVIJI.settings.difficulties[gameStatus.preferences.difficulty].extraLifePoints);
+    hundreds = Math.floor(gameStatus.score / ESVIJI.settings.extraLifePoints) - Math.floor(oldScore / ESVIJI.settings.extraLifePoints);
     if (hundreds > 0) {
       addLives(hundreds);
     }
