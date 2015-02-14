@@ -112,6 +112,7 @@ section .controls li a {
 section .controls li img {
   width: -webkit-calc(15vh - 25vw);
   width: calc(15vh - 25vw);
+  max-width: 100px;
   height: auto;
   margin: 0 auto;
 }
