@@ -109,11 +109,12 @@ section .controls li a {
   color: #ccc;
   text-decoration: none;
 }
-section .controls li img {
+section .controls li svg {
   width: -webkit-calc(15vh - 25vw);
   width: calc(15vh - 25vw);
+  height: -webkit-calc(15vh - 25vw);
+  height: calc(15vh - 25vw);
   max-width: 100px;
-  height: auto;
   margin: 0 auto;
 }
 @media (min-aspect-ratio: 7 / 24) {
@@ -131,9 +132,11 @@ section .controls li img {
   section .controls li {
     width: 49vw;
   }
-  section .controls li img {
+  section .controls li svg {
     width: -webkit-calc(14vh - 10vw);
     width: calc(14vh - 10vw);
+    height: -webkit-calc(14vh - 10vw);
+    height: calc(14vh - 10vw);
   }
 }
 @media (min-aspect-ratio: 14 / 24) {
@@ -143,24 +146,27 @@ section .controls li img {
   section .controls li {
     width: 24vw;
   }
-  section .controls li img {
+  section .controls li svg {
     width: 18vw;
+    height: 18vw;
   }
 }
 @media (min-aspect-ratio: 17 / 24) {
   section .controls li {
     width: 49vw;
   }
-  section .controls li img {
+  section .controls li svg {
     width: 25vw;
+    height: 25vw;
   }
 }
 @media (min-aspect-ratio: 20 / 24) {
   section .controls li {
     width: 24vw;
   }
-  section .controls li img {
+  section .controls li svg {
     width: 18vw;
+    height: 18vw;
   }
 }
 @media (min-aspect-ratio: 36 / 24) {
@@ -171,8 +177,9 @@ section .controls li img {
     width: 37vh;
     padding: 3vh;
   }
-  section .controls li img {
+  section .controls li svg {
     width: 25vh;
+    height: 25vh;
   }
 }
 
@@ -393,7 +400,7 @@ section#play .controls .pause {
   width: 20vmin;
   height: 20vmin;
 }
-section#play .controls .pause img {
+section#play .controls .pause svg {
   width: 100%;
   height: 100%;
 }
@@ -452,6 +459,9 @@ section#play svg#board #spring {
     -ms-flex-direction: column;
     flex-direction: column;
   }
+  section#play .progress ul li {
+    text-align: left;
+  }
 }
 @media (min-aspect-ratio: 13 / 24) {
   section#play {
@@ -462,7 +472,6 @@ section#play svg#board #spring {
     position: absolute;
     left: 3vmin;
     height: auto;
-    text-align: left;
   }
   section#play .progress .score {
     padding: 0;
@@ -504,9 +513,6 @@ section#play svg#board #spring {
   section#play .progress ul {
     width: 100%;
   }
-  section#play .progress ul li {
-    text-align: center;
-  }
   section#play .controls .pause {
     top: auto;
     left: 3vmin;
@@ -529,6 +535,9 @@ section#play svg#board #spring {
     display: -ms-flexbox;
     display: flex;
     flex-orientation: column;
+  }
+  section#play .progress ul li {
+    text-align: center;
   }
   section#play .progress .score {
     text-align: center;
