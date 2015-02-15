@@ -66,17 +66,11 @@
 .toggle input[type="checkbox"][disabled] ~ label {
   color: rgba(85, 85, 85, 0.5);
 }
-.toggle input[type="checkbox"]:focus ~ label .toggle__switch, .toggle input[type="checkbox"]:hover ~ label .toggle__switch {
+.toggle input[type="checkbox"]:focus ~ label .toggle__switch {
   background-color: #555;
 }
-.toggle input[type="checkbox"]:focus ~ label .toggle__switch:after, .toggle input[type="checkbox"]:hover ~ label .toggle__switch:after {
+.toggle input[type="checkbox"]:focus ~ label .toggle__switch:after {
   color: #3b3b3b;
-}
-.toggle input[type="checkbox"]:hover ~ label {
-  color: #484848;
-}
-.toggle input[type="checkbox"]:checked ~ label:hover {
-  color: #2bc06a;
 }
 .toggle input[type="checkbox"]:checked ~ label .toggle__switch {
   background-color: #40d47e;
@@ -84,10 +78,10 @@
 .toggle input[type="checkbox"]:checked ~ label .toggle__switch:after {
   color: #29b765;
 }
-.toggle input[type="checkbox"]:checked:focus ~ label .toggle__switch, .toggle input[type="checkbox"]:checked:hover ~ label .toggle__switch {
+.toggle input[type="checkbox"]:checked:focus ~ label .toggle__switch {
   background-color: #2ecc71;
 }
-.toggle input[type="checkbox"]:checked:focus ~ label .toggle__switch:after, .toggle input[type="checkbox"]:checked:hover ~ label .toggle__switch:after {
+.toggle input[type="checkbox"]:checked:focus ~ label .toggle__switch:after {
   color: #25a25a;
 }
 .toggle label .toggle__label-text {
@@ -105,8 +99,6 @@
   color: rgba(255, 255, 255, 0.7);
 }
 .toggle label .toggle__switch:after {
-  -webkit-transition: -webkit-transform 0.5s ease-in-out;
-  transition: transform 0.5s ease-in-out;
   color: #555;
 }
 .toggle input[type="checkbox"]:checked ~ label .toggle__switch:after {
@@ -731,6 +723,18 @@ section#settings .installation {
   display: none;
   text-align: center;
 }
+section#settings .installation a {
+  display: block;
+  font-size: 1em;
+  line-height: 3.1em;
+  -webkit-border-radius: 3.1em;
+  border-radius: 3.1em;
+  background-color: #2ecc71;
+  color: #fff;
+  padding: .3em 1.5em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
 @media (min-aspect-ratio: 10 / 24) {
   section#settings legend, section#settings ul, section#settings button {
     font-size: 8vmin;
@@ -753,19 +757,6 @@ section#settings .installation {
   section#settings ul {
     margin: 0;
     float: right;
-  }
-  section#settings .installation a {
-    display: block;
-    float: right;
-    font-size: 1em;
-    line-height: 3.1em;
-    -webkit-border-radius: 3.1em;
-    border-radius: 3.1em;
-    background-color: #2ecc71;
-    color: #fff;
-    padding: .3em 1em;
-    text-transform: uppercase;
-    text-decoration: none;
   }
 }
 

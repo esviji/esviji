@@ -7,29 +7,25 @@
 ) {
 
   input[type="checkbox"] {
-
     &[disabled] ~ label {
       color: rgba($toggle-off-color, 0.5);
     }
 
-    &:focus ~ label, &:hover ~ label {
+    &:focus ~ label {
       .toggle__switch {
         background-color: $toggle-off-color;
         &:after { color: darken($toggle-off-color, 10%); }
       }
     }
-    &:hover ~label { color: darken($toggle-off-color, 5%); }
     &:checked {
       ~ label {
-        &:hover { color: darken($toggle-on-color, 3%); }
-
         .toggle__switch {
           background-color: lighten($toggle-on-color, 5%);
           &:after { color: darken($toggle-on-color, 5%); }
         }
       }
 
-      &:focus, &:hover {
+      &:focus {
         ~ label {
           .toggle__switch {
             background-color: $toggle-on-color;
@@ -41,7 +37,6 @@
   }
 
   label {
-
     .toggle__label-text { flex: 1; }
 
     .toggle__switch {
@@ -49,13 +44,9 @@
       background: lighten($toggle-off-color, 5%);
       &:before { color: $toggle-inactive-text; }
       &:after {
-        // Autoprefixer choked here, so making the prefixes explicit
-        -webkit-transition: -webkit-transform .5s $toggle-transition;
-        transition: transform 0.5s $toggle-transition;
         color: $toggle-off-color;
       }
     }
-
   }
 }
 
@@ -136,11 +127,6 @@
           }
         }
       }
-
-      &:focus, &:hover {
-        ~ label {
-        }
-      }
     }
   }
 
@@ -175,9 +161,7 @@
         background: white;
         transform: translate3d(0,0,0);
       }
-
     }
-
   }
 
   @include toggle-branding;
