@@ -249,6 +249,14 @@ ESVIJI.game = (function () {
     $('#gameover .controls .exit').bind('click', stopPlaying);
 
     // Settings screen buttons
+    $('#soundCheckbox').bind('change', function(event) {
+      gameStatus.preferences.sound = event.currentTarget.checked;
+      storeSet('gameStatus', gameStatus);
+    });
+    $('#vibrationCheckbox').bind('change', function(event) {
+      gameStatus.preferences.vibration = event.currentTarget.checked;
+      storeSet('gameStatus', gameStatus);
+    });
     $('#settings .controls .exit').bind('click', function(event) {
       event.preventDefault();
       if (gameStatus.playing) {
@@ -256,10 +264,6 @@ ESVIJI.game = (function () {
       } else {
         showScreen('home');
       }
-    });
-    $('#settings input').bind('change', function(event) {
-      gameStatus.preferences[event.currentTarget.name] = ('on' === event.currentTarget.value);
-      storeSet('gameStatus', gameStatus);
     });
 
     // About screen buttons
@@ -393,8 +397,12 @@ ESVIJI.game = (function () {
     event.preventDefault();
     showScreen('settings');
 
-    $('#sound' + (gameStatus.preferences.sound ? 'on' : 'off')).attr('checked', 'checked');
-    $('#vibration' + (gameStatus.preferences.vibration ? 'on' : 'off')).attr('checked', 'checked');
+    if (gameStatus.preferences.sound) {
+      $('#soundCheckbox').attr('checked', 'checked');
+    }
+    if (gameStatus.preferences.vibration) {
+      $('#vibrationCheckbox').attr('checked', 'checked');
+    }
 
     showInstall();
   }

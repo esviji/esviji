@@ -1,0 +1,185 @@
+// Inspired by http://codepen.io/personable/pen/stpwD
+@mixin toggle-branding(
+  $toggle-off-color: #555,
+  $toggle-on-color: #2ecc71,
+  $toggle-inactive-text: rgba(white, 0.7),
+  $toggle-transition: ease-in-out
+) {
+
+  input[type="checkbox"] {
+
+    &[disabled] ~ label {
+      color: rgba($toggle-off-color, 0.5);
+    }
+
+    &:focus ~ label, &:hover ~ label {
+      .toggle__switch {
+        background-color: $toggle-off-color;
+        &:after { color: darken($toggle-off-color, 10%); }
+      }
+    }
+    &:hover ~label { color: darken($toggle-off-color, 5%); }
+    &:checked {
+      ~ label {
+        &:hover { color: darken($toggle-on-color, 3%); }
+
+        .toggle__switch {
+          background-color: lighten($toggle-on-color, 5%);
+          &:after { color: darken($toggle-on-color, 5%); }
+        }
+      }
+
+      &:focus, &:hover {
+        ~ label {
+          .toggle__switch {
+            background-color: $toggle-on-color;
+            &:after { color: darken($toggle-on-color, 10%); }
+          }
+        }
+      }
+    }
+  }
+
+  label {
+
+    .toggle__label-text { flex: 1; }
+
+    .toggle__switch {
+      transition: background-color .5s $toggle-transition;
+      background: lighten($toggle-off-color, 5%);
+      &:before { color: $toggle-inactive-text; }
+      &:after {
+        // Autoprefixer choked here, so making the prefixes explicit
+        -webkit-transition: -webkit-transform .5s $toggle-transition;
+        transition: transform 0.5s $toggle-transition;
+        color: $toggle-off-color;
+      }
+    }
+
+  }
+}
+
+@mixin toggle-appearance
+(
+  $toggle-width: 7em,
+  $toggle-height: 3.5em,
+  $toggle-border-radius: 3.5em,
+  $toggle-offset: .2em,
+  $toggle-label-font-size: 1em,
+  $toggle-switch-font-size: 1em,
+  $toggle-shadow: 0 4px 4px rgba(black, 0.4)
+){
+  $toggle-switch-width: $toggle-width/2;
+
+  input[type="checkbox"] {
+    &:checked {
+      ~ label {
+        .toggle__switch {
+          &:after { transform: translate3d($toggle-width - ($toggle-switch-width + $toggle-offset),0,0); }
+        }
+      }
+    }
+  }
+
+  label {
+    font-size: $toggle-label-font-size;
+
+    .toggle__switch {
+      height: $toggle-height;
+      flex: 0 0 $toggle-width;
+      border-radius: $toggle-border-radius;
+
+      &:before {
+        left: $toggle-width/2;
+        font-size: $toggle-switch-font-size;
+        line-height: $toggle-height;
+        width: $toggle-width/2;
+        padding: 0 12px;
+      }
+
+      &:after {
+        top: $toggle-offset; left: $toggle-offset;
+        border-radius: $toggle-border-radius/2;
+        width: $toggle-switch-width - $toggle-offset;
+        line-height: $toggle-height - ($toggle-offset*2);
+        font-size: $toggle-switch-font-size;
+      }
+    }
+  }
+}
+
+.toggle {
+  position: relative;
+
+  input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    top: 0; left: 0;
+
+    &[disabled] ~ label {
+      pointer-events: none;
+      .toggle__switch { opacity: 0.4; }
+    }
+
+    &:checked {
+      ~ label {
+
+        .toggle__switch {
+
+          &:before {
+            content: attr(data-unchecked);
+            left: 0;
+          }
+
+          &:after {
+            content: attr(data-checked);
+          }
+        }
+      }
+
+      &:focus, &:hover {
+        ~ label {
+        }
+      }
+    }
+  }
+
+  label {
+    user-select: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .toggle__label-text {
+      flex: 1;
+      padding-left: 32px;
+    }
+
+    .toggle__switch {
+      position: relative;
+
+      &:before {
+        content: attr(data-checked);
+        position: absolute;
+        top: 0;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      &:after {
+        content: attr(data-unchecked);
+        position: absolute;
+        z-index: 5;
+        text-transform: uppercase;
+        text-align: center;
+        background: white;
+        transform: translate3d(0,0,0);
+      }
+
+    }
+
+  }
+
+  @include toggle-branding;
+  @include toggle-appearance;
+}

@@ -1,3 +1,148 @@
+.toggle {
+  position: relative;
+}
+.toggle input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.toggle input[type="checkbox"][disabled] ~ label {
+  pointer-events: none;
+}
+.toggle input[type="checkbox"][disabled] ~ label .toggle__switch {
+  opacity: 0.4;
+}
+.toggle input[type="checkbox"]:checked ~ label .toggle__switch:before {
+  content: attr(data-unchecked);
+  left: 0;
+}
+.toggle input[type="checkbox"]:checked ~ label .toggle__switch:after {
+  content: attr(data-checked);
+}
+.toggle label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.toggle label .toggle__label-text {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding-left: 32px;
+}
+.toggle label .toggle__switch {
+  position: relative;
+}
+.toggle label .toggle__switch:before {
+  content: attr(data-checked);
+  position: absolute;
+  top: 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+.toggle label .toggle__switch:after {
+  content: attr(data-unchecked);
+  position: absolute;
+  z-index: 5;
+  text-transform: uppercase;
+  text-align: center;
+  background: white;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.toggle input[type="checkbox"][disabled] ~ label {
+  color: rgba(85, 85, 85, 0.5);
+}
+.toggle input[type="checkbox"]:focus ~ label .toggle__switch, .toggle input[type="checkbox"]:hover ~ label .toggle__switch {
+  background-color: #555;
+}
+.toggle input[type="checkbox"]:focus ~ label .toggle__switch:after, .toggle input[type="checkbox"]:hover ~ label .toggle__switch:after {
+  color: #3b3b3b;
+}
+.toggle input[type="checkbox"]:hover ~ label {
+  color: #484848;
+}
+.toggle input[type="checkbox"]:checked ~ label:hover {
+  color: #2bc06a;
+}
+.toggle input[type="checkbox"]:checked ~ label .toggle__switch {
+  background-color: #40d47e;
+}
+.toggle input[type="checkbox"]:checked ~ label .toggle__switch:after {
+  color: #29b765;
+}
+.toggle input[type="checkbox"]:checked:focus ~ label .toggle__switch, .toggle input[type="checkbox"]:checked:hover ~ label .toggle__switch {
+  background-color: #2ecc71;
+}
+.toggle input[type="checkbox"]:checked:focus ~ label .toggle__switch:after, .toggle input[type="checkbox"]:checked:hover ~ label .toggle__switch:after {
+  color: #25a25a;
+}
+.toggle label .toggle__label-text {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.toggle label .toggle__switch {
+  -webkit-transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+  background: #626262;
+}
+.toggle label .toggle__switch:before {
+  color: rgba(255, 255, 255, 0.7);
+}
+.toggle label .toggle__switch:after {
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  color: #555;
+}
+.toggle input[type="checkbox"]:checked ~ label .toggle__switch:after {
+  -webkit-transform: translate3d(3.3em, 0, 0);
+  -ms-transform: translate3d(3.3em, 0, 0);
+  transform: translate3d(3.3em, 0, 0);
+}
+.toggle label {
+  font-size: 1em;
+}
+.toggle label .toggle__switch {
+  height: 3.5em;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 7em;
+  -ms-flex: 0 0 7em;
+  flex: 0 0 7em;
+  -webkit-border-radius: 3.5em;
+  border-radius: 3.5em;
+}
+.toggle label .toggle__switch:before {
+  left: 3.5em;
+  font-size: 1em;
+  line-height: 3.5em;
+  width: 3.5em;
+  padding: 0 12px;
+}
+.toggle label .toggle__switch:after {
+  top: 0.2em;
+  left: 0.2em;
+  -webkit-border-radius: 1.75em;
+  border-radius: 1.75em;
+  width: 3.3em;
+  line-height: 3.1em;
+  font-size: 1em;
+}
+
 @font-face {
   font-family: "SansitaOneRegular";
   src: url("font/sansitaone-webfont.woff") format("woff"), url("font/sansitaone-webfont.svg#SansitaOneRegular") format("svg");
@@ -67,6 +212,11 @@ section {
   left: 0;
   right: 0;
 }
+section h2 {
+  font-size: 10vmin;
+  text-align: center;
+  margin: 3vmin 0;
+}
 section .controls {
   position: absolute;
   left: 0;
@@ -115,6 +265,7 @@ section .controls li svg {
   height: -webkit-calc(15vh - 25vw);
   height: calc(15vh - 25vw);
   max-width: 100px;
+  max-height: 100px;
   margin: 0 auto;
 }
 @media (min-aspect-ratio: 7 / 24) {
@@ -557,23 +708,12 @@ section#play svg#board #spring {
 /* ********************************************************************
  * Pause screen
  * ********************************************************************/
-section#pause h2 {
-  font-size: 10vmin;
-  text-align: center;
-  margin: 3vmin 0;
-}
-
 /* ********************************************************************
  * Scores screen
  * ********************************************************************/
 /* ********************************************************************
  * Settings screen
  * ********************************************************************/
-section#settings h2 {
-  font-size: 10vmin;
-  text-align: center;
-  margin: 3vmin 0;
-}
 section#settings fieldset {
   border: 0;
   margin: 1em 0 0;
@@ -614,8 +754,18 @@ section#settings .installation {
     margin: 0;
     float: right;
   }
-  section#settings .installation button {
+  section#settings .installation a {
+    display: block;
     float: right;
+    font-size: 1em;
+    line-height: 3.1em;
+    -webkit-border-radius: 3.1em;
+    border-radius: 3.1em;
+    background-color: #2ecc71;
+    color: #fff;
+    padding: .3em 1em;
+    text-transform: uppercase;
+    text-decoration: none;
   }
 }
 
