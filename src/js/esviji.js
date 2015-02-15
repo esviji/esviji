@@ -238,6 +238,16 @@ ESVIJI.game = (function () {
     $('#pause .controls .settings').bind('click', startSettings);
     $('#pause .controls .exit').bind('click', stopPlaying);
 
+    // Game over screen buttons
+    $('#gameover .controls .restart').bind('click', function(event) {
+      event.preventDefault();
+      storeSet('gameStatus', {
+        'playing': false
+      });
+      startPlaying();
+    });
+    $('#gameover .controls .exit').bind('click', stopPlaying);
+
     // Settings screen buttons
     $('#settings .controls .exit').bind('click', function(event) {
       event.preventDefault();
@@ -247,7 +257,6 @@ ESVIJI.game = (function () {
         showScreen('home');
       }
     });
-
     $('#settings input').bind('change', function(event) {
       gameStatus.preferences[event.currentTarget.name] = ('on' === event.currentTarget.value);
       storeSet('gameStatus', gameStatus);
@@ -1117,9 +1126,9 @@ ESVIJI.game = (function () {
     offlineAnalytics.push({ name: 'score', value: gameStatus.score });
 
     lastGameDate = Date();
-    showScreen('gameOver');
+    showScreen('gameover');
 
-    $('#gameOver').find('.score').text('Score: ' + gameStatus.score);
+    $('#gameover').find('.score').text('Score: ' + gameStatus.score);
     for (i = 0; i < l; i++) {
       if (!positioned && (highScores[i] === undefined || highScores[i].score <= gameStatus.score)) {
         for (j = l; j > i; j--) {
