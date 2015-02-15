@@ -251,18 +251,22 @@
 <section id="settings" aria-hidden="true">
   <h2>Settings</h2>
   <fieldset class="sound">
-    <legend>Sound is</legend>
-    <ul>
-      <li><input type="radio" name="sound" id="soundon" value="on" /> <label for="soundon">on</label></li>
-      <li><input type="radio" name="sound" id="soundoff" value="off" /> <label for="soundoff">off</label></li>
-    </ul>
+    <legend>Play sounds?</legend>
+    <div class="toggle">
+      <input id="soundCheckbox" type="checkbox">
+      <label for="soundCheckbox">
+        <div class="toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+      </label>
+    </div>
   </fieldset>
   <fieldset class="vibration">
-    <legend>Vibration is</legend>
-    <ul>
-      <li><input type="radio" name="vibration" id="vibrationon" value="on" /> <label for="vibrationon">on</label></li>
-      <li><input type="radio" name="vibration" id="vibrationoff" value="off" /> <label for="vibrationoff">off</label></li>
-    </ul>
+    <legend>Vibrate?</legend>
+    <div class="toggle">
+      <input id="vibrationCheckbox" type="checkbox">
+      <label for="vibrationCheckbox">
+        <div class="toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+      </label>
+    </div>
   </fieldset>
   <fieldset class="installation">
     <legend>Installation</legend>
