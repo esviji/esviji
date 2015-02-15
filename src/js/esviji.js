@@ -180,18 +180,18 @@ ESVIJI.game = (function () {
     // TODO: find a way to make it work on iOS
     if (!iOS) {
       sounds = new Howl({
-        "urls": ["sounds/sprite.ogg", "sounds/sprite.mp3"],
-        "sprite": {
-          "fall": [0, 204.05895691609976],
-          "hit-floor": [2000, 2000],
-          "hit-other-ball-ko": [5000, 468.7528344671206],
-          "hit-other-ball-ok": [7000, 500],
-          "hit-same-ball": [9000, 1000],
-          "hit-wall": [11000, 1835.941043083901],
-          "level": [14000, 2947.0068027210878],
-          "life-down": [18000, 1000],
-          "life-up": [20000, 1000],
-          "throw": [22000, 797.1201814058943]
+        urls: ['sounds/sprite.ogg', 'sounds/sprite.mp3'],
+        sprite: {
+          soundFall: [0, 204.05895691609976],
+          soundHitFloor: [2000, 2000],
+          soundHitOtherBallKo: [5000, 468.7528344671206],
+          soundHitOtherBallOk: [7000, 500],
+          soundHitSameBall: [9000, 1000],
+          soundHitWall: [11000, 1835.941043083901],
+          soundLevel: [14000, 2947.0068027210878],
+          soundLifeDown: [18000, 1000],
+          soundLifeUp: [20000, 1000],
+          soundThrow: [22000, 797.1201814058943]
         },
         buffer: true
       });
@@ -431,7 +431,7 @@ ESVIJI.game = (function () {
       'sequence': []
     };
 
-    playSound('level');
+    playSound('soundLevel');
     startNewTurn();
   }
 
@@ -572,7 +572,7 @@ ESVIJI.game = (function () {
       'position': currentPosY
     });
 
-    playSound('throw');
+    playSound('soundThrow');
     playUserChoice();
   }
 
@@ -634,7 +634,7 @@ ESVIJI.game = (function () {
         'position': currentPosY
       });
 
-      playSound('throw');
+      playSound('soundThrow');
       playUserChoice();
     }
   }
@@ -647,7 +647,7 @@ ESVIJI.game = (function () {
         animStackMove(drawnCurrentBall, (oldPosY - currentPosY) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
       }
       $('#anim' + lastStackedAnimation)[0].addEventListener('beginEvent', function(event) {
-        playSound('hit-floor');
+        playSound('soundHitFloor');
       });
       endOfMove();
     } else {
@@ -657,7 +657,7 @@ ESVIJI.game = (function () {
         currentDirY = -1;
         animStackMove(drawnCurrentBall, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
         $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
-          playSound('hit-wall');
+          playSound('soundHitWall');
         }, false);
         oldPosX = currentPosX;
         playUserChoice();
@@ -674,7 +674,7 @@ ESVIJI.game = (function () {
               animStackMove(drawnCurrentBall, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
               oldPosX = currentPosX;
               $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
-                playSound('hit-wall');
+                playSound('soundHitWall');
               }, false);
               playUserChoice();
             } else {
@@ -683,7 +683,7 @@ ESVIJI.game = (function () {
                 animStackMove(drawnCurrentBall, (oldPosY - currentPosY) * ESVIJI.settings.durationMove, 'y', yToSvg(oldPosY), yToSvg(currentPosY));
               }
               $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
-                playSound('hit-floor');
+                playSound('soundHitFloor');
               }, false);
               endOfMove();
             }
@@ -710,7 +710,7 @@ ESVIJI.game = (function () {
             }
             animStackDestroy(drawnCurrentBalls[currentPosX][currentPosY]);
             scoreThisTurn++;
-            playSound('hit-same-ball');
+            playSound('soundHitSameBall');
             playUserChoice();
             break;
           default:
@@ -844,7 +844,7 @@ ESVIJI.game = (function () {
       "id": "anim" + (lastStackedAnimation + 4)
     });
     animMoveTo.addEventListener('beginEvent', function(event) {
-      playSound('hit-other-ball-ok');
+      playSound('soundHitOtherBallOk');
     }, false);
     ballTo.append(animMoveTo);
 
@@ -868,7 +868,7 @@ ESVIJI.game = (function () {
           "id": "anim" + (lastStackedAnimation + 1)
         });
     animRotate.addEventListener('beginEvent', function(event) {
-      playSound('hit-same-ball');
+      playSound('soundHitSameBall');
     }, false);
     ball.append(animRotate);
 
@@ -895,7 +895,7 @@ ESVIJI.game = (function () {
       drawnCurrentBall.remove();
       $('#morph').remove();
       if (scoreThisTurn === 0) {
-        playSound('hit-other-ball-ko');
+        playSound('soundHitOtherBallKo');
       }
       drawnCurrentBall = drawBall(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
     });
@@ -943,7 +943,7 @@ ESVIJI.game = (function () {
                 animStackMove(drawnCurrentBalls[x][y], dur, 'y', yToSvg(z), yToSvg(y), 'anim' + lastStackedAnimationBeforeFall + '.end');
                 // TODO: make the sound later as for piles of falling balls
                 $('#anim' + lastStackedAnimation)[0].addEventListener('beginEvent', function(event) {
-                  playSound('fall');
+                  playSound('soundFall');
                 });
                 // Let's try again to see if there are new balls above that have to fall
                 y = 1;
@@ -1170,7 +1170,7 @@ ESVIJI.game = (function () {
   function removeLife() {
     gameStatus.lives--;
     gameStatus.levelLostLives++;
-    playSound('life-down');
+    playSound('soundLifeDown');
     vibrate(500);
     drawLives();
     $('#play .lives').attr('class', 'lives changeDown');
@@ -1182,7 +1182,7 @@ ESVIJI.game = (function () {
 
   function addLives(nbLives) {
     gameStatus.lives += nbLives;
-    playSound('life-up');
+    playSound('soundLifeUp');
     drawLives();
     $('#play .lives').attr('class', 'lives changeUp');
     window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
