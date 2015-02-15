@@ -322,7 +322,10 @@ ESVIJI.game = (function () {
     nextLevel();
   }
 
-  function stopPlaying() {
+  function stopPlaying(event) {
+    if (undefined !== event) {
+      event.preventDefault();
+    }
     gameStatus.playing = false;
     gameStatus.level = 0;
     gameStatus.score = 0;
