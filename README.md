@@ -54,7 +54,7 @@ Aggregated analytics data is collected through Google Analytics and is only used
 
 ## To do
 
-Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direction=asc&page=1&sort=completeness).
+Look at [the roadmap](https://github.com/nhoizey/esviji/milestones).
 
 ## Contributing
 
