@@ -1,0 +1,73 @@
+/* ********************************************************************
+ * Settings screen
+ * ********************************************************************/
+
+section#settings {
+  fieldset {
+    border: 0;
+    margin: 1em 0 0;
+  }
+
+  legend, ul, button {
+    font-size: 10vmin;
+  }
+
+  ul {
+    list-style-type: none;
+    text-align: center;
+    padding-left: 0;
+    margin-top: .5em;
+  }
+
+  .installation {
+    display: none;
+    text-align: center;
+
+    a {
+      display: block;
+      font-size: 1em;
+      line-height: 3.1em;
+      border-radius: 3.1em;
+      background-color: #2ecc71;
+      color: #fff;
+      padding: .3em 1.5em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
+
+  @media (min-aspect-ratio: 10/24) {
+    legend, ul, button {
+      font-size: 8vmin;
+    }
+  }
+
+  @media (min-aspect-ratio: 12/24) {
+    li {
+      display: inline;
+      margin-right: 1em;
+    }
+  }
+
+  @media (min-aspect-ratio: 15/24) {
+    legend, ul, button {
+      font-size: 7vmin;
+    }
+
+    legend {
+      clear: both;
+      float: left;
+    }
+
+    ul {
+      margin: 0;
+      float: right;
+    }
+  }
+}
+
+.ios {
+  .label.sound, .button.prefsSound {
+    display: none;
+  }
+}

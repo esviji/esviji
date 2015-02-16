@@ -1,0 +1,276 @@
+/* ********************************************************************
+ * Play screen
+ * ********************************************************************/
+
+// A few variables
+$margins: 3vmin;
+$headerSize: 20vmin;
+$fixedHeaderSize: 15 / 24 * 20vh;
+$lineHeight: 1.5;
+$portraitSvgHeight: (100 * 430 / 320) * 1vw;
+$landscapeSvgWith: (100 * 320 / 430) * 1vh;
+
+// Calculated variables
+$headerHeight: $headerSize * $lineHeight;
+$fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
+
+section#play {
+
+  // default layout (mobile first)
+  font-size: 15vmin;
+  line-height: $lineHeight;
+
+
+  h1, ul, .score, .level, .lives {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: $headerSize;
+    color: #ccc;
+    padding: 0 $margins;
+    height: $headerHeight;
+  }
+
+  .progress {
+    position: absolute;
+    top: $headerHeight;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - #{$headerHeight} - #{$portraitSvgHeight});
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .score {
+      padding: 0 $margins;
+      font-size: 1.5em;
+      text-align: center;
+    }
+
+    ul {
+      width: 100%;
+      list-style-type: none;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      color: #ccc;
+
+      li {
+        text-align: center;
+      }
+
+      span {
+        color: #eee;
+      }
+    }
+
+    .icon {
+      margin-right: $margins;
+      width: .75em;
+      height: .75em;
+    }
+  }
+
+  .score, .lives, .level {
+    transition: all 1s ease-out;
+
+    &.changeDown {
+      color: #c0392b;
+    }
+
+    &.changeUp {
+      color: #27ae60;
+    }
+  }
+
+  .controls {
+    position: static;
+
+    .pause {
+      position: absolute;
+      top: $margins;
+      bottom: auto;
+      left: auto;
+      right: $margins;
+      width: $headerSize;
+      height: $headerSize;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  svg#board {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: $portraitSvgHeight;
+    pointer-events: none;
+
+    path {
+      pointer-events: visibleFill;
+    }
+
+    .playzone {
+      stroke-width: 0;
+      fill: #777;
+    }
+
+    .ball {
+      text {
+        font-size: 16px;
+        text-anchor: middle;
+        fill: #fff;
+        stroke-width: 0;
+      }
+    }
+
+    #playable {
+      pointer-events: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    #spring {
+      stroke-width: 2;
+      stroke: #333;
+      fill: none;
+    }
+  }
+
+  // Portrait mode above 8/24
+  @media (min-aspect-ratio: 8/24) {
+    .progress ul {
+      flex-direction: row;
+    }
+  }
+
+  // Portrait mode above 11/24
+  @media (min-aspect-ratio: 11/24) {
+    font-size: 10vmin;
+
+    .progress {
+      ul {
+        position: absolute;
+        left: $margins;
+        width: 25vw;
+
+        flex-direction: column;
+
+        li {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  // Portrait mode above 13/24
+  @media (min-aspect-ratio: 13/24) {
+    font-size: calc(13 / 24 * 10vh - 2vw);
+
+    .progress {
+      position: absolute;
+      left: $margins;
+      height: auto;
+
+      .score {
+        padding: 0;
+        text-align: left;
+      }
+
+      ul {
+        position: static;
+        line-height: 1.2;
+
+        li {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  // Portrait mode above 15/24
+  @media (min-aspect-ratio: 15/24) {
+
+    h1 {
+      font-size: $fixedHeaderSize;
+      height: $fixedHeaderHeight;
+    }
+
+    .progress {
+      font-size: 6vw;
+    }
+
+    .controls .pause {
+      width: $fixedHeaderSize;
+      height: $fixedHeaderSize;
+    }
+
+    svg#board {
+      width: 15 / 24 * 100vh;
+      left: auto;
+      right: 0;
+    }
+  }
+
+  // Portrait mode above 19/24
+  @media (min-aspect-ratio: 19/24) {
+    .progress {
+      top: calc(#{$fixedHeaderHeight} + #{$margins});
+      width: calc(100vw - #{$margins} - 19 / 24 * 100vw);
+
+      ul {
+        width: 100%;
+      }
+    }
+
+    .controls .pause {
+      top: auto;
+      left: $margins;
+      right: auto;
+      bottom: $margins;
+    }
+
+    svg#board {
+      width: 19 / 24 * 100vw;
+      max-width: $landscapeSvgWith;
+    }
+  }
+
+  // Above 24/24, landscape mode
+  @media (min-aspect-ratio: 24/24) {
+    .progress {
+      width: calc(100vw - 2 * #{$margins} - #{$landscapeSvgWith});
+      height: calc(100vh - #{$fixedHeaderHeight} - 3 * #{$margins} - #{$fixedHeaderSize});
+      display: flex;
+      flex-orientation: column;
+
+      ul li {
+        text-align: center;
+      }
+      .score {
+        text-align: center;
+      }
+    }
+  }
+
+  // Landscape mode above 36/24
+  @media (min-aspect-ratio: 36/24) {
+    max-width: 150vh;
+
+    .progress {
+      width: calc(150vh - 2 * #{$margins} - #{$landscapeSvgWith});
+      font-size: 9vh;
+    }
+  }
+}

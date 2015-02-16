@@ -1,3 +1,81 @@
+/* ********************************************************************
+ * Some variables
+ * ********************************************************************/
+/* ********************************************************************
+ * Mandatory font face
+ * ********************************************************************/
+@font-face {
+  font-family: "SansitaOneRegular";
+  src: url("font/sansitaone-webfont.woff") format("woff"), url("font/sansitaone-webfont.svg#SansitaOneRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* ********************************************************************
+ * Box sizing
+ * ********************************************************************/
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+/* ********************************************************************
+ * Body
+ * ********************************************************************/
+html, body {
+  font-family: SansitaOneRegular;
+  font-size: 18px;
+  /* http://maximilianhoffmann.com/posts/better-font-rendering-on-osx */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #444;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ********************************************************************
+ * Modules
+ * ********************************************************************/
+.ball1 {
+  fill: #f39c12;
+  stroke: #e67e22;
+}
+
+.ball2 {
+  fill: #2ecc71;
+  stroke: #27ae60;
+}
+
+.ball3 {
+  fill: #3498db;
+  stroke: #2980b9;
+}
+
+.ball4 {
+  fill: #9b59b6;
+  stroke: #8e44ad;
+}
+
+.ball5 {
+  fill: #aa8866;
+  stroke: #776655;
+}
+
+.ball6 {
+  fill: #e74c3c;
+  stroke: #c0392b;
+}
+
 .toggle {
   position: relative;
 }
@@ -135,62 +213,6 @@
   font-size: 1em;
 }
 
-@font-face {
-  font-family: "SansitaOneRegular";
-  src: url("font/sansitaone-webfont.woff") format("woff"), url("font/sansitaone-webfont.svg#SansitaOneRegular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
-  box-sizing: inherit;
-}
-
-html, body {
-  font-family: SansitaOneRegular;
-  font-size: 18px;
-  /* http://maximilianhoffmann.com/posts/better-font-rendering-on-osx */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #444;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-/* ********************************************************************
- * Description for browsers lacking some support for SVG, flexbox, etc.
- * ********************************************************************/
-#description {
-  padding: 1em;
-}
-#description h1 {
-  font-size: 3em;
-  text-align: center;
-}
-#description h2, #description p {
-  font-family: sans-serif;
-}
-#description p.icon {
-  text-align: center;
-}
-#description a:link, #description a:visited {
-  color: #ccc;
-}
-#description a:hover, #description a:active {
-  color: #fdd;
-}
-
 /* ********************************************************************
  * For all screens
  * ********************************************************************/
@@ -305,7 +327,7 @@ section .controls li svg {
 }
 @media (min-aspect-ratio: 20 / 24) {
   section .controls li {
-    width: 24vw;
+    width: 22vw;
   }
   section .controls li svg {
     width: 18vw;
@@ -324,36 +346,6 @@ section .controls li svg {
     width: 25vh;
     height: 25vh;
   }
-}
-
-.ball1 {
-  fill: #f39c12;
-  stroke: #e67e22;
-}
-
-.ball2 {
-  fill: #2ecc71;
-  stroke: #27ae60;
-}
-
-.ball3 {
-  fill: #3498db;
-  stroke: #2980b9;
-}
-
-.ball4 {
-  fill: #9b59b6;
-  stroke: #8e44ad;
-}
-
-.ball5 {
-  fill: #aa8866;
-  stroke: #776655;
-}
-
-.ball6 {
-  fill: #e74c3c;
-  stroke: #c0392b;
 }
 
 /* ********************************************************************
@@ -701,9 +693,6 @@ section#play svg#board #spring {
  * Pause screen
  * ********************************************************************/
 /* ********************************************************************
- * Scores screen
- * ********************************************************************/
-/* ********************************************************************
  * Settings screen
  * ********************************************************************/
 section#settings fieldset {
@@ -765,7 +754,29 @@ section#settings .installation a {
 }
 
 /* ********************************************************************
- * Tutorial screen
+ * Scores screen
  * ********************************************************************/
+/* ********************************************************************
+ * Description for browsers lacking some support for SVG, flexbox, etc.
+ * ********************************************************************/
+#description {
+  padding: 1em;
+}
+#description h1 {
+  font-size: 3em;
+  text-align: center;
+}
+#description h2, #description p {
+  font-family: sans-serif;
+}
+#description p.icon {
+  text-align: center;
+}
+#description a:link, #description a:visited {
+  color: #ccc;
+}
+#description a:hover, #description a:active {
+  color: #fdd;
+}
 
 /*# sourceMappingURL=styles.css.map */
