@@ -6,8 +6,6 @@
 
 <img src="https://raw.githubusercontent.com/nhoizey/esviji/master/raw-sources/images/screenshots/04-unbreakable-blocks.png" alt="Crazy blocks" width="180" align="right" />
 
-## Features
-
 - Vectorial interface, scalled to fit any viewport size without any visual loss, optimized for portrait orientation
 - Multiple interaction options: keyboard, mouse & touch
 - Current game persistence: close your browser and resume your game when you return
