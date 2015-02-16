@@ -180,7 +180,7 @@ ESVIJI.game = (function () {
     // TODO: find a way to make it work on iOS
     if (!iOS) {
       sounds = new Howl({
-        urls: ['sounds/sprite.ogg', 'sounds/sprite.mp3'],
+        src: ['sounds/sprite.ogg', 'sounds/sprite.mp3'],
         sprite: {
           soundFall: [0, 204.05895691609976],
           soundHitFloor: [2000, 2000],
@@ -192,8 +192,7 @@ ESVIJI.game = (function () {
           soundLifeDown: [18000, 1000],
           soundLifeUp: [20000, 1000],
           soundThrow: [22000, 797.1201814058943]
-        },
-        buffer: true
+        }
       });
     }
 
