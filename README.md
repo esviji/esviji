@@ -1,10 +1,10 @@
-# esviji is a puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can
+<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/raw-sources/images/_sources/logo-esviji.png" alt="esviji" width="160" height="160" align="right" />
 
-<img src="https://raw2.github.com/nhoizey/esviji/master/src/favicons/favicon-160x160.png" alt="esviji" width="160" height="160" style="float: right" />
+# esviji
 
-<img src="https://raw2.github.com/nhoizey/esviji.com/master/img/screenshots/05-crazy-blocks.png" alt="Crazy blocks" width="150" style="float: right;" />
+## a puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can
 
-## Features
+<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/raw-sources/images/screenshots/04-unbreakable-blocks.png" alt="Crazy blocks" width="180" align="right" />
 
 - Vectorial interface, scalled to fit any viewport size without any visual loss, optimized for portrait orientation
 - Multiple interaction options: keyboard, mouse & touch
@@ -54,7 +54,7 @@ Aggregated analytics data is collected through Google Analytics and is only used
 
 ## To do
 
-Look at [the roadmap](https://github.com/nhoizey/esviji/issues/milestones?direction=asc&page=1&sort=completeness).
+Look at [the roadmap](https://github.com/nhoizey/esviji/milestones).
 
 ## Contributing
 
@@ -76,19 +76,3 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## Credits
-
-All these icons come from [The Noun Project](http://thenounproject.com/) and are available under [Creative Commons Attribution (CC BY 3.0)](http://creativecommons.org/licenses/by/3.0/us/) license :
-
-- [Gears](http://thenounproject.com/term/gears/2174/) by [Deadtype](thenounproject.com/Deadtype)
-- [Heart](http://thenounproject.com/term/heart/11793/) by [Michael Zenaty](http://thenounproject.com/Michzen)
-- [Home](http://thenounproject.com/term/home/1144/) by [Jeremy J Bristol](http://thenounproject.com/jeremy.j.bristol/)
-- [Information](http://thenounproject.com/term/information/9867/) by [Phil Goodwin](http://thenounproject.com/Fhlcreative/)
-- [Ladder](http://thenounproject.com/term/ladder/17895/) by [Michael Rowe](http://thenounproject.com/Mikhail1986/)
-- [Play](http://thenounproject.com/term/play/5206/) by [Michael Rowe](http://thenounproject.com/Mikhail1986)
-- [Reload](http://thenounproject.com/term/reload/31938/) by [Simple Icons](http://www.thenounproject.com/SimpleIcons)
-- [Ribbon](http://thenounproject.com/term/ribbon/3391/) by [Nicolò Bertoncin](http://thenounproject.com/nicolo.bertoncin)
-
-This icon is in the public domain:
-
-- [Pause](http://thenounproject.com/term/pause/5489/) by [dsathiyaraj](http://thenounproject.com/dsathiyaraj)
