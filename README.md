@@ -1,10 +1,10 @@
+<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/raw-sources/images/_sources/logo-esviji.png" alt="esviji" width="160" height="160" align="right" />
+
 # esviji
 
 ## a puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can
 
-<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/raw-sources/images/_sources/logo-esviji.png" alt="esviji" width="160" height="160" style="float: right" />
-
-<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/raw-sources/images/screenshots/04-unbreakable-blocks.png" alt="Crazy blocks" width="150" style="float: right;" />
+<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/raw-sources/images/screenshots/04-unbreakable-blocks.png" alt="Crazy blocks" width="180" align="right" />
 
 ## Features
 
