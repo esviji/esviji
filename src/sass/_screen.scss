@@ -110,7 +110,7 @@ section {
       font-size: 7vh;
 
       li {
-        width: 37vh; // ~ 150vh / 4 = max-width
+        width: 30vh; // ~ 150vh / 4 = max-width (37vh gives a bug on iPad)
         padding: 3vh;
 
         svg {
