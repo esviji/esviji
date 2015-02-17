@@ -94,9 +94,13 @@ ESVIJI.game = (function () {
 
   // Initialization
   function init() {
+    // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
+    window.viewportUnitsBuggyfill.init({ force: true });
+
     if (iOS) {
       $('body').addClass('ios');
     }
+
     if (Modernizr.inlinesvg) {
       $('#description').hide();
     } else {
@@ -105,10 +109,12 @@ ESVIJI.game = (function () {
       // $('svg').hide();
       return;
     }
+
     if (Modernizr.touch) {
       // TODO: Should not be necessary, devices can have both mouse and touch
       clickType = 'touchstart';
     }
+
     if (!Modernizr.testProp('vibrate')) {
       $('.prefsVibration,.label.vibration').hide();
     }
