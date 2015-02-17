@@ -625,6 +625,12 @@ section#play svg#board #spring {
     font-size: 12.5vh;
     height: 18.75vh;
   }
+  section#play svg#board {
+    width: 62.5vh;
+    height: 83.98438vh;
+    left: auto;
+    right: 0;
+  }
   section#play .progress {
     font-size: 6vw;
   }
@@ -632,18 +638,21 @@ section#play svg#board #spring {
     width: 12.5vh;
     height: 12.5vh;
   }
-  section#play svg#board {
-    width: 62.5vh;
-    left: auto;
-    right: 0;
-  }
 }
 @media (min-aspect-ratio: 19 / 24) {
+  section#play svg#board {
+    width: 79.16667vw;
+    max-width: 74.4186vh;
+    height: 106.38021vw;
+    max-height: 100vh;
+  }
   section#play .progress {
     top: -webkit-calc(18.75vh + 3vmin);
     top: calc(18.75vh + 3vmin);
     width: -webkit-calc(100vw - 3vmin - 19 / 24 * 100vw);
     width: calc(100vw - 3vmin - 19 / 24 * 100vw);
+    height: -webkit-calc(100vw - 3vmin - 19 / 24 * 100vw);
+    height: calc(100vw - 3vmin - 19 / 24 * 100vw);
   }
   section#play .progress ul {
     width: 100%;
@@ -653,10 +662,6 @@ section#play svg#board #spring {
     left: 3vmin;
     right: auto;
     bottom: 3vmin;
-  }
-  section#play svg#board {
-    width: 79.16667vw;
-    max-width: 74.4186vh;
   }
 }
 @media (min-aspect-ratio: 24 / 24) {
@@ -681,6 +686,10 @@ section#play svg#board #spring {
 @media (min-aspect-ratio: 36 / 24) {
   section#play {
     max-width: 150vh;
+  }
+  section#play svg#board {
+    width: 74.4186vh;
+    height: 100vh;
   }
   section#play .progress {
     width: -webkit-calc(150vh - 2 * 3vmin - 74.4186vh);
