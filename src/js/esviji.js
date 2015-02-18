@@ -219,17 +219,7 @@ ESVIJI.game = (function () {
     // Home screen buttons
     $('#home .controls .play').bind('click', startPlaying);
     $('#home .controls .scores').bind('click', startScores);
-    $('#home .controls .sound').bind('click', function(event) {
-      event.preventDefault();
-      if (gameStatus.preferences.sound) {
-        gameStatus.preferences.sound = false;
-        $('.controls .sound').removeClass('on');
-      } else {
-        gameStatus.preferences.sound = true;
-        $('.controls .sound').addClass('on');
-      }
-      storeSet('gameStatus', gameStatus);
-    });
+    $('#home .controls .sound').bind('click', toggleSound);
     $('#home .controls .about').bind('click', function(event) {
       event.preventDefault();
       showScreen('about');
@@ -254,17 +244,7 @@ ESVIJI.game = (function () {
       });
       startPlaying();
     });
-    $('#pause .controls .sound').bind('click', function(event) {
-      event.preventDefault();
-      if (gameStatus.preferences.sound) {
-        gameStatus.preferences.sound = false;
-        $('.controls .sound').removeClass('on');
-      } else {
-        gameStatus.preferences.sound = true;
-        $('.controls .sound').addClass('on');
-      }
-      storeSet('gameStatus', gameStatus);
-    });
+    $('#pause .controls .sound').bind('click', toggleSound);
     $('#pause .controls .exit').bind('click', stopPlaying);
 
     // Game over screen buttons
@@ -282,6 +262,18 @@ ESVIJI.game = (function () {
       event.preventDefault();
       showScreen('home');
     });
+  }
+
+  function toggleSound(event) {
+    event.preventDefault();
+    if (gameStatus.preferences.sound) {
+      gameStatus.preferences.sound = false;
+      $('.controls .sound').removeClass('on');
+    } else {
+      gameStatus.preferences.sound = true;
+      $('.controls .sound').addClass('on');
+    }
+    storeSet('gameStatus', gameStatus);
   }
 
   function viewportOptimize() {
@@ -380,7 +372,6 @@ ESVIJI.game = (function () {
     event.preventDefault();
 
     showScreen('scores');
-
     writeScores();
 
     $('#scores .exit').one(clickType, endScores);
