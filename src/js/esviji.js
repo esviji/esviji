@@ -202,6 +202,9 @@ ESVIJI.game = (function () {
       });
     }
 
+    if (gameStatus.preferences.sound) {
+      $('#home .sound').addClass('on');
+    }
     run();
   }
 
@@ -215,8 +218,17 @@ ESVIJI.game = (function () {
     // Home screen buttons
     $('#home .controls .play').bind('click', startPlaying);
     $('#home .controls .scores').bind('click', startScores);
-    $('#home .controls .settings').bind('click', startSettings);
-    $('#home .controls .tutorial').bind('click', startTutorial);
+    $('#home .controls .sound').bind('click', function(event) {
+      event.preventDefault();
+      if (gameStatus.preferences.sound) {
+        gameStatus.preferences.sound = false;
+        $('.controls .sound').removeClass('on');
+      } else {
+        gameStatus.preferences.sound = true;
+        $('.controls .sound').addClass('on');
+      }
+      storeSet('gameStatus', gameStatus);
+    });
     $('#home .controls .about').bind('click', function(event) {
       event.preventDefault();
       showScreen('about');
@@ -240,7 +252,17 @@ ESVIJI.game = (function () {
       });
       startPlaying();
     });
-    $('#pause .controls .settings').bind('click', startSettings);
+    $('#pause .controls .sound').bind('click', function(event) {
+      event.preventDefault();
+      if (gameStatus.preferences.sound) {
+        gameStatus.preferences.sound = false;
+        $('.controls .sound').removeClass('on');
+      } else {
+        gameStatus.preferences.sound = true;
+        $('.controls .sound').addClass('on');
+      }
+      storeSet('gameStatus', gameStatus);
+    });
     $('#pause .controls .exit').bind('click', stopPlaying);
 
     // Game over screen buttons
@@ -252,24 +274,6 @@ ESVIJI.game = (function () {
       startPlaying();
     });
     $('#gameover .controls .exit').bind('click', stopPlaying);
-
-    // Settings screen buttons
-    $('#soundCheckbox').bind('change', function(event) {
-      gameStatus.preferences.sound = event.currentTarget.checked;
-      storeSet('gameStatus', gameStatus);
-    });
-    $('#vibrationCheckbox').bind('change', function(event) {
-      gameStatus.preferences.vibration = event.currentTarget.checked;
-      storeSet('gameStatus', gameStatus);
-    });
-    $('#settings .controls .exit').bind('click', function(event) {
-      event.preventDefault();
-      if (gameStatus.playing) {
-        showScreen('pause');
-      } else {
-        showScreen('home');
-      }
-    });
 
     // About screen buttons
     $('#about .controls .exit').bind('click', function(event) {
@@ -396,20 +400,6 @@ ESVIJI.game = (function () {
   function endScores(event) {
     event.preventDefault();
     showScreen('home');
-  }
-
-  function startSettings(event) {
-    event.preventDefault();
-    showScreen('settings');
-
-    if (gameStatus.preferences.sound) {
-      $('#soundCheckbox').attr('checked', 'checked');
-    }
-    if (gameStatus.preferences.vibration) {
-      $('#vibrationCheckbox').attr('checked', 'checked');
-    }
-
-    showInstall();
   }
 
   function nextLevel() {

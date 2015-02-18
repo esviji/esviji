@@ -3,5 +3,14 @@
  * ********************************************************************/
 
 section#pause {
+  .sound {
+    .on { display: none; }
+    .off { display: block; }
+
+    &.on {
+      .on { display: block; }
+      .off { display: none; }
+    }
+  }
 }
 
