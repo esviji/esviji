@@ -2,4 +2,31 @@
  * Scores screen
  * ********************************************************************/
 
+.highscores {
+	list-style-type: none;
+	margin: 5vmin;
+	font-size: 5vh;
+	text-align: right;
 
+	.thisone {
+		color: $goodColor;
+		font-size: 1.3em;
+	}
+
+	.tryagain {
+		color: $badColor;
+		font-size: 1.3em;
+	}
+
+	@media (min-aspect-ratio: 12/24) {
+		columns: 2;
+	}
+
+	@media (min-aspect-ratio: 18/24) {
+		columns: 3;
+	}
+
+	@media (min-aspect-ratio: 24/24) {
+		columns: 4;
+	}
+}

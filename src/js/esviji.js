@@ -86,6 +86,7 @@ ESVIJI.game = (function () {
     lastHitBall = ESVIJI.settings.rockId,
     highScores = [ ],
     lastGameDate = '',
+    lastGameScore = undefined,
     gameStatus = { },
     useStored = false,
     sounds,
@@ -257,6 +258,12 @@ ESVIJI.game = (function () {
     });
     $('#gameover .controls .exit').bind('click', stopPlaying);
 
+    // Scores screen button
+    $('#scores .controls .exit').bind('click', function(event) {
+      event.preventDefault();
+      showScreen('home');
+    });
+
     // About screen buttons
     $('#about .controls .exit').bind('click', function(event) {
       event.preventDefault();
@@ -370,29 +377,27 @@ ESVIJI.game = (function () {
 
   function startScores(event) {
     event.preventDefault();
-
+    showScores();
     showScreen('scores');
-    writeScores();
-
-    $('#scores .exit').one(clickType, endScores);
   }
 
-  function writeScores() {
+  function showScores() {
+    var thisone = false;
+    $('.highscores li').remove();
     for (i = 0; i < 10; i++) {
-      if (undefined !== highScores[i]) {
-        $('#scores .highscores text').eq(i).text(highScores[i].score);
+      if (undefined !== highScores[i] && 0 !== highScores[i].score) {
         if (lastGameDate === highScores[i].date) {
-          $('#scores .highscores text').eq(i).attr('class', 'thisone');
+          thisone = true;
+          $('.highscores').append('<li class="thisone">' + highScores[i].score + '</li>');
+        } else {
+          $('.highscores').append('<li>' + highScores[i].score + '</li>');
         }
-      } else {
-        $('#scores .highscores text').eq(i).text('-').attr('class', '');
       }
     }
-  }
-
-  function endScores(event) {
-    event.preventDefault();
-    showScreen('home');
+    if (!thisone && "" !== lastGameDate && undefined !== lastGameScore) {
+      $('.highscores').append('<li>…</li>');
+      $('.highscores').append('<li class="tryagain">' + lastGameScore + '</li>');
+    }
   }
 
   function nextLevel() {
@@ -1122,37 +1127,29 @@ ESVIJI.game = (function () {
     offlineAnalytics.push({ name: 'score', value: gameStatus.score });
 
     lastGameDate = Date();
-    showScreen('gameover');
+    lastGameScore = gameStatus.score;
 
-    $('#gameover').find('.score').text('Score: ' + gameStatus.score);
     for (i = 0; i < l; i++) {
       if (!positioned && (highScores[i] === undefined || highScores[i].score <= gameStatus.score)) {
         for (j = l; j > i; j--) {
           highScores[j] = highScores[j - 1];
         }
-        highScores[i] = { 'score': gameStatus.score, 'date': lastGameDate};
+        highScores[i] = { 'score': lastGameScore, 'date': lastGameDate};
         positioned = true;
       }
     }
     if (!positioned) {
-      highScores[l] = { 'score': gameStatus.score, 'date': lastGameDate};
+      highScores[l] = { 'score': lastGameScore, 'date': lastGameDate};
     }
+    // TODO: keep only 10 scores? No limit now.
     storeSet('highScores', highScores);
     gameStatus.playing = false;
     storeSet('gameStatus', {
       'playing': false
     });
 
-    // buttons
-    $('#gameOver .scores').one(clickType, function() {
-      startScores();
-    });
-    $('#gameOver .playagain').one(clickType, function() {
-      startPlaying();
-    });
-    $('#gameOver .exit').one(clickType, function() {
-      stopPlaying();
-    });
+    showScores();
+    showScreen('gameover');
   }
 
   function removeLife() {
