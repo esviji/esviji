@@ -90,15 +90,15 @@ ESVIJI.game = (function () {
     useStored = false,
     sounds,
     clickType = 'click',
-    iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent ); // Just for sounds
+    iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent ); // For sounds and viewport units
 
   // Initialization
   function init() {
-    // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
-    window.viewportUnitsBuggyfill.init({ force: true });
-
     if (iOS) {
       $('body').addClass('ios');
+
+      // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
+      window.viewportUnitsBuggyfill.init({ force: true });
     }
 
     if (Modernizr.inlinesvg) {

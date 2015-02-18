@@ -244,7 +244,7 @@ section#play {
     }
 
     .controls .pause {
-      top: auto;
+      top: auto !important; // because of an issue with viewport-units-buggyfill
       left: $margins;
       right: auto;
       bottom: $margins;
