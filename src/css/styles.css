@@ -526,8 +526,6 @@ section#play .controls .pause svg {
     top: calc(18.75vh + 3vmin);
     width: -webkit-calc(100vw - 3vmin - 19 / 24 * 100vw);
     width: calc(100vw - 3vmin - 19 / 24 * 100vw);
-    height: -webkit-calc(100vw - 3vmin - 19 / 24 * 100vw);
-    height: calc(100vw - 3vmin - 19 / 24 * 100vw);
   }
   section#play .progress ul {
     width: 100%;
@@ -592,6 +590,42 @@ section#pause .sound.on .off {
 /* ********************************************************************
  * Scores screen
  * ********************************************************************/
+.highscores {
+  list-style-type: none;
+  margin: 5vmin;
+  font-size: 5vh;
+  text-align: right;
+}
+.highscores .thisone {
+  color: #27ae60;
+  font-size: 1.3em;
+}
+.highscores .tryagain {
+  color: #c0392b;
+  font-size: 1.3em;
+}
+@media (min-aspect-ratio: 12 / 24) {
+  .highscores {
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+  }
+}
+@media (min-aspect-ratio: 18 / 24) {
+  .highscores {
+    -webkit-columns: 3;
+    -moz-columns: 3;
+    columns: 3;
+  }
+}
+@media (min-aspect-ratio: 24 / 24) {
+  .highscores {
+    -webkit-columns: 4;
+    -moz-columns: 4;
+    columns: 4;
+  }
+}
+
 /* ********************************************************************
  * Description for browsers lacking some support for SVG, flexbox, etc.
  * ********************************************************************/
