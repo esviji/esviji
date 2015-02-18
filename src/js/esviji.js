@@ -1293,6 +1293,7 @@ if (window.applicationCache) {
       // Browser downloaded a new app cache
       // Swap it in and reload the page to get the new version
       window.applicationCache.swapCache();
+      console.info('New version loaded, refresh!');
       window.location.reload();
     }
   }, false);
