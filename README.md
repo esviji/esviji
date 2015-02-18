@@ -37,7 +37,7 @@ Aggregated analytics data is collected through Google Analytics and is only used
 ## Building blocks
 
 - JavaScript, with a little bit of jQuery
-- [Matthias](http://twitter.com/madsgraphics)'s awesome [SVGEventListener polyfil](https://github.com/madsgraphics/SVGEventListener) for SVG animate events in webkit
+- [Matthias](http://twitter.com/m4d_z)'s awesome [SVGEventListener polyfil](https://github.com/m4dz/SVGEventListener) for SVG animate events in webkit
 - [Craig Campbell](http://craig.is/)'s [mousetrap](http://craig.is/killing/mice) for keyboard controls
 - [Marcus Westin](http://twitter.com/marcuswestin)'s [store.js](https://github.com/marcuswestin/store.js) for localStorage wrapper
 - [GoldFire Studios](https://twitter.com/GoldFireStudios)'s [Howler.js](https://github.com/goldfire/howler.js) for sounds playing
@@ -48,7 +48,7 @@ Aggregated analytics data is collected through Google Analytics and is only used
 - [Jérémie](http://twitter.com/JeremiePat) for [inspiration about SVG](http://jeremie.patonnier.net/tag/SVG)'s [power](http://jeremie.patonnier.net/experiences/parisweb2011/animation.svg) and assistance finding great docs in [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/SVG)
 - [Karl](http://twitter.com/karlpro) for his kind assistance on Opera issues (some were real bugs, some were my own mistakes)
 - [Anthony](http://twitter.com/rik24d) for his kind assistance on Firefox issues (again, some were real bugs, some where MDN errors, some were my own mistakes)
-- [Matthias](http://twitter.com/madsgraphics) for his SVG animate events polyfil
+- [Matthias](http://twitter.com/m4d_z) for his SVG animate events polyfil
 - [Vincent](http://twitter.com/htmlzg) for the logo following [Firefox OS app icon design principles](http://www.mozilla.org/en-US/styleguide/products/firefoxos/icons/)
 
 ## To do
