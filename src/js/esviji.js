@@ -234,6 +234,7 @@ ESVIJI.game = (function () {
       event.preventDefault();
       showScreen('about');
     });
+    // $('#home .controls .tutorial').bind('click', startTutorial);
 
     // Play screen buttons
     $('#play .controls .pause').bind('click', function(event) {
