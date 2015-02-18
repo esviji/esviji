@@ -17,7 +17,6 @@ I never found a satisfying name for this game, so I now took "esviji", a word ga
 
 esviji is open source, under MIT licence, feel free to <a href="https://github.com/nhoizey/esviji">fork it on Github</a>, make pull requests and open issues for bugs and improvement ideas.
 
-
 ## Supported platforms
 
 ### Known to work on
@@ -76,3 +75,19 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+## Credits
+
+All these icons come from [The Noun Project](http://thenounproject.com/) and are available under [Creative Commons Attribution (CC BY 3.0)](http://creativecommons.org/licenses/by/3.0/us/) license :
+
+- [Play](http://thenounproject.com/term/play/5206/) by [Michael Rowe](http://thenounproject.com/Mikhail1986)
+- [Speaker](http://thenounproject.com/term/speaker/10453/) and [Mute](http://thenounproject.com/term/mute/10454/) by [Vania Platonov](http://thenounproject.com/vaniaplatonov)
+- [Ribbon](http://thenounproject.com/term/ribbon/3391/) by [Nicolò Bertoncin](http://thenounproject.com/nicolo.bertoncin)
+- [Information](http://thenounproject.com/term/information/9867/) by [Phil Goodwin](http://thenounproject.com/Fhlcreative/)
+- [Heart](http://thenounproject.com/term/heart/11793/) by [Michael Zenaty](http://thenounproject.com/Michzen)
+- [Ladder](http://thenounproject.com/term/ladder/17895/) by [Michael Rowe](http://thenounproject.com/Mikhail1986/)
+- [Reload](http://thenounproject.com/term/reload/31938/) by [Simple Icons](http://www.thenounproject.com/SimpleIcons)
+- [Home](http://thenounproject.com/term/home/1144/) by [Jeremy J Bristol](http://thenounproject.com/jeremy.j.bristol/)
+
+This icon is in the public domain:
+
+- [Pause](http://thenounproject.com/term/pause/5489/) by [dsathiyaraj](http://thenounproject.com/dsathiyaraj)
