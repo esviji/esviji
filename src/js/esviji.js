@@ -153,8 +153,6 @@ ESVIJI.game = (function () {
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailableBalls = ESVIJI.settings.balls.length;
 
-    initBindings();
-
     // Deal with localStore content that has been set when there was less data
     if (undefined === gameStatus.levelReplay) {
       // v1.6.7
@@ -205,6 +203,9 @@ ESVIJI.game = (function () {
     if (gameStatus.preferences.sound) {
       $('#home .sound').addClass('on');
     }
+
+    initBindings();
+
     run();
   }
 
