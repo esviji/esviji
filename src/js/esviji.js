@@ -322,7 +322,7 @@ ESVIJI.game = (function () {
     // TODO: show current screen in URL
 
     // Google Analytics tracking of activated screen
-    offlineAnalytics.push({ name: 'view', value: '/' + (screen === 'home' ? '' : screen + '/') });
+    offlineAnalytics.push({ name: 'view', value: '/' + (screen === 'home' ? '' : screen) });
   }
 
   function startPlaying(event) {
