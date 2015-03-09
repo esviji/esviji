@@ -21,7 +21,7 @@ section {
   .controls {
     position: absolute;
     left: 0;
-    bottom: 5vmin;
+    bottom: 0;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -37,7 +37,6 @@ section {
     li {
       text-align: center;
       width: 99vw;
-      padding: 3vw;
 
       a {
         display: flex;
@@ -100,22 +99,21 @@ section {
         width: 22vw;
 
         svg {
-          width: 18vw;
-          height: 18vw;
+          width: 16vw;
+          height: 16vw;
         }
       }
     }
 
     @media (min-aspect-ratio: 36/24) {
-      font-size: 7vh;
+      font-size: 7.5vh;
 
       li {
         width: 30vh; // ~ 150vh / 4 = max-width (37vh gives a bug on iPad)
-        padding: 3vh;
 
         svg {
-          width: 25vh; // < 150vh / 4 = max-width
-          height: 25vh;
+          width: 24vh; // < 150vh / 4 = max-width
+          height: 24vh;
         }
       }
     }
