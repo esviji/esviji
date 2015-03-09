@@ -23,10 +23,8 @@ section#home {
       margin: 10vmin auto;
       padding: 0;
     }
-  }
 
-  @media (min-aspect-ratio: 17/24) {
-    header {
+    @media (min-aspect-ratio: 17/24) {
       flex-direction: row-reverse;
       justify-content: space-around;
 
@@ -40,10 +38,16 @@ section#home {
         margin: 3vw 0;
       }
     }
-  }
 
-  @media (min-aspect-ratio: 36/24) {
-    header {
+    @media (min-aspect-ratio: 20/24) {
+      margin-top: calc(90vh - 70vw);
+    }
+
+    @media (min-aspect-ratio: 30/24) {
+      margin-top: 0;
+    }
+
+    @media (min-aspect-ratio: 36/24) {
       h1 {
         font-size: 30vh;
       }
