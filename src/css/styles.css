@@ -97,7 +97,7 @@ section h2 {
 section .controls {
   position: absolute;
   left: 0;
-  bottom: 5vmin;
+  bottom: 0;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -121,7 +121,6 @@ section .controls {
 section .controls li {
   text-align: center;
   width: 99vw;
-  padding: 3vw;
 }
 section .controls li a {
   display: -webkit-box;
@@ -193,21 +192,20 @@ section .controls li svg {
     width: 22vw;
   }
   section .controls li svg {
-    width: 18vw;
-    height: 18vw;
+    width: 16vw;
+    height: 16vw;
   }
 }
 @media (min-aspect-ratio: 36 / 24) {
   section .controls {
-    font-size: 7vh;
+    font-size: 7.5vh;
   }
   section .controls li {
     width: 30vh;
-    padding: 3vh;
   }
   section .controls li svg {
-    width: 25vh;
-    height: 25vh;
+    width: 24vh;
+    height: 24vh;
   }
 }
 
@@ -258,6 +256,17 @@ section#home header .logo {
     width: 20vw;
     height: 20vw;
     margin: 3vw 0;
+  }
+}
+@media (min-aspect-ratio: 20 / 24) {
+  section#home header {
+    margin-top: -webkit-calc(90vh - 70vw);
+    margin-top: calc(90vh - 70vw);
+  }
+}
+@media (min-aspect-ratio: 30 / 24) {
+  section#home header {
+    margin-top: 0;
   }
 }
 @media (min-aspect-ratio: 36 / 24) {
@@ -624,6 +633,14 @@ section#pause .sound.on .off {
     -moz-columns: 4;
     columns: 4;
   }
+}
+
+/* ********************************************************************
+ * About screen
+ * ********************************************************************/
+#about .description {
+  margin: 5vmin;
+  font-size: 4vmin;
 }
 
 /* ********************************************************************

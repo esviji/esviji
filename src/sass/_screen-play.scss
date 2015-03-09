@@ -39,7 +39,7 @@ section#play {
     top: $headerHeight;
     left: 0;
     width: 100vw;
-    height: calc(100vh - #{$headerHeight} - #{$portraitSvgHeight});
+    height: calc(100vh - #{$headerHeight} - #{$portraitSvgHeight}); // TODO: ?
 
     display: flex;
     flex-direction: column;
@@ -182,7 +182,7 @@ section#play {
     .progress {
       position: absolute;
       left: $margins;
-      height: auto;
+      height: auto; // TODO: ?
 
       .score {
         padding: 0;
@@ -236,7 +236,6 @@ section#play {
     .progress {
       top: calc(#{$fixedHeaderHeight} + #{$margins});
       width: calc(100vw - #{$margins} - 19 / 24 * 100vw);
-      height: calc(100vw - #{$margins} - 19 / 24 * 100vw);
 
       ul {
         width: 100%;
@@ -255,7 +254,7 @@ section#play {
   @media (min-aspect-ratio: 24/24) {
     .progress {
       width: calc(100vw - 2 * #{$margins} - #{$landscapeSvgWith});
-      height: calc(100vh - #{$fixedHeaderHeight} - 3 * #{$margins} - #{$fixedHeaderSize});
+      height: calc(100vh - #{$fixedHeaderHeight} - 3 * #{$margins} - #{$fixedHeaderSize}); // TODO: ?
       display: flex;
       flex-orientation: column;
 
@@ -273,8 +272,6 @@ section#play {
     max-width: 150vh;
 
     svg#board {
-      // width: $landscapeSvgWith;
-      // height: $boardRatio * $landscapeSvgWith;
       width: 1 / $boardRatio * 100vh;
       height: 100vh;
     }
