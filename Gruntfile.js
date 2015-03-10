@@ -86,7 +86,8 @@ module.exports = function(grunt) {
               "css/font/*",
               "img/*",
               "sounds/sprite.{mp3,ogg}",
-              "js/vendor/analytics.js"
+              "js/vendor/analytics.js",
+              "wow/*"
             ],
             dest: "dist/"
           },
