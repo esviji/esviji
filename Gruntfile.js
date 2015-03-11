@@ -67,13 +67,13 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      dist: {
-        src: "dist/"
+      build: {
+        src: "build/"
       }
     },
 
     copy: {
-      dist: {
+      build: {
         files: [
           {
             expand: true,
@@ -89,13 +89,13 @@ module.exports = function(grunt) {
               "js/vendor/analytics.js",
               "wow/*"
             ],
-            dest: "dist/"
+            dest: "build/"
           },
           {
             expand: true,
             cwd: "src/favicons/",
             src: "*",
-            dest: "dist/"
+            dest: "build/"
           }
         ]
       }
@@ -103,12 +103,12 @@ module.exports = function(grunt) {
 
     useminPrepare: {
       options: {
-        dest: "dist/"
+        dest: "build/"
       },
       html: "src/index.html"
     },
     usemin: {
-      html: "dist/index.html"
+      html: "build/index.html"
     },
 
     concat: {
@@ -118,8 +118,8 @@ module.exports = function(grunt) {
     },
 
     removelogging: {
-      dist: {
-        src: "dist/js/app.js",
+      build: {
+        src: "build/js/app.js",
         options: {}
       }
     },
@@ -146,8 +146,8 @@ module.exports = function(grunt) {
       assets: {
         files: [{
           src: [
-            "dist/css/styles.css",
-            "dist/js/app.js"
+            "build/css/styles.css",
+            "build/js/app.js"
           ]
         }]
       }
@@ -183,9 +183,9 @@ module.exports = function(grunt) {
         ],
         dest: "src/manifest_ios.appcache"
       },
-      dist: {
+      build: {
         options: {
-          basePath: "dist/",
+          basePath: "build/",
           network: ["*"],
           verbose: true,
           timestamp: true
@@ -196,11 +196,11 @@ module.exports = function(grunt) {
           "css/font/*",
           "sounds/*.{ogg,mp3}"
         ],
-        dest: "dist/manifest.appcache"
+        dest: "build/manifest.appcache"
       },
-      dist_ios: {
+      build_ios: {
         options: {
-          basePath: "dist/",
+          basePath: "build/",
           network: ["*"],
           verbose: true,
           timestamp: true
@@ -210,25 +210,24 @@ module.exports = function(grunt) {
           "css/*.css",
           "css/font/*"
         ],
-        dest: "dist/manifest_ios.appcache"
+        dest: "build/manifest_ios.appcache"
       }
     },
 
     sed: {
       version: {
-        path: "dist/",
+        path: "build/",
         recursive: true,
         pattern: "%VERSION%",
         replacement: "<%= pkg.version %>"
       },
       description: {
-        path: "dist/",
         recursive: true,
         pattern: "%DESCRIPTION%",
         replacement: "<%= pkg.description %>"
       },
       favicons: {
-        path: "dist/index.html",
+        path: "build/index.html",
         pattern: "/favicons",
         replacement: ""
       }
