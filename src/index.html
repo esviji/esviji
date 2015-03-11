@@ -157,36 +157,36 @@
           <path fill="#ccc" d="M39.75 5.5C20.83 5.5 5.5 20.83 5.5 39.75S20.83 74 39.75 74 74 58.67 74 39.75 58.67 5.5 39.75 5.5zm0 64.5C23.05 70 9.5 56.46 9.5 39.75 9.5 23.05 23.04 9.5 39.75 9.5 56.45 9.5 70 23.04 70 39.75 70 56.45 56.46 70 39.75 70zm-2.62-17.62c0 2.34-1.9 4.24-4.26 4.24-2.34 0-4.24-1.9-4.24-4.24V28.75c0-2.35 1.9-4.25 4.25-4.25 2.34 0 4.24 1.9 4.24 4.25v23.63zm14 0c0 2.34-1.9 4.24-4.26 4.24-2.34 0-4.24-1.9-4.24-4.24V28.75c0-2.35 1.9-4.25 4.24-4.25 2.35 0 4.26 1.9 4.26 4.25v23.63z"/></svg></a></li>
   </ul>
   <svg id="board" version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 320 430" width="100%" height="100%" preserveAspectRatio="xMidYMax meet">
-    <defs>
-      <polygon id="rock" points="0,0 0,32 32,32 32,0" stroke-width="0" fill="#444" />
-      <svg id="ball1" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-        <circle class="ball1" stroke-width="1" cx="16" cy="16" r="15" />
-        <text x="16" y="21">1</text>
-      </svg>
-      <svg id="ball2" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-        <circle class="ball2" stroke-width="1" cx="16" cy="16" r="15" />
-        <text x="16" y="21">2</text>
-      </svg>
-      <svg id="ball3" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-        <circle class="ball3" stroke-width="1" cx="16" cy="16" r="15" />
-        <text x="16" y="21">3</text>
-      </svg>
-      <svg id="ball4" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-        <circle class="ball4" stroke-width="1" cx="16" cy="16" r="15" />
-        <text x="16" y="21">4</text>
-      </svg>
-      <svg id="ball5" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-        <circle class="ball5" stroke-width="1" cx="16" cy="16" r="15" />
-        <text x="16" y="21">5</text>
-      </svg>
-      <svg id="ball6" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
-        <circle class="ball6" stroke-width="1" cx="16" cy="16" r="15" />
-        <text x="16" y="21">6</text>
-      </svg>
-      <symbol id="spring" width="32" height="16" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 L0,16 L8,0 L8,16 L16,0 L16,16 L24,0 L24,16 L32,0 L32,16" style="stroke-width: 2; stroke: #333; fill: none;" />
-      </symbol>
-    </defs>
+    <symbol id="rock" viewBox="0 0 32 32">
+      <polygon points="0,0 0,32 32,32 32,0" stroke-width="0" fill="#444" />
+    </symbol>
+    <symbol id="ball1" viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball1" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">1</text>
+    </symbol>
+    <symbol id="ball2" viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball2" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">2</text>
+    </symbol>
+    <symbol id="ball3" viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball3" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">3</text>
+    </symbol>
+    <symbol id="ball4" viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball4" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">4</text>
+    </symbol>
+    <symbol id="ball5" viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball5" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">5</text>
+    </symbol>
+    <symbol id="ball6" viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball6" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">6</text>
+    </symbol>
+    <symbol id="spring" viewBox="0 0 32 16" width="32" height="16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,16 L8,0 L8,16 L16,0 L16,16 L24,0 L24,16 L32,0 L32,16" style="stroke-width: 2; stroke: #333; fill: none;" />
+    </symbol>
     <g>
       <path class="playzone" d="M6,424 L6,188 Q6,168 26,168 L38,168 L38,156 Q38,136 58,136 L70,136 L70,124 Q70,104 90,104 L102,104 L102,92 Q102,72 122,72 L134,72 L134,60 Q134,40 154,40 L166,40 L166,28 Q166,8 186,8 L312,8 L312,424" />
 
