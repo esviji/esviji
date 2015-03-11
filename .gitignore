@@ -2,7 +2,7 @@
 node_modules/
 docs/
 deploy*.sh
-dist/
+build/
 src/manifest.appcache
 .sass-cache/
 .tmp/
