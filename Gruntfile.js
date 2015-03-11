@@ -19,6 +19,7 @@ module.exports = function(grunt) {
   grunt.lazyLoadNpmTasks("grunt-docco", "docco");
   grunt.lazyLoadNpmTasks("grunt-contrib-compress", "compress");
   grunt.lazyLoadNpmTasks("grunt-curl", "curl");
+  grunt.lazyLoadNpmTasks("grunt-dev-update", "devUpdate");
 
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
@@ -265,6 +266,15 @@ module.exports = function(grunt) {
       offline: {
         src: "https://raw2.github.com/HubSpot/offline/master/js/offline.js",
         dest: "src/js/vendor/offline.js"
+      }
+    },
+
+    devUpdate: {
+      main: {
+        options: {
+          updateType: 'prompt',
+          semver: false
+        }
       }
     }
 
