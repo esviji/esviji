@@ -17,6 +17,7 @@ module.exports = function(grunt) {
   grunt.lazyLoadNpmTasks("grunt-rev", "rev");
   grunt.lazyLoadNpmTasks("grunt-sed", "sed");
   grunt.lazyLoadNpmTasks("grunt-docco", "docco");
+  grunt.lazyLoadNpmTasks("grunt-contrib-compress", "compress");
   grunt.lazyLoadNpmTasks("grunt-curl", "curl");
 
   grunt.initConfig({
@@ -222,6 +223,7 @@ module.exports = function(grunt) {
         replacement: "<%= pkg.version %>"
       },
       description: {
+        path: "build/",
         recursive: true,
         pattern: "%DESCRIPTION%",
         replacement: "<%= pkg.description %>"
@@ -230,6 +232,19 @@ module.exports = function(grunt) {
         path: "build/index.html",
         pattern: "/favicons",
         replacement: ""
+      }
+    },
+
+    compress: {
+      release: {
+        options: {
+          archive: 'esviji_2.zip',
+        },
+        files: [{
+          cwd: 'build',
+          expand: true,
+          src: '**/*'
+        }]
       }
     },
 
@@ -257,6 +272,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask("default", ["compile", "watch"]);
   grunt.registerTask("compile", ["growl", "sass", "autoprefixer", "manifest:src", "manifest:src_ios"]);
-  grunt.registerTask("package", ["sass", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "manifest:dist_ios", "docco"]);
+  grunt.registerTask("build", ["sass", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:build", "manifest:build_ios", "docco"]);
+  grunt.registerTask("package", ["build", "compress"]);
   grunt.registerTask("vendors", ["curl"]);
 };
