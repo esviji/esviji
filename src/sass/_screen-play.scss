@@ -78,7 +78,7 @@ section#play {
   }
 
   .score, .lives, .level {
-    transition: all 1s ease-out;
+    transition: color 1s ease-out;
 
     &.changeDown {
       color: $badColor;
