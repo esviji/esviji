@@ -15,12 +15,12 @@
  * ********************************************************************/
 html {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 *, *:before, *:after {
   -webkit-box-sizing: inherit;
-  box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 /* ********************************************************************
@@ -100,15 +100,18 @@ section .controls {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-justify-content: space-around;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
   font-size: calc(4vh - 5vw);
   line-height: 2;
 }
@@ -117,12 +120,15 @@ section .controls li {
   width: 99vw;
 }
 section .controls li a {
+  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   color: #ccc;
   text-decoration: none;
 }
@@ -135,12 +141,14 @@ section .controls li svg {
 }
 @media (min-aspect-ratio: 7 / 24) {
   section .controls {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
     -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
     font-size: 8vw;
   }
   section .controls li {
@@ -201,12 +209,15 @@ section#home header {
   margin: 0;
   padding: 0;
   width: 100%;
+  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 section#home header h1 {
   font-size: 25vmin;
@@ -222,12 +233,14 @@ section#home header .logo {
 }
 @media (min-aspect-ratio: 17 / 24) {
   section#home header {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
     -webkit-flex-direction: row-reverse;
-    -ms-flex-direction: row-reverse;
-    flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
     -webkit-justify-content: space-around;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
   }
   section#home header h1 {
     font-size: 20vw;
@@ -260,15 +273,15 @@ section#home header .logo {
 }
 section#home .controls .play img {
   -webkit-animation-name: pulse;
-  animation-name: pulse;
+          animation-name: pulse;
   -webkit-animation-duration: .5s;
-  animation-duration: .5s;
+          animation-duration: .5s;
   -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
-  animation-direction: alternate;
+          animation-direction: alternate;
   -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
 }
 section#home .controls .sound .on {
   display: none;
@@ -286,22 +299,22 @@ section#home .controls .sound.on .off {
 @-webkit-keyframes pulse {
   from {
     -webkit-transform: scale(1);
-    transform: scale(1);
+            transform: scale(1);
   }
   to {
     -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+            transform: scale(1.1);
   }
 }
 
 @keyframes pulse {
   from {
     -webkit-transform: scale(1);
-    transform: scale(1);
+            transform: scale(1);
   }
   to {
     -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+            transform: scale(1.1);
   }
 }
 /* ********************************************************************
@@ -327,15 +340,18 @@ section#play .progress {
   left: 0;
   width: 100vw;
   height: calc(100vh - 30vmin - 134.375vw);
+  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-justify-content: space-around;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
 }
 section#play .progress .score {
   padding: 0 3vmin;
@@ -345,15 +361,18 @@ section#play .progress .score {
 section#play .progress ul {
   width: 100%;
   list-style-type: none;
+  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-justify-content: space-around;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
   color: #ccc;
 }
 section#play .progress ul li {
@@ -368,8 +387,8 @@ section#play .progress .icon {
   height: .75em;
 }
 section#play .score, section#play .lives, section#play .level {
-  -webkit-transition: all 1s ease-out;
-  transition: all 1s ease-out;
+  -webkit-transition: color 1s ease-out;
+          transition: color 1s ease-out;
 }
 section#play .score.changeDown, section#play .lives.changeDown, section#play .level.changeDown {
   color: #c0392b;
@@ -427,9 +446,11 @@ section#play .controls .pause svg {
 }
 @media (min-aspect-ratio: 8 / 24) {
   section#play .progress ul {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
     -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
   }
 }
 @media (min-aspect-ratio: 11 / 24) {
@@ -440,9 +461,11 @@ section#play .controls .pause svg {
     position: absolute;
     left: 3vmin;
     width: 25vw;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
     -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
   section#play .progress ul li {
     text-align: left;
@@ -513,6 +536,7 @@ section#play .controls .pause svg {
   section#play .progress {
     width: calc(100vw - 2 * 3vmin - 74.4186vh);
     height: calc(100vh - 18.75vh - 3 * 3vmin - 12.5vh);
+    display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -575,22 +599,22 @@ section#pause .sound.on .off {
 @media (min-aspect-ratio: 12 / 24) {
   .highscores {
     -webkit-columns: 2;
-    -moz-columns: 2;
-    columns: 2;
+       -moz-columns: 2;
+            columns: 2;
   }
 }
 @media (min-aspect-ratio: 18 / 24) {
   .highscores {
     -webkit-columns: 3;
-    -moz-columns: 3;
-    columns: 3;
+       -moz-columns: 3;
+            columns: 3;
   }
 }
 @media (min-aspect-ratio: 24 / 24) {
   .highscores {
     -webkit-columns: 4;
-    -moz-columns: 4;
-    columns: 4;
+       -moz-columns: 4;
+            columns: 4;
   }
 }
 
@@ -624,5 +648,3 @@ section#pause .sound.on .off {
 #description a:hover, #description a:active {
   color: #fdd;
 }
-
-/*# sourceMappingURL=styles.css.map */
