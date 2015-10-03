@@ -12,7 +12,7 @@
   },
   "developer": {
     "name": "Nicolas Hoizey",
-    "url": "http://gasteroprod.com"
+    "url": "http://nicolas-hoizey.com"
   },
   "installs_allowed_from": ["*"],
   "appcache_path": "/manifest.appcache",
