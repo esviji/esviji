@@ -1335,20 +1335,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 window.addEventListener('resize', ESVIJI.game.viewportOptimize);
 window.addEventListener('orientationchange', ESVIJI.game.viewportOptimize);
-
-/***************************************************************************************
- * appcache
- ***************************************************************************************/
-
-// Check if a new cache is available
-if (window.applicationCache) {
-  window.applicationCache.addEventListener('updateready', function(e) {
-    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-      // Browser downloaded a new app cache
-      // Swap it in and reload the page to get the new version
-      window.applicationCache.swapCache();
-      console.info('New version loaded, refresh!');
-      window.location.reload();
-    }
-  }, false);
-}
