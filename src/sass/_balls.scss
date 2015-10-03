@@ -1,29 +1,29 @@
 .ball1 {
-  fill: #f39c12;
-  stroke: #e67e22;
+  fill: $colorOrangeLight;
+  stroke: $colorOrangeDark;
 }
 
 .ball2 {
-  fill: #2ecc71;
-  stroke: #27ae60;
+  fill: $colorGreenLight;
+  stroke: $colorGreenDark;
 }
 
 .ball3 {
-  fill: #3498db;
-  stroke: #2980b9;
+  fill: $colorBlueLight;
+  stroke: $colorBlueDark;
 }
 
 .ball4 {
-  fill: #9b59b6;
-  stroke: #8e44ad;
+  fill: $colorPurpleLight;
+  stroke: $colorPurpleDark;
 }
 
 .ball5 {
-  fill: #aa8866;
-  stroke: #776655;
+  fill: $colorBrownLight;
+  stroke: $colorBrownDark;
 }
 
 .ball6 {
-  fill: #e74c3c;
-  stroke: #c0392b;
+  fill: $colorRedLight;
+  stroke: $colorRedDark;
 }
