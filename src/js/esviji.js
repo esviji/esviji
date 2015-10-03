@@ -131,10 +131,6 @@ ESVIJI.game = (function() {
       clickType = 'touchstart';
     }
 
-    if (!Modernizr.testProp('vibrate')) {
-      $('.prefsVibration,.label.vibration').hide();
-    }
-
     if (!ESVIJI.settings.version.match(/VERSION/)) {
       if ($('.version').text() === ESVIJI.settings.version) {
         // Send version to Google Analytics only if it is set in the source
@@ -1253,7 +1249,6 @@ ESVIJI.game = (function() {
     gameStatus.lives--;
     gameStatus.levelLostLives++;
     playSound('soundLifeDown');
-    vibrate(500);
     drawLives();
     $('#play .lives').attr('class', 'lives changeDown');
     window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
@@ -1325,13 +1320,6 @@ ESVIJI.game = (function() {
   function playSound(type) {
     if (!iOS && gameStatus.preferences.sound && sounds._loaded) {
       sounds.play(type);
-    }
-  }
-
-  function vibrate(duration) {
-    if (Modernizr.testProp('vibrate') && gameStatus.preferences.vibration) {
-      navigator.vibrate = navigator.vibrate || navigator.mozVibrate || navigator.webkitVibrate;
-      navigator.vibrate(duration);
     }
   }
 
