@@ -6,5 +6,10 @@
 	.description {
 		margin: 5vmin;
 		font-size: 4vmin;
+
+		a:link, a:visited {
+			color: $colorBlueLight;
+			text-decoration: underline;
+		}
 	}
 }
