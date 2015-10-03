@@ -107,8 +107,6 @@ section {
     }
 
     @media (min-aspect-ratio: 36/24) {
-      // font-size: 7.5vh;
-
       li {
         width: 30vh; // ~ 150vh / 4 = max-width (37vh gives a bug on iPad)
 
@@ -116,6 +114,14 @@ section {
           width: 24vh; // < 150vh / 4 = max-width
           height: 24vh;
         }
+      }
+    }
+
+    @media (min-aspect-ratio: 42/24) {
+      font-size: 5.5vh;
+
+      li {
+        padding-bottom: 14vh;
       }
     }
   }
