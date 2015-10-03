@@ -264,7 +264,7 @@ module.exports = function(grunt) {
         dest: "src/js/vendor/analytics.js"
       },
       offline: {
-        src: "https://raw2.github.com/HubSpot/offline/master/js/offline.js",
+        src: "https://raw.githubusercontent.com/HubSpot/offline/master/offline.js",
         dest: "src/js/vendor/offline.js"
       }
     },
