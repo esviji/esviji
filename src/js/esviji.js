@@ -1323,37 +1323,6 @@ ESVIJI.game = (function() {
     }
   }
 
-  function install() {
-    var manifestUrl = location.href.substring(0, location.href.lastIndexOf('/')) + '/manifest.webapp';
-    var request = window.navigator.mozApps.install(manifestUrl);
-    request.onsuccess = function() {
-      // var appRecord = this.result;
-      alert('Installation successful!');
-      $('#installButton').css('display', 'none');
-    };
-    request.onerror = function() {
-      // Display the error information from the DOMError object
-      console.error('Install failed, error: ' + this.error.name);
-    };
-  }
-
-  function showInstall() {
-    if (undefined !== navigator.mozApps) {
-      var request = navigator.mozApps.getSelf();
-      request.onsuccess = function() {
-        if (request.result) {
-          // we're installed, nothing to do
-        } else {
-          $('#settings .installation').css('display', 'block');
-          $('#settings .installation button').one(clickType, install);
-        }
-      };
-      request.onerror = function() {
-        console.error('Error checking installation status: ' + this.error.message);
-      };
-    }
-  }
-
   return {
     init: init,
     viewportOptimize: viewportOptimize
