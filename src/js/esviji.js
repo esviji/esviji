@@ -164,7 +164,7 @@ ESVIJI.game = (function() {
     maxAvailableBalls = ESVIJI.settings.balls.length;
 
     // Deal with localStore content that has been set when there was less data
-    if (undefined === gameStatus.levelReplay) {
+    if (gameStatus.levelReplay === undefined) {
       // v1.6.7
       gameStatus.levelReplay = {
         lostLives: 0,
@@ -174,19 +174,19 @@ ESVIJI.game = (function() {
       };
     }
 
-    if (undefined === gameStatus.preferences) {
+    if (gameStatus.preferences === undefined) {
       // v1.6.8
       gameStatus.preferences = {
         sound: true,
       };
     }
 
-    if (undefined === gameStatus.preferences.vibration) {
+    if (gameStatus.preferences.vibration === undefined) {
       // v1.13.0
       gameStatus.preferences.vibration = true;
     }
 
-    if (undefined !== gameStatus.preferences.difficulty && undefined !== highScores.Crazy) {
+    if (gameStatus.preferences.difficulty !== undefined && highScores.Crazy !== undefined) {
       // v2.0.0, no more difficulty choice, keep only 'crazy' scores
       gameStatus.preferences.difficulty = undefined;
       highScores = highScores.Crazy;
@@ -342,7 +342,7 @@ ESVIJI.game = (function() {
   }
 
   function startPlaying(event) {
-    if (undefined !== event) {
+    if (event !== undefined) {
       event.preventDefault();
     }
 
@@ -350,7 +350,7 @@ ESVIJI.game = (function() {
       gameStatus.level = ESVIJI.settings.launch.level;
       gameStatus.score = ESVIJI.settings.launch.score;
       gameStatus.lives = ESVIJI.settings.launch.lives;
-      if (null !== drawnCurrentBall) {
+      if (drawnCurrentBall !== null) {
         drawnCurrentBall.remove();
       }
 
@@ -365,7 +365,7 @@ ESVIJI.game = (function() {
   }
 
   function stopPlaying(event) {
-    if (undefined !== event) {
+    if (event !== undefined) {
       event.preventDefault();
     }
 
@@ -374,7 +374,7 @@ ESVIJI.game = (function() {
     gameStatus.score = 0;
     gameStatus.lives = 0;
     eraseBalls();
-    if (null !== drawnCurrentBall) {
+    if (drawnCurrentBall !== null) {
       drawnCurrentBall.remove();
     }
 
@@ -406,7 +406,7 @@ ESVIJI.game = (function() {
     var thisone = false;
     $('.highscores li').remove();
     for (i = 0; i < 10; i++) {
-      if (undefined !== highScores[i] && 0 !== highScores[i].score) {
+      if (highScores[i] !== undefined && highScores[i].score !== 0) {
         if (lastGameDate === highScores[i].date) {
           thisone = true;
           $('.highscores').append('<li class="thisone">' + highScores[i].score + '</li>');
@@ -416,7 +416,7 @@ ESVIJI.game = (function() {
       }
     }
 
-    if (!thisone && '' !== lastGameDate && undefined !== lastGameScore) {
+    if (!thisone && lastGameDate !== '' && lastGameScore !== undefined) {
       $('.highscores').append('<li>…</li>');
       $('.highscores').append('<li class="tryagain">' + lastGameScore + '</li>');
     }
@@ -473,7 +473,7 @@ ESVIJI.game = (function() {
 
     if (validBalls.length === 0) {
       // no more valid ball, end of the turn
-      if (null !== drawnCurrentBall) {
+      if (drawnCurrentBall !== null) {
         drawnCurrentBall.remove(); // TODO: animate
         drawnCurrentBall = null;
       }
@@ -510,7 +510,7 @@ ESVIJI.game = (function() {
           }, false);
 
         notPlayableAnimMain.addEventListener('endEvent', notPlayable, false);
-        if (null !== drawnCurrentBall) {
+        if (drawnCurrentBall !== null) {
           drawnCurrentBall.append(notPlayableAnimMain);
         }
 
@@ -533,7 +533,7 @@ ESVIJI.game = (function() {
         storeSet('gameStatus', gameStatus);
         useStored = false;
         if (gameStatus.playing) {
-          if (null !== drawnCurrentBall && undefined !== drawnCurrentBall) {
+          if (drawnCurrentBall !== null && drawnCurrentBall !== undefined) {
             drawnCurrentBall.remove();
           }
 
@@ -552,7 +552,7 @@ ESVIJI.game = (function() {
   }
 
   function notPlayable() {
-    if (null !== drawnCurrentBall) {
+    if (drawnCurrentBall !== null) {
       drawnCurrentBall.remove();
     }
 
@@ -1206,8 +1206,8 @@ ESVIJI.game = (function() {
   }
 
   function gameOver() {
-    var l = highScores.length,
-        positioned = false;
+    var l = highScores.length;
+    var positioned = false;
 
     // Google Analytics tracking of level and score at the end of the game
     offlineAnalytics.push({ name: 'level', value: gameStatus.level });
@@ -1222,18 +1222,20 @@ ESVIJI.game = (function() {
           highScores[j] = highScores[j - 1];
         }
 
-        highScores[i] = { 'score': lastGameScore, 'date': lastGameDate};
+        highScores[i] = { score: lastGameScore, date: lastGameDate};
         positioned = true;
       }
     }
+
     if (!positioned) {
-      highScores[l] = { 'score': lastGameScore, 'date': lastGameDate};
+      highScores[l] = { score: lastGameScore, date: lastGameDate};
     }
+
     // TODO: keep only 10 scores? No limit now.
     storeSet('highScores', highScores);
     gameStatus.playing = false;
     storeSet('gameStatus', {
-      'playing': false
+      playing: false,
     });
 
     showScores();
@@ -1246,7 +1248,10 @@ ESVIJI.game = (function() {
     playSound('soundLifeDown');
     drawLives();
     $('#play .lives').attr('class', 'lives changeDown');
-    window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
+    window.setTimeout(function() {
+        $('#play .lives').attr('class', 'lives');
+      }, 2000);
+
     if (gameStatus.lives === 0) {
       gameOver();
     }
@@ -1265,7 +1270,10 @@ ESVIJI.game = (function() {
     gameStatus.score += ESVIJI.settings.points(scoreToAdd);
     increaseScore();
     $('#play .score').attr('class', 'score changeUp');
-    window.setTimeout(function() { $('#play .score').attr('class', 'score'); }, 2000);
+    window.setTimeout(function() {
+        $('#play .score').attr('class', 'score');
+      }, 2000);
+
     hundreds = Math.floor(gameStatus.score / ESVIJI.settings.extraLifePoints) - Math.floor(oldScore / ESVIJI.settings.extraLifePoints);
     if (hundreds > 0) {
       addLives(hundreds);
@@ -1320,7 +1328,7 @@ ESVIJI.game = (function() {
 
   return {
     init: init,
-    viewportOptimize: viewportOptimize
+    viewportOptimize: viewportOptimize,
   };
 })();
 
