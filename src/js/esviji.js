@@ -1126,6 +1126,19 @@ ESVIJI.game = (function() {
       });
     }
 
+    var ref = $('#' + refId);
+    if ($(ref).attr('width') !== undefined) {
+      use.attr({
+        width: $(ref).attr('width'),
+      });
+    }
+
+    if ($(ref).attr('height') !== undefined) {
+      use.attr({
+        height: $(ref).attr('height'),
+      });
+    }
+
     use.get(0).setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#' + refId);
     return use;
   }
