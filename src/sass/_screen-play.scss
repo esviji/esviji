@@ -182,7 +182,7 @@ section#play {
     .progress {
       position: absolute;
       left: $margins;
-      height: auto; // TODO: ?
+      height: auto !important;
 
       .score {
         padding: 0;
