@@ -153,7 +153,6 @@ ESVIJI.game = (function() {
         },
         preferences: {
           sound: true,
-          vibration: true,
         },
       };
     }
@@ -191,6 +190,9 @@ ESVIJI.game = (function() {
       gameStatus.preferences.difficulty = undefined;
       highScores = highScores.Crazy;
       storeSet('highScores', highScores);
+
+      // no more vibration
+      gameStatus.preferences.vibration = undefined;
     }
 
     // Available sounds
