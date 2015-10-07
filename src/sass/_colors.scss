@@ -1,9 +1,4 @@
-$backgroundColor: #444;
-$textColor: #fff;
-
-$goodColor: #27ae60;
-$badColor: #c0392b;
-
+// Colors palette
 $colorOrangeLight: #f39c12;
 $colorOrangeDark: #e67e22;
 $colorGreenLight: #2ecc71;
@@ -16,3 +11,11 @@ $colorBrownLight: #aa8866;
 $colorBrownDark: #776655;
 $colorRedLight: #e74c3c;
 $colorRedDark: #c0392b;
+
+// Global colors
+$backgroundColor: #444;
+$textColor: #fff;
+$buttonColor: #ccc;
+
+$goodColor: $colorGreenDark;
+$badColor: $colorRedDark;
