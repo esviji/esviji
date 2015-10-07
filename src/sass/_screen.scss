@@ -42,8 +42,17 @@ section {
       a {
         display: flex;
         flex-direction: column;
-        color: #ccc;
+        color: $buttonColor;
         text-decoration: none;
+        outline: none;
+
+        &:focus, &:hover {
+          color: $colorBlueLight;
+
+          svg * {
+            fill: $colorBlueLight;
+          }
+        }
       }
 
       svg {
