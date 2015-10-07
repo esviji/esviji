@@ -53,10 +53,13 @@ ESVIJI.settings = {
     return Math.pow(nbHits, 4);
   },
 
+  // One extra life every 100 points
   extraLifePoints: 100,
-  extraLifeLevel: 0,
 
-  // game info at new turn start
+  // One extra life every time a new level is finished
+  extraLifeLevel: 1,
+
+  // Game info at new turn start
   turn: {
     posX: 9,
     dirX: -1,
@@ -119,12 +122,11 @@ ESVIJI.game = (function() {
     } else {
       // Add this message using JS to prevent indexing it in search engines
       $('#description p.icon').before('<p>Your browser doesn\'t seem to support inline SVG. Learn about this game on <a href="http://esviji.com/">esviji.com</a>.</p>');
-
-      // $('svg').hide();
       return;
     }
 
     if (Modernizr.touch) {
+      // Prevent double events for touch + click
       // TODO: Should not be necessary, devices can have both mouse and touch
       clickType = 'touchstart';
     }
@@ -235,8 +237,6 @@ ESVIJI.game = (function() {
       event.preventDefault();
       showScreen('about');
     });
-
-    // $('#home .controls .tutorial').bind('click', startTutorial);
 
     // Play screen buttons
     $('#play .controls .pause').bind('click', function(event) {
