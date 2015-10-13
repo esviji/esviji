@@ -337,6 +337,7 @@ ESVIJI.game = (function() {
       $('#' + gameStatus.currentScreen).attr('aria-hidden', 'true');
     }
 
+    // Show new screen
     $('#' + screen).attr('aria-hidden', 'false');
     gameStatus.currentScreen = screen;
 
