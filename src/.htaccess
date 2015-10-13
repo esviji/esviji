@@ -1,11 +1,9 @@
-AddType image/svg+xml svg
-AddType text/cache-manifest appcache
-AddType application/x-web-app-manifest+json webapp
-AddType audio/mpeg mp3
-AddType application/ogg ogg
-
-# http://www.w3.org/TR/WOFF/#appendix-b
-AddType application/font-woff woff
+AddType image/svg+xml                         svg
+AddType application/x-web-app-manifest+json   webapp
+AddType audio/mpeg                            mp3
+AddType application/ogg                       ogg
+AddType application/font-woff                 woff
+AddType application/font-woff2                woff2
 
 <IfModule mod_expires.c>
   ExpiresActive On
