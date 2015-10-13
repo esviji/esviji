@@ -386,18 +386,6 @@ ESVIJI.game = (function() {
     run();
   }
 
-  function startTutorial() {
-    showScreen('tutorial');
-    $('#tutorial .pauseButton').one(clickType, endTutorial);
-    $('#tutoAnimEnd')[0].addEventListener('endEvent', endTutorial, false);
-    $('#tutoAnimStart')[0].beginElement();
-  }
-
-  function endTutorial(event) {
-    event.preventDefault();
-    showScreen('home');
-  }
-
   function startScores(event) {
     event.preventDefault();
     showScores();
