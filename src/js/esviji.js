@@ -303,6 +303,8 @@ ESVIJI.game = (function() {
     var vw = document.body.clientWidth;
     var vh = document.body.clientHeight;
 
+    console.info('Aspect ratio: ' + vw / (vh / 24) + '/24');
+
     if (viewportWidth != vw || viewportHeight != vh) {
       var b = document.getElementById('board');
       var c = getComputedStyle(b);
@@ -314,8 +316,6 @@ ESVIJI.game = (function() {
       boardHeight = ESVIJI.settings.board.height / ESVIJI.settings.board.width * boardWidth;
 
       boardOffsetY = vh - boardHeight;
-
-      console.info('Aspect ratio: ' + vw / (vh / 24) + '/24');
     }
   }
 
