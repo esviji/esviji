@@ -329,6 +329,10 @@ ESVIJI.game = (function() {
   }
 
   function showScreen(screen) {
+    // Remove focus from the button that led to this screen
+    $(':focus').trigger('blur');
+
+    // Hide current screen only if there's one…
     if (gameStatus.currentScreen !== '') {
       $('#' + gameStatus.currentScreen).attr('aria-hidden', 'true');
     }
