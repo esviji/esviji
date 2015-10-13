@@ -13,3 +13,4 @@ AddType application/font-woff2                woff2
 FileETag None
 
 RewriteEngine On
+RewriteRule ^(play|pause|scores|about)$ / [R=301,L]
