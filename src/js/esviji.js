@@ -1354,5 +1354,11 @@ document.addEventListener('DOMContentLoaded', function() {
   ESVIJI.game.init();
 });
 
-window.addEventListener('resize', ESVIJI.game.viewportOptimize);
-window.addEventListener('orientationchange', ESVIJI.game.viewportOptimize);
+// Optimize viewport and board sizes after resize and orientation change
+window.addEventListener('resize', function() {
+    window.setTimeout(ESVIJI.game.viewportOptimize, 500);
+  });
+
+window.addEventListener('orientationchange', function() {
+    window.setTimeout(ESVIJI.game.viewportOptimize, 500);
+  });
