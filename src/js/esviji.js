@@ -303,20 +303,23 @@ ESVIJI.game = (function() {
     var vw = document.body.clientWidth;
     var vh = document.body.clientHeight;
 
-    console.info('Aspect ratio: ' + vw / (vh / 24) + '/24');
-
     if (viewportWidth != vw || viewportHeight != vh) {
-      var b = document.getElementById('board');
-      var c = getComputedStyle(b);
-
       viewportWidth = vw;
       viewportHeight = vh;
-
-      boardWidth = parseInt(c.width, 10);
-      boardHeight = ESVIJI.settings.board.height / ESVIJI.settings.board.width * boardWidth;
-
-      boardOffsetY = vh - boardHeight;
+      console.info('Aspect ratio: ' + vw / (vh / 24) + '/24');
     }
+
+    var boardElement = document.getElementById('board');
+    var boardStyles = getComputedStyle(boardElement);
+
+    boardWidth = parseInt(boardStyles.width, 10);
+    boardHeight = parseInt(boardStyles.height, 10);
+
+    boardOffsetY = viewportHeight - boardHeight;
+
+    // console.log('vw = ' + vw + ' / vh = ' + vh);
+    // console.log('boardWidth = ' + boardWidth + ' / boardHeight = ' + boardHeight);
+    // console.log('boardOffsetY = ', boardOffsetY);
   }
 
   function run() {
