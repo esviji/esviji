@@ -542,8 +542,15 @@ ESVIJI.game = (function() {
           $('#play .playzone').on('touchcancel', startNewTurn);
           Mousetrap.bind('up', keyUp);
           Mousetrap.bind('down', keyDown);
+
+          // TODO: unbind keystrokes when leaving pause screen, the following doesn't work
+          Mousetrap.unbind(['enter', 'space']);
+
           Mousetrap.bind(['enter', 'space'], keyEnter);
           Mousetrap.bind('esc', startNewTurn);
+          Mousetrap.bind('p', function() {
+            showScreen('pause');
+          });
         }
       }
     }
