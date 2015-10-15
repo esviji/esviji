@@ -472,7 +472,8 @@ ESVIJI.game = (function() {
     if (validBalls.length === 0) {
       // no more valid ball, end of the turn
       if (drawnCurrentBall !== null) {
-        drawnCurrentBall.remove(); // TODO: animate
+        // TODO: animate
+        drawnCurrentBall.remove();
         drawnCurrentBall = null;
       }
 
@@ -542,9 +543,6 @@ ESVIJI.game = (function() {
           $('#play .playzone').on('touchcancel', startNewTurn);
           Mousetrap.bind('up', keyUp);
           Mousetrap.bind('down', keyDown);
-
-          // TODO: unbind keystrokes when leaving pause screen, the following doesn't work
-          Mousetrap.unbind(['enter', 'space']);
 
           Mousetrap.bind(['enter', 'space'], keyEnter);
           Mousetrap.bind('esc', startNewTurn);
