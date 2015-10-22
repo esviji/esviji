@@ -3,13 +3,36 @@
  * ********************************************************************/
 
 #about {
-	.description {
+	.about {
 		margin: 5vmin;
-		font-size: 4vmin;
+		display: flex;
+		flex-direction: column;
 
+		@media (min-aspect-ratio: 24/24) {
+			flex-direction: row;
+		}
+	}
+
+	.description {
 		a:link, a:visited {
 			color: $colorBlueLight;
 			text-decoration: underline;
+		}
+
+		@media (min-aspect-ratio: 24/24) {
+			flex: 2;
+		}
+	}
+
+	.social {
+		text-align: center;
+		display: flex;
+		justify-content: center;
+
+		a {
+			width: 3.5em;
+			height: 3.5em;
+			margin: 1em;
 		}
 	}
 }
