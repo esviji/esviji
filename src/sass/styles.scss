@@ -10,8 +10,8 @@
 
 @font-face {
   font-family: "SansitaOneRegular";
-  src: url("font/sansitaone-webfont.woff") format("woff"),
-       url("font/sansitaone-webfont.svg#SansitaOneRegular") format("svg"); // only for Android
+  src: url("font/sansitaone-webfont.woff2") format("woff2"),
+       url("font/sansitaone-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
