@@ -345,7 +345,7 @@ ESVIJI.game = (function() {
     gameStatus.currentScreen = screen;
 
     // "Show" current screen in URL
-    history.pushState(null, '/' + screen, (screen === 'home' ? '/' : screen));
+    // history.pushState(null, '/' + screen, (screen === 'home' ? '/' : screen));
 
     // Google Analytics tracking of activated screen
     offlineAnalytics.push({ name: 'view', value: '/' + (screen === 'home' ? '' : screen) });
