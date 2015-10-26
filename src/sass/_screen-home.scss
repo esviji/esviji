@@ -1,0 +1,92 @@
+/* ********************************************************************
+ * Home screen
+ * ********************************************************************/
+
+section#home {
+  header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      font-size: 25vmin;
+      text-align: center;
+      margin: 3vmin 0;
+    }
+
+    .logo {
+      display: block;
+      width: 45vmin;
+      height: auto;
+      margin: 10vmin auto;
+      padding: 0;
+    }
+
+    @media (min-aspect-ratio: 17/24) {
+      flex-direction: row-reverse;
+      justify-content: space-around;
+
+      h1 {
+        font-size: 20vw;
+      }
+
+      .logo {
+        width: 20vw;
+        height: 20vw;
+        margin: 3vw 0;
+      }
+    }
+
+    @media (min-aspect-ratio: 20/24) {
+      margin-top: calc(90vh - 70vw);
+    }
+
+    @media (min-aspect-ratio: 30/24) {
+      margin-top: 0;
+    }
+
+    @media (min-aspect-ratio: 36/24) {
+      h1 {
+        font-size: 30vh;
+      }
+
+      .logo {
+        width: 30vh;
+        height: auto;
+        margin: 4.5vh 0;
+      }
+    }
+  }
+
+  .controls {
+    .play img {
+      animation-name: pulse;
+      animation-duration: .5s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: ease-out;
+    }
+
+    .sound {
+      .on { display: none; }
+      .off { display: block; }
+
+      &.on {
+        .on { display: block; }
+        .off { display: none; }
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}

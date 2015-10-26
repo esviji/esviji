@@ -17,7 +17,6 @@ I never found a satisfying name for this game, so I now took "esviji", a word ga
 
 esviji is open source, under MIT licence, feel free to <a href="https://github.com/nhoizey/esviji">fork it on Github</a>, make pull requests and open issues for bugs and improvement ideas.
 
-
 ## Supported platforms
 
 ### Known to work on
@@ -38,7 +37,7 @@ Aggregated analytics data is collected through Google Analytics and is only used
 ## Building blocks
 
 - JavaScript, with a little bit of jQuery
-- [Matthias](http://twitter.com/madsgraphics)'s awesome [SVGEventListener polyfil](https://github.com/madsgraphics/SVGEventListener) for SVG animate events in webkit
+- [Matthias](http://twitter.com/m4d_z)'s awesome [SVGEventListener polyfil](https://github.com/m4dz/SVGEventListener) for SVG animate events in webkit
 - [Craig Campbell](http://craig.is/)'s [mousetrap](http://craig.is/killing/mice) for keyboard controls
 - [Marcus Westin](http://twitter.com/marcuswestin)'s [store.js](https://github.com/marcuswestin/store.js) for localStorage wrapper
 - [GoldFire Studios](https://twitter.com/GoldFireStudios)'s [Howler.js](https://github.com/goldfire/howler.js) for sounds playing
@@ -49,7 +48,7 @@ Aggregated analytics data is collected through Google Analytics and is only used
 - [Jérémie](http://twitter.com/JeremiePat) for [inspiration about SVG](http://jeremie.patonnier.net/tag/SVG)'s [power](http://jeremie.patonnier.net/experiences/parisweb2011/animation.svg) and assistance finding great docs in [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/SVG)
 - [Karl](http://twitter.com/karlpro) for his kind assistance on Opera issues (some were real bugs, some were my own mistakes)
 - [Anthony](http://twitter.com/rik24d) for his kind assistance on Firefox issues (again, some were real bugs, some where MDN errors, some were my own mistakes)
-- [Matthias](http://twitter.com/madsgraphics) for his SVG animate events polyfil
+- [Matthias](http://twitter.com/m4d_z) for his SVG animate events polyfil
 - [Vincent](http://twitter.com/htmlzg) for the logo following [Firefox OS app icon design principles](http://www.mozilla.org/en-US/styleguide/products/firefoxos/icons/)
 
 ## To do
@@ -68,7 +67,7 @@ Please use the ```.editorconfig``` file in order to set the right usage of tabs/
 
 esviji is released under the MIT License.
 
-Copyright (c) 1992-2014 Nicolas Hoizey <nicolas@hoizey.com>
+Copyright (c) 1992-2015 Nicolas Hoizey <nicolas@hoizey.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -76,3 +75,19 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+## Credits
+
+All these icons come from [The Noun Project](http://thenounproject.com/) and are available under [Creative Commons Attribution (CC BY 3.0)](http://creativecommons.org/licenses/by/3.0/us/) license :
+
+- [Play](http://thenounproject.com/term/play/5206/) by [Michael Rowe](http://thenounproject.com/Mikhail1986)
+- [Speaker](http://thenounproject.com/term/speaker/10453/) and [Mute](http://thenounproject.com/term/mute/10454/) by [Vania Platonov](http://thenounproject.com/vaniaplatonov)
+- [Ribbon](http://thenounproject.com/term/ribbon/3391/) by [Nicolò Bertoncin](http://thenounproject.com/nicolo.bertoncin)
+- [Information](http://thenounproject.com/term/information/9867/) by [Phil Goodwin](http://thenounproject.com/Fhlcreative/)
+- [Heart](http://thenounproject.com/term/heart/11793/) by [Michael Zenaty](http://thenounproject.com/Michzen)
+- [Ladder](http://thenounproject.com/term/ladder/17895/) by [Michael Rowe](http://thenounproject.com/Mikhail1986/)
+- [Reload](http://thenounproject.com/term/reload/31938/) by [Simple Icons](http://www.thenounproject.com/SimpleIcons)
+- [Home](http://thenounproject.com/term/home/1144/) by [Jeremy J Bristol](http://thenounproject.com/jeremy.j.bristol/)
+
+This icon is in the public domain:
+
+- [Pause](http://thenounproject.com/term/pause/5489/) by [dsathiyaraj](http://thenounproject.com/dsathiyaraj)

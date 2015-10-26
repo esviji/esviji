@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/css" href="css/svg.css"?>
+<svg version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="board" viewBox="0 0 320 430" width="100%" height="100%" preserveAspectRatio="xMidYMax meet">
+  <defs>
+    <polygon id="rock" points="0,0 0,32 32,32 32,0" stroke-width="0" fill="#444" />
+    <svg id="ball1" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball1" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">1</text>
+    </svg>
+    <svg id="ball2" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball2" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">2</text>
+    </svg>
+    <svg id="ball3" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball3" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">3</text>
+    </svg>
+    <svg id="ball4" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball4" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">4</text>
+    </svg>
+    <svg id="ball5" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball5" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">5</text>
+    </svg>
+    <svg id="ball6" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="ball">
+      <circle class="ball6" stroke-width="1" cx="16" cy="16" r="15" />
+      <text x="16" y="21">6</text>
+    </svg>
+    <symbol id="spring" width="32" height="16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,16 L8,0 L8,16 L16,0 L16,16 L24,0 L24,16 L32,0 L32,16" style="stroke-width: 2; stroke: #333; fill: none;" />
+    </symbol>
+  </defs>
+  <g id="tutorialPanel">
+    <path class="playzone" d="M4,426 L4,184 Q4,166 20,166 L36,166 L36,150 Q36,132 52,132 L68,132 L68,116 Q68,100 84,100 L100,100 L100,84 Q100,68 116,68 L132,68 L132,52 Q132,36 148,36 L164,36 L164,20 Q164,4 180,4 L316,4 L316,426" style="stroke-width: 0; fill: #777;" />
+
+    <use id="tutoBall11" xlink:href="#ball2" x="4" y="394"/>
+    <use id="tutoBall12" xlink:href="#ball5" x="4" y="362"/>
+    <use id="tutoBall13" xlink:href="#ball1" x="4" y="330"/>
+    <use id="tutoBall14" xlink:href="#ball2" x="4" y="298"/>
+    <use id="tutoBall15" xlink:href="#ball2" x="4" y="266"/>
+    <use id="tutoBall16" xlink:href="#ball1" x="4" y="234"/>
+    <use id="tutoBall17" xlink:href="#ball4" x="4" y="202"/>
+    <use id="tutoBall21" xlink:href="#ball4" x="36" y="394"/>
+    <use id="tutoBall22" xlink:href="#ball6" x="36" y="362"/>
+    <use id="tutoBall23" xlink:href="#ball3" x="36" y="330"/>
+    <use id="tutoBall24" xlink:href="#ball5" x="36" y="298"/>
+    <use id="tutoBall25" xlink:href="#ball3" x="36" y="266"/>
+    <use id="tutoBall26" xlink:href="#ball5" x="36" y="234"/>
+    <use id="tutoBall27" xlink:href="#ball4" x="36" y="202"/>
+    <use id="tutoBall31" xlink:href="#ball5" x="68" y="394"/>
+    <use id="tutoBall32" xlink:href="#ball2" x="68" y="362"/>
+    <use id="tutoBall33" xlink:href="#ball2" x="68" y="330"/>
+    <use id="tutoBall34" xlink:href="#ball6" x="68" y="298"/>
+    <use id="tutoBall35" xlink:href="#ball2" x="68" y="266"/>
+    <use id="tutoBall36" xlink:href="#ball4" x="68" y="234"/>
+    <use id="tutoBall37" xlink:href="#ball5" x="68" y="202"/>
+    <use id="tutoBall41" xlink:href="#ball5" x="100" y="394"/>
+    <use id="tutoBall42" xlink:href="#ball5" x="100" y="362"/>
+    <use id="tutoBall43" xlink:href="#ball4" x="100" y="330" />
+    <use id="tutoBall44" xlink:href="#ball1" x="100" y="298" />
+    <use id="tutoBall45" xlink:href="#ball4" x="100" y="266" />
+    <use id="tutoBall46" xlink:href="#ball3" x="100" y="234" />
+    <use id="tutoBall47" xlink:href="#ball1" x="100" y="202" />
+    <use id="tutoBall51" xlink:href="#ball2" x="132" y="394"/>
+    <use id="tutoBall52" xlink:href="#rock" x="132" y="362"/>
+    <use id="tutoBall53" xlink:href="#ball4" x="132" y="330" />
+    <use id="tutoBall54" xlink:href="#ball4" x="132" y="298" />
+    <use id="tutoBall55" xlink:href="#ball3" x="132" y="266" />
+    <use id="tutoBall56" xlink:href="#ball2" x="132" y="234" />
+    <use id="tutoBall57" xlink:href="#ball3" x="132" y="202" />
+    <use id="tutoBall61" xlink:href="#ball2" x="164" y="394"/>
+    <use id="tutoBall62" xlink:href="#ball1" x="164" y="362"/>
+    <use id="tutoBall63" xlink:href="#ball4" x="164" y="330" />
+    <use id="tutoBall64" xlink:href="#ball2" x="164" y="298" />
+    <use id="tutoBall65" xlink:href="#ball5" x="164" y="266" />
+    <use id="tutoBall66" xlink:href="#ball2" x="164" y="234" />
+    <use id="tutoBall67" xlink:href="#ball2" x="164" y="202" />
+
+    <use id="tutoPlayable" xlink:href="#ball4" x="252" y="170" />
+    <use id="tutoSpring" xlink:href="#spring" />
+
+    <animateTransform id="bounceBall" xlink:href="#tutoPlayable" attributeType="xml" attributeName="transform" type="translate" calcMode="spline" keySplines="0 0.25 0.75 1;0 0.25 0.75 1" keyTimes="0;0.6;1" values="0,0;16,0;0,0" begin="0" dur="0.8s" repeatCount="indefinite" />
+
+    <animateTransform id="bounceSpring1" xlink:href="#tutoSpring" attributeType="xml" attributeName="transform" type="translate" values="316,194" begin="bounceBall.begin" dur="0.8s" repeatCount="indefinite" />
+    <animateTransform id="bounceSpring2" xlink:href="#tutoSpring" attributeType="xml" attributeName="transform" type="scale" values="-1;-1" begin="bounceBall.begin" dur="0.8s" repeatCount="indefinite" additive="sum" />
+    <animateTransform id="bounceSpring3" xlink:href="#tutoSpring" attributeType="xml" attributeName="transform" type="scale" calcMode="spline" keySplines="0 0.25 0.75 1;0 0.25 0.75 1" keyTimes="0;0.6;1" values="1,1;0.5,1;1,1" begin="bounceBall.begin" dur="0.8s" repeatCount="indefinite" additive="sum" />
+  </g>
+</svg>

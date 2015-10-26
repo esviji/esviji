@@ -1,0 +1,137 @@
+/* ********************************************************************
+ * For all screens
+ * ********************************************************************/
+
+section {
+  max-width: 150vh;
+  margin: 0 auto;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  h2 {
+    font-size: 10vmin;
+    text-align: center;
+    margin: 3vmin 0;
+  }
+
+  .controls {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    font-size: calc(3vh - 3vw);
+    line-height: 2;
+
+    li {
+      text-align: center;
+      width: 99vw;
+      padding-bottom: 8vw;
+
+      a {
+        display: flex;
+        flex-direction: column;
+        color: $buttonColor;
+        text-decoration: none;
+        outline: none;
+
+        &:focus, &:hover {
+          color: $colorBlueLight;
+
+          svg * {
+            fill: $colorBlueLight;
+          }
+        }
+      }
+
+      svg {
+        width: calc(15vh - 20vw);
+        height: calc(15vh - 20vw);
+        max-width: 100px;
+        max-height: 100px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (min-aspect-ratio: 7/24) {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      font-size: 3vh;
+
+      li {
+        width: 49vw;
+
+        svg {
+          width: calc(14vh - 10vw);
+          height: calc(14vh - 10vw);
+        }
+      }
+    }
+
+    @media (min-aspect-ratio: 14/24) {
+      li {
+        width: 24vw;
+
+        svg {
+          width: 18vw;
+          height: 18vw;
+        }
+      }
+    }
+
+    @media (min-aspect-ratio: 17/24) {
+      li {
+        width: 49vw;
+
+        svg {
+          width: 25vw;
+          height: 25vw;
+        }
+      }
+    }
+
+    @media (min-aspect-ratio: 20/24) {
+      font-size: 3vw;
+
+      li {
+        width: 22vw;
+
+        svg {
+          width: 16vw;
+          height: 16vw;
+        }
+      }
+    }
+
+    @media (min-aspect-ratio: 36/24) {
+      li {
+        width: 30vh; // ~ 150vh / 4 = max-width (37vh gives a bug on iPad)
+
+        svg {
+          width: 24vh; // < 150vh / 4 = max-width
+          height: 24vh;
+        }
+      }
+    }
+
+    @media (min-aspect-ratio: 42/24) {
+      font-size: 5.5vh;
+
+      li {
+        padding-bottom: 14vh;
+      }
+    }
+  }
+}

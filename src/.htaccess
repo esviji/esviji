@@ -1,22 +1,16 @@
-AddType image/svg+xml svg
-AddType text/cache-manifest appcache
-AddType application/x-web-app-manifest+json webapp
-AddType audio/mpeg mp3
-AddType application/ogg ogg
-
-# http://www.w3.org/TR/WOFF/#appendix-b
-AddType application/font-woff woff
+AddType image/svg+xml                         svg
+AddType application/x-web-app-manifest+json   webapp
+AddType audio/mpeg                            mp3
+AddType application/ogg                       ogg
+AddType application/font-woff                 woff
+AddType application/font-woff2                woff2
 
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresDefault "access plus 5 seconds"
-  #ExpiresByType text/cache-manifest  "access plus 5 seconds"
+  ExpiresDefault "access plus 1 year"
+	ExpiresByType text/cache-manifest "access plus 1 seconds"
 </IfModule>
 FileETag None
 
-# DISCLAIMER: User Agent sniffing is bad, I know
-# This is used to tell iOS devices to use another appcache file
-# because it doesn't cache audio files
-RewriteEngine On
-RewriteCond %{HTTP_USER_AGENT} (iPad|iPhone|iPod) [NC]
-RewriteRule ^manifest.appcache$ /manifest_ios.appcache [L]
+# RewriteEngine On
+# RewriteRule ^(play|pause|scores|about)$ / [R=301,L]
