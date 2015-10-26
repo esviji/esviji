@@ -115,18 +115,39 @@ section#play {
       }
     }
 
-    #playable {
+    #playable, #playableSpring {
       pointer-events: none;
 
       &:hover {
         cursor: pointer;
       }
+
+      &.throwable {
+        animation-delay: 0;
+        animation-duration: .7s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+      }
     }
 
-    #spring {
+    #playable {
+      transform-origin: 294px center;
+
+      &.throwable {
+        animation-name: ballAnimation;
+      }
+    }
+
+    #playableSpring {
       stroke-width: 2;
-      stroke: #333;
+      stroke: #cee;
       fill: none;
+      transform-origin: 308px center;
+      transform: scaleX(.5);
+
+      &.throwable {
+        animation-name: springAnimation;
+      }
     }
   }
 
@@ -281,4 +302,16 @@ section#play {
       font-size: 9vh;
     }
   }
+}
+
+@keyframes ballAnimation {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-16px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes springAnimation {
+  0% { transform: scaleX(.5); }
+  50% { transform: scaleX(1); }
+  100% { transform: scaleX(.5); }
 }

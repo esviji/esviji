@@ -84,6 +84,7 @@ ESVIJI.game = (function() {
   var drawnCurrentBalls = [];
   var validBalls = [];
   var drawnCurrentBall = null;
+  var drawnSpring = null;
   var stackedAnimationToStart = 1;
   var lastStackedAnimation = 0;
   var currentPosX = 0;
@@ -365,6 +366,12 @@ ESVIJI.game = (function() {
       }
 
       drawnCurrentBall = null;
+
+      if (drawnSpring !== null) {
+        drawnSpring.remove();
+      }
+
+      drawnSpring = null;
     }
 
     showScreen('play');
@@ -386,6 +393,9 @@ ESVIJI.game = (function() {
     eraseBalls();
     if (drawnCurrentBall !== null) {
       drawnCurrentBall.remove();
+    }
+    if (drawnSpring !== null) {
+      drawnSpring.remove();
     }
 
     storeSet('gameStatus', {
@@ -472,9 +482,13 @@ ESVIJI.game = (function() {
     if (validBalls.length === 0) {
       // no more valid ball, end of the turn
       if (drawnCurrentBall !== null) {
-        // TODO: animate
         drawnCurrentBall.remove();
         drawnCurrentBall = null;
+      }
+
+      if (drawnSpring !== null) {
+        drawnSpring.remove();
+        drawnSpring = null;
       }
 
       if (ESVIJI.settings.extraLifeLevel > 0) {
@@ -484,11 +498,10 @@ ESVIJI.game = (function() {
         window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
       }
 
-      // Push to the server levels completed without any life lost
-      if (gameStatus.levelReplay.lostLives === 0) {
-        // TODO: call the API
-        //console.log(JSON.stringify(gameStatus.levelReplay));
-      }
+      // TODO: Push to the server levels completed without any life lost
+      // if (gameStatus.levelReplay.lostLives === 0) {
+      //  console.log(JSON.stringify(gameStatus.levelReplay));
+      // }
 
       makeEverythingFall();
     } else {
@@ -532,18 +545,31 @@ ESVIJI.game = (function() {
         storeSet('gameStatus', gameStatus);
         useStored = false;
         if (gameStatus.playing) {
+          // draw ball and spring
           if (drawnCurrentBall !== null && drawnCurrentBall !== undefined) {
             drawnCurrentBall.remove();
           }
 
+          if (drawnSpring !== null && drawnSpring !== undefined) {
+            drawnSpring.remove();
+          }
+
           drawnCurrentBall = drawBall(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
+          drawnCurrentBall.attr({
+            class: 'throwable',
+          });
+          drawnSpring = drawSpring(xToSvg(currentPosX), yToSvg(currentPosY));
+          drawnSpring.attr({
+            class: 'throwable',
+          });
+
+          // bind events
           $('#play .playzone').on('mousedown touchstart', cursorStart);
           $('#play .playzone').on('mousemove touchmove', cursorMove);
           $('#play .playzone').on('mouseup touchend', cursorEnd);
           $('#play .playzone').on('touchcancel', startNewTurn);
           Mousetrap.bind('up', keyUp);
           Mousetrap.bind('down', keyDown);
-
           Mousetrap.bind(['enter', 'space'], keyEnter);
           Mousetrap.bind('esc', startNewTurn);
           Mousetrap.bind('p', function() {
@@ -560,6 +586,13 @@ ESVIJI.game = (function() {
     }
 
     drawnCurrentBall = null;
+
+    if (drawnSpring !== null) {
+      drawnSpring.remove();
+    }
+
+    drawnSpring = null;
+
     removeLife();
     gameStatus.currentBall = validBalls[Math.floor(Math.random() * validBalls.length)];
     startNewTurn();
@@ -571,12 +604,18 @@ ESVIJI.game = (function() {
     drawnCurrentBall.attr({
       y: cursorY,
     });
+    drawnSpring.attr({
+      y: cursorY,
+    });
   }
 
   function keyDown(event) {
     cursorY = Math.min(Math.max(yToSvg(currentPosY - 1), cursorMaxY), cursorMinY);
     currentPosY = svgToY(cursorY);
     drawnCurrentBall.attr({
+      y: cursorY,
+    });
+    drawnSpring.attr({
       y: cursorY,
     });
   }
@@ -591,9 +630,13 @@ ESVIJI.game = (function() {
     drawnCurrentBall.attr({
       class: '',
     });
+
     moveCount = 0;
     oldPosX = currentPosX;
     oldPosY = currentPosY;
+
+    drawnSpring.remove();
+    drawnSpring = null;
 
     cursorY = yToSvg(currentPosY);
     drawnCurrentBall.attr({
@@ -623,6 +666,9 @@ ESVIJI.game = (function() {
     drawnCurrentBall.attr({
       y: cursorY,
     });
+    drawnSpring.attr({
+      y: cursorY,
+    });
   }
 
   function cursorMove(event) {
@@ -637,6 +683,9 @@ ESVIJI.game = (function() {
     cursorY = Math.min(Math.max(pixelsToSvgY(event.pageY) - 16, cursorMaxY), cursorMinY);
     currentPosY = svgToY(cursorY);
     drawnCurrentBall.attr({
+      y: cursorY,
+    });
+    drawnSpring.attr({
       y: cursorY,
     });
   }
@@ -661,10 +710,15 @@ ESVIJI.game = (function() {
       currentPosY = svgToY(cursorY);
       drawnCurrentBall.attr({
         y: yToSvg(currentPosY),
+        class: '',
       });
+
       moveCount = 0;
       oldPosX = currentPosX;
       oldPosY = currentPosY;
+
+      drawnSpring.remove();
+      drawnSpring = null;
 
       gameStatus.levelReplay.sequence.push({
         ball: gameStatus.currentBall,
@@ -959,6 +1013,7 @@ ESVIJI.game = (function() {
       }
 
       drawnCurrentBall = drawBall(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
+      drawnSpring = drawSpring(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY));
     });
 
     makeBallsFall();
@@ -1119,6 +1174,16 @@ ESVIJI.game = (function() {
     });
     $('#board').append(ball);
     return ball;
+  }
+
+  function drawSpring(x, y) {
+    var spring = svgUse('spring', 'playableSpring');
+    spring.attr({
+      x: x + 16,
+      y: y,
+    });
+    $('#board').append(spring);
+    return spring;
   }
 
   function svgUse(refId, useId) {
