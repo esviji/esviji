@@ -1,5 +1,5 @@
 /*!
- * viewport-units-buggyfill v0.5.0
+ * viewport-units-buggyfill v0.5.5
  * @web: https://github.com/rodneyrehm/viewport-units-buggyfill/
  * @author: Rodney Rehm - http://rodneyrehm.de/en/
  */
@@ -30,7 +30,8 @@
   var dimensions;
   var declarations;
   var styleNode;
-  var isOldInternetExplorer = false;
+  var isBuggyIE = /MSIE [0-9]\./i.test(userAgent);
+  var isOldIE = /MSIE [0-8]\./i.test(userAgent);
   var isOperaMini = userAgent.indexOf('Opera Mini') > -1;
 
   var isMobileSafari = /(iPhone|iPod|iPad).+AppleWebKit/i.test(userAgent) && (function() {
@@ -65,22 +66,32 @@
     return versionNumber <= 4.4;
   })();
 
-  // Do not remove the following comment!
-  // It is a conditional comment used to
-  // identify old Internet Explorer versions
-
-  /*@cc_on
-
-  @if (@_jscript_version <= 10)
-    isOldInternetExplorer = true;
-  @end
-
-  @*/
-
   // added check for IE11, since it *still* doesn't understand vmax!!!
-  if (!isOldInternetExplorer) {
-    isOldInternetExplorer = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);
+  if (!isBuggyIE) {
+    isBuggyIE = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);
   }
+
+  // Polyfill for creating CustomEvents on IE9/10/11
+  // from https://github.com/krambuhl/custom-event-polyfill
+  try {
+    new CustomEvent('test');
+  } catch(e) {
+    var CustomEvent = function(event, params) {
+      var evt;
+      params = params || {
+            bubbles: false,
+            cancelable: false,
+            detail: undefined
+          };
+
+      evt = document.createEvent('CustomEvent');
+      evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+      return evt;
+    };
+    CustomEvent.prototype = window.Event.prototype;
+    window.CustomEvent = CustomEvent; // expose definition to window
+  }
+
   function debounce(func, wait) {
     var timeout;
     return function() {
@@ -119,10 +130,19 @@
     options.isMobileSafari = isMobileSafari;
     options.isBadStockAndroid = isBadStockAndroid;
 
-    if (!options.force && !isMobileSafari && !isOldInternetExplorer && !isBadStockAndroid && !isOperaMini && (!options.hacks || !options.hacks.required(options))) {
+    if (isOldIE || (!options.force && !isMobileSafari && !isBuggyIE && !isBadStockAndroid && !isOperaMini && (!options.hacks || !options.hacks.required(options)))) {
       // this buggyfill only applies to mobile safari, IE9-10 and the Stock Android Browser.
-      return;
+      if (window.console && isOldIE) {
+        console.info('viewport-units-buggyfill requires a proper CSSOM and basic viewport unit support, which are not available in IE8 and below');
+      }
+
+      return {
+        init: function () {}
+      };
     }
+
+    // fire a custom event that buggyfill was initialize
+    window.dispatchEvent(new CustomEvent('viewport-units-buggyfill-init'));
 
     options.hacks && options.hacks.initialize(options);
 
@@ -141,7 +161,7 @@
       // orientationchange might have happened while in a different window
       window.addEventListener('pageshow', _refresh, true);
 
-      if (options.force || isOldInternetExplorer || inIframe()) {
+      if (options.force || isBuggyIE || inIframe()) {
         window.addEventListener('resize', _refresh, true);
         options._listeningToResize = true;
       }
@@ -156,6 +176,8 @@
     styleNode.textContent = getReplacedViewportUnits();
     // move to the end in case inline <style>s were added dynamically
     styleNode.parentNode.appendChild(styleNode);
+    // fire a custom event that styles were updated
+    window.dispatchEvent(new CustomEvent('viewport-units-buggyfill-style'));
   }
 
   function refresh() {
@@ -230,6 +252,11 @@
 
     forEach.call(rule.style, function(name) {
       var value = rule.style.getPropertyValue(name);
+      // preserve those !important rules
+      if (rule.style.getPropertyPriority(name)) {
+        value += ' !important';
+      }
+
       viewportUnitExpression.lastIndex = 0;
       if (viewportUnitExpression.test(value)) {
         declarations.push([rule, name, value]);
@@ -348,8 +375,8 @@
     };
 
     forEach.call(document.styleSheets, function(sheet) {
-      if (!sheet.href || origin(sheet.href) === origin(location.href)) {
-        // skip <style> and <link> from same origin
+      if (!sheet.href || origin(sheet.href) === origin(location.href) || sheet.ownerNode.getAttribute('data-viewport-units-buggyfill') === 'ignore') {
+        // skip <style> and <link> from same origin or explicitly declared to ignore
         return;
       }
 
@@ -397,7 +424,7 @@
   }
 
   return {
-    version: '0.5.0',
+    version: '0.5.5',
     findProperties: findProperties,
     getCss: getReplacedViewportUnits,
     init: initialize,
