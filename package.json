@@ -18,7 +18,7 @@
     "grunt": "*",
     "grunt-autoprefixer": "^3.0.3",
     "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-compress": "^0.13.0",
+    "grunt-contrib-compress": "^0.14.0",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-copy": "^0.8.1",
     "grunt-contrib-cssmin": "^0.14.0",
@@ -35,6 +35,10 @@
     "grunt-sed": "~0.1.1",
     "grunt-usemin": "^3.1.1",
     "time-grunt": "^1.2.1",
-    "uglify-js": "~2.4.24"
+    "uglify-js": "~2.5.0"
+  },
+  "dependencies": {
+    "jsonfile": "^2.2.3",
+    "minimatch": "^3.0.0"
   }
 }
