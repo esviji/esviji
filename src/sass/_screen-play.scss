@@ -78,14 +78,19 @@ section#play {
   }
 
   .score, .lives, .level {
-    transition: color 1s ease-out;
+    display: inline-block;
+    transition-property: color, transform;
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
 
     &.changeDown {
       color: $badColor;
+      transform: scale(1.2);
     }
 
     &.changeUp {
       color: $goodColor;
+      transform: scale(1.2);
     }
   }
 

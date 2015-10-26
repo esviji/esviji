@@ -441,7 +441,7 @@ ESVIJI.game = (function() {
       $('#play .level').attr('class', 'level changeUp');
       window.setTimeout(function() {
           $('#play .level').attr('class', 'level');
-        }, 2000);
+        }, 1000);
 
       initBalls();
       drawBalls();
@@ -495,7 +495,7 @@ ESVIJI.game = (function() {
         gameStatus.lives += ESVIJI.settings.extraLifeLevel;
         drawLives();
         $('#play .lives').attr('class', 'lives changeUp');
-        window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
+        window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 1000);
       }
 
       // TODO: Push to the server levels completed without any life lost
@@ -1331,7 +1331,7 @@ ESVIJI.game = (function() {
     $('#play .lives').attr('class', 'lives changeDown');
     window.setTimeout(function() {
         $('#play .lives').attr('class', 'lives');
-      }, 2000);
+      }, 1000);
 
     if (gameStatus.lives === 0) {
       gameOver();
@@ -1343,7 +1343,7 @@ ESVIJI.game = (function() {
     playSound('soundLifeUp');
     drawLives();
     $('#play .lives').attr('class', 'lives changeUp');
-    window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 2000);
+    window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 1000);
   }
 
   function addScore(scoreToAdd) {
@@ -1353,7 +1353,7 @@ ESVIJI.game = (function() {
     $('#play .score').attr('class', 'score changeUp');
     window.setTimeout(function() {
         $('#play .score').attr('class', 'score');
-      }, 2000);
+      }, 1000);
 
     hundreds = Math.floor(gameStatus.score / ESVIJI.settings.extraLifePoints) - Math.floor(oldScore / ESVIJI.settings.extraLifePoints);
     if (hundreds > 0) {
