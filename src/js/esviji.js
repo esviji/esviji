@@ -106,7 +106,6 @@ ESVIJI.game = (function() {
   var gameStatus = { };
   var useStored = false;
   var sounds;
-  var clickType = 'click';
 
   // For viewport units issues
   var iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
@@ -152,15 +151,9 @@ ESVIJI.game = (function() {
       return;
     }
 
-    // if (iOS) {
+    if (iOS) {
       // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
       window.viewportUnitsBuggyfill.init({ force: true });
-    // }
-
-    if (Modernizr.touchevents) {
-      // Prevent double events for touch + click
-      // TODO: Should not be necessary, devices can have both mouse and touch
-      clickType = 'touchstart';
     }
 
     if (!ESVIJI.settings.version.match(/VERSION/)) {
