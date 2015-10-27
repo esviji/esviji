@@ -153,7 +153,10 @@ ESVIJI.game = (function() {
 
     if (iOS) {
       // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
-      window.viewportUnitsBuggyfill.init({ force: true });
+      window.viewportUnitsBuggyfill.init({
+        force: true,
+      });
+
     }
 
     if (!ESVIJI.settings.version.match(/VERSION/)) {
