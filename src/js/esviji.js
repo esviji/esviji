@@ -112,38 +112,63 @@ ESVIJI.game = (function() {
 
   // Initialization
   function init() {
-    if (Modernizr.svg && Modernizr.inlinesvg && Modernizr.smil) {
+    if (Modernizr.svg
+        && Modernizr.inlinesvg
+        && Modernizr.smil
+        && Modernizr.cssvwunit
+        && Modernizr.cssvhunit
+        && Modernizr.cssvminunit
+        && Modernizr.flexbox
+      ) {
       $('#description').hide();
     } else {
       // Add this message using JS to prevent indexing it in search engines
       var msg = '<p>Sorry, your can\'t play because your browser doesn\'t seem to support enough Web technologies. It lacks support for ';
       var nbMissing = 0;
+      var features = {
+        svg: {
+          feature: 'svg',
+          name: 'SVG',
+        },
+        inlinesvg: {
+          feature: 'svg-html5',
+          name: 'inline SVG',
+        },
+        smil: {
+          feature: 'svg-smil',
+          name: 'SVG SMIL animations',
+        },
+        cssvwunit: {
+          feature: 'viewport-units',
+          name: 'vw viewport unit',
+        },
+        cssvhunit: {
+          feature: 'viewport-units',
+          name: 'vh viewport unit',
+        },
+        cssvminunit: {
+          feature: 'viewport-units',
+          name: 'vmin viewport unit',
+        },
+        flexbox: {
+          feature: 'flexbox',
+          name: 'flexible box layout',
+        },
+      };
 
-      if (!Modernizr.svg) {
-        msg += '<a href="http://caniuse.com/#feat=svg">SVG</a>';
-        nbMissing++;
-      }
-
-      if (!Modernizr.inlinesvg) {
-        if (nbMissing > 0) {
-          if (Modernizr.smil) {
-            msg += ' and ';
-          } else {
+      for (var feature in features) {
+        if (!Modernizr[feature]) {
+          if (nbMissing > 0) {
             msg += ', ';
           }
-        }
 
-        msg += '<a href="http://caniuse.com/#feat=svg-html5">inline SVG</a>';
-        nbMissing++;
+          msg += '<a href="http://caniuse.com/#feat=' + features[feature].feature + '">' + features[feature].name + '</a>';
+          nbMissing++;
+        }
       }
 
-      if (!Modernizr.smil) {
-        if (nbMissing > 0) {
-          msg += ' and ';
-        }
-
-        msg += '<a href="http://caniuse.com/#feat=svg-smil">SVG SMIL</a>';
-        nbMissing++;
+      if (nbMissing > 1) {
+        msg = msg.replace(/, ([^,]+)$/, ' and $1');
       }
 
       msg += '.</p><p>Learn about this game on <a href="http://esviji.com/">esviji.com</a>.</p>';
