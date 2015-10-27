@@ -419,11 +419,7 @@ ESVIJI.game = (function() {
 
       drawnCurrentBall = null;
 
-      if (drawnSpring !== null) {
-        drawnSpring.remove();
-      }
-
-      drawnSpring = null;
+      eraseSpring();
     }
 
     showScreen('play');
@@ -446,9 +442,8 @@ ESVIJI.game = (function() {
     if (drawnCurrentBall !== null) {
       drawnCurrentBall.remove();
     }
-    if (drawnSpring !== null) {
-      drawnSpring.remove();
-    }
+
+    eraseSpring();
 
     storeSet('gameStatus', {
       playing: false,
@@ -538,10 +533,7 @@ ESVIJI.game = (function() {
         drawnCurrentBall = null;
       }
 
-      if (drawnSpring !== null) {
-        drawnSpring.remove();
-        drawnSpring = null;
-      }
+      eraseSpring();
 
       if (ESVIJI.settings.extraLifeLevel > 0) {
         gameStatus.lives += ESVIJI.settings.extraLifeLevel;
@@ -602,9 +594,7 @@ ESVIJI.game = (function() {
             drawnCurrentBall.remove();
           }
 
-          if (drawnSpring !== null && drawnSpring !== undefined) {
-            drawnSpring.remove();
-          }
+          eraseSpring();
 
           drawnCurrentBall = drawBall(xToSvg(currentPosX), yToSvg(currentPosY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
           drawnCurrentBall.attr({
@@ -639,11 +629,7 @@ ESVIJI.game = (function() {
 
     drawnCurrentBall = null;
 
-    if (drawnSpring !== null) {
-      drawnSpring.remove();
-    }
-
-    drawnSpring = null;
+    eraseSpring();
 
     removeLife();
     gameStatus.currentBall = validBalls[Math.floor(Math.random() * validBalls.length)];
@@ -687,8 +673,7 @@ ESVIJI.game = (function() {
     oldPosX = currentPosX;
     oldPosY = currentPosY;
 
-    drawnSpring.remove();
-    drawnSpring = null;
+    eraseSpring();
 
     cursorY = yToSvg(currentPosY);
     drawnCurrentBall.attr({
@@ -769,8 +754,7 @@ ESVIJI.game = (function() {
       oldPosX = currentPosX;
       oldPosY = currentPosY;
 
-      drawnSpring.remove();
-      drawnSpring = null;
+      eraseSpring();
 
       gameStatus.levelReplay.sequence.push({
         ball: gameStatus.currentBall,
@@ -1236,6 +1220,11 @@ ESVIJI.game = (function() {
     });
     $('#board').append(spring);
     return spring;
+  }
+
+  function eraseSpring() {
+    $('#playableSpring').remove();
+    drawnSpring = null;
   }
 
   function svgUse(refId, useId) {
