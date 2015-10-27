@@ -359,7 +359,7 @@ ESVIJI.game = (function() {
     if (viewportWidth != vw || viewportHeight != vh) {
       viewportWidth = vw;
       viewportHeight = vh;
-      console.info('Aspect ratio: ' + vw / (vh / 24) + '/24');
+      // console.info('Aspect ratio: ' + vw / (vh / 24) + '/24');
     }
 
     var boardElement = document.getElementById('board');
