@@ -113,20 +113,51 @@ ESVIJI.game = (function() {
 
   // Initialization
   function init() {
-
-    if (Modernizr.inlinesvg) {
+    if (Modernizr.svg && Modernizr.inlinesvg && Modernizr.smil) {
       $('#description').hide();
     } else {
       // Add this message using JS to prevent indexing it in search engines
-      $('#description p.icon').before('<p>Your browser doesn\'t seem to support inline SVG. Learn about this game on <a href="http://esviji.com/">esviji.com</a>.</p>');
+      var msg = '<p>Sorry, your can\'t play because your browser doesn\'t seem to support enough Web technologies. It lacks support for ';
+      var nbMissing = 0;
+
+      if (!Modernizr.svg) {
+        msg += '<a href="http://caniuse.com/#feat=svg">SVG</a>';
+        nbMissing++;
+      }
+
+      if (!Modernizr.inlinesvg) {
+        if (nbMissing > 0) {
+          if (Modernizr.smil) {
+            msg += ' and ';
+          } else {
+            msg += ', ';
+          }
+        }
+
+        msg += '<a href="http://caniuse.com/#feat=svg-html5">inline SVG</a>';
+        nbMissing++;
+      }
+
+      if (!Modernizr.smil) {
+        if (nbMissing > 0) {
+          msg += ' and ';
+        }
+
+        msg += '<a href="http://caniuse.com/#feat=svg-smil">SVG SMIL</a>';
+        nbMissing++;
+      }
+
+      msg += '.</p><p>Learn about this game on <a href="http://esviji.com/">esviji.com</a>.</p>';
+      $('#description p.icon').before(msg);
       return;
     }
 
-    if (Modernizr.touch) {
     // if (iOS) {
       // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
       window.viewportUnitsBuggyfill.init({ force: true });
     // }
+
+    if (Modernizr.touchevents) {
       // Prevent double events for touch + click
       // TODO: Should not be necessary, devices can have both mouse and touch
       clickType = 'touchstart';
