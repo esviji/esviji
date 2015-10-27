@@ -113,10 +113,6 @@ ESVIJI.game = (function() {
 
   // Initialization
   function init() {
-    if (iOS) {
-      // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
-      window.viewportUnitsBuggyfill.init({ force: true });
-    }
 
     if (Modernizr.inlinesvg) {
       $('#description').hide();
@@ -127,6 +123,10 @@ ESVIJI.game = (function() {
     }
 
     if (Modernizr.touch) {
+    // if (iOS) {
+      // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
+      window.viewportUnitsBuggyfill.init({ force: true });
+    // }
       // Prevent double events for touch + click
       // TODO: Should not be necessary, devices can have both mouse and touch
       clickType = 'touchstart';
