@@ -370,9 +370,6 @@ ESVIJI.game = (function() {
 
     boardOffsetY = viewportHeight - boardHeight;
 
-    // console.log('vw = ' + vw + ' / vh = ' + vh);
-    // console.log('boardWidth = ' + boardWidth + ' / boardHeight = ' + boardHeight);
-    // console.log('boardOffsetY = ', boardOffsetY);
   }
 
   function run() {
