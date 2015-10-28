@@ -597,7 +597,7 @@ ESVIJI.game = (function() {
           drawnCurrentBall.attr({
             class: 'throwable',
           });
-          drawnSpring = drawSpring(xToSvg(currentPosX), yToSvg(currentPosY));
+          drawnSpring = drawSpring(yToSvg(currentPosY));
           drawnSpring.attr({
             class: 'throwable',
           });
@@ -1046,7 +1046,7 @@ ESVIJI.game = (function() {
       }
 
       drawnCurrentBall = drawBall(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
-      drawnSpring = drawSpring(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY));
+      drawnSpring = drawSpring(yToSvg(ESVIJI.settings.turn.posY));
     });
 
     makeBallsFall();
@@ -1209,10 +1209,11 @@ ESVIJI.game = (function() {
     return ball;
   }
 
-  function drawSpring(x, y) {
+  function drawSpring(y) {
     var spring = svgUse('spring', 'playableSpring');
     spring.attr({
-      x: x + 16,
+      // TODO: replace magic value with computation
+      x: 278,
       y: y,
     });
     $('#board').append(spring);
