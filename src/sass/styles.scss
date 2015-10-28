@@ -34,7 +34,6 @@ html {
 
 html, body {
   font-family: SansitaOneRegular;
-  font-size: 18px;
 
   /* http://maximilianhoffmann.com/posts/better-font-rendering-on-osx */
   -webkit-font-smoothing: antialiased;
@@ -67,6 +66,7 @@ html, body {
 
 #description {
   padding: 1em;
+  overflow-y: scroll;
 
   h1 {
     font-size: 3em;
