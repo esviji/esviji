@@ -212,7 +212,7 @@ ESVIJI.game = (function() {
       };
     }
 
-    viewportOptimize();
+    optimizeViewport();
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailableBalls = ESVIJI.settings.balls.length;
@@ -352,7 +352,7 @@ ESVIJI.game = (function() {
     storeSet('gameStatus', gameStatus);
   }
 
-  function viewportOptimize() {
+  function optimizeViewport() {
     var vw = document.body.clientWidth;
     var vh = document.body.clientHeight;
 
@@ -1448,7 +1448,7 @@ ESVIJI.game = (function() {
 
   return {
     init: init,
-    viewportOptimize: viewportOptimize,
+    optimizeViewport: optimizeViewport,
   };
 })();
 
@@ -1458,9 +1458,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Optimize viewport and board sizes after resize and orientation change
 window.addEventListener('resize', function() {
-    window.setTimeout(ESVIJI.game.viewportOptimize, 500);
+    window.setTimeout(ESVIJI.game.optimizeViewport, 500);
   });
 
 window.addEventListener('orientationchange', function() {
-    window.setTimeout(ESVIJI.game.viewportOptimize, 500);
+    window.setTimeout(ESVIJI.game.optimizeViewport, 500);
   });
