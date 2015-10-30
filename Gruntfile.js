@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 
   grunt.lazyLoadNpmTasks('grunt-contrib-watch', 'watch');
   grunt.lazyLoadNpmTasks('grunt-contrib-sass', 'sass');
+  grunt.lazyLoadNpmTasks('grunt-manifest', 'manifest');
   grunt.lazyLoadNpmTasks('grunt-autoprefixer', 'autoprefixer');
   grunt.lazyLoadNpmTasks('grunt-growl', 'growl');
   grunt.lazyLoadNpmTasks('grunt-contrib-clean', 'clean');
@@ -30,7 +31,14 @@ module.exports = function(grunt) {
         },
         files: 'src/sass/**',
         tasks: ['growl', 'sass', 'autoprefixer'],
-      }
+      },
+      manifest: {
+        options: {
+          debounceDelay: 250,
+        },
+        files: ['src/index.html', 'src/css/**', 'src/js/**', 'src/img/**', 'src/sounds/**'],
+        tasks: ['growl', 'manifest:src'],
+      },
     },
 
     growl: {
@@ -149,6 +157,67 @@ module.exports = function(grunt) {
       },
     },
 
+    manifest: {
+      src: {
+        options: {
+          basePath: 'src/',
+          network: ['*'],
+          verbose: true,
+          timestamp: true
+        },
+        src: [
+          'js/**/*.js',
+          'css/styles.css',
+          'css/font/*',
+          'sounds/*.{ogg,mp3}'
+        ],
+        dest: 'src/manifest.appcache'
+      },
+      src_ios: {
+        options: {
+          basePath: 'src/',
+          network: ['*'],
+          verbose: true,
+          timestamp: true
+        },
+        src: [
+          'js/**/*.js',
+          'css/styles.css',
+          'css/font/*'
+        ],
+        dest: 'src/manifest_ios.appcache'
+      },
+      build: {
+        options: {
+          basePath: 'build/',
+          network: ['*'],
+          verbose: true,
+          timestamp: true
+        },
+        src: [
+          'js/*.js',
+          'css/*.css',
+          'css/font/*',
+          'sounds/*.{ogg,mp3}'
+        ],
+        dest: 'build/manifest.appcache'
+      },
+      build_ios: {
+        options: {
+          basePath: 'build/',
+          network: ['*'],
+          verbose: true,
+          timestamp: true
+        },
+        src: [
+          'js/*.js',
+          'css/*.css',
+          'css/font/*'
+        ],
+        dest: 'build/manifest_ios.appcache'
+      }
+    },
+
     sed: {
       version: {
         path: 'build/',
@@ -216,8 +285,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['compile', 'watch']);
-  grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer']);
-  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'docco']);
+  grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src', 'manifest:src_ios']);
+  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'manifest:build', 'manifest:build_ios', 'docco']);
   grunt.registerTask('package', ['build', 'compress']);
   grunt.registerTask('vendors', ['curl']);
 };
