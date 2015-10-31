@@ -16,7 +16,6 @@ module.exports = function(grunt) {
   grunt.lazyLoadNpmTasks('grunt-usemin', ['useminPrepare', 'usemin']);
   grunt.lazyLoadNpmTasks('grunt-rev', 'rev');
   grunt.lazyLoadNpmTasks('grunt-sed', 'sed');
-  grunt.lazyLoadNpmTasks('grunt-contrib-compress', 'compress');
   grunt.lazyLoadNpmTasks('grunt-curl', 'curl');
   grunt.lazyLoadNpmTasks('grunt-dev-update', 'devUpdate');
 
@@ -234,21 +233,6 @@ module.exports = function(grunt) {
         path: 'build/index.html',
         pattern: '/favicons',
         replacement: '',
-      },
-    },
-
-    compress: {
-      release: {
-        options: {
-          archive: 'esviji_2.zip',
-        },
-        files: [
-          {
-            cwd: 'build',
-            expand: true,
-            src: '**/*',
-          },
-        ],
       },
     },
 
