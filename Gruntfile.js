@@ -262,4 +262,5 @@ module.exports = function(grunt) {
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src', 'manifest:src_ios']);
   grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'manifest:build', 'manifest:build_ios']);
   grunt.registerTask('vendors', ['curl']);
+  grunt.registerTask('up', ['devUpdate']);
 };
