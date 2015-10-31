@@ -16,7 +16,6 @@ module.exports = function(grunt) {
   grunt.lazyLoadNpmTasks('grunt-usemin', ['useminPrepare', 'usemin']);
   grunt.lazyLoadNpmTasks('grunt-rev', 'rev');
   grunt.lazyLoadNpmTasks('grunt-sed', 'sed');
-  grunt.lazyLoadNpmTasks('grunt-docco', 'docco');
   grunt.lazyLoadNpmTasks('grunt-contrib-compress', 'compress');
   grunt.lazyLoadNpmTasks('grunt-curl', 'curl');
   grunt.lazyLoadNpmTasks('grunt-dev-update', 'devUpdate');
@@ -253,15 +252,6 @@ module.exports = function(grunt) {
       },
     },
 
-    docco: {
-      debug: {
-        src: ['src/js/esviji.js'],
-        options: {
-          output: 'docs/',
-        },
-      },
-    },
-
     curl: {
       googleAnalytics: {
         src: 'http://www.google-analytics.com/analytics.js',
@@ -286,7 +276,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['compile', 'watch']);
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src', 'manifest:src_ios']);
-  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'manifest:build', 'manifest:build_ios', 'docco']);
-  grunt.registerTask('package', ['build', 'compress']);
+  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'manifest:build', 'manifest:build_ios']);
   grunt.registerTask('vendors', ['curl']);
 };
