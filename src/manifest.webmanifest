@@ -1,7 +1,8 @@
 {
-  "version": "%VERSION%",
-  "short_name": "esviji",
+  "lang": "en",
   "name": "%DESCRIPTION%",
+  "short_name": "esviji",
+  "version": "%VERSION%",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [
@@ -23,5 +24,10 @@
       "type": "image/png",
       "density": "1.0"
     }
-  ]
+  ],
+  "scope": "/",
+  "start_url": "/index.html",
+  "display": "fullscreen",
+  "theme_color": "#444444",
+  "background_color": "#444444"
 }
