@@ -110,6 +110,15 @@ ESVIJI.game = (function() {
   // For viewport units issues
   var iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
 
+  if (iOS) {
+    $('html').addClass('ios');
+
+    // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
+    window.viewportUnitsBuggyfill.init({
+      force: true,
+    });
+  }
+
   // Initialization
   function init() {
     if (Modernizr.svg
@@ -174,14 +183,6 @@ ESVIJI.game = (function() {
       msg += '.</p><p>Learn about this game on <a href="http://esviji.com/">esviji.com</a>.</p>';
       $('#description p.icon').before(msg);
       return;
-    }
-
-    if (iOS) {
-      // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
-      window.viewportUnitsBuggyfill.init({
-        force: true,
-      });
-
     }
 
     if (!ESVIJI.settings.version.match(/VERSION/)) {
@@ -250,22 +251,24 @@ ESVIJI.game = (function() {
       gameStatus.preferences.vibration = undefined;
     }
 
-    // Available sounds
-    sounds = new Howl({
-      src: ['sounds/sprite.ogg', 'sounds/sprite.mp3'],
-      sprite: {
-        soundFall: [0, 204.05895691609976],
-        soundHitFloor: [2000, 2000],
-        soundHitOtherBallKo: [5000, 468.7528344671206],
-        soundHitOtherBallOk: [7000, 500],
-        soundHitSameBall: [9000, 1000],
-        soundHitWall: [11000, 1835.941043083901],
-        soundLevel: [14000, 2947.0068027210878],
-        soundLifeDown: [18000, 1000],
-        soundLifeUp: [20000, 1000],
-        soundThrow: [22000, 797.1201814058943],
-      },
-    });
+    if (!iOS) {
+      // Available sounds
+      sounds = new Howl({
+        src: ['sounds/sprite.ogg', 'sounds/sprite.mp3'],
+        sprite: {
+          soundFall: [0, 204.05895691609976],
+          soundHitFloor: [2000, 2000],
+          soundHitOtherBallKo: [5000, 468.7528344671206],
+          soundHitOtherBallOk: [7000, 500],
+          soundHitSameBall: [9000, 1000],
+          soundHitWall: [11000, 1835.941043083901],
+          soundLevel: [14000, 2947.0068027210878],
+          soundLifeDown: [18000, 1000],
+          soundLifeUp: [20000, 1000],
+          soundThrow: [22000, 797.1201814058943],
+        },
+      });
+    }
 
     if (gameStatus.preferences.sound) {
       $('#home .sound').addClass('on');
@@ -369,7 +372,6 @@ ESVIJI.game = (function() {
     boardHeight = parseInt(boardStyles.height, 10);
 
     boardOffsetY = viewportHeight - boardHeight;
-
   }
 
   function run() {
@@ -1441,7 +1443,7 @@ ESVIJI.game = (function() {
   }
 
   function playSound(type) {
-    if (gameStatus.preferences.sound && sounds._loaded) {
+    if (!iOS && gameStatus.preferences.sound && sounds._loaded) {
       sounds.play(type);
     }
   }

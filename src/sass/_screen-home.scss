@@ -70,6 +70,10 @@ section#home {
     }
 
     .sound {
+      .ios & {
+        display: none;
+      }
+
       .on { display: none; }
       .off { display: block; }
 

@@ -4,6 +4,10 @@
 
 section#pause {
   .sound {
+    .ios & {
+      display: none;
+    }
+
     .on { display: none; }
     .off { display: block; }
 
@@ -13,4 +17,3 @@ section#pause {
     }
   }
 }
-
