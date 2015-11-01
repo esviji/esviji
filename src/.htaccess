@@ -1,4 +1,5 @@
 AddType image/svg+xml                         svg
+AddType text/cache-manifest                   appcache
 AddType application/x-web-app-manifest+json   webapp
 AddType audio/mpeg                            mp3
 AddType application/ogg                       ogg
@@ -7,7 +8,8 @@ AddType application/font-woff2                woff2
 
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresDefault "access plus 1 year"
+#  ExpiresDefault "access plus 1 year"
+  ExpiresDefault "access plus 60 seconds"
 	ExpiresByType text/cache-manifest "access plus 1 seconds"
 </IfModule>
 FileETag None
