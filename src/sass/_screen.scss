@@ -37,7 +37,7 @@ section {
     li {
       text-align: center;
       width: 99vw;
-      padding-bottom: 8vw;
+      padding-bottom: 3vw;
 
       a {
         display: flex;
@@ -117,10 +117,12 @@ section {
 
     @media (min-aspect-ratio: 36/24) {
       li {
-        width: 30vh; // ~ 150vh / 4 = max-width (37vh gives a bug on iPad)
+        // ~ 150vh / 4 = max-width (37vh gives a bug on iPad)
+        width: 30vh;
 
         svg {
-          width: 24vh; // < 150vh / 4 = max-width
+          // < 150vh / 4 = max-width
+          width: 24vh;
           height: 24vh;
         }
       }
@@ -128,10 +130,6 @@ section {
 
     @media (min-aspect-ratio: 42/24) {
       font-size: 5.5vh;
-
-      li {
-        padding-bottom: 14vh;
-      }
     }
   }
 }
