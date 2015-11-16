@@ -34,7 +34,7 @@
     "grunt-sed": "~0.1.1",
     "grunt-usemin": "^3.1.1",
     "time-grunt": "^1.2.1",
-    "uglify-js": "~2.6.0"
+    "uglify-js": "~2.6.1"
   },
   "dependencies": {
     "jsonfile": "^2.2.3",
