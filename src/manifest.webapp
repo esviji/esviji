@@ -2,7 +2,7 @@
   "version": "%VERSION%",
   "name": "esviji",
   "description": "%DESCRIPTION%",
-  "launch_path": "/index.html",
+  "launch_path": "/index.html?utm_source=firefox_manifest",
   "fullscreen": "true",
   "chrome": {
     "navigation": false
