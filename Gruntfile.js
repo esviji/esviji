@@ -88,42 +88,54 @@ module.exports = function(grunt) {
               'img/*',
               'sounds/sprite.{mp3,ogg}',
               'js/vendor/analytics.js',
-              'wow/*'
+              'wow/*',
             ],
-            dest: 'build/'
-          }
-        ]
-      }
+            dest: 'build/',
+          },
+        ],
+      },
+      manifest: {
+        files: [
+          {
+            expand: true,
+            cwd: 'src/',
+            src: [
+              'manifest.json',
+            ],
+            dest: 'build/',
+          },
+        ],
+      },
     },
 
     useminPrepare: {
       options: {
-        dest: 'build/'
+        dest: 'build/',
       },
-      html: 'src/index.html'
+      html: 'src/index.html',
     },
     usemin: {
-      html: 'build/index.html'
+      html: 'build/index.html',
     },
 
     concat: {
       options: {
-        separator: ';'
-      }
+        separator: ';',
+      },
     },
 
     removelogging: {
       build: {
         src: 'build/js/app.js',
-        options: {}
-      }
+        options: {},
+      },
     },
 
     uglify: {
       options: {
         banner: "/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> - Copyright (c) 1992-<%= grunt.template.today('yyyy') %> Nicolas Hoizey <nicolas@hoizey.com> */",
-        report:'min'
-      }
+        report:'min',
+      },
     },
 
     cssmin: {
@@ -224,11 +236,6 @@ module.exports = function(grunt) {
         pattern: '%DESCRIPTION%',
         replacement: '<%= pkg.description %>',
       },
-      favicons: {
-        path: 'build/index.html',
-        pattern: '/favicons',
-        replacement: '',
-      },
     },
 
     realFavicon: {
@@ -301,7 +308,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['compile', 'watch']);
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src', 'manifest:src_ios']);
-  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'realFavicon', 'manifest:build', 'manifest:build_ios']);
+  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'realFavicon', 'copy:manifest', 'manifest:build', 'manifest:build_ios']);
   grunt.registerTask('vendors', ['curl']);
   grunt.registerTask('up', ['devUpdate']);
 };
