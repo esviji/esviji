@@ -50,7 +50,7 @@ ESVIJI.settings = {
   },
 
   points: function points(nbHits, level) {
-    return Math.pow(nbHits + Math.floor(level / 10), 4);
+    return Math.pow(nbHits + Math.floor(level / 10), 3);
   },
 
   // One extra life every 100 points
