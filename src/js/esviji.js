@@ -182,7 +182,13 @@ ESVIJI.game = (function() {
         msg = msg.replace(/, ([^,]+)$/, ' and $1');
       }
 
-      msg += '.</p></div><p>Learn more about this game on <a href="http://esviji.com/">esviji.com</a>.</p>';
+      msg += '.</p>';
+
+      if (iOS && nbMissing === 1 && !Modernizr.cssvhunit) {
+        msg += '<p><strong>On iOS, try to <a href="http://www.igeeksblog.com/how-to-add-website-shortcut-to-iphone-home-screen-on-ios-8/">add the app to your home screen</a></strong>.</p>';
+      }
+
+      msg += '</div><p>Learn more about this game on <a href="http://esviji.com/">esviji.com</a>.</p>';
       $('#description p.icon').before(msg);
       return;
     }

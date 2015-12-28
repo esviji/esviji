@@ -102,11 +102,11 @@ html, body {
     color: $badColor;
 
     a:link, a:visited {
-      color: darken($badColor, 10%);
+      color: $badColor;
     }
 
     a:hover, a:active {
-      color: darken($badColor, 20%);
+      color: darken($badColor, 10%);
     }
   }
 }
