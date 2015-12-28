@@ -232,50 +232,50 @@ module.exports = function(grunt) {
     },
 
     realFavicon: {
-  		favicons: {
-  			src: './raw-sources/images/_sources/logo-esviji.png',
-  			dest: './build/',
-  			options: {
-  				iconsPath: '/',
-  				html: [ './build/index.html' ],
-  				design: {
-  					ios: {
-  						pictureAspect: 'backgroundAndMargin',
-  						backgroundColor: '#cccccc',
-  						margin: '14%',
-  						appName: 'esviji'
-  					},
-  					desktopBrowser: {},
-  					windows: {
-  						pictureAspect: 'noChange',
-  						backgroundColor: '#00aba9',
-  						onConflict: 'override',
-  						appName: 'esviji'
-  					},
-  					androidChrome: {
-  						pictureAspect: 'shadow',
-  						themeColor: '#444444',
-  						manifest: {
-  							name: 'esviji',
-  							startUrl: 'http://play.esviji.com',
-  							display: 'standalone',
-  							orientation: 'notSet',
-  							onConflict: 'override'
-  						}
-  					},
-  					safariPinnedTab: {
-  						pictureAspect: 'silhouette',
-  						themeColor: '#444444'
-  					}
-  				},
-  				settings: {
-  					compression: 1,
-  					scalingAlgorithm: 'Mitchell',
-  					errorOnImageTooSmall: false
-  				}
-  			}
-  		}
-  	},
+      favicons: {
+        src: './raw-sources/images/_sources/logo-esviji.png',
+        dest: './build/',
+        options: {
+          iconsPath: '/',
+          html: ['./build/index.html'],
+          design: {
+            ios: {
+              pictureAspect: 'backgroundAndMargin',
+              backgroundColor: '#cccccc',
+              margin: '14%',
+              appName: 'esviji',
+            },
+            desktopBrowser: {},
+            windows: {
+              pictureAspect: 'noChange',
+              backgroundColor: '#00aba9',
+              onConflict: 'override',
+              appName: 'esviji',
+            },
+            androidChrome: {
+              pictureAspect: 'shadow',
+              themeColor: '#444444',
+              manifest: {
+                name: 'esviji',
+                startUrl: 'http://play.esviji.com',
+                display: 'standalone',
+                orientation: 'notSet',
+                onConflict: 'override',
+              },
+            },
+            safariPinnedTab: {
+              pictureAspect: 'silhouette',
+              themeColor: '#444444',
+            },
+          },
+          settings: {
+            compression: 1,
+            scalingAlgorithm: 'Mitchell',
+            errorOnImageTooSmall: false,
+          },
+        },
+      },
+    },
 
     curl: {
       googleAnalytics: {
@@ -293,9 +293,9 @@ module.exports = function(grunt) {
         options: {
           updateType: 'prompt',
           semver: false,
-        }
-      }
-    }
+        },
+      },
+    },
 
   });
 
