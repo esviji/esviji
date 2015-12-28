@@ -1,0 +1,24 @@
+{
+  "name": "esviji, a free puzzle game",
+  "short_name": "esviji",
+  "lang": "en",
+  "icons": [{
+        "src": "/favicon-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      }, {
+        "src": "/favicon-160x160.png",
+        "sizes": "160x160",
+        "type": "image/png"
+      }, {
+        "src": "/favicon-196x196.png",
+        "sizes": "196x196",
+        "type": "image/png"
+      }],
+  "start_url": "/index.html?utm_source=web_app_manifest",
+  "scope": "/",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#444",
+  "theme_color": "#444"
+}
