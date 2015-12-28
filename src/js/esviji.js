@@ -132,7 +132,9 @@ ESVIJI.game = (function() {
       $('#description').hide();
     } else {
       // Add this message using JS to prevent indexing it in search engines
-      var msg = '<p>Sorry, your can\'t play because your browser doesn\'t seem to support enough Web technologies. It lacks support for ';
+      var msg = '<div class="error"><p><strong>Sorry, your can\'t play…</strong></p>';
+      msg += '<p>Your browser doesn\'t support some Web technologies <strong>esviji</strong> version <em>%VERSION%</em> requires.</p>';
+      msg += '<p> It lacks support for ';
       var nbMissing = 0;
       var features = {
         svg: {
@@ -180,7 +182,7 @@ ESVIJI.game = (function() {
         msg = msg.replace(/, ([^,]+)$/, ' and $1');
       }
 
-      msg += '.</p><p>Learn about this game on <a href="http://esviji.com/">esviji.com</a>.</p>';
+      msg += '.</p></div><p>Learn more about this game on <a href="http://esviji.com/">esviji.com</a>.</p>';
       $('#description p.icon').before(msg);
       return;
     }

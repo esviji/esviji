@@ -94,6 +94,21 @@ html, body {
   a:hover, a:active {
     color: #fdd;
   }
+
+  .error {
+    padding: .2em .5em;
+    border: 1px solid darken($badColor, 10%);
+    background-color: lighten($badColor, 40%);
+    color: $badColor;
+
+    a:link, a:visited {
+      color: darken($badColor, 10%);
+    }
+
+    a:hover, a:active {
+      color: darken($badColor, 20%);
+    }
+  }
 }
 
 /* no delay on focusable elements in (future) iOS: https://adactio.com/journal/10019 */
