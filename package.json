@@ -29,6 +29,7 @@
     "grunt-growl": "~0.1.5",
     "grunt-lazyload": "~1.0.3",
     "grunt-manifest": "^0.4.4",
+    "grunt-real-favicon": "^0.1.3",
     "grunt-remove-logging": "~0.2.0",
     "grunt-rev": "~0.1.0",
     "grunt-sed": "~0.1.1",

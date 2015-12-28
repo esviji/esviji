@@ -18,6 +18,7 @@ module.exports = function(grunt) {
   grunt.lazyLoadNpmTasks('grunt-sed', 'sed');
   grunt.lazyLoadNpmTasks('grunt-curl', 'curl');
   grunt.lazyLoadNpmTasks('grunt-dev-update', 'devUpdate');
+  grunt.lazyLoadNpmTasks('grunt-real-favicon', 'realFavicon');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -89,12 +90,6 @@ module.exports = function(grunt) {
               'js/vendor/analytics.js',
               'wow/*'
             ],
-            dest: 'build/'
-          },
-          {
-            expand: true,
-            cwd: 'src/favicons/',
-            src: '*',
             dest: 'build/'
           }
         ]
@@ -236,6 +231,52 @@ module.exports = function(grunt) {
       },
     },
 
+    realFavicon: {
+  		favicons: {
+  			src: './raw-sources/images/_sources/logo-esviji.png',
+  			dest: './build/',
+  			options: {
+  				iconsPath: '/',
+  				html: [ './build/index.html' ],
+  				design: {
+  					ios: {
+  						pictureAspect: 'backgroundAndMargin',
+  						backgroundColor: '#cccccc',
+  						margin: '14%',
+  						appName: 'esviji'
+  					},
+  					desktopBrowser: {},
+  					windows: {
+  						pictureAspect: 'noChange',
+  						backgroundColor: '#00aba9',
+  						onConflict: 'override',
+  						appName: 'esviji'
+  					},
+  					androidChrome: {
+  						pictureAspect: 'shadow',
+  						themeColor: '#444444',
+  						manifest: {
+  							name: 'esviji',
+  							startUrl: 'http://play.esviji.com',
+  							display: 'standalone',
+  							orientation: 'notSet',
+  							onConflict: 'override'
+  						}
+  					},
+  					safariPinnedTab: {
+  						pictureAspect: 'silhouette',
+  						themeColor: '#444444'
+  					}
+  				},
+  				settings: {
+  					compression: 1,
+  					scalingAlgorithm: 'Mitchell',
+  					errorOnImageTooSmall: false
+  				}
+  			}
+  		}
+  	},
+
     curl: {
       googleAnalytics: {
         src: 'http://www.google-analytics.com/analytics.js',
@@ -260,7 +301,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['compile', 'watch']);
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src', 'manifest:src_ios']);
-  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'manifest:build', 'manifest:build_ios']);
+  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'realFavicon', 'manifest:build', 'manifest:build_ios']);
   grunt.registerTask('vendors', ['curl']);
   grunt.registerTask('up', ['devUpdate']);
 };
