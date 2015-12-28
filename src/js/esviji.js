@@ -34,23 +34,24 @@ ESVIJI.settings = {
 
   // settings based on levels
   levelRows: function levelRows(level) {
-    return Math.min(7, 2 + level);
+    return Math.min(7, 2 + Math.ceil((level + 1) / 2));
   },
 
   levelColumns: function levelColumns(level) {
-    return Math.min(7, 2 + level);
+    return Math.min(7, 2 + Math.ceil(level / 2));
   },
 
   levelBalls: function levelBalls(level) {
-    return Math.min(6, 1 + level);
+    return Math.min(6, Math.ceil((level + 1) / 2));
   },
 
   levelRocks: function levelRocks(level) {
     return Math.max(0, Math.min(20, level - 6));
   },
 
-  points: function points(nbHits) {
-    return Math.pow(nbHits, 4);
+  points: function points(nbHits, level) {
+    console.log('Math.pow(nbHits + Math.floor(level / 10), 4) = Math.pow(' + nbHits + ' + Math.floor(' + level + ' / 10), 4) = Math.pow(' + nbHits + ' + ' + Math.floor(level / 10) + ', 4) = ' + Math.pow(nbHits + Math.floor(level / 10), 4));
+    return Math.pow(nbHits + Math.floor(level / 10), 4);
   },
 
   // One extra life every 100 points
@@ -1397,7 +1398,7 @@ ESVIJI.game = (function() {
 
   function addScore(scoreToAdd) {
     oldScore = gameStatus.score;
-    gameStatus.score += ESVIJI.settings.points(scoreToAdd);
+    gameStatus.score += ESVIJI.settings.points(scoreToAdd, gameStatus.level);
     increaseScore();
     $('#play .score').attr('class', 'score changeUp');
     window.setTimeout(function() {
