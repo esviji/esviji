@@ -50,7 +50,6 @@ ESVIJI.settings = {
   },
 
   points: function points(nbHits, level) {
-    console.log('Math.pow(nbHits + Math.floor(level / 10), 4) = Math.pow(' + nbHits + ' + Math.floor(' + level + ' / 10), 4) = Math.pow(' + nbHits + ' + ' + Math.floor(level / 10) + ', 4) = ' + Math.pow(nbHits + Math.floor(level / 10), 4));
     return Math.pow(nbHits + Math.floor(level / 10), 4);
   },
 
