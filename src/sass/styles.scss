@@ -95,3 +95,8 @@ html, body {
     color: #fdd;
   }
 }
+
+/* no delay on focusable elements in (future) iOS: https://adactio.com/journal/10019 */
+a, button, input, select, textarea, label, summary {
+  touch-action: manipulation;
+}
