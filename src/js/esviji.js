@@ -46,7 +46,7 @@ ESVIJI.settings = {
   },
 
   levelRocks: function levelRocks(level) {
-    return Math.max(0, Math.min(20, level - 6));
+    return Math.max(0, Math.min(20, level - 10));
   },
 
   points: function points(nbHits, level) {
