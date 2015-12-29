@@ -1,6 +1,5 @@
 .DS_Store
 node_modules/
-deploy.sh
 dist/
 src/manifest*.appcache
 .sass-cache/
