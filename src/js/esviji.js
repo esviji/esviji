@@ -121,11 +121,11 @@ ESVIJI.game = (function() {
 
   // Initialization
   function init() {
+    // No vh support test per https://github.com/Modernizr/Modernizr/issues/1805#issuecomment-167754373
     if (Modernizr.svg
         && Modernizr.inlinesvg
         && Modernizr.smil
         && Modernizr.cssvwunit
-        && Modernizr.cssvhunit
         && Modernizr.cssvminunit
         && Modernizr.flexbox
       ) {
@@ -151,12 +151,12 @@ ESVIJI.game = (function() {
         },
         cssvwunit: {
           feature: 'viewport-units',
-          name: 'vw viewport unit',
+          name: 'vw/vh viewport units',
         },
-        cssvhunit: {
-          feature: 'viewport-units',
-          name: 'vh viewport unit',
-        },
+        // cssvhunit: {
+        //   feature: 'viewport-units',
+        //   name: 'vh viewport unit',
+        // },
         cssvminunit: {
           feature: 'viewport-units',
           name: 'vmin viewport unit',
@@ -183,10 +183,6 @@ ESVIJI.game = (function() {
       }
 
       msg += '.</p>';
-
-      if (iOS && nbMissing === 1 && !Modernizr.cssvhunit) {
-        msg += '<p><strong>On iOS, try to <a href="http://www.igeeksblog.com/how-to-add-website-shortcut-to-iphone-home-screen-on-ios-8/">add the app to your home screen</a></strong>.</p>';
-      }
 
       if (Modernizr.svg
           && Modernizr.inlinesvg
