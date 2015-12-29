@@ -153,10 +153,6 @@ ESVIJI.game = (function() {
           feature: 'viewport-units',
           name: 'vw/vh viewport units',
         },
-        // cssvhunit: {
-        //   feature: 'viewport-units',
-        //   name: 'vh viewport unit',
-        // },
         cssvminunit: {
           feature: 'viewport-units',
           name: 'vmin viewport unit',
@@ -184,11 +180,9 @@ ESVIJI.game = (function() {
 
       msg += '.</p>';
 
-      if (Modernizr.svg
-          && Modernizr.inlinesvg
-          && Modernizr.smil
-        ) {
-          msg += '<p>You can still <strong>play the previous version of the game</strong> on <a href="http://v1.esviji.com/">v1.esviji.com</a>!.</p>';
+      // Try esviji v1, maybe?
+      if (Modernizr.svg && Modernizr.inlinesvg && Modernizr.smil) {
+        msg += '<p>You can still <strong>play the previous version of the game</strong> on <a href="http://v1.esviji.com/">v1.esviji.com</a>!.</p>';
       }
 
       msg += '</div><p>Learn more about this game on <a href="http://esviji.com/">esviji.com</a>.</p>';
