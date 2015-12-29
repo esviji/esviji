@@ -105,7 +105,7 @@ ESVIJI.game = (function() {
   var lastGameScore;
   var gameStatus = { };
   var useStored = false;
-  var sounds;
+  var soundEffects;
 
   // For viewport units issues
   var iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
@@ -258,7 +258,7 @@ ESVIJI.game = (function() {
 
     if (!iOS) {
       // Available sounds
-      sounds = new Howl({
+      soundEffects = new Howl({
         src: ['sounds/effects-sprite.ogg', 'sounds/effects-sprite.mp3'],
         sprite: {
           soundFall: [0, 204.05895691609976],
@@ -514,7 +514,7 @@ ESVIJI.game = (function() {
       sequence: [],
     };
 
-    playSound('soundLevel');
+    playSoundEffect('soundLevel');
     startNewTurn();
   }
 
@@ -566,7 +566,7 @@ ESVIJI.game = (function() {
         });
 
         notPlayableAnimMain.addEventListener('beginEvent', function() {
-            playSound('error');
+            playSoundEffect('error');
           }, false);
 
         notPlayableAnimMain.addEventListener('endEvent', notPlayable, false);
@@ -690,7 +690,7 @@ ESVIJI.game = (function() {
       position: currentPosY,
     });
 
-    playSound('soundThrow');
+    playSoundEffect('soundThrow');
     playUserChoice();
   }
 
@@ -765,7 +765,7 @@ ESVIJI.game = (function() {
         position: currentPosY,
       });
 
-      playSound('soundThrow');
+      playSoundEffect('soundThrow');
       playUserChoice();
     }
   }
@@ -779,7 +779,7 @@ ESVIJI.game = (function() {
       }
 
       $('#anim' + lastStackedAnimation)[0].addEventListener('beginEvent', function(event) {
-        playSound('soundHitFloor');
+        playSoundEffect('soundHitFloor');
       });
 
       endOfMove();
@@ -790,7 +790,7 @@ ESVIJI.game = (function() {
         currentDirY = -1;
         animStackMove(drawnCurrentBall, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
         $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
-          playSound('soundHitWall');
+          playSoundEffect('soundHitWall');
         }, false);
 
         oldPosX = currentPosX;
@@ -809,7 +809,7 @@ ESVIJI.game = (function() {
               animStackMove(drawnCurrentBall, (oldPosX - currentPosX) * ESVIJI.settings.durationMove, 'x', xToSvg(oldPosX), xToSvg(currentPosX));
               oldPosX = currentPosX;
               $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
-                playSound('soundHitWall');
+                playSoundEffect('soundHitWall');
               }, false);
 
               playUserChoice();
@@ -820,7 +820,7 @@ ESVIJI.game = (function() {
               }
 
               $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(event) {
-                playSound('soundHitFloor');
+                playSoundEffect('soundHitFloor');
               }, false);
 
               endOfMove();
@@ -854,7 +854,7 @@ ESVIJI.game = (function() {
 
             animStackDestroy(drawnCurrentBalls[currentPosX][currentPosY]);
             scoreThisTurn++;
-            playSound('soundHitSameBall');
+            playSoundEffect('soundHitSameBall');
             playUserChoice();
             break;
 
@@ -995,7 +995,7 @@ ESVIJI.game = (function() {
       id: 'anim' + (lastStackedAnimation + 4),
     });
     animMoveTo.addEventListener('beginEvent', function(event) {
-      playSound('soundHitOtherBallOk');
+      playSoundEffect('soundHitOtherBallOk');
     }, false);
 
     ballTo.append(animMoveTo);
@@ -1020,7 +1020,7 @@ ESVIJI.game = (function() {
         id: 'anim' + (lastStackedAnimation + 1),
       });
     animRotate.addEventListener('beginEvent', function(event) {
-      playSound('soundHitSameBall');
+      playSoundEffect('soundHitSameBall');
     }, false);
 
     ball.append(animRotate);
@@ -1049,7 +1049,7 @@ ESVIJI.game = (function() {
       drawnCurrentBall.remove();
       $('#morph').remove();
       if (scoreThisTurn === 0) {
-        playSound('soundHitOtherBallKo');
+        playSoundEffect('soundHitOtherBallKo');
       }
 
       drawnCurrentBall = drawBall(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
@@ -1110,7 +1110,7 @@ ESVIJI.game = (function() {
 
                 // TODO: make the sound later as for piles of falling balls
                 $('#anim' + lastStackedAnimation)[0].addEventListener('beginEvent', function(event) {
-                  playSound('soundFall');
+                  playSoundEffect('soundFall');
                 });
 
                 // Let's try again to see if there are new balls above that have to fall
@@ -1372,7 +1372,7 @@ ESVIJI.game = (function() {
   function removeLife() {
     gameStatus.lives--;
     gameStatus.levelLostLives++;
-    playSound('soundLifeDown');
+    playSoundEffect('soundLifeDown');
     drawLives();
     $('#play .lives').attr('class', 'lives changeDown');
     window.setTimeout(function() {
@@ -1386,7 +1386,7 @@ ESVIJI.game = (function() {
 
   function addLives(nbLives) {
     gameStatus.lives += nbLives;
-    playSound('soundLifeUp');
+    playSoundEffect('soundLifeUp');
     drawLives();
     $('#play .lives').attr('class', 'lives changeUp');
     window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 1000);
@@ -1447,9 +1447,9 @@ ESVIJI.game = (function() {
     return (coordY - boardOffsetY) * ESVIJI.settings.board.height / boardHeight;
   }
 
-  function playSound(type) {
-    if (!iOS && gameStatus.preferences.sound && sounds._loaded) {
-      sounds.play(type);
+  function playSoundEffect(type) {
+    if (!iOS && gameStatus.preferences.sound && soundEffects._loaded) {
+      soundEffects.play(type);
     }
   }
 
