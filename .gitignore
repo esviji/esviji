@@ -1,16 +1,9 @@
 .DS_Store
-
-node_modules/
-docs/
-build/
 .sass-cache/
 .tmp/
 
-src/manifest.appcache
-src/css/styles.css
-src/css/styles.css.map
-src/manifest_ios.appcache
+node_modules/
+build/
 
-deploy.sh
-
-esviji_2.zip
+src/manifest*.appcache
+src/css/styles.css*
