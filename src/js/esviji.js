@@ -272,6 +272,7 @@ ESVIJI.game = (function() {
           soundLifeUp: [20000, 1000],
           soundThrow: [22000, 797.1201814058943],
         },
+        volume: 0.7,
       });
     }
 
