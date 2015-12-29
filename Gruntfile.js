@@ -21,7 +21,8 @@ module.exports = function(grunt) {
   grunt.lazyLoadNpmTasks('grunt-real-favicon', 'realFavicon');
 
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    packageFile: grunt.file.readJSON('package.json'),
+    manifestFile: grunt.file.readJSON('src/manifest.json'),
 
     watch: {
       sass: {
@@ -133,14 +134,14 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        banner: "/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> - Copyright (c) 1992-<%= grunt.template.today('yyyy') %> Nicolas Hoizey <nicolas@hoizey.com> */",
+        banner: "/*! <%= packageFile.name %> v<%= packageFile.version %> - <%= grunt.template.today('yyyy-mm-dd') %> - Copyright (c) 1992-<%= grunt.template.today('yyyy') %> Nicolas Hoizey <nicolas@hoizey.com> */",
         report:'min',
       },
     },
 
     cssmin: {
       options: {
-        banner: "/*! <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> - Copyright (c) 1992-<%= grunt.template.today('yyyy') %> Nicolas Hoizey <nicolas@hoizey.com> */",
+        banner: "/*! <%= packageFile.name %> v<%= packageFile.version %> - <%= grunt.template.today('yyyy-mm-dd') %> - Copyright (c) 1992-<%= grunt.template.today('yyyy') %> Nicolas Hoizey <nicolas@hoizey.com> */",
       },
     },
 
@@ -223,21 +224,6 @@ module.exports = function(grunt) {
       },
     },
 
-    sed: {
-      version: {
-        path: 'build/',
-        recursive: true,
-        pattern: '%VERSION%',
-        replacement: '<%= pkg.version %>',
-      },
-      description: {
-        path: 'build/',
-        recursive: true,
-        pattern: '%DESCRIPTION%',
-        replacement: '<%= pkg.description %>',
-      },
-    },
-
     realFavicon: {
       favicons: {
         src: './raw-sources/images/_sources/logo-esviji.png',
@@ -254,10 +240,10 @@ module.exports = function(grunt) {
             },
             desktopBrowser: {},
             windows: {
+              appName: 'esviji',
               pictureAspect: 'noChange',
               backgroundColor: '#00aba9',
-              onConflict: 'override',
-              appName: 'esviji',
+              onConflict: 'keep_existing',
             },
             androidChrome: {
               pictureAspect: 'shadow',
@@ -267,7 +253,8 @@ module.exports = function(grunt) {
                 startUrl: 'http://play.esviji.com',
                 display: 'standalone',
                 orientation: 'notSet',
-                onConflict: 'override',
+                existingManifest: '<%= manifestFile %>',
+                onConflict: 'keep_existing',
               },
             },
             safariPinnedTab: {
@@ -281,6 +268,28 @@ module.exports = function(grunt) {
             errorOnImageTooSmall: false,
           },
         },
+      },
+    },
+
+    sed: {
+      version: {
+        path: 'build/',
+        recursive: true,
+        pattern: '%VERSION%',
+        replacement: '<%= packageFile.version %>',
+      },
+      description: {
+        path: 'build/',
+        recursive: true,
+        pattern: '%DESCRIPTION%',
+        replacement: '<%= packageFile.description %>',
+      },
+
+      // https://github.com/RealFaviconGenerator/realfavicongenerator/issues/207
+      cleanManifestFilePaths: {
+        path: 'build/manifest.json',
+        pattern: '\\\\/',
+        replacement: '/',
       },
     },
 
@@ -312,7 +321,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['compile', 'watch']);
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src', 'manifest:srcIos']);
-  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'realFavicon', 'copy:manifest', 'manifest:build', 'manifest:buildIos']);
+  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed', 'manifest:build', 'manifest:buildIos']);
   grunt.registerTask('vendors', ['curl']);
   grunt.registerTask('up', ['devUpdate']);
 };
