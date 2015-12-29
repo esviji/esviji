@@ -16,7 +16,6 @@ module.exports = function(grunt) {
   grunt.lazyLoadNpmTasks("grunt-usemin", ["useminPrepare", "usemin"]);
   grunt.lazyLoadNpmTasks("grunt-rev", "rev");
   grunt.lazyLoadNpmTasks("grunt-sed", "sed");
-  grunt.lazyLoadNpmTasks("grunt-docco", "docco");
   grunt.lazyLoadNpmTasks("grunt-curl", "curl");
 
   grunt.initConfig({
@@ -231,15 +230,6 @@ module.exports = function(grunt) {
       }
     },
 
-    docco: {
-      debug: {
-        src: ["src/js/esviji.js"],
-        options: {
-          output: "docs/"
-        }
-      }
-    },
-
     curl: {
       google_analytics: {
         src: "http://www.google-analytics.com/analytics.js",
@@ -255,6 +245,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask("default", ["compile", "watch"]);
   grunt.registerTask("compile", ["growl", "sass", "autoprefixer", "manifest:src", "manifest:src_ios"]);
-  grunt.registerTask("package", ["sass", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "manifest:dist_ios", "docco"]);
+  grunt.registerTask("package", ["sass", "autoprefixer", "clean", "copy", "useminPrepare", "concat", "removelogging", "uglify", "cssmin", "rev", "usemin", "sed", "manifest:dist", "manifest:dist_ios"]);
   grunt.registerTask("vendors", ["curl"]);
 };
