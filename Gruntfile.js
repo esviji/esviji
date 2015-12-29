@@ -168,59 +168,59 @@ module.exports = function(grunt) {
           basePath: 'src/',
           network: ['*'],
           verbose: true,
-          timestamp: true
+          timestamp: true,
         },
         src: [
           'js/**/*.js',
           'css/styles.css',
           'css/font/*',
-          'sounds/*.{ogg,mp3}'
+          'sounds/*.{ogg,mp3}',
         ],
-        dest: 'src/manifest.appcache'
+        dest: 'src/manifest.appcache',
       },
-      src_ios: {
+      srcIos: {
         options: {
           basePath: 'src/',
           network: ['*'],
           verbose: true,
-          timestamp: true
+          timestamp: true,
         },
         src: [
           'js/**/*.js',
           'css/styles.css',
-          'css/font/*'
+          'css/font/*',
         ],
-        dest: 'src/manifest_ios.appcache'
+        dest: 'src/manifest_ios.appcache',
       },
       build: {
         options: {
           basePath: 'build/',
           network: ['*'],
           verbose: true,
-          timestamp: true
+          timestamp: true,
         },
         src: [
           'js/*.js',
           'css/*.css',
           'css/font/*',
-          'sounds/*.{ogg,mp3}'
+          'sounds/*.{ogg,mp3}',
         ],
-        dest: 'build/manifest.appcache'
+        dest: 'build/manifest.appcache',
       },
-      build_ios: {
+      buildIos: {
         options: {
           basePath: 'build/',
           network: ['*'],
           verbose: true,
-          timestamp: true
+          timestamp: true,
         },
         src: [
           'js/*.js',
           'css/*.css',
-          'css/font/*'
+          'css/font/*',
         ],
-        dest: 'build/manifest_ios.appcache'
-      }
+        dest: 'build/manifest_ios.appcache',
+      },
     },
 
     sed: {
@@ -307,8 +307,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['compile', 'watch']);
-  grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src', 'manifest:src_ios']);
-  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'realFavicon', 'copy:manifest', 'manifest:build', 'manifest:build_ios']);
+  grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src', 'manifest:srcIos']);
+  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'sed', 'realFavicon', 'copy:manifest', 'manifest:build', 'manifest:buildIos']);
   grunt.registerTask('vendors', ['curl']);
   grunt.registerTask('up', ['devUpdate']);
 };
