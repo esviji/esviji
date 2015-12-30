@@ -193,7 +193,7 @@ ESVIJI.game = (function() {
     if (!ESVIJI.settings.version.match(/VERSION/)) {
       if ($('.version').text() === ESVIJI.settings.version) {
         // Send version to Google Analytics only if it is set in the source
-        offlineAnalytics.push({name: 'version', value: ESVIJI.settings.version });
+        ga('set', 'dimension1', ESVIJI.settings.version);
       }
     }
 
@@ -406,7 +406,9 @@ ESVIJI.game = (function() {
     // history.pushState(null, '/' + screen, (screen === 'home' ? '/' : screen));
 
     // Google Analytics tracking of activated screen
-    offlineAnalytics.push({ name: 'view', value: '/' + (screen === 'home' ? '' : screen) });
+    // https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications#multiple-hits
+    ga('set', 'page', '/' + (screen === 'home' ? '' : screen));
+    ga('send', 'pageview');
   }
 
   function startPlaying(event) {
@@ -1338,8 +1340,9 @@ ESVIJI.game = (function() {
     var positioned = false;
 
     // Google Analytics tracking of level and score at the end of the game
-    offlineAnalytics.push({ name: 'level', value: gameStatus.level });
-    offlineAnalytics.push({ name: 'score', value: gameStatus.score });
+    ga('set', 'dimension2', gameStatus.level);
+    ga('set', 'dimension3', gameStatus.score);
+    ga('send', 'pageview');
 
     lastGameDate = Date();
     lastGameScore = gameStatus.score;

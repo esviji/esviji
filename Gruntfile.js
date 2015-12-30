@@ -298,10 +298,6 @@ module.exports = function(grunt) {
         src: 'http://www.google-analytics.com/analytics.js',
         dest: 'src/js/vendor/analytics.js',
       },
-      offline: {
-        src: 'https://raw.githubusercontent.com/HubSpot/offline/master/offline.js',
-        dest: 'src/js/vendor/offline.js',
-      },
     },
 
     devUpdate: {
