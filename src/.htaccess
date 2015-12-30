@@ -1,10 +1,10 @@
-AddType image/svg+xml                         svg
-AddType text/cache-manifest                   appcache
-AddType application/x-web-app-manifest+json   webapp
-AddType audio/mpeg                            mp3
-AddType application/ogg                       ogg
-AddType application/font-woff                 woff
-AddType application/font-woff2                woff2
+AddType image/svg+xml           .svg
+AddType text/cache-manifest     .appcache
+AddType audio/mpeg              .mp3
+AddType application/ogg         .ogg
+AddType application/font-woff   .woff
+AddType application/font-woff2  .woff2
+AddType application/json        .json
 
 <IfModule mod_expires.c>
   ExpiresActive On
