@@ -302,10 +302,6 @@ module.exports = function(grunt) {
         src: 'https://raw.githubusercontent.com/HubSpot/offline/master/offline.js',
         dest: 'src/js/vendor/offline.js',
       },
-      howler: {
-        src: 'https://raw.githubusercontent.com/goldfire/howler.js/master/howler.js',
-        dest: 'src/js/vendor/howler.js',
-      },
     },
 
     devUpdate: {
