@@ -87,7 +87,7 @@ module.exports = function(grunt) {
               'manifest.json',
               'css/font/*',
               'img/*',
-              'sounds/sprite.{mp3,ogg}',
+              'sounds/*',
               'js/vendor/analytics.js',
               'wow/*',
             ],
