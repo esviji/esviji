@@ -259,7 +259,7 @@ ESVIJI.game = (function() {
     if (!iOS) {
       // Available sounds
       soundEffects = new Howl({
-        src: ['sounds/effects-sprite.ogg', 'sounds/effects-sprite.mp3'],
+        urls: ['sounds/effects-sprite.ogg', 'sounds/effects-sprite.mp3'],
         sprite: {
           soundFall: [0, 204.05895691609976],
           soundHitFloor: [2000, 2000],
