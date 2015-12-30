@@ -517,6 +517,10 @@ ESVIJI.game = (function() {
       sequence: [],
     };
 
+    // Track levels with Google Analytics
+    ga('set', 'page', '/play/level_' + gameStatus.level + '/');
+    ga('send', 'pageview');
+
     playSoundEffect('soundLevel');
     startNewTurn();
   }
