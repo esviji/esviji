@@ -426,6 +426,7 @@ ESVIJI.game = (function() {
 
       drawnCurrentBall = null;
 
+      // TODO: is this really necessary?
       eraseSpring();
     }
 
@@ -539,6 +540,7 @@ ESVIJI.game = (function() {
 
     if (validBalls.length === 0) {
       // no more valid ball, end of the turn
+      // TODO: don't even draw it, maybe
       if (drawnCurrentBall !== null) {
         drawnCurrentBall.remove();
         drawnCurrentBall = null;
