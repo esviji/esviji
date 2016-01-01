@@ -1058,9 +1058,6 @@ ESVIJI.game = (function() {
       if (scoreThisTurn === 0) {
         playSoundEffect('soundHitOtherBallKo');
       }
-
-      drawnCurrentBall = drawBall(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
-      drawnSpring = drawSpring(yToSvg(ESVIJI.settings.turn.posY));
     });
 
     makeBallsFall();
