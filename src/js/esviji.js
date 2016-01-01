@@ -579,9 +579,9 @@ ESVIJI.game = (function() {
           }, false);
 
         notPlayableAnimMain.addEventListener('endEvent', notPlayable, false);
-        if (drawnCurrentBall !== null) {
-          drawnCurrentBall.append(notPlayableAnimMain);
-        }
+
+        drawnCurrentBall = drawBall(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
+        drawnCurrentBall.append(notPlayableAnimMain);
 
         $('[data-valid=true]').each(function() {
           that = $(this);
@@ -1214,22 +1214,26 @@ ESVIJI.game = (function() {
 
   function drawBall(x, y, ballType, ballId) {
     var ball = svgUse(ballType, ballId);
+
     ball.attr({
       x: x,
       y: y,
     });
     $('#board').append(ball);
+
     return ball;
   }
 
   function drawSpring(y) {
     var spring = svgUse('spring', 'playableSpring');
+
     spring.attr({
       // TODO: replace magic value with computation
       x: 278,
       y: y,
     });
     $('#board').append(spring);
+
     return spring;
   }
 
