@@ -563,6 +563,7 @@ ESVIJI.game = (function() {
       makeEverythingFall();
     } else {
       if (validBalls.indexOf(gameStatus.currentBall) == -1) {
+        var notPlayableBall = drawBall(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'notplayable');
         var notPlayableAnimMain = svgAnimate({
           attributeName: 'opacity',
           from: '0',
@@ -573,18 +574,16 @@ ESVIJI.game = (function() {
           fill: 'freeze',
           id: 'notPlayableAnim',
         });
-
         notPlayableAnimMain.addEventListener('beginEvent', function() {
             playSoundEffect('error');
           }, false);
 
-        notPlayableAnimMain.addEventListener('endEvent', notPlayable, false);
+        notPlayableAnimMain.addEventListener('endEvent', notPlayableEnd, false);
+        notPlayableBall.append(notPlayableAnimMain);
 
-        drawnCurrentBall = drawBall(xToSvg(ESVIJI.settings.turn.posX), yToSvg(ESVIJI.settings.turn.posY), ESVIJI.settings.balls[gameStatus.currentBall - 1], 'playable');
-        drawnCurrentBall.append(notPlayableAnimMain);
-
+        // TODO: create animation just once?
         $('[data-valid=true]').each(function() {
-          that = $(this);
+          var that = $(this);
           var notPlayableAnim = svgAnimate({
             attributeName: 'opacity',
             from: '0',
@@ -635,15 +634,10 @@ ESVIJI.game = (function() {
     }
   }
 
-  function notPlayable() {
-    if (drawnCurrentBall !== null) {
-      drawnCurrentBall.remove();
-    }
-
-    drawnCurrentBall = null;
-
-    eraseSpring();
-
+  function notPlayableEnd() {
+    console.log('running notPlayableEnd…');
+    $('#notplayable').remove();
+    $('[data-valid=true] animate').remove();
     removeLife();
     gameStatus.currentBall = validBalls[Math.floor(Math.random() * validBalls.length)];
     startNewTurn();
