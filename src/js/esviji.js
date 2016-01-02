@@ -107,9 +107,12 @@ ESVIJI.game = (function() {
   var useStored = false;
   var soundEffects;
 
-  // For viewport units issues
-  var iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
-  var iosSafari = (iOS && /AppleWebKit/g.test(navigator.userAgent));
+  // UA sniff iOS & iOS Safari for viewport units and SVG SMIL events issues
+  // Yes, it's bad to UA sniff…
+  // Why CriOS? -> http://stackoverflow.com/a/29696509
+  // Why OPiOS? -> http://stackoverflow.com/questions/3007480/determine-if-user-navigated-from-mobile-safari/29696509#comment55234967_29696509
+  var iOS = /(iPad|iPhone|iPod)/ig.test(navigator.userAgent);
+  var iosSafari = (iOS && !/(CriOS|OPiOS)/ig.test(navigator.userAgent));
 
   if (iOS) {
     $('html').addClass('ios');
