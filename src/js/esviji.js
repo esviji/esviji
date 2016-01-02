@@ -269,7 +269,7 @@ ESVIJI.game = (function() {
       gameStatus.preferences.vibration = undefined;
     }
 
-    if (!iOS) {
+    if (!iosSafari) {
       // Available sounds
       soundEffects = new Howl({
         urls: ['sounds/effects-sprite.ogg', 'sounds/effects-sprite.mp3'],
@@ -1466,7 +1466,7 @@ ESVIJI.game = (function() {
   }
 
   function playSoundEffect(type) {
-    if (!iOS && gameStatus.preferences.sound && soundEffects._loaded) {
+    if (!iosSafari && gameStatus.preferences.sound && soundEffects._loaded) {
       soundEffects.play(type);
     }
   }
