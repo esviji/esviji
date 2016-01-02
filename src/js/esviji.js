@@ -109,14 +109,27 @@ ESVIJI.game = (function() {
 
   // For viewport units issues
   var iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+  var iosSafari = (iOS && /AppleWebKit/g.test(navigator.userAgent));
 
   if (iOS) {
     $('html').addClass('ios');
+  }
+
+  if (iosSafari) {
+    $('html').addClass('iossafari');
 
     // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
     window.viewportUnitsBuggyfill.init({
       force: true,
     });
+
+    // Load SVGEventListener polyfill
+    // https://github.com/m4dz/SVGEventListener
+    var SVGEventListenerLib = document.createElement('script');
+    SVGEventListenerLib.type = 'text/javascript';
+    SVGEventListenerLib.async = true;
+    SVGEventListenerLib.src = './js/vendor/SVGEventListener-0.2.3.js';
+    $('head')[0].appendChild(SVGEventListenerLib);
   }
 
   // Initialization
