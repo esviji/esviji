@@ -116,6 +116,14 @@ ESVIJI.game = (function() {
 
   if (iOS) {
     $('html').addClass('ios');
+
+    // Load SVGEventListener polyfill
+    // https://github.com/m4dz/SVGEventListener
+    var SVGEventListenerLib = document.createElement('script');
+    SVGEventListenerLib.type = 'text/javascript';
+    SVGEventListenerLib.async = true;
+    SVGEventListenerLib.src = './js/vendor/SVGEventListener-0.2.3.js';
+    $('head')[0].appendChild(SVGEventListenerLib);
   }
 
   if (iosSafari) {
@@ -125,14 +133,6 @@ ESVIJI.game = (function() {
     window.viewportUnitsBuggyfill.init({
       force: true,
     });
-
-    // Load SVGEventListener polyfill
-    // https://github.com/m4dz/SVGEventListener
-    var SVGEventListenerLib = document.createElement('script');
-    SVGEventListenerLib.type = 'text/javascript';
-    SVGEventListenerLib.async = true;
-    SVGEventListenerLib.src = './js/vendor/SVGEventListener-0.2.3.js';
-    $('head')[0].appendChild(SVGEventListenerLib);
   }
 
   // Initialization
