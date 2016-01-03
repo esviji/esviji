@@ -114,27 +114,6 @@ ESVIJI.game = (function() {
   var iOS = /(iPad|iPhone|iPod)/ig.test(navigator.userAgent);
   var iosSafari = (iOS && !/(CriOS|OPiOS)/ig.test(navigator.userAgent));
 
-  if (iOS) {
-    $('html').addClass('ios');
-
-    // Load SVGEventListener polyfill
-    // https://github.com/m4dz/SVGEventListener
-    var SVGEventListenerLib = document.createElement('script');
-    SVGEventListenerLib.type = 'text/javascript';
-    SVGEventListenerLib.async = true;
-    SVGEventListenerLib.src = './js/vendor/SVGEventListener-0.2.3.js';
-    $('head')[0].appendChild(SVGEventListenerLib);
-  }
-
-  if (iosSafari) {
-    $('html').addClass('iossafari');
-
-    // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
-    window.viewportUnitsBuggyfill.init({
-      force: true,
-    });
-  }
-
   // Initialization
   function init() {
     // No vh support test per https://github.com/Modernizr/Modernizr/issues/1805#issuecomment-167754373
@@ -235,6 +214,27 @@ ESVIJI.game = (function() {
     }
 
     optimizeViewport();
+    if (iOS) {
+      $('html').addClass('ios');
+
+      // Load SVGEventListener polyfill
+      // https://github.com/m4dz/SVGEventListener
+      var SVGEventListenerLib = document.createElement('script');
+      SVGEventListenerLib.type = 'text/javascript';
+      SVGEventListenerLib.async = true;
+      SVGEventListenerLib.src = './js/vendor/SVGEventListener-0.2.3.js';
+      $('head')[0].appendChild(SVGEventListenerLib);
+    }
+
+    if (iosSafari) {
+      $('html').addClass('iossafari');
+
+      // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
+      window.viewportUnitsBuggyfill.init({
+        force: true,
+      });
+    }
+
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailableBalls = ESVIJI.settings.balls.length;
