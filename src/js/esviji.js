@@ -116,6 +116,9 @@ ESVIJI.game = (function() {
 
   // Initialization
   function init() {
+    window.setTimeout(ESVIJI.game.optimizeViewport, 500);
+    optimizeViewport();
+
     // No vh support test per https://github.com/Modernizr/Modernizr/issues/1805#issuecomment-167754373
     if (Modernizr.svg
         && Modernizr.inlinesvg
@@ -213,7 +216,6 @@ ESVIJI.game = (function() {
       };
     }
 
-    optimizeViewport();
     if (iOS) {
       $('html').addClass('ios');
 
@@ -377,9 +379,25 @@ ESVIJI.game = (function() {
     storeSet('gameStatus', gameStatus);
   }
 
+  function reliableViewportSize() {
+    // reliable viewport width: https://gist.github.com/scottjehl/2051999
+    var test = document.createElement('div');
+
+    test.style.cssText = 'position: fixed; top: 0; left: 0; bottom: 0; right: 0;';
+    document.documentElement.insertBefore(test, document.documentElement.firstChild);
+
+    var dims = { width: test.offsetWidth, height: test.offsetHeight };
+
+    document.documentElement.removeChild(test);
+
+    return dims;
+  }
+
   function optimizeViewport() {
-    var vw = document.body.clientWidth;
-    var vh = document.body.clientHeight;
+    var dims = reliableViewportSize();
+    var vw = dims.width;
+    var vh = dims.height;
+
 
     if (viewportWidth != vw || viewportHeight != vh) {
       viewportWidth = vw;
