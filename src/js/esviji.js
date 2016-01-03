@@ -291,6 +291,9 @@ ESVIJI.game = (function() {
           soundThrow: [22000, 797.1201814058943],
         },
         volume: 0.7,
+        onloaderror: function() {
+          console.error('Can\'t load sound effects…');
+        },
       });
     }
 
