@@ -106,6 +106,7 @@ ESVIJI.game = (function() {
   var gameStatus = { };
   var useStored = false;
   var soundEffects;
+  var soundAmbiance;
 
   // UA sniff iOS & iOS Safari for viewport units and SVG SMIL events issues
   // Yes, it's bad to UA sniff…
@@ -296,6 +297,18 @@ ESVIJI.game = (function() {
         },
         onloaderror: function() {
           console.error('Can\'t load sound effects…');
+        },
+      });
+
+      soundAmbiance = new Howl({
+        src: ['sounds/in-game-loop.ogg', 'sounds/in-game-loop.mp3'],
+        loop: true,
+        volume: 0.5,
+        onload: function() {
+          $('html').addClass('ambiancesoundloaded');
+        },
+        onloaderror: function() {
+          console.error('Can\'t load ambiance sound…');
         },
       });
     }
