@@ -70,8 +70,10 @@ section#home {
     }
 
     .sound {
-      .ios & {
-        display: none;
+      display: none;
+
+      .soundeffectsloaded &, .ambiancesoundloaded & {
+        display: block;
       }
 
       .on { display: none; }
