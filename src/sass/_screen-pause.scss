@@ -4,8 +4,10 @@
 
 section#pause {
   .sound {
-    .ios & {
-      display: none;
+    display: none;
+
+    .soundeffectsloaded &, .ambiancesoundloaded & {
+      display: block;
     }
 
     .on { display: none; }

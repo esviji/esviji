@@ -302,6 +302,7 @@ ESVIJI.game = (function() {
 
     if (gameStatus.preferences.sound) {
       $('#home .sound').addClass('on');
+      $('#pause .sound').addClass('on');
     }
 
     initBindings();
