@@ -278,7 +278,7 @@ ESVIJI.game = (function() {
     if (!iosSafari) {
       // Available sounds
       soundEffects = new Howl({
-        src: ['sounds/effects-sprite.ogg', 'sounds/effects-sprite.mp3'],
+        src: ['sounds/effects-sprite.oga', 'sounds/effects-sprite.mp3'],
         sprite: {
           soundFall: [0, 204.05895691609976],
           soundHitFloor: [2000, 2000],
@@ -301,7 +301,7 @@ ESVIJI.game = (function() {
       });
 
       soundAmbiance = new Howl({
-        src: ['sounds/in-game-loop.ogg', 'sounds/in-game-loop.mp3'],
+        src: ['sounds/in-game-loop.oga', 'sounds/in-game-loop.mp3'],
         loop: true,
         volume: 0.5,
         onload: function() {
