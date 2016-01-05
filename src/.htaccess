@@ -3,7 +3,6 @@ AddType text/cache-manifest                   .appcache
 AddType application/x-web-app-manifest+json   .webapp
 AddType audio/mpeg                            .mp3
 AddType audio/ogg                             .ogg
-AddType audio/ogg                             .oga
 AddType application/font-woff                 .woff
 AddType application/font-woff2                .woff2
 AddType application/json                      .json
