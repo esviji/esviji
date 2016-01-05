@@ -180,20 +180,6 @@ module.exports = function(grunt) {
         ],
         dest: 'src/manifest.appcache',
       },
-      srcIos: {
-        options: {
-          basePath: 'src/',
-          network: ['*'],
-          verbose: true,
-          timestamp: true,
-        },
-        src: [
-          'js/**/*.js',
-          'css/styles.css',
-          'css/font/*',
-        ],
-        dest: 'src/manifest_ios.appcache',
-      },
       build: {
         options: {
           basePath: 'build/',
@@ -208,20 +194,6 @@ module.exports = function(grunt) {
           'sounds/*.{oga,mp3}',
         ],
         dest: 'build/manifest.appcache',
-      },
-      buildIos: {
-        options: {
-          basePath: 'build/',
-          network: ['*'],
-          verbose: true,
-          timestamp: true,
-        },
-        src: [
-          'js/*.js',
-          'css/*.css',
-          'css/font/*',
-        ],
-        dest: 'build/manifest_ios.appcache',
       },
     },
 
@@ -313,8 +285,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['compile', 'watch']);
-  grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src', 'manifest:srcIos']);
-  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed', 'manifest:build', 'manifest:buildIos']);
+  grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src']);
+  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed', 'manifest:build']);
   grunt.registerTask('vendors', ['curl']);
   grunt.registerTask('up', ['devUpdate']);
 };

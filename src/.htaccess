@@ -22,6 +22,6 @@ FileETag None
 # DISCLAIMER: User Agent sniffing is bad, I know
 # This is used to tell iOS devices to use another appcache file
 # because it doesn't cache audio files
-RewriteEngine On
-RewriteCond %{HTTP_USER_AGENT} (iPad|iPhone|iPod) [NC]
-RewriteRule ^manifest.appcache$ /manifest_ios.appcache [L]
+# RewriteEngine On
+# RewriteCond %{HTTP_USER_AGENT} (iPad|iPhone|iPod) [NC]
+# RewriteRule ^manifest.appcache$ /manifest_ios.appcache [L]
