@@ -1,5 +1,5 @@
 {
-  "urls": ["sounds/sprite.ogg", "sounds/sprite.mp3"],
+  "urls": ["sounds/sprite.oga", "sounds/sprite.mp3"],
   "sprite": {
     "fall": [0, 204.05895691609976],
     "hit-floor": [2000, 2000],
