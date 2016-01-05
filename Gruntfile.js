@@ -177,8 +177,8 @@ module.exports = function(grunt) {
         src: [
           'js/**/*.js',
           'css/styles.css',
-          'css/font/*',
-          'sounds/*.{ogg,mp3}',
+          // 'css/font/*',
+          // 'sounds/*.{ogg,mp3}',
         ],
         dest: 'src/manifest.appcache',
       },
@@ -192,8 +192,8 @@ module.exports = function(grunt) {
         src: [
           'js/*.js',
           'css/*.css',
-          'css/font/*',
-          'sounds/*.{ogg,mp3}',
+          // 'css/font/*',
+          // 'sounds/*.{ogg,mp3}',
         ],
         dest: 'build/manifest.appcache',
       },
