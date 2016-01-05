@@ -1,0 +1,21 @@
+# humans.txt
+
+[The humans responsible & technology colophon](http://humanstxt.org/)
+
+*This file is valid markdown.*
+
+## TEAM
+
+Nicolas Hoizey -- @nhoizey
+
+## TECHNOLOGY COLOPHON
+
+### Workflow
+
+ * Grunt
+ * SASS
+ * Uglify
+
+### Runtime
+
+ * Sansita One WebFont

@@ -84,6 +84,7 @@ module.exports = function(grunt) {
               'index.html',
               '404.html',
               '.htaccess',
+              '.well-known/*',
               'manifest.webapp',
               'manifest.json',
               'css/font/*',
