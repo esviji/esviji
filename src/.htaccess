@@ -10,8 +10,8 @@ AddType application/json                      .json
 
 <IfModule mod_expires.c>
   ExpiresActive On
-#  ExpiresDefault "access plus 1 year"
-  ExpiresDefault "access plus 60 seconds"
+  ExpiresDefault "access plus 1 year"
+#  ExpiresDefault "access plus 60 seconds"
 	ExpiresByType text/cache-manifest "access plus 1 seconds"
 </IfModule>
 FileETag None
