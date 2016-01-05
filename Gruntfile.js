@@ -82,6 +82,7 @@ module.exports = function(grunt) {
             cwd: 'src/',
             src: [
               'index.html',
+              '404.html',
               '.htaccess',
               'manifest.webapp',
               'manifest.json',
