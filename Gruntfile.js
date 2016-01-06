@@ -201,7 +201,7 @@ module.exports = function(grunt) {
 
     realFavicon: {
       favicons: {
-        src: './raw-sources/images/_sources/logo-esviji.png',
+        src: './src/img/esviji-logo.png',
         dest: './build/',
         options: {
           iconsPath: '/',
