@@ -208,6 +208,7 @@ section#play {
     .progress {
       position: absolute;
       left: $margins;
+      // because of https://github.com/rodneyrehm/viewport-units-buggyfill/issues/13#issuecomment-74841617 ?
       height: auto !important;
 
       .score {
@@ -269,7 +270,8 @@ section#play {
     }
 
     .controls .pause {
-      top: auto !important; // because of an issue with viewport-units-buggyfill
+      // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/13#issuecomment-74841617
+      top: auto !important;
       left: $margins;
       right: auto;
       bottom: $margins;
