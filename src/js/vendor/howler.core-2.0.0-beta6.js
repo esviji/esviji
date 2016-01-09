@@ -1,8 +1,8 @@
 /*!
- *  howler.js v2.0.0-beta5
+ *  howler.js v2.0.0-beta6
  *  howlerjs.com
  *
- *  (c) 2013-2015, James Simpson of GoldFire Studios
+ *  (c) 2013-2016, James Simpson of GoldFire Studios
  *  goldfirestudios.com
  *
  *  MIT License
@@ -191,6 +191,7 @@
         mpeg: !!mpegTest,
         opus: !!audioTest.canPlayType('audio/ogg; codecs="opus"').replace(/^no$/, ''),
         ogg: !!audioTest.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ''),
+        oga: !!audioTest.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, ''),
         wav: !!audioTest.canPlayType('audio/wav; codecs="1"').replace(/^no$/, ''),
         aac: !!audioTest.canPlayType('audio/aac;').replace(/^no$/, ''),
         m4a: !!(audioTest.canPlayType('audio/x-m4a;') || audioTest.canPlayType('audio/m4a;') || audioTest.canPlayType('audio/aac;')).replace(/^no$/, ''),
@@ -320,6 +321,11 @@
         ctx.resume().then(function() {
           self.state = 'running';
         });
+
+        if (self._suspendTimer) {
+          clearTimeout(self._suspendTimer);
+          self._suspendTimer = null;
+        }
       } else if (self.state === 'suspending') {
         self._resumeAfterSuspend = true;
       }
@@ -597,7 +603,7 @@
           playWebAudio();
         } else {
           // Wait for the audio to load and then begin playback.
-          self.once('load', playWebAudio);
+          self.once('load', playWebAudio, sound._id);
 
           // Cancel the end timer.
           self._clearTimer(sound._id);
@@ -1364,8 +1370,8 @@
       var events = self['_on' + event];
       
       // Loop through event store and fire all functions.
-      for (var i=0; i<events.length; i++) {
-        if (!events[i].id || events[i].id === id) {
+      for (var i=events.length-1; i>=0; i--) {
+        if (!events[i].id || events[i].id === id || event === 'load') {
           setTimeout(function(fn) {
             fn.call(this, id, msg);
           }.bind(self, events[i].fn), 0);

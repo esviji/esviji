@@ -275,7 +275,7 @@ ESVIJI.game = (function() {
       gameStatus.preferences.vibration = undefined;
     }
 
-    if (!iosSafari) {
+    // if (!iosSafari) {
       // Available sounds
       soundEffects = new Howl({
         src: ['sounds/effects-sprite.ogg', 'sounds/effects-sprite.mp3'],
@@ -300,18 +300,18 @@ ESVIJI.game = (function() {
         },
       });
 
-      soundAmbiance = new Howl({
-        src: ['sounds/in-game-loop.ogg', 'sounds/in-game-loop.mp3'],
-        loop: true,
-        volume: 0.5,
-        onload: function() {
-          $('html').addClass('ambiancesoundloaded');
-        },
-        onloaderror: function() {
-          console.error('Can\'t load ambiance sound…');
-        },
-      });
-    }
+      // soundAmbiance = new Howl({
+      //   src: ['sounds/in-game-loop.ogg', 'sounds/in-game-loop.mp3'],
+      //   loop: true,
+      //   volume: 0.5,
+      //   onload: function() {
+      //     $('html').addClass('ambiancesoundloaded');
+      //   },
+      //   onloaderror: function() {
+      //     console.error('Can\'t load ambiance sound…');
+      //   },
+      // });
+    // }
 
     if (gameStatus.preferences.sound) {
       $('#home .sound').addClass('on');
