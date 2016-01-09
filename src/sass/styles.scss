@@ -85,6 +85,11 @@ html, body {
 
   p.icon {
     text-align: center;
+
+    img {
+      max-width: 50%;
+      height: auto;
+    }
   }
 
   a:link, a:visited {
