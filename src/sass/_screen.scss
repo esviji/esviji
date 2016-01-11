@@ -12,6 +12,10 @@ section {
   left: 0;
   right: 0;
 
+  &.overlay {
+    background-color: rgba(0, 0, 0, .75);
+  }
+
   h2 {
     font-size: 10vmin;
     text-align: center;
