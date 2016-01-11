@@ -15,7 +15,7 @@ $landscapeSvgWith: (100 / $boardRatio) * 1vh;
 $headerHeight: $headerSize * $lineHeight;
 $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
 
-section#play {
+#play {
 
   // default layout (mobile first)
   font-size: 15vmin;
