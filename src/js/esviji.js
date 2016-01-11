@@ -1406,7 +1406,7 @@ ESVIJI.game = (function() {
   function gameOver() {
     var l = highScores.length;
     var positioned = false;
-    var message = 'This is your score:';
+    var message = 'This is your score';
 
     // Google Analytics tracking of level and score at the end of the game
     ga('set', 'dimension2', gameStatus.level);
@@ -1416,23 +1416,32 @@ ESVIJI.game = (function() {
     lastGameDate = Date();
     lastGameScore = gameStatus.score;
 
-    for (i = 0; i < l; i++) {
-      if (!positioned && (highScores[i] === undefined || highScores[i].score <= gameStatus.score)) {
-        for (j = l; j > i; j--) {
-          highScores[j] = highScores[j - 1];
-        }
+    if (l === 0) {
+      message = 'This is your first score, play again!';
+      highScores = [
+        { score: lastGameScore, date: lastGameDate},
+      ];
+    } else {
+      for (i = 0; i < l; i++) {
+        if (!positioned && highScores[i].score <= gameStatus.score) {
+          highScores.splice(i, 0, { score: lastGameScore, date: lastGameDate});
+          highScores = highScores.slice(0, 10);
+          positioned = true;
 
-        highScores[i] = { score: lastGameScore, date: lastGameDate};
-        positioned = true;
+          if (i === 0) {
+            message = 'Congrats, this is your best score!';
+          } else {
+            message = 'Nice score! But not your best… ;-)';
+          }
 
-        if (i === 0) {
-          message = 'Congrats, this is your best score ever!';
+          break;
         }
       }
-    }
 
-    if (!positioned) {
-      highScores[l] = { score: lastGameScore, date: lastGameDate};
+      if (!positioned && l < 10) {
+        highScores.push({ score: lastGameScore, date: lastGameDate});
+        message = 'Nice score, but can you do better?';
+      }
     }
 
     // TODO: keep only 10 scores? No limit now.
