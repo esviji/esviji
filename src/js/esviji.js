@@ -703,7 +703,6 @@ ESVIJI.game = (function() {
   }
 
   function notPlayableEnd() {
-    console.log('running notPlayableEnd…');
     $('#notplayable').remove();
     $('[data-valid=true] animate').remove();
     removeLife();
