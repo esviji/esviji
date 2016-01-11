@@ -268,13 +268,6 @@ module.exports = function(grunt) {
       },
     },
 
-    curl: {
-      googleAnalytics: {
-        src: 'http://www.google-analytics.com/analytics.js',
-        dest: 'src/js/vendor/analytics.js',
-      },
-    },
-
     devUpdate: {
       main: {
         options: {
@@ -289,6 +282,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['compile', 'watch']);
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src']);
   grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed', 'manifest:build']);
-  grunt.registerTask('vendors', ['curl']);
   grunt.registerTask('up', ['devUpdate']);
 };
