@@ -1,0 +1,19 @@
+/* ********************************************************************
+ * Game over screen
+ * ********************************************************************/
+
+#gameover {
+  p {
+    text-align: center;
+  }
+
+  .message {
+    font-size: 5vmin;
+    margin: 2em 1em;
+  }
+
+  .score {
+    font-size: 10vmin;
+    margin: 0 1em;
+  }
+}

@@ -346,6 +346,10 @@ ESVIJI.game = (function() {
     $('#pause .controls .resume').bind('click', function(event) {
       event.preventDefault();
       showScreen('play');
+
+      // back to the level screen
+      ga('set', 'page', '/play/level_' + gameStatus.level);
+      ga('send', 'pageview');
     });
 
     $('#pause .controls .restart').bind('click', function(event) {
@@ -444,22 +448,35 @@ ESVIJI.game = (function() {
     // Remove focus from the button that led to this screen
     $(':focus').trigger('blur');
 
-    // Hide current screen only if there's one…
-    if (gameStatus.currentScreen !== '') {
-      $('#' + gameStatus.currentScreen).attr('aria-hidden', 'true');
+    if (screen === 'gameover') {
+      // Move gameover section to the end, because there's no z-index in SVG, later is above
+      $('#gameover').appendTo('body');
+    } else {
+      if (screen === 'home' && gameStatus.currentScreen === 'gameover') {
+        $('#play').attr('aria-hidden', 'true');
+      }
+
+      // Hide current screen only if there's one…
+      if (gameStatus.currentScreen !== '') {
+        $('#' + gameStatus.currentScreen).attr('aria-hidden', 'true');
+      }
     }
+
+    gameStatus.currentScreen = screen;
 
     // Show new screen
     $('#' + screen).attr('aria-hidden', 'false');
-    gameStatus.currentScreen = screen;
 
     // "Show" current screen in URL
     // history.pushState(null, '/' + screen, (screen === 'home' ? '/' : screen));
 
     // Google Analytics tracking of activated screen
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications#multiple-hits
-    ga('set', 'page', '/' + (screen === 'home' ? '' : screen));
-    ga('send', 'pageview');
+    if (screen !== 'play') {
+      // Only track levels, not generic play screen
+      ga('set', 'page', '/' + (screen === 'home' ? '' : screen));
+      ga('send', 'pageview');
+    }
   }
 
   function startPlaying(event) {
@@ -1390,6 +1407,7 @@ ESVIJI.game = (function() {
   function gameOver() {
     var l = highScores.length;
     var positioned = false;
+    var message = 'This is your score:';
 
     // Google Analytics tracking of level and score at the end of the game
     ga('set', 'dimension2', gameStatus.level);
@@ -1407,6 +1425,10 @@ ESVIJI.game = (function() {
 
         highScores[i] = { score: lastGameScore, date: lastGameDate};
         positioned = true;
+
+        if (i === 0) {
+          message = 'Congrats, this is your best score ever!';
+        }
       }
     }
 
@@ -1421,7 +1443,9 @@ ESVIJI.game = (function() {
       playing: false,
     });
 
-    showScores();
+    $('#gameover .message').text(message);
+    $('#gameover .score').text(gameStatus.score);
+
     showScreen('gameover');
   }
 
