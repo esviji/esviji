@@ -702,12 +702,12 @@ ESVIJI.game = (function() {
   }
 
   function storeOnFirebase(replay) {
-    var completedLevels = new Firebase('https://fiery-heat-4665.firebaseio.com/replay_level_' + replay.level);
+    var completedLevels = new Firebase('https://fiery-heat-4665.firebaseio.com/replay/level_' + ('0000' + replay.level).slice(-4));
 
-    console.log(JSON.stringify(replay));
+    // console.log(JSON.stringify(replay));
 
     completedLevels.on('child_added', function(snapshot) {
-      console.info('Level stored on Firebase.');
+      // console.info('Level stored on Firebase.');
     });
 
     completedLevels.push(replay);
