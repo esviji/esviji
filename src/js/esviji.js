@@ -623,10 +623,9 @@ ESVIJI.game = (function() {
         window.setTimeout(function() { $('#play .lives').attr('class', 'lives'); }, 1000);
       }
 
-      // TODO: Push to the server levels completed without any life lost
-      // if (gameStatus.levelReplay.lostLives === 0) {
-      //  console.log(JSON.stringify(gameStatus.levelReplay));
-      // }
+      if (gameStatus.levelReplay.lostLives === 0) {
+        storeOnFirebase(gameStatus.levelReplay);
+      }
 
       makeEverythingFall();
     } else {
@@ -700,6 +699,18 @@ ESVIJI.game = (function() {
         }
       }
     }
+  }
+
+  function storeOnFirebase(replay) {
+    var completedLevels = new Firebase('https://fiery-heat-4665.firebaseio.com/replay_level_' + replay.level);
+
+    console.log(JSON.stringify(replay));
+
+    completedLevels.on('child_added', function(snapshot) {
+      console.info('Level stored on Firebase.');
+    });
+
+    completedLevels.push(replay);
   }
 
   function notPlayableEnd() {
@@ -1444,7 +1455,6 @@ ESVIJI.game = (function() {
       }
     }
 
-    // TODO: keep only 10 scores? No limit now.
     storeSet('highScores', highScores);
     gameStatus.playing = false;
     storeSet('gameStatus', {
