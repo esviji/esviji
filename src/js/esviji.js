@@ -46,7 +46,7 @@ ESVIJI.settings = {
   },
 
   levelRocks: function levelRocks(level) {
-    return Math.max(0, Math.min(10, Math.ceil((level - 10) / 2)));
+    return Math.max(0, Math.min(15, Math.ceil((level - 10) / 2)));
   },
 
   points: function points(nbHits, level) {
@@ -703,8 +703,6 @@ ESVIJI.game = (function() {
 
   function storeOnFirebase(replay) {
     var completedLevels = new Firebase('https://fiery-heat-4665.firebaseio.com/replay/level_' + ('0000' + replay.level).slice(-4));
-
-    // console.log(JSON.stringify(replay));
 
     completedLevels.on('child_added', function(snapshot) {
       // console.info('Level stored on Firebase.');
