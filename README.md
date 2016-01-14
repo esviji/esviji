@@ -1,10 +1,10 @@
-<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/raw-sources/images/_sources/logo-esviji.png" alt="esviji" width="160" height="160" align="right" />
+<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/src/img/esviji-logo.png" alt="esviji" width="160" height="160" align="right" />
 
 # esviji
 
 ## a puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can
 
-<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/raw-sources/images/screenshots/04-unbreakable-blocks.png" alt="Crazy blocks" width="180" align="right" />
+<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/src/img/esviji-screenshot.png" alt="Crazy blocks" width="180" align="right" />
 
 - Vectorial interface, scalled to fit any viewport size without any visual loss, optimized for portrait orientation
 - Multiple interaction options: keyboard, mouse & touch
