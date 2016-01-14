@@ -253,6 +253,12 @@ module.exports = function(grunt) {
         pattern: '%VERSION%',
         replacement: '<%= packageFile.version %>',
       },
+      title: {
+        path: 'build/',
+        recursive: true,
+        pattern: '%TITLE%',
+        replacement: '<%= packageFile.title %>',
+      },
       description: {
         path: 'build/',
         recursive: true,

@@ -2,6 +2,7 @@
   "name": "esviji",
   "version": "2.0.2",
   "description": "esviji is a free puzzle game in which you have to destroy balls based on their color and place on the board.",
+  "title": "esviji, a free puzzle game on the Web",
   "main": "index.html",
   "repository": {
     "type": "git",
