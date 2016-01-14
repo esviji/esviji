@@ -1,24 +1,9 @@
 module.exports = function(grunt) {
   require('time-grunt')(grunt);
-  require('grunt-lazyload')(grunt);
-
-  grunt.lazyLoadNpmTasks('grunt-contrib-watch', 'watch');
-  grunt.lazyLoadNpmTasks('grunt-contrib-sass', 'sass');
-  grunt.lazyLoadNpmTasks('grunt-manifest', 'manifest');
-  grunt.lazyLoadNpmTasks('grunt-autoprefixer', 'autoprefixer');
-  grunt.lazyLoadNpmTasks('grunt-growl', 'growl');
-  grunt.lazyLoadNpmTasks('grunt-contrib-clean', 'clean');
-  grunt.lazyLoadNpmTasks('grunt-contrib-copy', 'copy');
-  grunt.lazyLoadNpmTasks('grunt-contrib-concat', 'concat');
-  grunt.lazyLoadNpmTasks('grunt-remove-logging', 'removelogging');
-  grunt.lazyLoadNpmTasks('grunt-contrib-uglify', 'uglify');
-  grunt.lazyLoadNpmTasks('grunt-contrib-cssmin', 'cssmin');
-  grunt.lazyLoadNpmTasks('grunt-usemin', ['useminPrepare', 'usemin']);
-  grunt.lazyLoadNpmTasks('grunt-rev', 'rev');
-  grunt.lazyLoadNpmTasks('grunt-sed', 'sed');
-  grunt.lazyLoadNpmTasks('grunt-curl', 'curl');
-  grunt.lazyLoadNpmTasks('grunt-dev-update', 'devUpdate');
-  grunt.lazyLoadNpmTasks('grunt-real-favicon', 'realFavicon');
+  require('jit-grunt')(grunt, {
+    useminPrepare: 'grunt-usemin',
+    removelogging: 'grunt-remove-logging',
+  });
 
   grunt.initConfig({
     packageFile: grunt.file.readJSON('package.json'),
