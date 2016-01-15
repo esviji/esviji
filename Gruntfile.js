@@ -7,6 +7,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     packageFile: grunt.file.readJSON('package.json'),
     manifestFile: grunt.file.readJSON('src/manifest.json'),
+    jsonldFile: grunt.file.read('src/json-ld.json'),
 
     watch: {
       sass: {
@@ -264,6 +265,12 @@ module.exports = function(grunt) {
         pattern: '%DESCRIPTION%',
         replacement: '<%= packageFile.description %>',
       },
+      jsonld: {
+        path: 'build/',
+        recursive: true,
+        pattern: '%JSONLD%',
+        replacement: '<%= jsonldFile %>',
+      },
       // https://github.com/RealFaviconGenerator/realfavicongenerator/issues/207
       cleanManifestFilePaths: {
         path: 'build/manifest.json',
@@ -296,7 +303,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['compile', 'watch']);
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src']);
-  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean:build', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed:version', 'sed:title', 'sed:description', 'sed:cleanManifestFilePaths', 'manifest:build']);
+  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean:build', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed:version', 'sed:title', 'sed:description', 'sed:jsonld', 'sed:cleanManifestFilePaths', 'manifest:build']);
   grunt.registerTask('phonegap', ['build', 'clean:phonegap', 'copy:phonegap', 'sed:phonegapjs', 'sed:phonegapready']);
   grunt.registerTask('up', ['devUpdate']);
 };

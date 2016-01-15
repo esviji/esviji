@@ -1,0 +1,116 @@
+{
+  "@context": "http://schema.org/",
+  "@type": "VideoGame",
+
+  "name": "esviji",
+  "softwareVersion": "%VERSION%",
+  "description": "%DESCRIPTION%",
+
+  "url": "http://play.esviji.com/",
+  "gameLocation": "http://play.esviji.com/",
+
+  "applicationCategory": "GameApplication",
+  "applicationSubCategory": "WebApplication",
+  "genre": ["Puzzle game", "Logic game"],
+  "playMode": "SinglePlayer",
+  "isFamilyFriendly": true,
+  "sameAs": "https://en.wikipedia.org/wiki/Puzzle_Bobble",
+
+  "image": "http://play.esviji.com/img/esviji-logo.png",
+  "screenshot": "http://play.esviji.com/img/esviji-screenshot.png",
+  "trailer": {
+    "@type": "VideoObject",
+    "url": "https://www.youtube.com/watch?v=R2rxU9cVSqw",
+    "inLanguage": "en",
+    "name": "esviji v2 will be responsive!",
+    "description": "The upcoming v2 of the game esviji will be really responsive, optimized for any screen size and ratio!",
+    "thumbnailUrl": "http://img.youtube.com/vi/R2rxU9cVSqw/mqdefault.jpg",
+    "uploadDate": "2015-03-09"
+  },
+
+  "inLanguage": "English",
+  "author": {
+    "@type": "Person",
+    "name": "Nicolas Hoizey",
+    "url": "http://nicolas-hoizey.com/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Nicolas Hoizey",
+    "url": "http://nicolas-hoizey.com/"
+  },
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Nicolas Hoizey",
+    "url": "http://nicolas-hoizey.com/"
+  },
+  "copyrightYear": 1992,
+
+  "gamePlatform": "Online_gaming_services",
+  "operatingSystem": "any",
+
+  "workExample": [
+    {
+      "@type": "VideoGame",
+      "gamePlatform": "https://en.wikipedia.org/wiki/World_Wide_Web",
+      "operatingSystem": "any",
+      "contentRating":"PEGI 3",
+      "applicationCategory": "GameApplication",
+      "releasedEvent": {
+        "@type": "PublicationEvent",
+        "isAccessibleForFree": true,
+        "startDate": "2013-01-23",
+        "url": "http://play.esviji.com/"
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "http://schema.org/InStock",
+        "price": "0.00",
+        "priceCurrency": "EUR",
+        "url": "http://play.esviji.com/"
+      }
+    },
+    {
+      "@type": "VideoGame",
+      "gamePlatform": "https://en.wikipedia.org/wiki/Firefox_OS",
+      "operatingSystem": "any",
+      "installUrl": "https://marketplace.firefox.com/app/esviji/",
+      "contentRating":"PEGI 3",
+      "applicationCategory": "GameApplication",
+      "releasedEvent": {
+        "@type": "PublicationEvent",
+        "startDate": "2013-01-23"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "bestRating": "5",
+        "ratingValue": "5",
+        "ratingCount": "16"
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "http://schema.org/InStock",
+        "price": "0.00",
+        "priceCurrency": "EUR",
+        "url": "https://marketplace.firefox.com/app/esviji/"
+      }
+    }
+  ],
+
+  "offers": [
+    {
+      "@type": "Offer",
+      "availability": "http://schema.org/InStock",
+      "price": "0.00",
+      "priceCurrency": "EUR",
+      "url": "http://play.esviji.com/"
+    },
+    {
+      "@type": "Offer",
+      "availability": "http://schema.org/InStock",
+      "price": "0.00",
+      "priceCurrency": "EUR",
+      "url": "https://marketplace.firefox.com/app/esviji/"
+    }
+  ]
+}
