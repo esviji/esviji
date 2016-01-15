@@ -56,6 +56,9 @@ module.exports = function(grunt) {
       build: {
         src: 'build/',
       },
+      phonegap: {
+        src: 'phonegap/',
+      },
     },
 
     copy: {
@@ -94,6 +97,31 @@ module.exports = function(grunt) {
           },
         ],
       },
+      phonegap: {
+        files: [
+          {
+            expand: true,
+            cwd: 'build/',
+            src: [
+              '*',
+              '**/*',
+            ],
+            dest: '../esviji-phonegap/',
+          },
+        ],
+      },
+      phonegapconfig: {
+        files: [
+          {
+            expand: true,
+            cwd: './',
+            src: [
+              'config.xml',
+            ],
+            dest: '../esviji-phonegap/',
+          },
+        ],
+      }
     },
 
     useminPrepare: {
@@ -253,6 +281,11 @@ module.exports = function(grunt) {
         pattern: '\\\\/',
         replacement: '/',
       },
+      phonegap: {
+        path: '../esviji-phonegap/index.html',
+        pattern: '<\/title>',
+        replacement: '<\/title><script type="text/javascript" src="cordova.js"></script>',
+      },
     },
 
     devUpdate: {
@@ -268,6 +301,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['compile', 'watch']);
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src']);
-  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed', 'manifest:build']);
+  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean:build', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed:version', 'sed:title', 'sed:description', 'sed:cleanManifestFilePaths', 'manifest:build']);
+  grunt.registerTask('phonegap', ['build', 'clean:phonegap', 'copy:phonegap', 'copy:phonegapconfig', 'sed:phonegap']);
   grunt.registerTask('up', ['devUpdate']);
 };

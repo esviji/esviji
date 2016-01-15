@@ -1559,6 +1559,11 @@ document.addEventListener('DOMContentLoaded', function() {
   ESVIJI.game.init();
 });
 
+// for phonegap
+document.addEventListener('deviceready', function() {
+  ESVIJI.game.init();
+});
+
 // Optimize viewport and board sizes after resize and orientation change
 window.addEventListener('resize', function() {
     window.setTimeout(ESVIJI.game.optimizeViewport, 500);
