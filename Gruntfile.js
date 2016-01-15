@@ -57,7 +57,7 @@ module.exports = function(grunt) {
         src: 'build/',
       },
       phonegap: {
-        src: 'phonegap/',
+        src: '../esviji-phonegap/www/',
       },
     },
 
@@ -74,6 +74,7 @@ module.exports = function(grunt) {
               '.well-known/*',
               'manifest.webapp',
               'manifest.json',
+              'config.xml',
               'css/font/*',
               'img/*',
               'sounds/*',
@@ -106,22 +107,10 @@ module.exports = function(grunt) {
               '*',
               '**/*',
             ],
-            dest: '../esviji-phonegap/',
+            dest: '../esviji-phonegap/www/',
           },
         ],
       },
-      phonegapconfig: {
-        files: [
-          {
-            expand: true,
-            cwd: './',
-            src: [
-              'config.xml',
-            ],
-            dest: '../esviji-phonegap/',
-          },
-        ],
-      }
     },
 
     useminPrepare: {
@@ -281,10 +270,16 @@ module.exports = function(grunt) {
         pattern: '\\\\/',
         replacement: '/',
       },
-      phonegap: {
-        path: '../esviji-phonegap/index.html',
+      phonegapjs: {
+        path: '../esviji-phonegap/www/index.html',
         pattern: '<\/title>',
         replacement: '<\/title><script type="text/javascript" src="cordova.js"></script>',
+      },
+      phonegapready: {
+        path: '../esviji-phonegap/www/js/',
+        recursive: true,
+        pattern: 'DOMContentLoaded',
+        replacement: 'deviceready',
       },
     },
 
@@ -302,6 +297,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['compile', 'watch']);
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src']);
   grunt.registerTask('build', ['sass', 'autoprefixer', 'clean:build', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed:version', 'sed:title', 'sed:description', 'sed:cleanManifestFilePaths', 'manifest:build']);
-  grunt.registerTask('phonegap', ['build', 'clean:phonegap', 'copy:phonegap', 'copy:phonegapconfig', 'sed:phonegap']);
+  grunt.registerTask('phonegap', ['build', 'clean:phonegap', 'copy:phonegap', 'sed:phonegapjs', 'sed:phonegapready']);
   grunt.registerTask('up', ['devUpdate']);
 };
