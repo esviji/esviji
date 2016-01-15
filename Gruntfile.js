@@ -162,7 +162,6 @@ module.exports = function(grunt) {
           'js/**/*.js',
           'css/styles.css',
           'css/font/*',
-          // 'sounds/*.{ogg,mp3}',
         ],
         dest: 'src/manifest.appcache',
       },
@@ -177,7 +176,6 @@ module.exports = function(grunt) {
           'js/*.js',
           'css/*.css',
           'css/font/*',
-          // 'sounds/*.{ogg,mp3}',
         ],
         dest: 'build/manifest.appcache',
       },
@@ -249,7 +247,6 @@ module.exports = function(grunt) {
         pattern: '%DESCRIPTION%',
         replacement: '<%= packageFile.description %>',
       },
-
       // https://github.com/RealFaviconGenerator/realfavicongenerator/issues/207
       cleanManifestFilePaths: {
         path: 'build/manifest.json',
