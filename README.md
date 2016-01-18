@@ -1,10 +1,10 @@
-<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/src/img/esviji-logo.png" alt="esviji" width="160" height="160" align="right" />
+<img src="https://raw.githubusercontent.com/esviji/esviji/master/src/img/esviji-logo.png" alt="esviji" width="160" height="160" align="right" />
 
 # esviji
 
 ## a puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can
 
-<img src="https://raw.githubusercontent.com/nhoizey/esviji/master/src/img/esviji-screenshot.png" alt="Crazy blocks" width="180" align="right" />
+<img src="https://raw.githubusercontent.com/esviji/esviji/master/src/img/esviji-screenshot.png" alt="Crazy blocks" width="180" align="right" />
 
 - Vectorial interface, scalled to fit any viewport size without any visual loss, optimized for portrait orientation
 - Multiple interaction options: keyboard, mouse & touch
@@ -15,7 +15,7 @@ This game came out of my mind 20 years ago thanks to the great platform that wer
 
 I never found a satisfying name for this game, so I now took "esviji", a word game on "SVG", the technology used for its development.
 
-esviji is open source, under MIT licence, feel free to <a href="https://github.com/nhoizey/esviji">fork it on Github</a>, make pull requests and open issues for bugs and improvement ideas.
+esviji is open source, under MIT licence, feel free to <a href="https://github.com/esviji/esviji">fork it on Github</a>, make pull requests and open issues for bugs and improvement ideas.
 
 ## Supported platforms
 
@@ -28,7 +28,7 @@ esviji is open source, under MIT licence, feel free to <a href="https://github.c
 
 - Some desktop browsers: Opera
 - Some mobile browsers: Android browser
-- [Open a new issue!](https://github.com/nhoizey/esviji/issues/new)
+- [Open a new issue!](https://github.com/esviji/esviji/issues/new)
 
 ## Privacy policy
 
@@ -53,11 +53,11 @@ Aggregated analytics data is collected through Google Analytics and is only used
 
 ## To do
 
-Look at [the roadmap](https://github.com/nhoizey/esviji/milestones).
+Look at [the roadmap](https://github.com/esviji/esviji/milestones).
 
 ## Contributing
 
-Feel free to fork, fix and [submit a pull requests](https://github.com/nhoizey/esviji/issues). Alternatively, [open issues](https://github.com/nhoizey/esviji/issues/new) for bugs and feature requests.
+Feel free to fork, fix and [submit a pull requests](https://github.com/esviji/esviji/issues). Alternatively, [open issues](https://github.com/esviji/esviji/issues/new) for bugs and feature requests.
 
 [@necolas](https://github.com/necolas) wrote down [some good guidelines for contributing](https://github.com/necolas/issue-guidelines). Please keep these in mind when contributing to this project.
 
