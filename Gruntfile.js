@@ -112,6 +112,14 @@ module.exports = function(grunt) {
           },
         ],
       },
+      phonegapiosicon: {
+        files: [
+          {
+            src: 'build/apple-touch-icon-57x57.png',
+            dest: '../esviji-phonegap/www/icon.png',
+          },
+        ],
+      },
     },
 
     useminPrepare: {
@@ -304,6 +312,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['compile', 'watch']);
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src']);
   grunt.registerTask('build', ['sass', 'autoprefixer', 'clean:build', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed:version', 'sed:title', 'sed:description', 'sed:jsonld', 'sed:cleanManifestFilePaths', 'manifest:build']);
-  grunt.registerTask('phonegap', ['build', 'clean:phonegap', 'copy:phonegap', 'sed:phonegapjs', 'sed:phonegapready']);
+  grunt.registerTask('phonegap', ['build', 'clean:phonegap', 'copy:phonegap', 'copy:phonegapiosicon', 'sed:phonegapjs', 'sed:phonegapready']);
   grunt.registerTask('up', ['devUpdate']);
 };
