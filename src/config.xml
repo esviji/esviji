@@ -6,19 +6,25 @@
   <content src="index.html?utm_source=native_app" />
   <access origin="*" />
 
+  <preference name="Fullscreen" value="true" />
+  <preference name="Orientation" value="default" />
+
+  <!-- Android only -->
   <platform name="android">
     <allow-intent href="market:*" />
   </platform>
   <preference name="android-minSdkVersion" value="19" />
+  <preference name="android-installLocation" value="auto"/>
+
+  <!-- iOS only -->
   <platform name="ios">
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
   </platform>
 
-  <preference name="Fullscreen" value="true" />
+
   <preference name="DisallowOverscroll" value="true" />
   <preference name="BackgroundColor" value="0xff444444"/>
-  <preference name="Orientation" value="default" />
 
   <preference name="permissions" value="none"/>
   <preference name="target-device" value="universal"/>
@@ -35,7 +41,6 @@
   <preference name="show-splash-screen-spinner" value="true"/>
   <preference name="auto-hide-splash-screen" value="true"/>
   <preference name="disable-cursor" value="false"/>
-  <preference name="android-installLocation" value="auto"/>
 
   <gap:plugin name="org.apache.cordova.inappbrowser"/>
 
