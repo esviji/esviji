@@ -6,7 +6,7 @@
 
 <img src="https://raw.githubusercontent.com/esviji/esviji/master/src/img/esviji-screenshot.png" alt="Crazy blocks" width="180" align="right" />
 
-- Vectorial interface, scalled to fit any viewport size without any visual loss, optimized for portrait orientation
+- Interface scalled to fit any viewport size and ratio without any visual loss
 - Multiple interaction options: keyboard, mouse & touch
 - Current game persistence: close your browser and resume your game when you return
 - Full off-line support
