@@ -12,9 +12,11 @@
   <platform name="android">
     <allow-intent href="market:*" />
     <preference name="Fullscreen" value="false" />
+    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-installLocation" value="auto"/>
+
+    <icon src="icon.png" />
   </platform>
-  <preference name="android-minSdkVersion" value="19" />
-  <preference name="android-installLocation" value="auto"/>
 
   <!-- iOS only -->
   <platform name="ios">
@@ -23,6 +25,19 @@
   </platform>
     <preference name="Fullscreen" value="true" />
 
+    <icon src="icon.png" platform="ios" width="57" height="57" />
+
+    <!-- iPhone 6 / 6+ -->
+    <icon src="apple-touch-icon-180x180.png" platform="ios" width="180" height="180" />
+
+    <!-- iPhone / iPod Touch  -->
+    <icon src="apple-touch-icon-60x60.png" platform="ios" width="60" height="60" />
+    <icon src="apple-touch-icon-120x120.png" platform="ios" width="120" height="120" />
+
+    <!-- iPad -->
+    <icon src="apple-touch-icon-76x76.png" platform="ios" width="76" height="76" />
+    <icon src="apple-touch-icon-152x152.png" platform="ios" width="152" height="152" />
+  </platform>
 
   <preference name="DisallowOverscroll" value="true" />
   <preference name="BackgroundColor" value="0xff444444"/>
@@ -44,21 +59,6 @@
   <preference name="disable-cursor" value="false"/>
 
   <gap:plugin name="org.apache.cordova.inappbrowser"/>
-
-  <icon src="icon.png" />
-
-  <icon src="icon.png" platform="ios" width="57" height="57" />
-
-  <!-- iPhone 6 / 6+ -->
-  <icon src="apple-touch-icon-180x180.png" platform="ios" width="180" height="180" />
-
-  <!-- iPhone / iPod Touch  -->
-  <icon src="apple-touch-icon-60x60.png" platform="ios" width="60" height="60" />
-  <icon src="apple-touch-icon-120x120.png" platform="ios" width="120" height="120" />
-
-  <!-- iPad -->
-  <icon src="apple-touch-icon-76x76.png" platform="ios" width="76" height="76" />
-  <icon src="apple-touch-icon-152x152.png" platform="ios" width="152" height="152" />
 
   <plugin name="cordova-plugin-whitelist" version="1"/>
   <allow-intent href="http://*/*"/>
