@@ -16,6 +16,9 @@
     <preference name="android-installLocation" value="auto"/>
 
     <icon src="icon.png" />
+
+    <!-- Use the Crosswalk WebView (Chromium) instead of the stock browser one -->
+    <plugin name="org.crosswalk.engine" source="pgb" />
   </platform>
 
   <!-- iOS only -->
