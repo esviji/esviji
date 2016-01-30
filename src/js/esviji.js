@@ -57,7 +57,7 @@ ESVIJI.settings = {
   extraLifePoints: 100,
 
   // One extra life every time a new level is finished
-  extraLifeLevel: 1,
+  extraLifeLevel: 0,
 
   // Game info at new turn start
   turn: {
