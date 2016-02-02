@@ -1552,18 +1552,52 @@ ESVIJI.game = (function() {
   return {
     init: init,
     optimizeViewport: optimizeViewport,
+    showScreen: showScreen,
   };
 })();
 
 if (typeof window.cordova !== 'undefined') {
+  // Only for PhoneGap apps
+
+  // The deviceready event fires when Cordova is fully loaded
   document.addEventListener('deviceready', function() {
     ESVIJI.game.init();
   }, false);
 
+  // The pause event fires when an application is put into the background
+  document.addEventListener('pause', function() {
+    // will wait for resume event on iOS
+    // http://cordova.apache.org/docs/en/latest/cordova/events/events.pause.html#ios-quirks
+    console.log('pause');
+  }, false);
+
+  // The resume event fires when an application is retrieved from the background
   document.addEventListener('resume', function() {
+    // will run pause event calls on iOS
+    // http://cordova.apache.org/docs/en/latest/cordova/events/events.resume.html#ios-quirks
     console.log('resume');
+    if (esviji.GAME.currentScreen === 'play') {
+      // do not hang app on iOS
+      // http://cordova.apache.org/docs/en/latest/cordova/events/events.resume.html#ios-quirks
+      setTimeout(function() {
+        esviji.GAME.showScreen('pause');
+      }, 0);
+    }
+  }, false);
+
+  // The backbutton event fires when the user presses the back button
+  document.addEventListener('backbutton', function() {
+    // do nothing
+  }, false);
+
+  // The menubutton event fires when the user presses the menu button
+  document.addEventListener('menubutton', function() {
+    if (esviji.GAME.currentScreen === 'play') {
+      esviji.GAME.showScreen('pause');
+    }
   }, false);
 } else {
+  // For traditional Web
   document.addEventListener('DOMContentLoaded', function() {
     ESVIJI.game.init();
   }, false);
