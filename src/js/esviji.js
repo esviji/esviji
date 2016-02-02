@@ -1559,6 +1559,10 @@ if (typeof window.cordova !== 'undefined') {
   document.addEventListener('deviceready', function() {
     ESVIJI.game.init();
   }, false);
+
+  document.addEventListener('resume', function() {
+    console.log('resume');
+  }, false);
 } else {
   document.addEventListener('DOMContentLoaded', function() {
     ESVIJI.game.init();
