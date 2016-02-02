@@ -1555,9 +1555,15 @@ ESVIJI.game = (function() {
   };
 })();
 
-document.addEventListener('DOMContentLoaded', function() {
-  ESVIJI.game.init();
-});
+if (typeof window.cordova !== 'undefined') {
+  document.addEventListener('deviceready', function() {
+    ESVIJI.game.init();
+  }, false);
+} else {
+  document.addEventListener('DOMContentLoaded', function() {
+    ESVIJI.game.init();
+  }, false);
+}
 
 // Optimize viewport and board sizes after resize and orientation change
 window.addEventListener('resize', function() {

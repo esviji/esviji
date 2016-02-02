@@ -290,12 +290,6 @@ module.exports = function(grunt) {
         pattern: '<\/title>',
         replacement: '<\/title><script type="text/javascript" src="cordova.js"></script>',
       },
-      phonegapready: {
-        path: '../esviji-phonegap/www/js/',
-        recursive: true,
-        pattern: 'DOMContentLoaded',
-        replacement: 'deviceready',
-      },
     },
 
     devUpdate: {
@@ -312,6 +306,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['compile', 'watch']);
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src']);
   grunt.registerTask('build', ['sass', 'autoprefixer', 'clean:build', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed:version', 'sed:title', 'sed:description', 'sed:jsonld', 'sed:cleanManifestFilePaths', 'manifest:build']);
-  grunt.registerTask('phonegap', ['build', 'clean:phonegap', 'copy:phonegap', 'copy:phonegapiosicon', 'sed:phonegapjs', 'sed:phonegapready']);
+  grunt.registerTask('phonegap', ['build', 'clean:phonegap', 'copy:phonegap', 'copy:phonegapiosicon', 'sed:phonegapjs']);
   grunt.registerTask('up', ['devUpdate']);
 };
