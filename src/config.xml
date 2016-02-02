@@ -3,7 +3,7 @@
   <description>%TITLE%</description>
   <author href="http://nicolas-hoizey.com" email="nicolas@hoizey.com">Nicolas Hoizey</author>
 
-  <content src="index.html?utm_source=native_app" />
+  <content src="index.html#utm_source=native_app" />
   <access origin="*" />
 
   <preference name="Orientation" value="default" />

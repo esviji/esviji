@@ -40,7 +40,7 @@
       "density": 4
     }
   ],
-  "start_url": "/index.html?utm_source=web_app_manifest",
+  "start_url": "/index.html#utm_source=web_app_manifest",
   "scope": "/",
   "display": "fullscreen",
   "orientation": "any",
