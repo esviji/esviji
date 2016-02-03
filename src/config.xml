@@ -8,6 +8,8 @@
 
   <preference name="Orientation" value="default" />
 
+  <icon src="icon.png" />
+
   <!-- Android only -->
   <platform name="android">
     <allow-intent href="market:*" />
@@ -15,7 +17,13 @@
     <preference name="android-minSdkVersion" value="19" />
     <preference name="android-installLocation" value="auto"/>
 
-    <icon src="icon.png" />
+    <!-- icons -->
+    <icon src="android-chrome-36x36.png" platform="android" qualifier="ldpi" />
+    <icon src="android-chrome-48x48.png" platform="android" qualifier="mdpi" />
+    <icon src="android-chrome-72x72.png" platform="android" qualifier="hdpi" />
+    <icon src="android-chrome-96x96.png" platform="android" qualifier="xhdpi" />
+    <icon src="android-chrome-144x144.png" platform="android" qualifier="xxhdpi" />
+    <icon src="android-chrome-192x192.png" platform="android" qualifier="xxxhdpi" />
 
     <!-- Use the Crosswalk WebView (Chromium) instead of the stock browser one -->
     <plugin name="org.crosswalk.engine" source="pgb" />
@@ -28,6 +36,7 @@
     <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" />
     <preference name="Fullscreen" value="true" />
 
+    <!-- icons -->
     <icon src="icon.png" platform="ios" width="57" height="57" />
 
     <!-- iPhone 6 / 6+ -->
