@@ -107,6 +107,7 @@ ESVIJI.game = (function() {
   var useStored = false;
   var soundEffects;
   var soundAmbiance;
+  var clientType = 'web';
 
   // UA sniff iOS & iOS Safari for viewport units and SVG SMIL events issues
   // Yes, it's bad to UA sniff…
@@ -114,6 +115,11 @@ ESVIJI.game = (function() {
   // Why OPiOS? -> http://stackoverflow.com/questions/3007480/determine-if-user-navigated-from-mobile-safari/29696509#comment55234967_29696509
   var iOS = /(iPad|iPhone|iPod)/ig.test(navigator.userAgent);
   var iosSafari = (iOS && !/(CriOS|OPiOS)/ig.test(navigator.userAgent));
+
+  if (typeof window.cordova !== 'undefined') {
+    clientType = 'cordova';
+    window.analytics.startTrackerWithId('UA-1655999-12');
+  }
 
   // Initialization
   function init() {
