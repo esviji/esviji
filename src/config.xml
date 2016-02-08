@@ -81,5 +81,5 @@
 
   <!-- http://stackoverflow.com/a/26581226/717195 -->
   <access origin="*://*.google-analytics.com/*" subdomains="true" />
-  <!-- <access origin="*" /> <!-- Required for iOS9? -->
+  <!-- <access origin="*" /> Required for iOS9? -->
 </widget>
