@@ -354,8 +354,12 @@ ESVIJI.game = (function() {
       showScreen('play');
 
       // back to the level screen
-      ga('set', 'page', '/play/level_' + gameStatus.level);
-      ga('send', 'pageview');
+      if (clientType === 'cordova') {
+        window.analytics.trackView('Play level ' + gameStatus.level);
+      } else {
+        ga('set', 'page', '/play/level_' + gameStatus.level);
+        ga('send', 'pageview');
+      }
     });
 
     $('#pause .controls .restart').bind('click', function(event) {
@@ -478,11 +482,17 @@ ESVIJI.game = (function() {
 
     // Google Analytics tracking of activated screen
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications#multiple-hits
+
     if (screen !== 'play') {
       // Only track levels, not generic play screen
-      ga('set', 'page', '/' + (screen === 'home' ? '' : screen));
-      ga('send', 'pageview');
+      if (clientType === 'cordova') {
+        window.analytics.trackView(screen);
+      } else {
+        ga('set', 'page', '/' + (screen === 'home' ? '' : screen));
+        ga('send', 'pageview');
+      }
     }
+
   }
 
   function startPlaying(event) {
@@ -593,8 +603,12 @@ ESVIJI.game = (function() {
     };
 
     // Track levels with Google Analytics
-    ga('set', 'page', '/play/level_' + gameStatus.level);
-    ga('send', 'pageview');
+    if (clientType === 'cordova') {
+      window.analytics.trackView('Play level ' + gameStatus.level);
+    } else {
+      ga('set', 'page', '/play/level_' + gameStatus.level);
+      ga('send', 'pageview');
+    }
 
     playSoundEffect('soundLevel');
     startNewTurn();
@@ -1424,9 +1438,14 @@ ESVIJI.game = (function() {
     var message = 'This is your score';
 
     // Google Analytics tracking of level and score at the end of the game
-    ga('set', 'dimension2', gameStatus.level);
-    ga('set', 'dimension3', gameStatus.score);
-    ga('send', 'pageview');
+    if (clientType === 'cordova') {
+      window.analytics.addCustomDimension('dimension2', gameStatus.level);
+      window.analytics.addCustomDimension('dimension3', gameStatus.score);
+    } else {
+      ga('set', 'dimension2', gameStatus.level);
+      ga('set', 'dimension3', gameStatus.score);
+      ga('send', 'pageview');
+    }
 
     lastGameDate = Date();
     lastGameScore = gameStatus.score;
