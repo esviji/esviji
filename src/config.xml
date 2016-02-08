@@ -72,8 +72,9 @@
 
   <plugin name="cordova-plugin-google-analytics" source="npm" />
 
-  <!-- <plugin name="org.apache.cordova.inappbrowser" />
-  <plugin name="cordova-plugin-whitelist" version="1" />
-  <allow-intent href="http://*/*"/>
-  <allow-intent href="https://*/*"/> -->
+  <plugin name="cordova-plugin-whitelist" source="npm" />
+  <access origin="https://fiery-heat-4665.firebaseio.com/" />
+  <access origin="http://*.google-analytics.com" />
+  <access origin="https://*.google-analytics.com" />
+  <access origin="*" /> <!-- Required for iOS9? -->
 </widget>
