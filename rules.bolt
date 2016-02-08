@@ -1,0 +1,49 @@
+type Ball extends Number {
+  validate() { this >= -1 && this <= 6 }
+}
+
+type BallsLine {
+  '1': Ball,
+  '2': Ball,
+  '3': Ball,
+  '4': Ball,
+  '5': Ball,
+  '6': Ball,
+  '7': Ball,
+  '8': Ball,
+  '9': Ball,
+  '10': Ball,
+  '11': Ball,
+  '12': Ball,
+  '13': Ball
+}
+
+type Balls {
+  '1': BallsLine,
+  '2': BallsLine,
+  '3': BallsLine,
+  '4': BallsLine,
+  '5': BallsLine,
+  '6': BallsLine,
+  '7': BallsLine,
+  '8': BallsLine,
+  '9': BallsLine
+}
+
+type Replay {
+  level: Number,
+  balls: Balls,
+  sequence: Object
+}
+
+path /incoming/{replay} is Replay {
+  create() { true }
+  update() { false }
+  delete() { false }
+}
+
+path /replay {
+  create() { true }
+  update() { true }
+  delete() { true }
+}

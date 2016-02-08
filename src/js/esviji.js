@@ -493,7 +493,6 @@ ESVIJI.game = (function() {
         ga('send', 'pageview');
       }
     }
-
   }
 
   function startPlaying(event) {
@@ -723,13 +722,14 @@ ESVIJI.game = (function() {
   }
 
   function storeOnFirebase(replay) {
-    var completedLevels = new Firebase('https://fiery-heat-4665.firebaseio.com/replay/level_' + ('0000' + replay.level).slice(-4));
+    var incoming = new Firebase('https://fiery-heat-4665.firebaseio.com/incoming');
 
-    completedLevels.on('child_added', function(snapshot) {
+    incoming.on('child_added', function(snapshot) {
       // console.info('Level stored on Firebase.');
     });
 
-    completedLevels.push(replay);
+    delete replay.lostLives;
+    incoming.push(replay);
   }
 
   function notPlayableEnd() {

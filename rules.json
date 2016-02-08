@@ -1,0 +1,433 @@
+{
+  "rules": {
+    "incoming": {
+      "$replay": {
+        ".validate": "newData.hasChildren(['level', 'balls', 'sequence'])",
+        "level": {
+          ".validate": "newData.isNumber()"
+        },
+        "balls": {
+          "1": {
+            "1": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "2": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "3": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "4": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "5": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "6": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "7": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "8": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "9": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "10": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "11": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "12": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "13": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            ".validate": "newData.hasChildren(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'])",
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "2": {
+            "1": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "2": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "3": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "4": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "5": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "6": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "7": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "8": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "9": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "10": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "11": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "12": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "13": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            ".validate": "newData.hasChildren(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'])",
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "3": {
+            "1": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "2": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "3": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "4": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "5": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "6": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "7": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "8": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "9": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "10": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "11": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "12": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "13": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            ".validate": "newData.hasChildren(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'])",
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "4": {
+            "1": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "2": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "3": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "4": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "5": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "6": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "7": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "8": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "9": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "10": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "11": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "12": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "13": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            ".validate": "newData.hasChildren(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'])",
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "5": {
+            "1": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "2": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "3": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "4": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "5": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "6": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "7": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "8": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "9": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "10": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "11": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "12": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "13": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            ".validate": "newData.hasChildren(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'])",
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "6": {
+            "1": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "2": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "3": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "4": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "5": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "6": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "7": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "8": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "9": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "10": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "11": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "12": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "13": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            ".validate": "newData.hasChildren(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'])",
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "7": {
+            "1": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "2": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "3": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "4": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "5": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "6": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "7": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "8": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "9": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "10": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "11": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "12": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "13": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            ".validate": "newData.hasChildren(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'])",
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "8": {
+            "1": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "2": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "3": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "4": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "5": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "6": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "7": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "8": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "9": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "10": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "11": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "12": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "13": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            ".validate": "newData.hasChildren(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'])",
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          "9": {
+            "1": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "2": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "3": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "4": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "5": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "6": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "7": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "8": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "9": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "10": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "11": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "12": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            "13": {
+              ".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 6"
+            },
+            ".validate": "newData.hasChildren(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'])",
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          ".validate": "newData.hasChildren(['1', '2', '3', '4', '5', '6', '7', '8', '9'])",
+          "$other": {
+            ".validate": "false"
+          }
+        },
+        "sequence": {
+          ".validate": "newData.hasChildren()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".write": "data.val() == null"
+      }
+    },
+    "replay": {
+      ".write": "data.val() == null || data.val() != null && newData.val() != null || data.val() != null && newData.val() == null"
+    }
+  }
+}
