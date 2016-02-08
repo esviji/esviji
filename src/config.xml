@@ -70,7 +70,7 @@
   <preference name="auto-hide-splash-screen" value="true" />
   <preference name="disable-cursor" value="false" />
 
-  <plugin name="com.danielcwilson.plugins.googleanalytics" spec="0.6.1" source="pgb" />
+  <plugin name="com.danielcwilson.plugins.googleanalytics" source="pgb" />
 
   <!-- <plugin name="org.apache.cordova.inappbrowser" />
   <plugin name="cordova-plugin-whitelist" version="1" />
