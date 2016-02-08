@@ -483,8 +483,9 @@ ESVIJI.game = (function() {
     // Google Analytics tracking of activated screen
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications#multiple-hits
 
-    if (screen !== 'play') {
+    if (screen !== 'play' && screen !== 'gameover') {
       // Only track levels, not generic play screen
+      // Don't track Game Over screen from here
       if (clientType === 'cordova') {
         window.analytics.trackView(screen);
       } else {
@@ -1439,11 +1440,15 @@ ESVIJI.game = (function() {
 
     // Google Analytics tracking of level and score at the end of the game
     if (clientType === 'cordova') {
-      window.analytics.addCustomDimension('dimension2', gameStatus.level);
-      window.analytics.addCustomDimension('dimension3', gameStatus.score);
+      // Only the index for dimensions:
+      // https://github.com/danwilson/google-analytics-plugin/issues/71#issuecomment-71733998
+      window.analytics.addCustomDimension('2', gameStatus.level);
+      window.analytics.addCustomDimension('3', gameStatus.score);
+      window.analytics.trackView('Game Over');
     } else {
       ga('set', 'dimension2', gameStatus.level);
       ga('set', 'dimension3', gameStatus.score);
+      ga('set', 'page', '/gameover');
       ga('send', 'pageview');
     }
 
