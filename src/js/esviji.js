@@ -1,8 +1,10 @@
-// ## Create the main object
-
 var ESVIJI = {};
 
-// ## Add default settings
+// Only for last resort debug on PhoneGap app
+// window.onerror = function(msg, url, linenumber) {
+//     alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+//     return true;
+// }
 
 ESVIJI.settings = {
   version: '%VERSION%',
@@ -116,15 +118,22 @@ ESVIJI.game = (function() {
   var iOS = /(iPad|iPhone|iPod)/ig.test(navigator.userAgent);
   var iosSafari = (iOS && !/(CriOS|OPiOS)/ig.test(navigator.userAgent));
 
-  if (typeof window.cordova !== 'undefined') {
-    clientType = 'cordova';
-    window.analytics.startTrackerWithId('UA-1655999-12');
-  }
-
   // Initialization
   function init() {
     window.setTimeout(ESVIJI.game.optimizeViewport, 500);
     optimizeViewport();
+
+    if (typeof window.cordova !== 'undefined') {
+      // Cordova plugin for Google Analytics
+      clientType = 'cordova';
+      if (typeof window.analytics !== 'undefined') {
+        window.analytics.startTrackerWithId('UA-1655999-12');
+      } else {
+        // alert('PhoneGap analytics plugin not available…');
+      }
+    } else {
+      ga('create', 'UA-1655999-4', 'auto');
+    }
 
     // No vh support test per https://github.com/Modernizr/Modernizr/issues/1805#issuecomment-167754373
     if (Modernizr.svg
@@ -355,7 +364,9 @@ ESVIJI.game = (function() {
 
       // back to the level screen
       if (clientType === 'cordova') {
-        window.analytics.trackView('Play level ' + gameStatus.level);
+        if (typeof window.analytics !== 'undefined') {
+          window.analytics.trackView('Play level ' + gameStatus.level);
+        }
       } else {
         ga('set', 'page', '/play/level_' + gameStatus.level);
         ga('send', 'pageview');
@@ -487,7 +498,9 @@ ESVIJI.game = (function() {
       // Only track levels, not generic play screen
       // Don't track Game Over screen from here
       if (clientType === 'cordova') {
-        window.analytics.trackView(screen);
+        if (typeof window.analytics !== 'undefined') {
+          window.analytics.trackView(screen);
+        }
       } else {
         ga('set', 'page', '/' + (screen === 'home' ? '' : screen));
         ga('send', 'pageview');
@@ -604,7 +617,9 @@ ESVIJI.game = (function() {
 
     // Track levels with Google Analytics
     if (clientType === 'cordova') {
-      window.analytics.trackView('Play level ' + gameStatus.level);
+      if (typeof window.analytics !== 'undefined') {
+        window.analytics.trackView('Play level ' + gameStatus.level);
+      }
     } else {
       ga('set', 'page', '/play/level_' + gameStatus.level);
       ga('send', 'pageview');
@@ -1442,9 +1457,11 @@ ESVIJI.game = (function() {
     if (clientType === 'cordova') {
       // Only the index for dimensions:
       // https://github.com/danwilson/google-analytics-plugin/issues/71#issuecomment-71733998
-      window.analytics.addCustomDimension('2', gameStatus.level);
-      window.analytics.addCustomDimension('3', gameStatus.score);
-      window.analytics.trackView('Game Over');
+      if (typeof window.analytics !== 'undefined') {
+        window.analytics.addCustomDimension('2', gameStatus.level);
+        window.analytics.addCustomDimension('3', gameStatus.score);
+        window.analytics.trackView('Game Over');
+      }
     } else {
       ga('set', 'dimension2', gameStatus.level);
       ga('set', 'dimension3', gameStatus.score);
