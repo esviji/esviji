@@ -1596,9 +1596,60 @@ ESVIJI.game = (function() {
     }
   }
 
+  function phonegapEvent(eventType) {
+    alert(eventType);
+
+    var phonegapEvents = {
+      deviceready: function () {
+        // The deviceready event fires when Cordova is fully loaded
+        init();
+      },
+
+      pause: function () {
+        // The pause event fires when an application is put into the background
+        // /!\ execution will wait for resume event on iOS
+        // -> http://cordova.apache.org/docs/en/latest/cordova/events/events.pause.html#ios-quirks
+        alert('pause event');
+      },
+
+      resume: function () {
+        // The resume event fires when an application is retrieved from the background
+        // /!\ will run pause event calls on iOS
+        // -> http://cordova.apache.org/docs/en/latest/cordova/events/events.resume.html#ios-quirks
+        alert('resume event');
+        if (currentScreen === 'play') {
+          // do not hang app on iOS
+          // http://cordova.apache.org/docs/en/latest/cordova/events/events.resume.html#ios-quirks
+          // setTimeout(function () {
+            // ESVIJI.game.showScreen('pause');
+            alert('need to show pause screen');
+            alert('typeof showScreen: ' + typeof showScreen);
+            showScreen('pause');
+          // }, 0);
+        }
+      },
+
+      backbutton: function () {
+        // The backbutton event fires when the user presses the back button
+        // do nothing
+      },
+
+      menubutton: function () {
+        // The menubutton event fires when the user presses the menu button
+        if (currentScreen === 'play') {
+          showScreen('pause');
+        }
+      },
+
+    };
+
+    phonegapEvents[eventType]();
+  }
+
   return {
     init: init,
     optimizeViewport: optimizeViewport,
+    phonegapEvent: phonegapEvent,
     showScreen: showScreen,
   };
 })();
@@ -1606,56 +1657,47 @@ ESVIJI.game = (function() {
 if (typeof window.cordova !== 'undefined') {
   // Only for PhoneGap apps
 
-  // The deviceready event fires when Cordova is fully loaded
-  document.addEventListener('deviceready', function() {
-    ESVIJI.game.init();
+  document.addEventListener('deviceready', function (event) {
+    event.preventDefault();
+    ESVIJI.game.phonegapEvent('deviceready');
   }, false);
 
-  // The pause event fires when an application is put into the background
-  document.addEventListener('pause', function() {
-    // will wait for resume event on iOS
-    // http://cordova.apache.org/docs/en/latest/cordova/events/events.pause.html#ios-quirks
-    console.log('pause');
+  document.addEventListener('pause', function (event) {
+    event.preventDefault();
+    ESVIJI.game.phonegapEvent('pause');
   }, false);
 
-  // The resume event fires when an application is retrieved from the background
-  document.addEventListener('resume', function() {
-    // will run pause event calls on iOS
-    // http://cordova.apache.org/docs/en/latest/cordova/events/events.resume.html#ios-quirks
-    console.log('resume');
-    if (esviji.GAME.currentScreen === 'play') {
-      // do not hang app on iOS
-      // http://cordova.apache.org/docs/en/latest/cordova/events/events.resume.html#ios-quirks
-      setTimeout(function() {
-        esviji.GAME.showScreen('pause');
-      }, 0);
-    }
+  document.addEventListener('resume', function (event) {
+    event.preventDefault();
+    ESVIJI.game.phonegapEvent('resume');
   }, false);
 
-  // The backbutton event fires when the user presses the back button
-  document.addEventListener('backbutton', function() {
-    // do nothing
+  document.addEventListener('backbutton', function (event) {
+    event.preventDefault();
+    ESVIJI.game.phonegapEvent('backbutton');
   }, false);
 
-  // The menubutton event fires when the user presses the menu button
-  document.addEventListener('menubutton', function() {
-    if (esviji.GAME.currentScreen === 'play') {
-      esviji.GAME.showScreen('pause');
-    }
+  document.addEventListener('menubutton', function (event) {
+    event.preventDefault();
+    ESVIJI.game.phonegapEvent('menubutton');
   }, false);
+
 } else {
   // For traditional Web
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function (event) {
+    event.preventDefault();
     ESVIJI.game.init();
   }, false);
 }
 
 // Optimize viewport and board sizes after resize and orientation change
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function (event) {
+    event.preventDefault();
     window.setTimeout(ESVIJI.game.optimizeViewport, 500);
   });
 
-window.addEventListener('orientationchange', function() {
+window.addEventListener('orientationchange', function (event) {
+    event.preventDefault();
     window.setTimeout(ESVIJI.game.optimizeViewport, 500);
   });
 
@@ -1665,7 +1707,8 @@ window.addEventListener('orientationchange', function() {
 
 // Check if a new cache is available
 if (window.applicationCache) {
-  window.applicationCache.addEventListener('updateready', function(e) {
+  window.applicationCache.addEventListener('updateready', function (event) {
+    event.preventDefault();
     if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
       // Browser downloaded a new app cache
       // Swap it in and reload the page to get the new version
