@@ -71,7 +71,6 @@ ESVIJI.settings = {
 // ## Add the game engine
 ESVIJI.game = (function() {
   // Initial values
-  var currentScreen = '';
   var viewportWidth = 0;
   var viewportHeight = 0;
   var boardWidth;
