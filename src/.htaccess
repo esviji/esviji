@@ -412,6 +412,9 @@ AddDefaultCharset utf-8
 
 #<IfModule mod_headers.c>
 
+# ???
+# Content-Security-Policy: default-src 'self' ; script-src 'self' data: 'unsafe-inline' https://fiery-heat-4665.firebaseio.com/,*://*.google-analytics.com/*; style-src 'self' data: 'unsafe-inline' ; img-src 'self' data: ; font-src 'self' ; connect-src * ; media-src 'self' ; block-all-mixed-content;
+
 #    Header set Content-Security-Policy-Report-Only: "script-src 'self'; object-src 'self'; report-uri https://report-uri.io/report/nhocom/reportOnly"
 
     # `mod_headers` cannot match based on the content-type, however,
