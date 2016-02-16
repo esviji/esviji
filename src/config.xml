@@ -1,4 +1,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.esviji.app" version="%VERSION%">
+  <!-- http://phonegap.com/blog/2016/02/09/phonegap_6_now_on_build/ -->
+  <!-- <preference name="phonegap-version" value="cli-6.0.0" /> -->
+
   <name>esviji</name>
   <description>%TITLE%</description>
   <author href="http://nicolas-hoizey.com" email="nicolas@hoizey.com">Nicolas Hoizey</author>
