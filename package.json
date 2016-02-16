@@ -6,7 +6,7 @@
   "main": "index.html",
   "repository": {
     "type": "git",
-    "url": "git://github.com/nhoizey/esviji.git"
+    "url": "git://github.com/esviji/esviji.git"
   },
   "keywords": [
     "game",
