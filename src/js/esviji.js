@@ -1,11 +1,5 @@
 var ESVIJI = {};
 
-// Only for last resort debug on PhoneGap app
-// window.onerror = function(msg, url, linenumber) {
-//     alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
-//     return true;
-// }
-
 ESVIJI.settings = {
   version: '%VERSION%',
 
@@ -109,7 +103,6 @@ ESVIJI.game = (function() {
   var useStored = false;
   var soundEffects;
   var soundAmbiance;
-  var clientType = 'web';
 
   // UA sniff iOS & iOS Safari for viewport units and SVG SMIL events issues
   // Yes, it's bad to UA sniff…
@@ -122,18 +115,6 @@ ESVIJI.game = (function() {
   function init() {
     window.setTimeout(ESVIJI.game.optimizeViewport, 500);
     optimizeViewport();
-
-    if (typeof window.cordova !== 'undefined') {
-      // Cordova plugin for Google Analytics
-      clientType = 'cordova';
-      if (typeof window.analytics !== 'undefined') {
-        window.analytics.startTrackerWithId('UA-1655999-12');
-      } else {
-        // alert('PhoneGap analytics plugin not available…');
-      }
-    } else {
-      ga('create', 'UA-1655999-4', 'auto');
-    }
 
     // No vh support test per https://github.com/Modernizr/Modernizr/issues/1805#issuecomment-167754373
     if (Modernizr.svg
@@ -363,14 +344,8 @@ ESVIJI.game = (function() {
       showScreen('play');
 
       // back to the level screen
-      if (clientType === 'cordova') {
-        if (typeof window.analytics !== 'undefined') {
-          window.analytics.trackView('Play level ' + gameStatus.level);
-        }
-      } else {
-        ga('set', 'page', '/play/level_' + gameStatus.level);
-        ga('send', 'pageview');
-      }
+      ga('set', 'page', '/play/level_' + gameStatus.level);
+      ga('send', 'pageview');
     });
 
     $('#pause .controls .restart').bind('click', function(event) {
@@ -497,14 +472,8 @@ ESVIJI.game = (function() {
     if (screen !== 'play' && screen !== 'gameover') {
       // Only track levels, not generic play screen
       // Don't track Game Over screen from here
-      if (clientType === 'cordova') {
-        if (typeof window.analytics !== 'undefined') {
-          window.analytics.trackView(screen);
-        }
-      } else {
-        ga('set', 'page', '/' + (screen === 'home' ? '' : screen));
-        ga('send', 'pageview');
-      }
+      ga('set', 'page', '/' + (screen === 'home' ? '' : screen));
+      ga('send', 'pageview');
     }
   }
 
@@ -616,14 +585,8 @@ ESVIJI.game = (function() {
     };
 
     // Track levels with Google Analytics
-    if (clientType === 'cordova') {
-      if (typeof window.analytics !== 'undefined') {
-        window.analytics.trackView('Play level ' + gameStatus.level);
-      }
-    } else {
-      ga('set', 'page', '/play/level_' + gameStatus.level);
-      ga('send', 'pageview');
-    }
+    ga('set', 'page', '/play/level_' + gameStatus.level);
+    ga('send', 'pageview');
 
     playSoundEffect('soundLevel');
     startNewTurn();
@@ -1454,20 +1417,10 @@ ESVIJI.game = (function() {
     var message = 'This is your score';
 
     // Google Analytics tracking of level and score at the end of the game
-    if (clientType === 'cordova') {
-      // Only the index for dimensions:
-      // https://github.com/danwilson/google-analytics-plugin/issues/71#issuecomment-71733998
-      if (typeof window.analytics !== 'undefined') {
-        window.analytics.addCustomDimension('2', gameStatus.level);
-        window.analytics.addCustomDimension('3', gameStatus.score);
-        window.analytics.trackView('Game Over');
-      }
-    } else {
-      ga('set', 'dimension2', gameStatus.level);
-      ga('set', 'dimension3', gameStatus.score);
-      ga('set', 'page', '/gameover');
-      ga('send', 'pageview');
-    }
+    ga('set', 'dimension2', gameStatus.level);
+    ga('set', 'dimension3', gameStatus.score);
+    ga('set', 'page', '/gameover');
+    ga('send', 'pageview');
 
     lastGameDate = Date();
     lastGameScore = gameStatus.score;
@@ -1596,99 +1549,16 @@ ESVIJI.game = (function() {
     }
   }
 
-  function phonegapEvent(eventType) {
-    alert(eventType);
-
-    var phonegapEvents = {
-      deviceready: function () {
-        // The deviceready event fires when Cordova is fully loaded
-        init();
-      },
-
-      pause: function () {
-        // The pause event fires when an application is put into the background
-        // /!\ execution will wait for resume event on iOS
-        // -> http://cordova.apache.org/docs/en/latest/cordova/events/events.pause.html#ios-quirks
-        alert('pause event');
-      },
-
-      resume: function () {
-        // The resume event fires when an application is retrieved from the background
-        // /!\ will run pause event calls on iOS
-        // -> http://cordova.apache.org/docs/en/latest/cordova/events/events.resume.html#ios-quirks
-        alert('resume event');
-        if (currentScreen === 'play') {
-          // do not hang app on iOS
-          // http://cordova.apache.org/docs/en/latest/cordova/events/events.resume.html#ios-quirks
-          // setTimeout(function () {
-            // ESVIJI.game.showScreen('pause');
-            alert('need to show pause screen');
-            alert('typeof showScreen: ' + typeof showScreen);
-            showScreen('pause');
-          // }, 0);
-        }
-      },
-
-      backbutton: function () {
-        // The backbutton event fires when the user presses the back button
-        // do nothing
-      },
-
-      menubutton: function () {
-        // The menubutton event fires when the user presses the menu button
-        if (currentScreen === 'play') {
-          showScreen('pause');
-        }
-      },
-
-    };
-
-    phonegapEvents[eventType]();
-  }
-
   return {
     init: init,
     optimizeViewport: optimizeViewport,
-    phonegapEvent: phonegapEvent,
-    showScreen: showScreen,
   };
 })();
 
-if (typeof window.cordova !== 'undefined') {
-  // Only for PhoneGap apps
-
-  document.addEventListener('deviceready', function (event) {
-    event.preventDefault();
-    ESVIJI.game.phonegapEvent('deviceready');
-  }, false);
-
-  document.addEventListener('pause', function (event) {
-    event.preventDefault();
-    ESVIJI.game.phonegapEvent('pause');
-  }, false);
-
-  document.addEventListener('resume', function (event) {
-    event.preventDefault();
-    ESVIJI.game.phonegapEvent('resume');
-  }, false);
-
-  document.addEventListener('backbutton', function (event) {
-    event.preventDefault();
-    ESVIJI.game.phonegapEvent('backbutton');
-  }, false);
-
-  document.addEventListener('menubutton', function (event) {
-    event.preventDefault();
-    ESVIJI.game.phonegapEvent('menubutton');
-  }, false);
-
-} else {
-  // For traditional Web
-  document.addEventListener('DOMContentLoaded', function (event) {
-    event.preventDefault();
-    ESVIJI.game.init();
-  }, false);
-}
+document.addEventListener('DOMContentLoaded', function (event) {
+  event.preventDefault();
+  ESVIJI.game.init();
+}, false);
 
 // Optimize viewport and board sizes after resize and orientation change
 window.addEventListener('resize', function (event) {

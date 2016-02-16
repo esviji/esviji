@@ -57,9 +57,6 @@ module.exports = function(grunt) {
       build: {
         src: 'build/',
       },
-      phonegap: {
-        src: '../esviji-phonegap/www/',
-      },
     },
 
     copy: {
@@ -96,27 +93,6 @@ module.exports = function(grunt) {
               'manifest.json',
             ],
             dest: 'build/',
-          },
-        ],
-      },
-      phonegap: {
-        files: [
-          {
-            expand: true,
-            cwd: 'build/',
-            src: [
-              '*',
-              '**/*',
-            ],
-            dest: '../esviji-phonegap/www/',
-          },
-        ],
-      },
-      phonegapiosicon: {
-        files: [
-          {
-            src: 'build/apple-touch-icon-57x57.png',
-            dest: '../esviji-phonegap/www/icon.png',
           },
         ],
       },
@@ -285,11 +261,6 @@ module.exports = function(grunt) {
         pattern: '\\\\/',
         replacement: '/',
       },
-      phonegapjs: {
-        path: '../esviji-phonegap/www/index.html',
-        pattern: '<\/title>',
-        replacement: '<\/title><script type="text/javascript" src="cordova.js"></script>',
-      },
     },
 
     devUpdate: {
@@ -305,7 +276,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['compile', 'watch']);
   grunt.registerTask('compile', ['growl', 'sass', 'autoprefixer', 'manifest:src']);
-  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean:build', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed:version', 'sed:title', 'sed:description', 'sed:jsonld', 'sed:cleanManifestFilePaths', 'manifest:build']);
-  grunt.registerTask('phonegap', ['build', 'clean:phonegap', 'copy:phonegap', 'copy:phonegapiosicon', 'sed:phonegapjs']);
+  grunt.registerTask('build', ['sass', 'autoprefixer', 'clean', 'copy:build', 'useminPrepare', 'concat', 'removelogging', 'uglify', 'cssmin', 'rev', 'usemin', 'realFavicon', 'sed', 'manifest:build']);
   grunt.registerTask('up', ['devUpdate']);
 };
