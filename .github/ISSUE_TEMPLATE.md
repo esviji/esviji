@@ -4,12 +4,12 @@
 
 # What operating system are you using?
 
-- [ ] Desktop
+- Desktop
  - [ ] Windows
  - [ ] Mac OS X
  - [ ] Linux
  - [ ] Other: please specify
-- [ ] Mobile
+- Mobile
  - [ ] iOS
  - [ ] Android
  - [ ] Windows Phone
