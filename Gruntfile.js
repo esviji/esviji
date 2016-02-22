@@ -8,6 +8,7 @@ module.exports = function(grunt) {
     packageFile: grunt.file.readJSON('package.json'),
     manifestFile: grunt.file.readJSON('src/manifest.json'),
     jsonldFile: grunt.file.read('src/json-ld.json'),
+    modernizrFile: grunt.file.read('src/js/vendor/modernizr-3.1.0-custom.js'),
 
     watch: {
       sass: {
@@ -254,6 +255,12 @@ module.exports = function(grunt) {
         recursive: true,
         pattern: '%JSONLD%',
         replacement: '<%= jsonldFile %>',
+      },
+      inlinemodernizr: {
+        path: 'build/',
+        recursive: true,
+        pattern: '%MODERNIZR%',
+        replacement: '<%= modernizrFile %>',
       },
       // https://github.com/RealFaviconGenerator/realfavicongenerator/issues/207
       cleanManifestFilePaths: {
