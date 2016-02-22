@@ -285,9 +285,6 @@ $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
     .progress {
       width: calc(100vw - 2 * #{$margins} - #{$landscapeSvgWith});
       height: calc(100vh - #{$fixedHeaderHeight} - 3 * #{$margins} - #{$fixedHeaderSize}); // TODO: ?
-      display: flex;
-      flex-orientation: column;
-
       ul li {
         text-align: center;
       }
