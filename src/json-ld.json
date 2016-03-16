@@ -6,8 +6,8 @@
   "softwareVersion": "%VERSION%",
   "description": "%DESCRIPTION%",
 
-  "url": "http://play.esviji.com/",
-  "gameLocation": "http://play.esviji.com/",
+  "url": "https://play.esviji.com/",
+  "gameLocation": "https://play.esviji.com/",
 
   "applicationCategory": "GameApplication",
   "applicationSubCategory": "WebApplication",
@@ -16,8 +16,8 @@
   "isFamilyFriendly": true,
   "sameAs": "https://en.wikipedia.org/wiki/Puzzle_Bobble",
 
-  "image": "http://play.esviji.com/img/esviji-logo.png",
-  "screenshot": "http://play.esviji.com/img/esviji-screenshot.png",
+  "image": "https://play.esviji.com/img/esviji-logo.png",
+  "screenshot": "https://play.esviji.com/img/esviji-screenshot.png",
   "trailer": {
     "@type": "VideoObject",
     "url": "https://www.youtube.com/watch?v=R2rxU9cVSqw",
@@ -32,17 +32,17 @@
   "author": {
     "@type": "Person",
     "name": "Nicolas Hoizey",
-    "url": "http://nicolas-hoizey.com/"
+    "url": "https://nicolas-hoizey.com/"
   },
   "publisher": {
     "@type": "Person",
     "name": "Nicolas Hoizey",
-    "url": "http://nicolas-hoizey.com/"
+    "url": "https://nicolas-hoizey.com/"
   },
   "copyrightHolder": {
     "@type": "Person",
     "name": "Nicolas Hoizey",
-    "url": "http://nicolas-hoizey.com/"
+    "url": "https://nicolas-hoizey.com/"
   },
   "copyrightYear": 1992,
 
@@ -60,14 +60,14 @@
         "@type": "PublicationEvent",
         "isAccessibleForFree": true,
         "startDate": "2013-01-23",
-        "url": "http://play.esviji.com/"
+        "url": "https://play.esviji.com/"
       },
       "offers": {
         "@type": "Offer",
         "availability": "http://schema.org/InStock",
         "price": "0.00",
         "priceCurrency": "EUR",
-        "url": "http://play.esviji.com/"
+        "url": "https://play.esviji.com/"
       }
     },
     {
@@ -103,7 +103,7 @@
       "availability": "http://schema.org/InStock",
       "price": "0.00",
       "priceCurrency": "EUR",
-      "url": "http://play.esviji.com/"
+      "url": "https://play.esviji.com/"
     },
     {
       "@type": "Offer",

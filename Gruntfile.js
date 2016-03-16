@@ -210,7 +210,7 @@ module.exports = function(grunt) {
               themeColor: '#444444',
               manifest: {
                 name: 'esviji',
-                startUrl: 'http://play.esviji.com',
+                startUrl: 'https://play.esviji.com',
                 display: 'standalone',
                 orientation: 'notSet',
                 existingManifest: '<%= manifestFile %>',

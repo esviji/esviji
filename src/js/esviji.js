@@ -28,7 +28,10 @@ ESVIJI.settings = {
     level: 0,
   },
 
-  // settings based on levels
+  /**
+   * Sets the number of rows for a specific game level
+   * @param {integer} level The current level
+   */
   levelRows: function levelRows(level) {
     return Math.min(7, 2 + Math.ceil((level + 1) / 2));
   },
@@ -68,7 +71,9 @@ ESVIJI.settings = {
   durationMorph: 0.5,
 };
 
-// ## Add the game engine
+/**
+ * Builds the game engine
+ */
 ESVIJI.game = (function() {
   // Initial values
   var viewportWidth = 0;
@@ -110,7 +115,10 @@ ESVIJI.game = (function() {
   var iOS = /(iPad|iPhone|iPod)/ig.test(navigator.userAgent);
   var iosSafari = (iOS && !/(CriOS|OPiOS)/ig.test(navigator.userAgent));
 
-  // Initialization
+  /**
+   * Initializes the game
+   */
+
   function init() {
     window.setTimeout(ESVIJI.game.optimizeViewport, 500);
     optimizeViewport();
@@ -179,7 +187,7 @@ ESVIJI.game = (function() {
         msg += '<p>You can still <strong>play the previous version of the game</strong> on <a href="http://v1.esviji.com/">v1.esviji.com</a>!.</p>';
       }
 
-      msg += '</div><p>Learn more about this game on <a href="http://esviji.com/">esviji.com</a>.</p>';
+      msg += '</div><p>Learn more about this game on <a href="https://esviji.com/">esviji.com</a>.</p>';
       $('#description p.icon').before(msg);
       return;
     }
