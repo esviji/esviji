@@ -16,7 +16,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "grunt": "*",
+    "grunt": "^1.0.1",
     "grunt-autoprefixer": "^3.0.4",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.1",
@@ -34,7 +34,7 @@
     "grunt-sed": "~0.1.1",
     "grunt-usemin": "^3.1.1",
     "jit-grunt": "^0.10.0",
-    "jsonfile": "^2.3.0",
+    "jsonfile": "^2.3.1",
     "minimatch": "^3.0.0",
     "uglify-js": "^2.6.2"
   }
