@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     packageFile: grunt.file.readJSON('package.json'),
     manifestFile: grunt.file.readJSON('src/manifest.json'),
     jsonldFile: grunt.file.read('src/json-ld.json'),
-    modernizrFile: grunt.file.read('src/js/vendor/modernizr-3.1.0-custom.js'),
+    modernizrFile: grunt.file.read('src/js/vendor/modernizr-custom.js'),
 
     watch: {
       sass: {
