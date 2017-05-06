@@ -36,6 +36,6 @@
     "jit-grunt": "^0.10.0",
     "jsonfile": "^2.3.1",
     "minimatch": "^3.0.0",
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^3.0.0"
   }
 }
