@@ -54,7 +54,7 @@
       "@type": "VideoGame",
       "gamePlatform": "https://en.wikipedia.org/wiki/World_Wide_Web",
       "operatingSystem": "any",
-      "contentRating":"PEGI 3",
+      "contentRating": "PEGI 3",
       "applicationCategory": "GameApplication",
       "releasedEvent": {
         "@type": "PublicationEvent",
@@ -75,7 +75,7 @@
       "gamePlatform": "https://en.wikipedia.org/wiki/Firefox_OS",
       "operatingSystem": "any",
       "installUrl": "https://marketplace.firefox.com/app/esviji/",
-      "contentRating":"PEGI 3",
+      "contentRating": "PEGI 3",
       "applicationCategory": "GameApplication",
       "releasedEvent": {
         "@type": "PublicationEvent",
