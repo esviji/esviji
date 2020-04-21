@@ -64,7 +64,7 @@ module.exports = function(grunt) {
               '404.html',
               '.htaccess',
               '.well-known/*',
-              'manifest.webmanifest',
+              // 'manifest.webmanifest',
               'config.xml',
               'css/font/*',
               'img/*',
