@@ -16,13 +16,15 @@ $headerHeight: $headerSize * $lineHeight;
 $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
 
 #play {
-
   // default layout (mobile first)
   font-size: 15vmin;
   line-height: $lineHeight;
 
-
-  h1, ul, .score, .level, .lives {
+  h1,
+  ul,
+  .score,
+  .level,
+  .lives {
     margin: 0;
     padding: 0;
   }
@@ -72,15 +74,17 @@ $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
 
     .icon {
       margin-right: $margins;
-      width: .75em;
-      height: .75em;
+      width: 0.75em;
+      height: 0.75em;
     }
   }
 
-  .score, .lives, .level {
+  .score,
+  .lives,
+  .level {
     display: inline-block;
     transition-property: color, transform;
-    transition-duration: .5s;
+    transition-duration: 0.5s;
     transition-timing-function: ease-in-out;
 
     &.changeDown {
@@ -111,8 +115,8 @@ $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
       fill: #777;
     }
 
-
-    #playable, #playableSpring {
+    #playable,
+    #playableSpring {
       pointer-events: none;
 
       &:hover {
@@ -121,7 +125,7 @@ $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
 
       &.throwable {
         animation-delay: 0;
-        animation-duration: .7s;
+        animation-duration: 0.7s;
         animation-timing-function: ease-in-out;
         animation-iteration-count: infinite;
       }
@@ -140,7 +144,7 @@ $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
       stroke: #cee;
       fill: none;
       transform-origin: 308px center;
-      transform: scaleX(.5);
+      transform: scaleX(0.5);
 
       &.throwable {
         animation-name: springAnimation;
@@ -276,7 +280,9 @@ $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
   @media (min-aspect-ratio: 24/24) {
     .progress {
       width: calc(100vw - 2 * #{$margins} - #{$landscapeSvgWith});
-      height: calc(100vh - #{$fixedHeaderHeight} - 3 * #{$margins} - #{$fixedHeaderSize}); // TODO: ?
+      height: calc(
+        100vh - #{$fixedHeaderHeight} - 3 * #{$margins} - #{$fixedHeaderSize}
+      ); // TODO: ?
       ul li {
         text-align: center;
       }
@@ -303,13 +309,25 @@ $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
 }
 
 @keyframes ballAnimation {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(-16px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-16px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @keyframes springAnimation {
-  0% { transform: scaleX(.5); }
-  50% { transform: scaleX(1); }
-  100% { transform: scaleX(.5); }
+  0% {
+    transform: scaleX(0.5);
+  }
+  50% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0.5);
+  }
 }
