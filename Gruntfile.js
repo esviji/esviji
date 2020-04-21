@@ -28,10 +28,10 @@ module.exports = function(grunt) {
     },
 
     sass: {
-      src: {
-        options: {
-          style: 'expanded',
-        },
+      options: {
+        implementation: require('node-sass'),
+      },
+      dist: {
         files: {
           'src/css/styles.css': 'src/sass/styles.scss',
         },
