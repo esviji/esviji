@@ -72,7 +72,6 @@ module.exports = function(grunt) {
               '.htaccess',
               '.well-known/*',
               'manifest.webapp',
-              'manifest.json',
               'config.xml',
               'css/font/*',
               'img/*',
@@ -80,6 +79,7 @@ module.exports = function(grunt) {
               'js/vendor/analytics.js',
               'js/vendor/SVGEventListener-0.2.3.js',
               'wow/*',
+              "manifest.webmanifest",
             ],
             dest: 'build/',
           },
@@ -264,10 +264,10 @@ module.exports = function(grunt) {
       },
       // https://github.com/RealFaviconGenerator/realfavicongenerator/issues/207
       cleanManifestFilePaths: {
-        path: 'build/manifest.json',
         pattern: '\\\\/',
         replacement: '/',
       },
+        path: "build/manifest.webapp",
     },
 
     devUpdate: {
