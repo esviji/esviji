@@ -55,5 +55,8 @@
     "workbox-routing": "5.1.2",
     "workbox-strategies": "5.1.2",
     "@babel/preset-env": "^7.9.5",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-prettier": "3.1.2"
   }
 }
