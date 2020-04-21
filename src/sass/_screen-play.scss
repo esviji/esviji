@@ -111,14 +111,6 @@ $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
       fill: #777;
     }
 
-    .ball {
-      text {
-        font-size: 16px;
-        text-anchor: middle;
-        fill: #fff;
-        stroke-width: 0;
-      }
-    }
 
     #playable, #playableSpring {
       pointer-events: none;
