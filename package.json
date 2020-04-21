@@ -15,6 +15,11 @@
   "author": "Nicolas Hoizey",
   "license": "MIT",
   "readmeFilename": "README.md",
+  "scripts": {
+    "sw": "rollup --config rollup-serviceworker.config.js && workbox injectManifest ./workbox.config.js",
+    "start": "grunt",
+    "build": "grunt build && npm run sw"
+  },
   "devDependencies": {
     "grunt": "^1.1.0",
     "grunt-autoprefixer": "^3.0.4",
