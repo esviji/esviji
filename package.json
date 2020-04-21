@@ -27,7 +27,6 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-dev-update": "^2.0.0",
     "grunt-growl": "~0.1.5",
-    "grunt-manifest": "^0.4.4",
     "grunt-real-favicon": "^0.2.4",
     "grunt-remove-logging": "~0.2.0",
     "grunt-rev": "~0.1.0",

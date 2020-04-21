@@ -17,19 +17,6 @@ module.exports = function(grunt) {
         },
         files: "src/sass/**",
         tasks: ["growl", "sass", "autoprefixer"]
-      },
-      manifest: {
-        options: {
-          debounceDelay: 250
-        },
-        files: [
-          "src/index.html",
-          "src/css/**",
-          "src/js/**",
-          "src/img/**",
-          "src/sounds/**"
-        ],
-        tasks: ["growl", "manifest:src"]
       }
     },
 
@@ -77,7 +64,6 @@ module.exports = function(grunt) {
               "404.html",
               ".htaccess",
               ".well-known/*",
-              "manifest.webapp",
               "manifest.webmanifest",
               "config.xml",
               "css/font/*",
@@ -87,16 +73,6 @@ module.exports = function(grunt) {
               "js/vendor/SVGEventListener-0.2.3.js",
               "wow/*"
             ],
-            dest: "build/"
-          }
-        ]
-      },
-      manifest: {
-        files: [
-          {
-            expand: true,
-            cwd: "src/",
-            src: ["manifest.json"],
             dest: "build/"
           }
         ]
@@ -153,29 +129,6 @@ module.exports = function(grunt) {
             src: ["build/css/styles.css", "build/js/app.js"]
           }
         ]
-      }
-    },
-
-    manifest: {
-      src: {
-        options: {
-          basePath: "src/",
-          network: ["*"],
-          verbose: true,
-          timestamp: true
-        },
-        src: ["js/**/*.js", "css/styles.css", "css/font/*"],
-        dest: "src/manifest.appcache"
-      },
-      build: {
-        options: {
-          basePath: "build/",
-          network: ["*"],
-          verbose: true,
-          timestamp: true
-        },
-        src: ["js/*.js", "css/*.css", "css/font/*"],
-        dest: "build/manifest.appcache"
       }
     },
 
@@ -256,12 +209,6 @@ module.exports = function(grunt) {
         recursive: true,
         pattern: "%MODERNIZR%",
         replacement: "<%= modernizrFile %>"
-      },
-      // https://github.com/RealFaviconGenerator/realfavicongenerator/issues/207
-      cleanManifestFilePaths: {
-        path: "build/manifest.webapp",
-        pattern: "\\\\/",
-        replacement: "/"
       }
     },
 
@@ -276,17 +223,12 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask("default", ["compile", "watch"]);
-  grunt.registerTask("compile", [
-    "growl",
-    "sass",
-    "autoprefixer",
-    "manifest:src"
-  ]);
+  grunt.registerTask("compile", ["growl", "sass", "autoprefixer"]);
   grunt.registerTask("build", [
     "sass",
     "autoprefixer",
     "clean",
-    "copy:build",
+    "copy",
     "useminPrepare",
     "concat",
     "removelogging",
@@ -295,8 +237,7 @@ module.exports = function(grunt) {
     "rev",
     "usemin",
     "realFavicon",
-    "sed",
-    "manifest:build"
+    "sed"
   ]);
   grunt.registerTask("up", ["devUpdate"]);
 };
