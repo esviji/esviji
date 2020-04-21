@@ -1,6 +1,9 @@
 .sass-cache/
 .tmp/
 
+_logs
+_scripts
+
 node_modules/
 build/
 
