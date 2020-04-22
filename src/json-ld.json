@@ -69,31 +69,6 @@
         "priceCurrency": "EUR",
         "url": "https://play.esviji.com/"
       }
-    },
-    {
-      "@type": "VideoGame",
-      "gamePlatform": "https://en.wikipedia.org/wiki/Firefox_OS",
-      "operatingSystem": "any",
-      "installUrl": "https://marketplace.firefox.com/app/esviji/",
-      "contentRating": "PEGI 3",
-      "applicationCategory": "GameApplication",
-      "releasedEvent": {
-        "@type": "PublicationEvent",
-        "startDate": "2013-01-23"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "bestRating": "5",
-        "ratingValue": "5",
-        "ratingCount": "16"
-      },
-      "offers": {
-        "@type": "Offer",
-        "availability": "http://schema.org/InStock",
-        "price": "0.00",
-        "priceCurrency": "EUR",
-        "url": "https://marketplace.firefox.com/app/esviji/"
-      }
     }
   ],
 
@@ -104,13 +79,6 @@
       "price": "0.00",
       "priceCurrency": "EUR",
       "url": "https://play.esviji.com/"
-    },
-    {
-      "@type": "Offer",
-      "availability": "http://schema.org/InStock",
-      "price": "0.00",
-      "priceCurrency": "EUR",
-      "url": "https://marketplace.firefox.com/app/esviji/"
     }
   ]
 }
