@@ -62,6 +62,7 @@ module.exports = function(grunt) {
             src: [
               'index.html',
               '404.html',
+              'privacy-policy.html',
               '.htaccess',
               '.well-known/*',
               // 'manifest.webmanifest',
