@@ -133,53 +133,6 @@ module.exports = function(grunt) {
       },
     },
 
-    realFavicon: {
-      favicons: {
-        src: './src/img/esviji-logo.png',
-        dest: './build/',
-        options: {
-          iconsPath: '/',
-          html: ['./build/index.html'],
-          design: {
-            ios: {
-              pictureAspect: 'backgroundAndMargin',
-              backgroundColor: '#cccccc',
-              margin: '14%',
-              appName: 'esviji',
-            },
-            desktopBrowser: {},
-            windows: {
-              appName: 'esviji',
-              pictureAspect: 'noChange',
-              backgroundColor: '#00aba9',
-              onConflict: 'keep_existing',
-            },
-            androidChrome: {
-              pictureAspect: 'shadow',
-              themeColor: '#444444',
-              manifest: {
-                name: 'esviji',
-                startUrl: 'https://play.esviji.com',
-                display: 'standalone',
-                orientation: 'notSet',
-                existingManifest: '<%= manifestFile %>',
-                onConflict: 'keep_existing',
-              },
-            },
-            safariPinnedTab: {
-              pictureAspect: 'silhouette',
-              themeColor: '#444444',
-            },
-          },
-          settings: {
-            compression: 1,
-            scalingAlgorithm: 'Mitchell',
-            errorOnImageTooSmall: false,
-          },
-        },
-      },
-    },
-
     sed: {
       version: {
         path: 'build/',
@@ -237,7 +190,6 @@ module.exports = function(grunt) {
     'cssmin',
     'rev',
     'usemin',
-    'realFavicon',
     'sed',
   ]);
   grunt.registerTask('up', ['devUpdate']);
