@@ -64,6 +64,8 @@ module.exports = function(grunt) {
               '404.html',
               'terms-and-conditions.html',
               'privacy-policy.html',
+              'manifest.webmanifest',
+              'favicon.ico',
               'robots.txt',
               'humans.txt',
               'css/font/*',
