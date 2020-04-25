@@ -190,12 +190,6 @@ ESVIJI.game = (function() {
 
       msg += '.</p>';
 
-      // Try esviji v1, maybe?
-      if (Modernizr.svg && Modernizr.inlinesvg && Modernizr.smil) {
-        msg +=
-          '<p>You can still <strong>play the previous version of the game</strong> on <a href="http://v1.esviji.com/">v1.esviji.com</a>!.</p>';
-      }
-
       msg +=
         '</div><p>Learn more about this game on <a href="https://esviji.com/">esviji.com</a>.</p>';
       $('#description p.icon').before(msg);
