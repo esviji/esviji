@@ -180,25 +180,6 @@ $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
 
   // Portrait mode above 11/24
   @media (min-aspect-ratio: 11/24) {
-    font-size: 10vmin;
-
-    .progress {
-      ul {
-        position: absolute;
-        left: $margins;
-        width: 25vw;
-
-        flex-direction: column;
-
-        li {
-          text-align: left;
-        }
-      }
-    }
-  }
-
-  // Portrait mode above 13/24
-  @media (min-aspect-ratio: 13/24) {
     font-size: calc(13 / 24 * 10vh - 2vw);
 
     .progress {
@@ -217,6 +198,9 @@ $fixedHeaderHeight: $fixedHeaderSize * $lineHeight;
       ul {
         position: static;
         line-height: 1.2;
+        left: $margins;
+        width: 25vw;
+        flex-direction: column;
 
         li {
           text-align: left;
