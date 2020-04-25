@@ -4,7 +4,7 @@ const BUILD_DIR = 'build';
 
 module.exports = {
   globDirectory: BUILD_DIR,
-  globPatterns: ['/', '**/*.{html,js,css,woff2,webmanifest}'],
+  globPatterns: ['/', '**/*.{js,css,woff2,webmanifest}'],
   swSrc: path.join(BUILD_DIR, 'service-worker.js'),
   swDest: path.join(BUILD_DIR, 'service-worker.js'),
   mode: 'production',
