@@ -1,6 +1,6 @@
 {
   "name": "esviji",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "title": "esviji, a free puzzle game for the Web",
   "description": "Play esviji on any device with your browser! You'll have to destroy balls based on their colors and place on the board.",
   "main": "index.html",
