@@ -71,7 +71,6 @@ module.exports = function(grunt) {
               'css/font/*',
               'img/*',
               'sounds/*',
-              'js/vendor/SVGEventListener-0.2.3.js',
               'wow/*',
             ],
             dest: 'build/',
