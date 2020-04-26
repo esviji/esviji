@@ -224,14 +224,14 @@ ESVIJI.game = (function() {
       };
     }
 
-    if (iosSafari) {
-      $('html').addClass('iossafari');
+    // if (iosSafari) {
+    //   $('html').addClass('iossafari');
 
-      // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
-      window.viewportUnitsBuggyfill.init({
-        force: true,
-      });
-    }
+    //   // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
+    //   window.viewportUnitsBuggyfill.init({
+    //     force: true,
+    //   });
+    // }
 
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
