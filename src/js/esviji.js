@@ -1,6 +1,8 @@
 // Load dependencies
 let jquery = require('jquery');
 window.$ = window.jQuery = jquery;
+let store = require('/js/vendor/store+json2-1.3.7.min.js');
+
 var ESVIJI = {};
 
 ESVIJI.settings = {
