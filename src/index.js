@@ -2,11 +2,10 @@
 import $ from 'jquery';
 import { Howl, Howler } from 'howler';
 import Mousetrap from 'mousetrap';
-let store = require('/js/vendor/store+json2-1.3.7.min.js');
 
 let jsonld = require('./json-ld.json');
 console.dir(jsonld);
-document.querySelector('#jsonld').textContent = JSON.stringify(jsonld);
+import store from 'store';
 
 var ESVIJI = {};
 
