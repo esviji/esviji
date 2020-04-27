@@ -17,9 +17,9 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "scripts": {
-    "sw": "rollup --config rollup-serviceworker.config.js && workbox injectManifest ./workbox.config.js",
     "start": "grunt",
     "build": "grunt build && npm run sw"
+    "sw": "rollup -c && workbox injectManifest ./workbox.config.js",
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.5",
