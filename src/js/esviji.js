@@ -1,3 +1,6 @@
+// Load dependencies
+let jquery = require('jquery');
+window.$ = window.jQuery = jquery;
 var ESVIJI = {};
 
 ESVIJI.settings = {
