@@ -17,9 +17,9 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "scripts": {
-    "start": "grunt",
-    "build": "grunt build && npm run sw"
     "sw": "rollup -c && workbox injectManifest ./workbox.config.js",
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html && npm run sw"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.5",
@@ -51,6 +51,8 @@
     "mousetrap": "^1.6.5",
     "natives": "^1.1.6",
     "node-sass": "^4.13.1",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-static-files-copy": "^2.3.1",
     "rollup": "^2.6.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -67,5 +69,6 @@
     "workbox-precaching": "5.1.2",
     "workbox-routing": "5.1.2",
     "workbox-strategies": "5.1.2"
-  }
+  },
+  "dependencies": {}
 }
