@@ -2,9 +2,6 @@
 import $ from 'jquery';
 import { Howl, Howler } from 'howler';
 import Mousetrap from 'mousetrap';
-
-let jsonld = require('./json-ld.json');
-console.dir(jsonld);
 import store from 'store';
 
 var ESVIJI = {};
