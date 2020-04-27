@@ -135,7 +135,7 @@ ESVIJI.game = (function() {
       Modernizr.cssvminunit &&
       Modernizr.flexbox
     ) {
-      $('#description').hide();
+      document.querySelector('#description').style.display = 'none';
     } else {
       // Add this message using JS to prevent indexing it in search engines
       var msg =
