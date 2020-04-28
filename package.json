@@ -19,7 +19,7 @@
     "clean": "rimraf dist/*",
     "sw": "rollup -c && workbox injectManifest ./workbox.config.js",
     "start": "npm run clean && parcel src/index.njk",
-    "build": "npm run clean && parcel build src/index.njk && npm run sw"
+    "build": "npm run clean && parcel build src/index.njk --public-url https://play.esviji.com && npm run sw"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.5",
