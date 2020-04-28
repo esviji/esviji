@@ -6,12 +6,12 @@
       name="viewport"
       content="initial-scale=1, maximum-scale=1, user-scalable=no"
     />
-    <title>esviji</title>
-    <meta name="description" content="%DESCRIPTION%" />
+    <title>{{ name }}</title>
+    <meta name="description" content="{{ description }}" />
 
     <meta property="og:type" content="game" />
     <meta property="og:title" content="esviji" />
-    <meta property="og:description" content="%DESCRIPTION%" />
+    <meta property="og:description" content="{{ description }}" />
     <meta property="og:url" content="https://play.esviji.com/" />
     <meta
       property="og:image"
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@nhoizey" />
     <meta name="twitter:site" content="@esviji" />
     <meta name="twitter:title" content="esviji" />
-    <meta name="twitter:description" content="%DESCRIPTION%" />
+    <meta name="twitter:description" content="{{ description }}" />
     <meta
       name="twitter:image"
       content="https://play.esviji.com/img/esviji-mockup.jpg"
@@ -174,11 +174,11 @@
     </svg>
     <header id="description">
       <h1>esviji</h1>
-      <p>%DESCRIPTION%</p>
+      <p>{{ description }}</p>
       <p class="icon">
         <img src="img/esviji-logo-180.png" alt="esviji logo" />
       </p>
-      <p>Version %VERSION%</p>
+      <p>Version {{ version }}</p>
     </header>
     <section id="home" aria-hidden="true">
       <header>
@@ -454,12 +454,12 @@
       <h2>About esviji</h2>
       <div class="about">
         <div class="description">
-          <p>This is esviji version <span class="version">%VERSION%</span></p>
+          <p>This is esviji version <span class="version">{{ version }}</span></p>
           <p>
             &copy; 1992-2020
             <a href="https://nicolas-hoizey.com/">Nicolas Hoizey</a>
           </p>
-          <p>%DESCRIPTION%</p>
+          <p>{{ description }}</p>
           <p>
             If you have any issue with the game, or an idea to make it even
             better, please

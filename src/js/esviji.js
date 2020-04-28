@@ -6,9 +6,13 @@ import store from 'store';
 
 var ESVIJI = {};
 
-ESVIJI.settings = {
-  version: '%VERSION%',
+if (process.env.NODE_ENV === 'production') {
+  ESVIJI.version = $('.version').text();
+} else {
+  ESVIJI.version = 'development';
+}
 
+ESVIJI.settings = {
   // board size and according ball extreme positions
   board: {
     width: 320,
@@ -143,8 +147,7 @@ ESVIJI.game = (function() {
       // Add this message using JS to prevent indexing it in search engines
       var msg =
         '<div class="error"><p><strong>Sorry, your can\'t play…</strong></p>';
-      msg +=
-        "<p>Your browser doesn't support some Web technologies <strong>esviji</strong> version <em>%VERSION%</em> requires.</p>";
+      msg += `<p>Your browser doesn't support some Web technologies <strong>esviji</strong> version <em>${ESVIJI.version}</em> requires.</p>`;
       msg += '<p> It lacks support for ';
       var nbMissing = 0;
       var features = {
@@ -202,11 +205,9 @@ ESVIJI.game = (function() {
       return;
     }
 
-    if (!ESVIJI.settings.version.match(/VERSION/)) {
-      if ($('.version').text() === ESVIJI.settings.version) {
-        // Send version to Google Analytics only if it is set in the source
-        ga('set', 'dimension1', ESVIJI.settings.version);
-      }
+    if (process.env.NODE_ENV === 'production') {
+      // Send version to Google Analytics only in production
+      ga('set', 'dimension1', ESVIJI.version);
     }
 
     if (!store.disabled) {
