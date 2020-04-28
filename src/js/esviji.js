@@ -1772,7 +1772,7 @@ ESVIJI.game = (function() {
   }
 
   function playSoundEffect(type) {
-    if (gameStatus.preferences.sound && soundEffects._loaded) {
+    if (gameStatus.preferences.sound) {
       soundEffects.play(type);
     }
   }
