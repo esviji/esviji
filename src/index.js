@@ -281,11 +281,7 @@ ESVIJI.game = (function() {
 
     // Available sounds
     soundEffects = new Howl({
-      src: [
-        'sounds/effects-sprite.webm',
-        'sounds/effects-sprite.mp3',
-        'sounds/effects-sprite.ogg',
-      ],
+      src: ['sounds/effects-sprite.mp3'],
       sprite: {
         soundFall: [0, 204.05895691609976],
         soundHitFloor: [2000, 2000],
@@ -308,7 +304,7 @@ ESVIJI.game = (function() {
     });
 
     // soundAmbiance = new Howl({
-    //   src: ['sounds/in-game-loop.webm', 'sounds/in-game-loop.mp3', 'sounds/in-game-loop.ogg'],
+    //   src: ['sounds/in-game-loop.mp3'],
     //   loop: true,
     //   volume: 0.5,
     //   onload: function() {
