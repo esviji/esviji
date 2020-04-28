@@ -3,6 +3,20 @@ import $ from 'jquery';
 import { Howl, Howler } from 'howler';
 import Mousetrap from 'mousetrap';
 import store from 'store';
+var viewportUnitsBuggyfill = require('viewport-units-buggyfill');
+
+// UA sniff iOS Safari for viewport units issues
+// Yes, it's bad to UA sniff…
+// Why CriOS? -> http://stackoverflow.com/a/29696509
+// Why OPiOS? -> http://stackoverflow.com/questions/3007480/determine-if-user-navigated-from-mobile-safari/29696509#comment55234967_29696509
+var iOS = /(iPad|iPhone|iPod)/gi.test(navigator.userAgent);
+var iosSafari = iOS && !/(CriOS|OPiOS)/gi.test(navigator.userAgent);
+if (iosSafari) {
+  // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
+  viewportUnitsBuggyfill.init({
+    force: true,
+  });
+}
 
 var ESVIJI = {};
 
@@ -118,13 +132,6 @@ ESVIJI.game = (function () {
   var soundEffects;
   var soundAmbiance;
 
-  // UA sniff iOS Safari for viewport units issues
-  // Yes, it's bad to UA sniff…
-  // Why CriOS? -> http://stackoverflow.com/a/29696509
-  // Why OPiOS? -> http://stackoverflow.com/questions/3007480/determine-if-user-navigated-from-mobile-safari/29696509#comment55234967_29696509
-  var iOS = /(iPad|iPhone|iPod)/gi.test(navigator.userAgent);
-  var iosSafari = iOS && !/(CriOS|OPiOS)/gi.test(navigator.userAgent);
-
   /**
    * Initializes the game
    */
@@ -231,15 +238,6 @@ ESVIJI.game = (function () {
       };
     }
 
-    if (iosSafari) {
-      $('html').addClass('iossafari');
-
-      // https://github.com/rodneyrehm/viewport-units-buggyfill/issues/35
-      window.viewportUnitsBuggyfill.init({
-        force: true,
-      });
-    }
-
     cursorMinY = yToSvg(1);
     cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailableBalls = ESVIJI.settings.balls.length;
@@ -325,6 +323,8 @@ ESVIJI.game = (function () {
     if (gameStatus.preferences.sound) {
       $('#home .sound').addClass('on');
       $('#pause .sound').addClass('on');
+
+      // playSoundEffect('soundThrow');
     }
 
     initBindings();
