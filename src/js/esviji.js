@@ -1,8 +1,18 @@
+// Load dependencies
+import $ from 'jquery';
+import { Howl, Howler } from 'howler';
+import Mousetrap from 'mousetrap';
+import store from 'store';
+
 var ESVIJI = {};
 
-ESVIJI.settings = {
-  version: '%VERSION%',
+if (process.env.NODE_ENV === 'production') {
+  ESVIJI.version = $('.version').text();
+} else {
+  ESVIJI.version = 'development';
+}
 
+ESVIJI.settings = {
   // board size and according ball extreme positions
   board: {
     width: 320,
@@ -132,13 +142,12 @@ ESVIJI.game = (function() {
       Modernizr.cssvminunit &&
       Modernizr.flexbox
     ) {
-      $('#description').hide();
+      document.querySelector('#description').style.display = 'none';
     } else {
       // Add this message using JS to prevent indexing it in search engines
       var msg =
         '<div class="error"><p><strong>Sorry, your can\'t play…</strong></p>';
-      msg +=
-        "<p>Your browser doesn't support some Web technologies <strong>esviji</strong> version <em>%VERSION%</em> requires.</p>";
+      msg += `<p>Your browser doesn't support some Web technologies <strong>esviji</strong> version <em>${ESVIJI.version}</em> requires.</p>`;
       msg += '<p> It lacks support for ';
       var nbMissing = 0;
       var features = {
@@ -196,11 +205,9 @@ ESVIJI.game = (function() {
       return;
     }
 
-    if (!ESVIJI.settings.version.match(/VERSION/)) {
-      if ($('.version').text() === ESVIJI.settings.version) {
-        // Send version to Google Analytics only if it is set in the source
-        ga('set', 'dimension1', ESVIJI.settings.version);
-      }
+    if (process.env.NODE_ENV === 'production') {
+      // Send version to Google Analytics only in production
+      ga('set', 'dimension1', ESVIJI.version);
     }
 
     if (!store.disabled) {
@@ -275,11 +282,7 @@ ESVIJI.game = (function() {
 
     // Available sounds
     soundEffects = new Howl({
-      src: [
-        'sounds/effects-sprite.webm',
-        'sounds/effects-sprite.mp3',
-        'sounds/effects-sprite.ogg',
-      ],
+      src: ['sounds/effects-sprite.mp3'],
       sprite: {
         soundFall: [0, 204.05895691609976],
         soundHitFloor: [2000, 2000],
@@ -302,14 +305,14 @@ ESVIJI.game = (function() {
     });
 
     // soundAmbiance = new Howl({
-    //   src: ['sounds/in-game-loop.webm', 'sounds/in-game-loop.mp3', 'sounds/in-game-loop.ogg'],
+    //   src: ['sounds/in-game-loop.mp3'],
     //   loop: true,
     //   volume: 0.5,
     //   onload: function() {
     //     $('html').addClass('ambiancesoundloaded');
     //   },
     //   onloaderror: function() {
-    //     console.error('Can\'t load ambiance sound…');
+    //     console.error("Can't load ambiance sound…");
     //   },
     // });
 
@@ -547,7 +550,7 @@ ESVIJI.game = (function() {
   function showScores() {
     var thisone = false;
     $('.highscores li').remove();
-    for (i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
       if (highScores[i] !== undefined && highScores[i].score !== 0) {
         if (lastGameDate === highScores[i].date) {
           thisone = true;
@@ -795,8 +798,8 @@ ESVIJI.game = (function() {
     });
 
     moveCount = 0;
-    oldPosX = currentPosX;
-    oldPosY = currentPosY;
+    window.oldPosX = currentPosX;
+    window.oldPosY = currentPosY;
 
     eraseSpring();
 
@@ -894,8 +897,8 @@ ESVIJI.game = (function() {
       });
 
       moveCount = 0;
-      oldPosX = currentPosX;
-      oldPosY = currentPosY;
+      window.oldPosX = currentPosX;
+      window.oldPosY = currentPosY;
 
       eraseSpring();
 
@@ -913,12 +916,12 @@ ESVIJI.game = (function() {
     moveCount++;
     if (currentPosY == 1 && currentDirY == -1) {
       // Against the floor, no more possible move
-      if (oldPosY != 1) {
+      if (window.oldPosY != 1) {
         animStackMove(
           drawnCurrentBall,
-          (oldPosY - currentPosY) * ESVIJI.settings.durationMove,
+          (window.oldPosY - currentPosY) * ESVIJI.settings.durationMove,
           'y',
-          yToSvg(oldPosY),
+          yToSvg(window.oldPosY),
           yToSvg(currentPosY)
         );
       }
@@ -938,9 +941,9 @@ ESVIJI.game = (function() {
         currentDirY = -1;
         animStackMove(
           drawnCurrentBall,
-          (oldPosX - currentPosX) * ESVIJI.settings.durationMove,
+          (window.oldPosX - currentPosX) * ESVIJI.settings.durationMove,
           'x',
-          xToSvg(oldPosX),
+          xToSvg(window.oldPosX),
           xToSvg(currentPosX)
         );
         $('#anim' + lastStackedAnimation)[0].addEventListener(
@@ -951,11 +954,11 @@ ESVIJI.game = (function() {
           false
         );
 
-        oldPosX = currentPosX;
+        window.oldPosX = currentPosX;
         playUserChoice();
       } else {
         // Neither floor nor wall, so what is it?
-        nextBall =
+        let nextBall =
           gameStatus.currentBalls[currentPosX + currentDirX][
             currentPosY + currentDirY
           ];
@@ -968,12 +971,12 @@ ESVIJI.game = (function() {
               currentDirY = -1;
               animStackMove(
                 drawnCurrentBall,
-                (oldPosX - currentPosX) * ESVIJI.settings.durationMove,
+                (window.oldPosX - currentPosX) * ESVIJI.settings.durationMove,
                 'x',
-                xToSvg(oldPosX),
+                xToSvg(window.oldPosX),
                 xToSvg(currentPosX)
               );
-              oldPosX = currentPosX;
+              window.oldPosX = currentPosX;
               $('#anim' + lastStackedAnimation)[0].addEventListener(
                 'endEvent',
                 function(event) {
@@ -985,12 +988,12 @@ ESVIJI.game = (function() {
               playUserChoice();
             } else {
               // ...under us, no more possible move
-              if (oldPosY != currentPosY) {
+              if (window.oldPosY != currentPosY) {
                 animStackMove(
                   drawnCurrentBall,
-                  (oldPosY - currentPosY) * ESVIJI.settings.durationMove,
+                  (window.oldPosY - currentPosY) * ESVIJI.settings.durationMove,
                   'y',
-                  yToSvg(oldPosY),
+                  yToSvg(window.oldPosY),
                   yToSvg(currentPosY)
                 );
               }
@@ -1017,30 +1020,32 @@ ESVIJI.game = (function() {
 
           case gameStatus.currentBall:
             // Same ball, let's destroy it!
-            currentPosXBefore = currentPosX;
-            currentPosYBefore = currentPosY;
+            let currentPosXBefore = currentPosX;
+            let currentPosYBefore = currentPosY;
             currentPosX += currentDirX;
             currentPosY += currentDirY;
             gameStatus.currentBalls[currentPosX][currentPosY] =
               ESVIJI.settings.emptyId;
-            if (currentPosXBefore != oldPosX) {
+            if (currentPosXBefore != window.oldPosX) {
               animStackMove(
                 drawnCurrentBall,
-                (oldPosX - currentPosXBefore) * ESVIJI.settings.durationMove,
+                (window.oldPosX - currentPosXBefore) *
+                  ESVIJI.settings.durationMove,
                 'x',
-                xToSvg(oldPosX),
+                xToSvg(window.oldPosX),
                 xToSvg(currentPosXBefore)
               );
-              oldPosX = currentPosXBefore;
-            } else if (currentPosYBefore != oldPosY) {
+              window.oldPosX = currentPosXBefore;
+            } else if (currentPosYBefore != window.oldPosY) {
               animStackMove(
                 drawnCurrentBall,
-                (oldPosY - currentPosYBefore) * ESVIJI.settings.durationMove,
+                (window.oldPosY - currentPosYBefore) *
+                  ESVIJI.settings.durationMove,
                 'y',
-                yToSvg(oldPosY),
+                yToSvg(window.oldPosY),
                 yToSvg(currentPosYBefore)
               );
-              oldPosY = currentPosYBefore;
+              window.oldPosY = currentPosYBefore;
             }
 
             animStackDestroy(drawnCurrentBalls[currentPosX][currentPosY]);
@@ -1051,27 +1056,27 @@ ESVIJI.game = (function() {
 
           default:
             lastHitBall = nextBall;
-            if (currentPosX != oldPosX) {
+            if (currentPosX != window.oldPosX) {
               animStackMove(
                 drawnCurrentBall,
-                (oldPosX - currentPosX) * ESVIJI.settings.durationMove,
+                (window.oldPosX - currentPosX) * ESVIJI.settings.durationMove,
                 'x',
-                xToSvg(oldPosX),
+                xToSvg(window.oldPosX),
                 xToSvg(currentPosX)
               );
-            } else if (currentPosY != oldPosY) {
+            } else if (currentPosY != window.oldPosY) {
               animStackMove(
                 drawnCurrentBall,
-                (oldPosY - currentPosY) * ESVIJI.settings.durationMove,
+                (window.oldPosY - currentPosY) * ESVIJI.settings.durationMove,
                 'y',
-                yToSvg(oldPosY),
+                yToSvg(window.oldPosY),
                 yToSvg(currentPosY)
               );
             }
 
             if (scoreThisTurn > 0) {
               gameStatus.currentBall = nextBall;
-              if (currentPosX != oldPosX) {
+              if (currentPosX != window.oldPosX) {
                 animStackMorph(
                   drawnCurrentBall,
                   nextBall,
@@ -1141,7 +1146,7 @@ ESVIJI.game = (function() {
 
     lastStackedAnimation++;
 
-    anim = svgAnimate({
+    let anim = svgAnimate({
       attributeName: attribute,
       from: from,
       to: to,
@@ -1180,7 +1185,7 @@ ESVIJI.game = (function() {
     $('#board').append(ballTo);
 
     // opacity from
-    animOpacityFrom = svgAnimate({
+    let animOpacityFrom = svgAnimate({
       attributeName: 'opacity',
       to: '0',
       begin: 'anim' + lastStackedAnimation + '.end',
@@ -1191,7 +1196,7 @@ ESVIJI.game = (function() {
     ballFrom.append(animOpacityFrom);
 
     // move
-    animMoveFrom = svgAnimate({
+    let animMoveFrom = svgAnimate({
       attributeName: attribute,
       from: from,
       to: to,
@@ -1203,7 +1208,7 @@ ESVIJI.game = (function() {
     ballFrom.append(animMoveFrom);
 
     // opacity to
-    animOpacityTo = svgAnimate({
+    let animOpacityTo = svgAnimate({
       attributeName: 'opacity',
       to: '1',
       begin: 'anim' + lastStackedAnimation + '.end',
@@ -1214,7 +1219,7 @@ ESVIJI.game = (function() {
     ballTo.append(animOpacityTo);
 
     // move
-    animMoveTo = svgAnimate({
+    let animMoveTo = svgAnimate({
       attributeName: attribute,
       from: from,
       to: to,
@@ -1304,9 +1309,8 @@ ESVIJI.game = (function() {
   }
 
   function makeBallsFall() {
-    var aboveBalls;
-
-    lastStackedAnimationBeforeFall = lastStackedAnimation;
+    let aboveBalls;
+    let lastStackedAnimationBeforeFall = lastStackedAnimation;
     for (var x = 1; x <= 7; x++) {
       aboveBalls = 0;
       for (var y = 1; y <= 6; y++) {
@@ -1340,7 +1344,7 @@ ESVIJI.game = (function() {
                   drawnCurrentBalls[x][a] = null;
                 }
 
-                dur = ESVIJI.settings.durationMove * (z - y);
+                let dur = ESVIJI.settings.durationMove * (z - y);
 
                 // Follow through and overlapping action:
                 // http://uxdesign.smashingmagazine.com/2012/10/30/motion-animation-new-mobile-ux-design-material/
@@ -1395,9 +1399,9 @@ ESVIJI.game = (function() {
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
 
-    for (x = 1; x <= 7; x++) {
+    for (let x = 1; x <= 7; x++) {
       ballsUnder = 0;
-      for (y = 1; y <= 7; y++) {
+      for (let y = 1; y <= 7; y++) {
         if (gameStatus.currentBalls[x][y] != ESVIJI.settings.emptyId) {
           dur = ESVIJI.settings.durationMove * (1 + ballsUnder / 3);
           if (lastStackedAnimation === 0) {
@@ -1447,9 +1451,9 @@ ESVIJI.game = (function() {
     nbBalls = ESVIJI.settings.levelBalls(thisLevel);
     gameStatus.currentBalls = [];
 
-    for (x = 1; x <= ESVIJI.settings.board.xMax; x++) {
+    for (let x = 1; x <= ESVIJI.settings.board.xMax; x++) {
       gameStatus.currentBalls[x] = [];
-      for (y = 1; y <= ESVIJI.settings.board.yMax; y++) {
+      for (let y = 1; y <= ESVIJI.settings.board.yMax; y++) {
         if (y - 7 > x) {
           // put the 'stair' rocks
           gameStatus.currentBalls[x][y] = ESVIJI.settings.rockId;
@@ -1470,8 +1474,8 @@ ESVIJI.game = (function() {
     }
 
     // add rocks
-    nbRocks = ESVIJI.settings.levelRocks(thisLevel);
-    positionedRocks = 0;
+    let nbRocks = ESVIJI.settings.levelRocks(thisLevel);
+    let positionedRocks = 0;
     while (positionedRocks < nbRocks) {
       rockX =
         1 + Math.floor(Math.random() * ESVIJI.settings.levelRows(thisLevel));
@@ -1543,14 +1547,14 @@ ESVIJI.game = (function() {
 
   function drawBalls() {
     drawnCurrentBalls = [];
-    for (x = 1; x <= 7; x++) {
+    for (let x = 1; x <= 7; x++) {
       drawnCurrentBalls[x] = [];
-      for (y = 1; y <= 7; y++) {
+      for (let y = 1; y <= 7; y++) {
         if (gameStatus.currentBalls[x][y] == ESVIJI.settings.emptyId) {
           drawnCurrentBalls[x][y] = null;
         } else {
-          ballX = xToSvg(x);
-          ballY = yToSvg(y);
+          let ballX = xToSvg(x);
+          let ballY = yToSvg(y);
           if (gameStatus.currentBalls[x][y] == ESVIJI.settings.rockId) {
             rockId =
               1 + Math.floor(Math.random() * ESVIJI.settings.rocks.length);
@@ -1584,7 +1588,7 @@ ESVIJI.game = (function() {
 
     validBalls = [];
 
-    for (yStart = 1; yStart <= 13; yStart++) {
+    for (let yStart = 1; yStart <= 13; yStart++) {
       x = 10;
       y = yStart;
       dirX = -1;
@@ -1598,7 +1602,7 @@ ESVIJI.game = (function() {
             dirX = 0;
             dirY = -1;
           } else {
-            nextBall = gameStatus.currentBalls[x + dirX][y + dirY];
+            let nextBall = gameStatus.currentBalls[x + dirX][y + dirY];
             if (nextBall == ESVIJI.settings.rockId) {
               if (dirX == -1) {
                 dirX = 0;
@@ -1646,7 +1650,7 @@ ESVIJI.game = (function() {
       message = 'This is your first score, play again!';
       highScores = [{ score: lastGameScore, date: lastGameDate }];
     } else {
-      for (i = 0; i < l; i++) {
+      for (let i = 0; i < l; i++) {
         if (!positioned && highScores[i].score <= gameStatus.score) {
           highScores.splice(i, 0, { score: lastGameScore, date: lastGameDate });
           highScores = highScores.slice(0, 10);
@@ -1706,7 +1710,7 @@ ESVIJI.game = (function() {
   }
 
   function addScore(scoreToAdd) {
-    oldScore = gameStatus.score;
+    let oldScore = gameStatus.score;
     gameStatus.score += ESVIJI.settings.points(scoreToAdd, gameStatus.level);
     increaseScore();
     $('#play .score').attr('class', 'score changeUp');
@@ -1714,7 +1718,7 @@ ESVIJI.game = (function() {
       $('#play .score').attr('class', 'score');
     }, 1000);
 
-    hundreds =
+    let hundreds =
       Math.floor(gameStatus.score / ESVIJI.settings.extraLifePoints) -
       Math.floor(oldScore / ESVIJI.settings.extraLifePoints);
     if (hundreds > 0) {
@@ -1723,7 +1727,7 @@ ESVIJI.game = (function() {
   }
 
   function increaseScore() {
-    currentDrawnScore = parseInt($('#play .score').text(), 10);
+    let currentDrawnScore = parseInt($('#play .score').text(), 10);
     if (currentDrawnScore < gameStatus.score) {
       $('#play .score').text(
         currentDrawnScore +
@@ -1798,26 +1802,3 @@ window.addEventListener('orientationchange', function(event) {
   event.preventDefault();
   window.setTimeout(ESVIJI.game.optimizeViewport, 500);
 });
-
-/***************************************************************************************
- * appcache
- ***************************************************************************************/
-
-// Check if a new cache is available
-if (window.applicationCache) {
-  window.applicationCache.addEventListener(
-    'updateready',
-    function(event) {
-      event.preventDefault();
-      if (
-        window.applicationCache.status == window.applicationCache.UPDATEREADY
-      ) {
-        // Browser downloaded a new app cache
-        // Swap it in and reload the page to get the new version
-        window.applicationCache.swapCache();
-        window.location.reload();
-      }
-    },
-    false
-  );
-}

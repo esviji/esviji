@@ -6,12 +6,12 @@
       name="viewport"
       content="initial-scale=1, maximum-scale=1, user-scalable=no"
     />
-    <title>%TITLE%</title>
-    <meta name="description" content="%DESCRIPTION%" />
+    <title>{{ name }}</title>
+    <meta name="description" content="{{ description }}" />
 
     <meta property="og:type" content="game" />
-    <meta property="og:title" content="%TITLE%" />
-    <meta property="og:description" content="%DESCRIPTION%" />
+    <meta property="og:title" content="esviji" />
+    <meta property="og:description" content="{{ description }}" />
     <meta property="og:url" content="https://play.esviji.com/" />
     <meta
       property="og:image"
@@ -21,19 +21,24 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@nhoizey" />
     <meta name="twitter:site" content="@esviji" />
-    <meta name="twitter:title" content="%TITLE%" />
-    <meta name="twitter:description" content="%DESCRIPTION%" />
+    <meta name="twitter:title" content="esviji" />
+    <meta name="twitter:description" content="{{ description }}" />
     <meta
       name="twitter:image"
       content="https://play.esviji.com/img/esviji-mockup.jpg"
     />
 
     <!-- build:css css/styles.css -->
-    <link rel="stylesheet" media="all" href="css/styles.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      media="all"
+      href="sass/styles.scss"
+      type="text/css"
+    />
     <!-- endbuild -->
 
     <!-- iOS features -->
-    <meta name="application-name" content="%TITLE%" />
+    <meta name="application-name" content="esviji" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="format-detection" content="telephone=no" />
@@ -67,13 +72,7 @@
       }
     </style>
 
-    <script type="application/ld+json">
-      %JSONLD%
-    </script>
-
-    <script>
-      %MODERNIZR%
-    </script>
+    <script src="/js/vendor/modernizr-custom.js"></script>
 
     <!-- Google Analytics -->
     <script>
@@ -95,6 +94,12 @@
     ></script>
   </head>
   <body>
+    <script
+      id="jsonld"
+      type="application/ld+json"
+      src="json-ld.json"
+      inline="inline"
+    ></script>
     <svg style="display: none;">
       <symbol id="iconExit" viewBox="0.146 4.189 100 100">
         <path
@@ -169,11 +174,11 @@
     </svg>
     <header id="description">
       <h1>esviji</h1>
-      <p>%DESCRIPTION%</p>
+      <p>{{ description }}</p>
       <p class="icon">
         <img src="img/esviji-logo-180.png" alt="esviji logo" />
       </p>
-      <p>Version %VERSION%</p>
+      <p>Version {{ version }}</p>
     </header>
     <section id="home" aria-hidden="true">
       <header>
@@ -200,7 +205,9 @@
       <ul class="controls">
         <li>
           <a href="/play" class="play">
-            <svg class="icon"><use xlink:href="#iconPlay" /></svg>
+            <svg class="icon" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconPlay" />
+            </svg>
             <span>play</span>
           </a>
         </li>
@@ -217,8 +224,12 @@
         </li>
         <li>
           <a href="/sound" class="sound">
-            <svg class="on"><use xlink:href="#iconSoundOn" /></svg>
-            <svg class="off"><use xlink:href="#iconSoundOff" /></svg>
+            <svg class="on" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconSoundOn" />
+            </svg>
+            <svg class="off" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconSoundOff" />
+            </svg>
             <span>sound</span>
           </a>
         </li>
@@ -267,13 +278,14 @@
       </div>
       <ul class="controls">
         <li>
-          <a href="/pause" class="pause"
-            ><svg class="icon" viewBox="0 0 80 80">
+          <a href="/pause" class="pause">
+            <svg class="icon" viewBox="0 0 80 80">
               <path
                 fill="#ccc"
                 d="M39.75 5.5C20.83 5.5 5.5 20.83 5.5 39.75S20.83 74 39.75 74 74 58.67 74 39.75 58.67 5.5 39.75 5.5zm0 64.5C23.05 70 9.5 56.46 9.5 39.75 9.5 23.05 23.04 9.5 39.75 9.5 56.45 9.5 70 23.04 70 39.75 70 56.45 56.46 70 39.75 70zm-2.62-17.62c0 2.34-1.9 4.24-4.26 4.24-2.34 0-4.24-1.9-4.24-4.24V28.75c0-2.35 1.9-4.25 4.25-4.25 2.34 0 4.24 1.9 4.24 4.25v23.63zm14 0c0 2.34-1.9 4.24-4.26 4.24-2.34 0-4.24-1.9-4.24-4.24V28.75c0-2.35 1.9-4.25 4.24-4.25 2.35 0 4.26 1.9 4.26 4.25v23.63z"
-              /></svg
-          ></a>
+              />
+            </svg>
+          </a>
         </li>
       </ul>
       <svg
@@ -366,26 +378,36 @@
       <ul class="controls">
         <li>
           <a href="/play" class="resume">
-            <svg class="icon"><use xlink:href="#iconPlay" /></svg>
+            <svg class="icon" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconPlay" />
+            </svg>
             <span>resume</span>
           </a>
         </li>
         <li>
           <a href="/play" class="restart">
-            <svg class="icon"><use xlink:href="#iconRestart" /></svg>
+            <svg class="icon" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconRestart" />
+            </svg>
             <span>restart</span>
           </a>
         </li>
         <li>
           <a href="/sound" class="sound">
-            <svg class="on"><use xlink:href="#iconSoundOn" /></svg>
-            <svg class="off"><use xlink:href="#iconSoundOff" /></svg>
+            <svg class="on" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconSoundOn" />
+            </svg>
+            <svg class="off" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconSoundOff" />
+            </svg>
             <span>sound</span>
           </a>
         </li>
         <li>
           <a href="/" class="exit">
-            <svg class="icon"><use xlink:href="#iconExit" /></svg>
+            <svg class="icon" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconExit" />
+            </svg>
             <span>exit</span>
           </a>
         </li>
@@ -398,13 +420,17 @@
       <ul class="controls">
         <li>
           <a href="/play" class="restart">
-            <svg class="icon"><use xlink:href="#iconRestart" /></svg>
+            <svg class="icon" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconRestart" />
+            </svg>
             <span>restart</span>
           </a>
         </li>
         <li>
           <a href="/" class="exit">
-            <svg class="icon"><use xlink:href="#iconExit" /></svg>
+            <svg class="icon" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconExit" />
+            </svg>
             <span>exit</span>
           </a>
         </li>
@@ -416,7 +442,9 @@
       <ul class="controls">
         <li>
           <a href="/" class="exit">
-            <svg class="icon"><use xlink:href="#iconExit" /></svg>
+            <svg class="icon" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconExit" />
+            </svg>
             <span>exit</span>
           </a>
         </li>
@@ -426,12 +454,12 @@
       <h2>About esviji</h2>
       <div class="about">
         <div class="description">
-          <p>This is esviji version <span class="version">%VERSION%</span></p>
+          <p>This is esviji version <span class="version">{{ version }}</span></p>
           <p>
             &copy; 1992-2020
             <a href="https://nicolas-hoizey.com/">Nicolas Hoizey</a>
           </p>
-          <p>%DESCRIPTION%</p>
+          <p>{{ description }}</p>
           <p>
             If you have any issue with the game, or an idea to make it even
             better, please
@@ -479,52 +507,22 @@
       <ul class="controls">
         <li>
           <a href="/" class="exit">
-            <svg class="icon"><use xlink:href="#iconExit" /></svg>
+            <svg class="icon" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#iconExit" />
+            </svg>
             <span>exit</span>
           </a>
         </li>
       </ul>
     </section>
-    <!-- build:js js/app.js -->
-    <script type="text/javascript" src="js/vendor/jquery-3.5.0.js"></script>
-    <script
-      type="text/javascript"
-      src="js/vendor/mousetrap-1.6.5.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="js/vendor/store+json2-1.3.7.min.js"
-    ></script>
-    <script type="text/javascript" src="js/vendor/howler-2.1.3.js"></script>
-    <script
-      type="text/javascript"
-      src="js/vendor/viewport-units-buggyfill-0.6.2.js"
-    ></script>
-    <script type="text/javascript" src="js/vendor/firebase-2.3.2.js"></script>
-    <script type="text/javascript" src="js/esviji.js"></script>
-    <!-- endbuild -->
-
+    <script src="js/vendor/viewport-units-buggyfill-0.6.2.js"></script>
+    <script src="js/vendor/firebase-2.3.2.js"></script>
+    <script src="js/esviji.js"></script>
     <script>
+      let sw = '/service-worker.js';
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/service-worker.js');
-        });
-
-        navigator.serviceWorker.addEventListener('message', async event => {
-          // Optional: ensure the message came from workbox-broadcast-update
-          if (event.data.meta === 'workbox-broadcast-update') {
-            const { cacheName, updatedUrl } = event.data.payload;
-            console.groupCollapsed(
-              `[Page] Updated content in "${cacheName}": ${updatedUrl}`
-            );
-            const cache = await caches.open(cacheName);
-            const updatedResponse = await cache.match(updatedUrl);
-            if (updatedResponse) {
-              const updatedText = await updatedResponse.text();
-              console.log(updatedText);
-            }
-            console.groupEnd();
-          }
+          navigator.serviceWorker.register(sw);
         });
       }
     </script>
