@@ -118,7 +118,7 @@ ESVIJI.game = (function() {
   var soundEffects;
   var soundAmbiance;
 
-  // UA sniff iOS & iOS Safari for viewport units and SVG SMIL events issues
+  // UA sniff iOS Safari for viewport units issues
   // Yes, it's bad to UA sniff…
   // Why CriOS? -> http://stackoverflow.com/a/29696509
   // Why OPiOS? -> http://stackoverflow.com/questions/3007480/determine-if-user-navigated-from-mobile-safari/29696509#comment55234967_29696509
