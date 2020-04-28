@@ -1,5 +1,25 @@
 # esviji changelog
 
+## v2.5.x
+
+### 2020-04-28 v2.5.0
+
+- [CHANGE] Replace old Grunt tasks with much simpler and up-to-date Parcel bundling
+
+## 2.4.x
+
+### 2020-04-26 2.4.3
+
+- [CHANGE] Remove SVGEventListener polyfill, not required anymore in webkit
+
+### 2020-04-22 2.4.1
+
+- Clean code
+
+### 2020-04-21 2.4.0
+
+- [CHANGE] Replace old AppCache with modern Service Worker
+
 ## v2.0.0
 
 Most of the interface is now built using HTML, styled with viewport relative units, only the board zone still using SVG.
