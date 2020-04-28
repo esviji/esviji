@@ -84,7 +84,7 @@ ESVIJI.settings = {
 /**
  * Builds the game engine
  */
-ESVIJI.game = (function() {
+ESVIJI.game = (function () {
   // Initial values
   var viewportWidth = 0;
   var viewportHeight = 0;
@@ -296,22 +296,23 @@ ESVIJI.game = (function() {
         soundThrow: [22000, 797.1201814058943],
       },
       volume: 0.7,
-      onload: function() {
+      onload: function () {
         $('body').addClass('soundeffectsloaded');
       },
-      onloaderror: function() {
+      onloaderror: function () {
         console.error("Can't load sound effects…");
       },
     });
 
     // soundAmbiance = new Howl({
     //   src: ['sounds/in-game-loop.mp3'],
+    //   autoplay: true,
     //   loop: true,
     //   volume: 0.5,
-    //   onload: function() {
+    //   onload: function () {
     //     $('body').addClass('ambiancesoundloaded');
     //   },
-    //   onloaderror: function() {
+    //   onloaderror: function () {
     //     console.error("Can't load ambiance sound…");
     //   },
     // });
@@ -336,19 +337,19 @@ ESVIJI.game = (function() {
     $('#home .controls .play').bind('click', startPlaying);
     $('#home .controls .scores').bind('click', startScores);
     $('#home .controls .sound').bind('click', toggleSound);
-    $('#home .controls .about').bind('click', function(event) {
+    $('#home .controls .about').bind('click', function (event) {
       event.preventDefault();
       showScreen('about');
     });
 
     // Play screen buttons
-    $('#play .controls .pause').bind('click', function(event) {
+    $('#play .controls .pause').bind('click', function (event) {
       event.preventDefault();
       showScreen('pause');
     });
 
     // Pause screen buttons
-    $('#pause .controls .resume').bind('click', function(event) {
+    $('#pause .controls .resume').bind('click', function (event) {
       event.preventDefault();
       showScreen('play');
 
@@ -357,7 +358,7 @@ ESVIJI.game = (function() {
       ga('send', 'pageview');
     });
 
-    $('#pause .controls .restart').bind('click', function(event) {
+    $('#pause .controls .restart').bind('click', function (event) {
       event.preventDefault();
       storeSet('gameStatus', {
         playing: false,
@@ -370,7 +371,7 @@ ESVIJI.game = (function() {
     $('#pause .controls .exit').bind('click', stopPlaying);
 
     // Game over screen buttons
-    $('#gameover .controls .restart').bind('click', function(event) {
+    $('#gameover .controls .restart').bind('click', function (event) {
       event.preventDefault();
       storeSet('gameStatus', {
         playing: false,
@@ -381,13 +382,13 @@ ESVIJI.game = (function() {
     $('#gameover .controls .exit').bind('click', stopPlaying);
 
     // Scores screen button
-    $('#scores .controls .exit').bind('click', function(event) {
+    $('#scores .controls .exit').bind('click', function (event) {
       event.preventDefault();
       showScreen('home');
     });
 
     // About screen buttons
-    $('#about .controls .exit').bind('click', function(event) {
+    $('#about .controls .exit').bind('click', function (event) {
       event.preventDefault();
       showScreen('home');
     });
@@ -580,7 +581,7 @@ ESVIJI.game = (function() {
       gameStatus.level++;
       drawLevel();
       $('#play .level').attr('class', 'level changeUp');
-      window.setTimeout(function() {
+      window.setTimeout(function () {
         $('#play .level').attr('class', 'level');
       }, 1000);
 
@@ -594,7 +595,7 @@ ESVIJI.game = (function() {
     // TODO: remove 'null' values from gameStatus.currentBalls
 
     // clone the array (https://twitter.com/naholyr/status/311112698421198848)
-    var replayBalls = gameStatus.currentBalls.map(function(a) {
+    var replayBalls = gameStatus.currentBalls.map(function (a) {
       return a === null ? null : a.slice();
     });
 
@@ -639,7 +640,7 @@ ESVIJI.game = (function() {
         gameStatus.lives += ESVIJI.settings.extraLifeLevel;
         drawLives();
         $('#play .lives').attr('class', 'lives changeUp');
-        window.setTimeout(function() {
+        window.setTimeout(function () {
           $('#play .lives').attr('class', 'lives');
         }, 1000);
       }
@@ -669,7 +670,7 @@ ESVIJI.game = (function() {
         });
         notPlayableAnimMain.addEventListener(
           'beginEvent',
-          function() {
+          function () {
             playSoundEffect('error');
           },
           false
@@ -679,7 +680,7 @@ ESVIJI.game = (function() {
         notPlayableBall.append(notPlayableAnimMain);
 
         // TODO: create animation just once?
-        $('[data-valid=true]').each(function() {
+        $('[data-valid=true]').each(function () {
           var that = $(this);
           var notPlayableAnim = svgAnimate({
             attributeName: 'opacity',
@@ -728,7 +729,7 @@ ESVIJI.game = (function() {
           Mousetrap.bind('down', keyDown);
           Mousetrap.bind(['enter', 'space'], keyEnter);
           Mousetrap.bind('esc', startNewTurn);
-          Mousetrap.bind('p', function() {
+          Mousetrap.bind('p', function () {
             showScreen('pause');
           });
         }
@@ -741,7 +742,7 @@ ESVIJI.game = (function() {
       'https://fiery-heat-4665.firebaseio.com/incoming'
     );
 
-    incoming.on('child_added', function(snapshot) {
+    incoming.on('child_added', function (snapshot) {
       // console.info('Level stored on Firebase.');
     });
 
@@ -928,7 +929,7 @@ ESVIJI.game = (function() {
 
       $('#anim' + lastStackedAnimation)[0].addEventListener(
         'beginEvent',
-        function(event) {
+        function (event) {
           playSoundEffect('soundHitFloor');
         }
       );
@@ -948,7 +949,7 @@ ESVIJI.game = (function() {
         );
         $('#anim' + lastStackedAnimation)[0].addEventListener(
           'endEvent',
-          function(event) {
+          function (event) {
             playSoundEffect('soundHitWall');
           },
           false
@@ -979,7 +980,7 @@ ESVIJI.game = (function() {
               window.oldPosX = currentPosX;
               $('#anim' + lastStackedAnimation)[0].addEventListener(
                 'endEvent',
-                function(event) {
+                function (event) {
                   playSoundEffect('soundHitWall');
                 },
                 false
@@ -1000,7 +1001,7 @@ ESVIJI.game = (function() {
 
               $('#anim' + lastStackedAnimation)[0].addEventListener(
                 'endEvent',
-                function(event) {
+                function (event) {
                   playSoundEffect('soundHitFloor');
                 },
                 false
@@ -1159,7 +1160,7 @@ ESVIJI.game = (function() {
     anim.attributeTo = to;
     anim.addEventListener(
       'endEvent',
-      function(event) {
+      function (event) {
         // Set new attribute value at the end of the animation
         $(event.currentTarget.parentElement).attr(
           event.currentTarget.attribute,
@@ -1230,7 +1231,7 @@ ESVIJI.game = (function() {
     });
     animMoveTo.addEventListener(
       'beginEvent',
-      function(event) {
+      function (event) {
         playSoundEffect('soundHitOtherBallOk');
       },
       false
@@ -1263,7 +1264,7 @@ ESVIJI.game = (function() {
     });
     animRotate.addEventListener(
       'beginEvent',
-      function(event) {
+      function (event) {
         playSoundEffect('soundHitSameBall');
       },
       false
@@ -1282,7 +1283,7 @@ ESVIJI.game = (function() {
     });
     animOpacity.addEventListener(
       'endEvent',
-      function(event) {
+      function (event) {
         // Remove the ball after the animation
         $(event.currentTarget.parentElement).remove();
       },
@@ -1295,7 +1296,7 @@ ESVIJI.game = (function() {
   }
 
   function endOfMove() {
-    $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function(
+    $('#anim' + lastStackedAnimation)[0].addEventListener('endEvent', function (
       event
     ) {
       drawnCurrentBall.remove();
@@ -1363,7 +1364,7 @@ ESVIJI.game = (function() {
                 // TODO: make the sound later as for piles of falling balls
                 $('#anim' + lastStackedAnimation)[0].addEventListener(
                   'beginEvent',
-                  function(event) {
+                  function (event) {
                     playSoundEffect('soundFall');
                   }
                 );
@@ -1380,7 +1381,7 @@ ESVIJI.game = (function() {
     if (lastStackedAnimation >= stackedAnimationToStart) {
       $('#anim' + lastStackedAnimation)[0].addEventListener(
         'endEvent',
-        function(event) {
+        function (event) {
           endOfTurn();
         },
         false
@@ -1434,7 +1435,7 @@ ESVIJI.game = (function() {
     if (lastStackedAnimation >= stackedAnimationToStart) {
       $('#anim' + lastStackedAnimation)[0].addEventListener(
         'endEvent',
-        function(event) {
+        function (event) {
           nextLevel();
         },
         false
@@ -1690,7 +1691,7 @@ ESVIJI.game = (function() {
     playSoundEffect('soundLifeDown');
     drawLives();
     $('#play .lives').attr('class', 'lives changeDown');
-    window.setTimeout(function() {
+    window.setTimeout(function () {
       $('#play .lives').attr('class', 'lives');
     }, 1000);
 
@@ -1704,7 +1705,7 @@ ESVIJI.game = (function() {
     playSoundEffect('soundLifeUp');
     drawLives();
     $('#play .lives').attr('class', 'lives changeUp');
-    window.setTimeout(function() {
+    window.setTimeout(function () {
       $('#play .lives').attr('class', 'lives');
     }, 1000);
   }
@@ -1714,7 +1715,7 @@ ESVIJI.game = (function() {
     gameStatus.score += ESVIJI.settings.points(scoreToAdd, gameStatus.level);
     increaseScore();
     $('#play .score').attr('class', 'score changeUp');
-    window.setTimeout(function() {
+    window.setTimeout(function () {
       $('#play .score').attr('class', 'score');
     }, 1000);
 
@@ -1785,7 +1786,7 @@ ESVIJI.game = (function() {
 
 document.addEventListener(
   'DOMContentLoaded',
-  function(event) {
+  function (event) {
     event.preventDefault();
     ESVIJI.game.init();
   },
@@ -1793,12 +1794,12 @@ document.addEventListener(
 );
 
 // Optimize viewport and board sizes after resize and orientation change
-window.addEventListener('resize', function(event) {
+window.addEventListener('resize', function (event) {
   event.preventDefault();
   window.setTimeout(ESVIJI.game.optimizeViewport, 500);
 });
 
-window.addEventListener('orientationchange', function(event) {
+window.addEventListener('orientationchange', function (event) {
   event.preventDefault();
   window.setTimeout(ESVIJI.game.optimizeViewport, 500);
 });
