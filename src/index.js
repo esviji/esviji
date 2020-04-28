@@ -311,7 +311,7 @@ ESVIJI.game = (function() {
     //     $('html').addClass('ambiancesoundloaded');
     //   },
     //   onloaderror: function() {
-    //     console.error('Can\'t load ambiance sound…');
+    //     console.error("Can't load ambiance sound…");
     //   },
     // });
 
