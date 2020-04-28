@@ -2,6 +2,10 @@
 
 ## v2.5.x
 
+### 2020-04-28 v2.5.1
+
+- [FIXED] Sound effects work again!
+
 ### 2020-04-28 v2.5.0
 
 - [CHANGE] Replace old Grunt tasks with much simpler and up-to-date Parcel bundling
