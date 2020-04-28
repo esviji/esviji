@@ -297,7 +297,7 @@ ESVIJI.game = (function() {
       },
       volume: 0.7,
       onload: function() {
-        $('html').addClass('soundeffectsloaded');
+        $('body').addClass('soundeffectsloaded');
       },
       onloaderror: function() {
         console.error("Can't load sound effects…");
@@ -309,7 +309,7 @@ ESVIJI.game = (function() {
     //   loop: true,
     //   volume: 0.5,
     //   onload: function() {
-    //     $('html').addClass('ambiancesoundloaded');
+    //     $('body').addClass('ambiancesoundloaded');
     //   },
     //   onloaderror: function() {
     //     console.error("Can't load ambiance sound…");
