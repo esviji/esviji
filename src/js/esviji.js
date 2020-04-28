@@ -302,6 +302,11 @@ ESVIJI.game = (function () {
       onloaderror: function () {
         console.error("Can't load sound effects…");
       },
+      onplayerror: function () {
+        soundEffects.once('unlock', function () {
+          soundEffects.play('soundThrow');
+        });
+      },
     });
 
     // soundAmbiance = new Howl({
