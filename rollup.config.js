@@ -29,7 +29,7 @@ export default [
       terser(),
     ],
     output: {
-      file: 'build/service-worker.js',
+      file: 'dist/service-worker.js',
       format: 'iife',
     },
   },

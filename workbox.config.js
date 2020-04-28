@@ -1,6 +1,6 @@
 const path = require('path');
 
-const BUILD_DIR = 'build';
+const BUILD_DIR = 'dist';
 
 module.exports = {
   globDirectory: BUILD_DIR,
