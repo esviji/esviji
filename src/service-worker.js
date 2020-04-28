@@ -32,12 +32,8 @@ cleanupOutdatedCaches();
 setDefaultHandler(
   new StaleWhileRevalidate({
     cacheName: 'default',
-    plugins: [new BroadcastUpdatePlugin()],
   })
 );
-
-// Never cache ranged requests (audio, videos)
-registerRoute(({ request }) => request.headers.has('range'), new NetworkOnly());
 
 // Google Analytics
 registerRoute(
@@ -54,12 +50,12 @@ registerRoute(
 );
 
 // Pages
-// Try to get fresh HTML from network, but don't wait for more than 2 seconds
+// Try to get fresh HTML from network, but don't wait for more than 5 seconds
 registerRoute(
   ({ request }) => request.destination === 'document',
   new NetworkFirst({
     cacheName: 'pages',
-    networkTimeoutSeconds: 2,
+    networkTimeoutSeconds: 5,
     plugins: [new BroadcastUpdatePlugin()],
   })
 );
@@ -110,10 +106,6 @@ googleAnalytics.initialize({
   parameterOverrides: {
     cd4: 'offline',
   },
-});
-
-self.addEventListener('message', event => {
-  console.log(`[SW] Receiving a message: ${event.data.type}`);
 });
 
 skipWaiting();
