@@ -1802,26 +1802,3 @@ window.addEventListener('orientationchange', function(event) {
   event.preventDefault();
   window.setTimeout(ESVIJI.game.optimizeViewport, 500);
 });
-
-/***************************************************************************************
- * appcache
- ***************************************************************************************/
-
-// Check if a new cache is available
-if (window.applicationCache) {
-  window.applicationCache.addEventListener(
-    'updateready',
-    function(event) {
-      event.preventDefault();
-      if (
-        window.applicationCache.status == window.applicationCache.UPDATEREADY
-      ) {
-        // Browser downloaded a new app cache
-        // Swap it in and reload the page to get the new version
-        window.applicationCache.swapCache();
-        window.location.reload();
-      }
-    },
-    false
-  );
-}
