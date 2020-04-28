@@ -10,22 +10,22 @@
     <meta name="description" content="{{ description }}" />
 
     <meta property="og:type" content="game" />
-    <meta property="og:title" content="esviji" />
+    <meta property="og:title" content="{{ name }}" />
     <meta property="og:description" content="{{ description }}" />
-    <meta property="og:url" content="https://play.esviji.com/" />
+    <meta property="og:url" content="{{ url }}" />
     <meta
       property="og:image"
-      content="https://play.esviji.com/img/esviji-screenshot.png"
+      content="{{ url }}img/esviji-screenshot.png"
     />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@nhoizey" />
     <meta name="twitter:site" content="@esviji" />
-    <meta name="twitter:title" content="esviji" />
+    <meta name="twitter:title" content="{{ name }}" />
     <meta name="twitter:description" content="{{ description }}" />
     <meta
       name="twitter:image"
-      content="https://play.esviji.com/img/esviji-mockup.jpg"
+      content="{{ url }}img/esviji-mockup.jpg"
     />
 
     <!-- build:css css/styles.css -->
@@ -38,7 +38,7 @@
     <!-- endbuild -->
 
     <!-- iOS features -->
-    <meta name="application-name" content="esviji" />
+    <meta name="application-name" content="{{ name }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="format-detection" content="telephone=no" />
@@ -94,12 +94,92 @@
     ></script>
   </head>
   <body>
-    <script
-      id="jsonld"
-      type="application/ld+json"
-      src="json-ld.json"
-      inline="inline"
-    ></script>
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "VideoGame",
+
+      "name": "{{ name }}",
+      "softwareVersion": "{{ version }}",
+      "description": "{{ description }}",
+
+      "url": "{{ url }}",
+      "gameLocation": "{{ url }}",
+
+      "applicationCategory": "GameApplication",
+      "applicationSubCategory": "WebApplication",
+      "genre": ["Puzzle game", "Logic game"],
+      "playMode": "SinglePlayer",
+      "isFamilyFriendly": true,
+      "sameAs": "https://en.wikipedia.org/wiki/Puzzle_Bobble",
+
+      "image": "{{ url }}img/esviji-logo.png",
+      "screenshot": "{{ url }}img/esviji-screenshot.png",
+      "trailer": {
+        "@type": "VideoObject",
+        "url": "https://www.youtube.com/watch?v=R2rxU9cVSqw",
+        "inLanguage": "en",
+        "name": "esviji v2 will be responsive!",
+        "description": "The upcoming v2 of the game esviji will be really responsive, optimized for any screen size and ratio!",
+        "thumbnailUrl": "http://img.youtube.com/vi/R2rxU9cVSqw/mqdefault.jpg",
+        "uploadDate": "2015-03-09"
+      },
+
+      "inLanguage": "English",
+      "author": {
+        "@type": "Person",
+        "name": "Nicolas Hoizey",
+        "url": "https://nicolas-hoizey.com/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Nicolas Hoizey",
+        "url": "https://nicolas-hoizey.com/"
+      },
+      "copyrightHolder": {
+        "@type": "Person",
+        "name": "Nicolas Hoizey",
+        "url": "https://nicolas-hoizey.com/"
+      },
+      "copyrightYear": 1992,
+
+      "gamePlatform": "Online_gaming_services",
+      "operatingSystem": "any",
+
+      "workExample": [
+        {
+          "@type": "VideoGame",
+          "gamePlatform": "https://en.wikipedia.org/wiki/World_Wide_Web",
+          "operatingSystem": "any",
+          "contentRating": "PEGI 3",
+          "applicationCategory": "GameApplication",
+          "releasedEvent": {
+            "@type": "PublicationEvent",
+            "isAccessibleForFree": true,
+            "startDate": "2013-01-23",
+            "url": "{{ url }}"
+          },
+          "offers": {
+            "@type": "Offer",
+            "availability": "http://schema.org/InStock",
+            "price": "0.00",
+            "priceCurrency": "EUR",
+            "url": "{{ url }}"
+          }
+        }
+      ],
+
+      "offers": [
+        {
+          "@type": "Offer",
+          "availability": "http://schema.org/InStock",
+          "price": "0.00",
+          "priceCurrency": "EUR",
+          "url": "{{ url }}"
+        }
+      ]
+    }
+    </script>
     <svg style="display: none;">
       <symbol id="iconExit" viewBox="0.146 4.189 100 100">
         <path
@@ -173,7 +253,7 @@
       </symbol>
     </svg>
     <header id="description">
-      <h1>esviji</h1>
+      <h1>{{ name }}</h1>
       <p>{{ description }}</p>
       <p class="icon">
         <img src="img/esviji-logo-180.png" alt="esviji logo" />
@@ -182,7 +262,7 @@
     </header>
     <section id="home" aria-hidden="true">
       <header>
-        <h1>esviji</h1>
+        <h1>{{ name }}</h1>
         <svg class="logo" version="1.1" viewBox="0 0 176 176">
           <circle class="ball3" stroke-width="2" cx="22" cy="22" r="20" />
           <circle class="ball2" stroke-width="2" cx="66" cy="22" r="20" />
@@ -252,7 +332,7 @@
       </ul>
     </section>
     <section id="play" aria-hidden="true">
-      <h1>esviji</h1>
+      <h1>{{ name }}</h1>
       <div class="progress">
         <div><span class="score">0</span></div>
         <ul>
