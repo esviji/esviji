@@ -70,9 +70,6 @@ ESVIJI.settings = {
   // list of available ball 'names'
   balls: ['ball1', 'ball2', 'ball3', 'ball4', 'ball5', 'ball6'],
 
-  // list of available rock 'names' (only one for now)
-  rocks: ['rock'],
-
   // special ids for the game matrix
   emptyId: 0,
   rockId: -1,
@@ -1606,14 +1603,8 @@ ESVIJI.game = (function () {
         } else {
           let ballX = xToSvg(x);
           let ballY = yToSvg(y);
-          if (gameStatus.currentBalls[x][y] == ESVIJI.settings.rockId) {
-            rockId =
-              1 + Math.floor(Math.random() * ESVIJI.settings.rocks.length);
-            drawnCurrentBalls[x][y] = drawBall(
-              ballX,
-              ballY,
-              ESVIJI.settings.rocks[rockId - 1]
-            );
+          if (gameStatus.currentBalls[x][y] === ESVIJI.settings.rockId) {
+            drawnCurrentBalls[x][y] = drawBall(ballX, ballY, 'rock');
           } else {
             drawnCurrentBalls[x][y] = drawBall(
               ballX,
