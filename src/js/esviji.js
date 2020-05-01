@@ -11,6 +11,32 @@ const debug = (message) => {
   }
 };
 
+const boardToText = function (board, ball = undefined) {
+  const rowMax = ESVIJI.settings.board.yMax;
+  const columnMax = ESVIJI.settings.board.xMax;
+  const items = ['❌', '➖', '🟠', '🟢', '🔵', '🟣', '🟤', '🔴'];
+  let textLines = [];
+  let textRow;
+  for (let row = 1; row <= rowMax; row++) {
+    textRow = rowMax - row;
+    textLines[textRow] = '';
+    for (let column = 1; column <= columnMax; column++) {
+      if (board[column] !== undefined && board[column][row] !== undefined) {
+        textLines[textRow] += items[board[column][row] + 1];
+      } else {
+        textLines[textRow] += items[1];
+      }
+    }
+    if (ball !== undefined && row === ESVIJI.settings.turn.posY) {
+      textLines[textRow] += items[ball + 1];
+    } else {
+      textLines[textRow] += items[1];
+    }
+  }
+
+  return textLines.join('\n');
+};
+
 // UA sniff iOS Safari for viewport units issues
 // Yes, it's bad to UA sniff…
 // Why CriOS? -> http://stackoverflow.com/a/29696509
