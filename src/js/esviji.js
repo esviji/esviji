@@ -1598,7 +1598,7 @@ ESVIJI.game = (function () {
     for (let x = 1; x <= 7; x++) {
       drawnCurrentBalls[x] = [];
       for (let y = 1; y <= 7; y++) {
-        if (gameStatus.currentBalls[x][y] == ESVIJI.settings.emptyId) {
+        if (gameStatus.currentBalls[x][y] === ESVIJI.settings.emptyId) {
           drawnCurrentBalls[x][y] = null;
         } else {
           let ballX = xToSvg(x);
