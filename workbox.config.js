@@ -8,7 +8,6 @@ module.exports = {
     'index.html',
     'esviji.*.js',
     'modernizr-custom.*.js',
-    'viewport-units-buggyfill-*.js',
     'styles.*.css',
     'sansitaone-webfont.*.woff2',
     'esviji-logo-180.*.png',
