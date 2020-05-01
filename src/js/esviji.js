@@ -1417,6 +1417,7 @@ ESVIJI.game = (function () {
 
   function makeEverythingFall() {
     var ballsUnder;
+    let dur;
 
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
@@ -1498,6 +1499,8 @@ ESVIJI.game = (function () {
     // add rocks
     let nbRocks = ESVIJI.settings.levelRocks(thisLevel);
     let positionedRocks = 0;
+    let rockX;
+    let rockY;
     while (positionedRocks < nbRocks) {
       rockX =
         1 + Math.floor(Math.random() * ESVIJI.settings.levelRows(thisLevel));
