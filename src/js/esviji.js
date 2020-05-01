@@ -764,6 +764,8 @@ ESVIJI.game = (function () {
             class: 'throwable',
           });
 
+          debug(boardToText(gameStatus.currentBalls, gameStatus.currentBall));
+
           // bind events
           $('#play .playzone').on('mousedown touchstart', cursorStart);
           $('#play .playzone').on('mousemove touchmove', cursorMove);
