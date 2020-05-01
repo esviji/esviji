@@ -5,6 +5,12 @@ import Mousetrap from 'mousetrap';
 import store from 'store';
 var viewportUnitsBuggyfill = require('viewport-units-buggyfill');
 
+const debug = (message) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log('%c' + message, 'colo: blue; font-family: monospace;');
+  }
+};
+
 // UA sniff iOS Safari for viewport units issues
 // Yes, it's bad to UA sniff…
 // Why CriOS? -> http://stackoverflow.com/a/29696509
@@ -581,6 +587,7 @@ ESVIJI.game = (function () {
     gameStatus.playing = true;
     eraseBalls();
     if (useStored) {
+      debug('before reused drawBalls');
       drawBalls();
     } else {
       gameStatus.level++;
@@ -590,8 +597,11 @@ ESVIJI.game = (function () {
         $('#play .level').attr('class', 'level');
       }, 1000);
 
+      debug('before initBalls');
       initBalls();
+      debug('before drawBalls');
       drawBalls();
+      debug('before getValidBalls');
       getValidBalls();
       gameStatus.currentBall =
         validBalls[Math.floor(Math.random() * validBalls.length)];
@@ -616,10 +626,13 @@ ESVIJI.game = (function () {
     ga('send', 'pageview');
 
     playSoundEffect('soundLevel');
+
+    debug("let's start the new level");
     startNewTurn();
   }
 
   function startNewTurn() {
+    debug('starting a new turn');
     currentPosX = ESVIJI.settings.turn.posX;
     currentDirX = ESVIJI.settings.turn.dirX;
     currentPosY = ESVIJI.settings.turn.posY;
@@ -627,6 +640,9 @@ ESVIJI.game = (function () {
     scoreThisTurn = 0;
     lastHitBall = ESVIJI.settings.rockId;
     getValidBalls();
+
+    debug({ validBalls });
+    debug({ drawnCurrentBalls });
 
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
