@@ -99,9 +99,9 @@ setCatchHandler(({ event }) => {
 });
 
 googleAnalytics.initialize({
-  hitFilter: params => {
+  hitFilter: (params) => {
     const queueTimeInSeconds = Math.round(params.get('qt') / 1000);
-    params.set('cm1', queueTimeInSeconds);
+    params.set('cm2', queueTimeInSeconds);
   },
   parameterOverrides: {
     cd4: 'offline',

@@ -389,6 +389,7 @@ ESVIJI.game = (function () {
 
       // back to the level screen
       ga('set', 'page', '/play/level_' + gameStatus.level);
+      ga('set', 'dimension4', 'online');
       ga('send', 'pageview');
     });
 
@@ -525,6 +526,7 @@ ESVIJI.game = (function () {
       // Only track levels, not generic play screen
       // Don't track Game Over screen from here
       ga('set', 'page', '/' + (screen === 'home' ? '' : screen));
+      ga('set', 'dimension4', 'online');
       ga('send', 'pageview');
     }
   }
@@ -643,6 +645,7 @@ ESVIJI.game = (function () {
 
     // Track levels with Google Analytics
     ga('set', 'page', '/play/level_' + gameStatus.level);
+    ga('set', 'dimension4', 'online');
     ga('send', 'pageview');
 
     playSoundEffect('soundLevel');
@@ -1676,6 +1679,7 @@ ESVIJI.game = (function () {
     // Google Analytics tracking of level and score at the end of the game
     ga('set', 'dimension2', gameStatus.level);
     ga('set', 'dimension3', gameStatus.score);
+    ga('set', 'dimension4', 'online');
     ga('set', 'page', '/gameover');
     ga('send', 'pageview');
 
