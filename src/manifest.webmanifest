@@ -16,7 +16,7 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/?utm_source=pwa",
+  "start_url": "/?utm_source=pwa&utm_medium=pwa&utm_campaign=play",
   "scope": "/",
   "display": "fullscreen",
   "orientation": "any",

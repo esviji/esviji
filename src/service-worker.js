@@ -14,7 +14,6 @@ import {
   CacheFirst,
   StaleWhileRevalidate,
   NetworkFirst,
-  NetworkOnly,
 } from 'workbox-strategies';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { BroadcastUpdatePlugin } from 'workbox-broadcast-update';
@@ -32,10 +31,11 @@ cleanupOutdatedCaches();
 setDefaultHandler(
   new StaleWhileRevalidate({
     cacheName: 'default',
+    plugins: [new BroadcastUpdatePlugin()],
   })
 );
 
-// Google Analytics
+// Google Analytics library
 registerRoute(
   ({ request }) =>
     request.url === 'https://www.google-analytics.com/analytics.js',
