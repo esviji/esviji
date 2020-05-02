@@ -14,17 +14,17 @@ const debug = (message) => {
 const boardToText = function (board, ball = undefined) {
   const rowMax = ESVIJI.settings.board.yMax;
   const columnMax = ESVIJI.settings.board.xMax;
-  const items = ['❌', '➖', '🟠', '🟢', '🔵', '🟣', '🟤', '🔴'];
+  const items = ['⬛️', '➖', '🟠', '🟢', '🔵', '🟣', '🟤', '🔴'];
   let textLines = [];
   let textRow;
   for (let row = 1; row <= rowMax; row++) {
     textRow = rowMax - row;
     textLines[textRow] = '';
     for (let column = 1; column <= columnMax; column++) {
-      if (board[column] !== undefined && board[column][row] !== undefined) {
-        textLines[textRow] += items[board[column][row] + 1];
+      if (textRow <= 5 && column <= 5 - textRow) {
+        textLines[textRow] += items[0];
       } else {
-        textLines[textRow] += items[1];
+        textLines[textRow] += items[board[column][row] + 1];
       }
     }
     if (ball !== undefined && row === ESVIJI.settings.turn.posY) {
@@ -34,7 +34,7 @@ const boardToText = function (board, ball = undefined) {
     }
   }
 
-  return textLines.join('\n');
+  return '⬛️⬛️⬛️⬛️⬛️⬛️⬛️⬛️⬛️⬛️\n' + textLines.join('\n');
 };
 
 // UA sniff iOS Safari for viewport units issues
@@ -467,7 +467,8 @@ ESVIJI.game = (function () {
     if (viewportWidth != vw || viewportHeight != vh) {
       viewportWidth = vw;
       viewportHeight = vh;
-      console.info('Aspect ratio: ' + vw / (vh / 24) + '/24');
+      let ratio = vw / (vh / 24);
+      debug(`Aspect ratio: ${ratio.toPrecision(4)} / 24`);
     }
 
     var boardElement = document.getElementById('board');
@@ -610,7 +611,6 @@ ESVIJI.game = (function () {
     gameStatus.playing = true;
     eraseBalls();
     if (useStored) {
-      debug('before reused drawBalls');
       drawBalls();
     } else {
       gameStatus.level++;
@@ -620,11 +620,8 @@ ESVIJI.game = (function () {
         $('#play .level').attr('class', 'level');
       }, 1000);
 
-      debug('before initBalls');
       initBalls();
-      debug('before drawBalls');
       drawBalls();
-      debug('before getValidBalls');
       getValidBalls();
       gameStatus.currentBall =
         validBalls[Math.floor(Math.random() * validBalls.length)];
@@ -650,12 +647,10 @@ ESVIJI.game = (function () {
 
     playSoundEffect('soundLevel');
 
-    debug("let's start the new level");
     startNewTurn();
   }
 
   function startNewTurn() {
-    debug('starting a new turn');
     currentPosX = ESVIJI.settings.turn.posX;
     currentDirX = ESVIJI.settings.turn.dirX;
     currentPosY = ESVIJI.settings.turn.posY;
@@ -663,9 +658,6 @@ ESVIJI.game = (function () {
     scoreThisTurn = 0;
     lastHitBall = ESVIJI.settings.rockId;
     getValidBalls();
-
-    debug({ validBalls });
-    debug({ drawnCurrentBalls });
 
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
