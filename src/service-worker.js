@@ -1,4 +1,4 @@
-import { clientsClaim, skipWaiting } from 'workbox-core';
+import { clientsClaim, skipWaiting, setCacheNameDetails } from 'workbox-core';
 import {
   cleanupOutdatedCaches,
   precacheAndRoute,
@@ -10,14 +10,19 @@ import {
   setCatchHandler,
 } from 'workbox-routing';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
-import {
-  CacheFirst,
-  StaleWhileRevalidate,
-  NetworkFirst,
-} from 'workbox-strategies';
+import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
+import { RangeRequestsPlugin } from 'workbox-range-requests';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { BroadcastUpdatePlugin } from 'workbox-broadcast-update';
 import * as googleAnalytics from 'workbox-google-analytics';
+
+setCacheNameDetails({
+  prefix: '',
+  suffix: '',
+  precache: 'esviji-precache',
+  runtime: 'esviji-runtime',
+  googleAnalytics: 'esviji-analytics',
+});
 
 precacheAndRoute(self.__WB_MANIFEST, {
   // Ignore all URL parameters:
@@ -30,48 +35,29 @@ cleanupOutdatedCaches();
 // default strategy
 setDefaultHandler(
   new StaleWhileRevalidate({
-    cacheName: 'default',
+    cacheName: 'esviji',
     plugins: [new BroadcastUpdatePlugin()],
+  })
+);
+
+registerRoute(
+  /.*\.mp3/,
+  new CacheFirst({
+    plugins: [
+      new CacheableResponsePlugin({ statuses: [200] }),
+      new RangeRequestsPlugin(),
+    ],
   })
 );
 
 // Google Analytics library
 registerRoute(
-  ({ request }) =>
-    request.url === 'https://www.google-analytics.com/analytics.js',
+  'https://www.google-analytics.com/analytics.js',
   new CacheFirst({
-    cacheName: 'shell',
+    cacheName: 'third-party',
     plugins: [
       new ExpirationPlugin({
         maxAgeSeconds: 10 * 24 * 60 * 60, // 10 Days
-      }),
-    ],
-  })
-);
-
-// Pages
-// Try to get fresh HTML from network, but don't wait for more than 5 seconds
-registerRoute(
-  ({ request }) => request.destination === 'document',
-  new NetworkFirst({
-    cacheName: 'pages',
-    networkTimeoutSeconds: 5,
-    plugins: [new BroadcastUpdatePlugin()],
-  })
-);
-
-// Images
-registerRoute(
-  ({ request }) => request.destination === 'image',
-  new StaleWhileRevalidate({
-    cacheName: 'images',
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      new ExpirationPlugin({
-        maxEntries: 200,
-        maxAgeSeconds: 90 * 24 * 60 * 60, // 90 Days
       }),
     ],
   })
