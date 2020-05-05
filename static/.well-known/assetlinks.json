@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.esviji.twa",
+      "sha256_cert_fingerprints": [
+        "E8:E9:6F:40:61:97:68:16:2D:08:1D:E1:81:75:8A:10:D2:41:30:F0:94:C3:FC:8F:72:70:62:2F:52:6F:E7:65"
+      ]
+    }
+  }
+]
