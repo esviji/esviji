@@ -53,8 +53,14 @@ if (iosSafari) {
 var ESVIJI = {};
 
 if (process.env.NODE_ENV === 'production') {
-  ESVIJI.version = $('.version').text();
+  ESVIJI.platform = $('#platform').text();
+  let params = new URL(document.location).searchParams;
+  if (ESVIJI.platform === 'Web' && params.has('utm_medium')) {
+    ESVIJI.platform = params.get('utm_medium');
+  }
+  ESVIJI.version = $('#version').text();
 } else {
+  ESVIJI.platform = 'development';
   ESVIJI.version = 'development';
 }
 
@@ -244,6 +250,7 @@ ESVIJI.game = (function () {
     if (process.env.NODE_ENV === 'production') {
       // Send version to Google Analytics only in production
       ga('set', 'dimension1', ESVIJI.version);
+      ga('set', 'dimension5', ESVIJI.platform);
     }
 
     if (!store.disabled) {
