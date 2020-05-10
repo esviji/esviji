@@ -6,6 +6,7 @@ import store from 'store';
 var viewportUnitsBuggyfill = require('viewport-units-buggyfill');
 
 // Load esviji modules
+import settings from './settings.js';
 import boardToText from './board-to-text.js';
 const debug = (message) => {
   if (process.env.NODE_ENV === 'development') {
@@ -40,72 +41,6 @@ if (process.env.NODE_ENV === 'production') {
   ESVIJI.version = 'development';
 }
 
-ESVIJI.settings = {
-  // board size and according ball extreme positions
-  board: {
-    width: 320,
-    height: 430,
-    xMax: 9,
-    yMax: 13,
-  },
-
-  // list of available ball 'names'
-  balls: ['ball1', 'ball2', 'ball3', 'ball4', 'ball5', 'ball6'],
-
-  // special ids for the game matrix
-  emptyId: 0,
-  rockId: -1,
-
-  // game info at launch time
-  launch: {
-    lives: 9,
-    score: 0,
-    level: 0,
-  },
-
-  /**
-   * Sets the number of rows for a specific game level
-   * @param {integer} level The current level
-   */
-  levelRows: function levelRows(level) {
-    return Math.min(7, 2 + Math.ceil((level + 1) / 2));
-  },
-
-  levelColumns: function levelColumns(level) {
-    return Math.min(7, 2 + Math.ceil(level / 2));
-  },
-
-  levelBalls: function levelBalls(level) {
-    return Math.min(6, Math.ceil((level + 1) / 2));
-  },
-
-  levelRocks: function levelRocks(level) {
-    return Math.max(0, Math.min(15, Math.ceil((level - 10) / 2)));
-  },
-
-  points: function points(nbHits, level) {
-    return Math.pow(nbHits, 4);
-  },
-
-  // One extra life every 100 points
-  extraLifePoints: 100,
-
-  // One extra life every time a new level is finished
-  extraLifeLevel: 0,
-
-  // Game info at new turn start
-  turn: {
-    posX: 9,
-    dirX: -1,
-    posY: 8,
-    dirY: 0,
-  },
-
-  // animation settings
-  durationMove: 0.15,
-  durationMorph: 0.5,
-};
-
 /**
  * Builds the game engine
  */
@@ -134,7 +69,7 @@ ESVIJI.game = (function () {
   var maxAvailableBalls = 0;
   var nbBalls = 0;
   var scoreThisTurn = 0;
-  var lastHitBall = ESVIJI.settings.rockId;
+  var lastHitBall = settings.ROCK;
   var highScores = [];
   var lastGameDate = '';
   var lastGameScore;
@@ -251,8 +186,8 @@ ESVIJI.game = (function () {
     }
 
     cursorMinY = yToSvg(1);
-    cursorMaxY = yToSvg(ESVIJI.settings.board.yMax);
     maxAvailableBalls = ESVIJI.settings.balls.length;
+    cursorMaxY = yToSvg(settings.board.rowMax);
 
     // Deal with localStore content that has been set when there was less data
     if (gameStatus.levelReplay === undefined) {
@@ -520,9 +455,9 @@ ESVIJI.game = (function () {
     }
 
     if (!useStored) {
-      gameStatus.level = ESVIJI.settings.launch.level;
-      gameStatus.score = ESVIJI.settings.launch.score;
-      gameStatus.lives = ESVIJI.settings.launch.lives;
+      gameStatus.level = settings.launch.level;
+      gameStatus.score = settings.launch.score;
+      gameStatus.lives = settings.launch.lives;
       if (drawnCurrentBall !== null) {
         drawnCurrentBall.remove();
       }
@@ -637,13 +572,13 @@ ESVIJI.game = (function () {
   }
 
   function startNewTurn() {
-    currentPosX = ESVIJI.settings.turn.posX;
-    currentDirX = ESVIJI.settings.turn.dirX;
-    currentPosY = ESVIJI.settings.turn.posY;
-    currentDirY = ESVIJI.settings.turn.dirY;
+    currentPosX = settings.turn.posX;
+    currentDirX = settings.turn.dirX;
+    currentPosY = settings.turn.posY;
+    currentDirY = settings.turn.dirY;
     scoreThisTurn = 0;
-    lastHitBall = ESVIJI.settings.rockId;
     getValidBalls();
+    lastHitBall = settings.ROCK;
 
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
@@ -658,8 +593,8 @@ ESVIJI.game = (function () {
 
       eraseSpring();
 
-      if (ESVIJI.settings.extraLifeLevel > 0) {
-        gameStatus.lives += ESVIJI.settings.extraLifeLevel;
+      if (settings.extraLifeLevel > 0) {
+        gameStatus.lives += settings.extraLifeLevel;
         drawLives();
         $('#play .lives').attr('class', 'lives changeUp');
         window.setTimeout(function () {
@@ -675,9 +610,9 @@ ESVIJI.game = (function () {
     } else {
       if (validBalls.indexOf(gameStatus.currentBall) == -1) {
         var notPlayableBall = drawBall(
-          xToSvg(ESVIJI.settings.turn.posX),
-          yToSvg(ESVIJI.settings.turn.posY),
-          ESVIJI.settings.balls[gameStatus.currentBall - 1],
+          xToSvg(settings.turn.posX),
+          yToSvg(settings.turn.posY),
+          `ball${gameStatus.currentBall}`,
           'notplayable'
         );
         var notPlayableAnimMain = svgAnimate({
@@ -731,7 +666,7 @@ ESVIJI.game = (function () {
           drawnCurrentBall = drawBall(
             xToSvg(currentPosX),
             yToSvg(currentPosY),
-            ESVIJI.settings.balls[gameStatus.currentBall - 1],
+            `ball${gameStatus.currentBall}`,
             'playable'
           );
           drawnCurrentBall.attr({
@@ -944,7 +879,7 @@ ESVIJI.game = (function () {
       if (window.oldPosY != 1) {
         animStackMove(
           drawnCurrentBall,
-          (window.oldPosY - currentPosY) * ESVIJI.settings.durationMove,
+          (window.oldPosY - currentPosY) * settings.durationMove,
           'y',
           yToSvg(window.oldPosY),
           yToSvg(currentPosY)
@@ -966,7 +901,7 @@ ESVIJI.game = (function () {
         currentDirY = -1;
         animStackMove(
           drawnCurrentBall,
-          (window.oldPosX - currentPosX) * ESVIJI.settings.durationMove,
+          (window.oldPosX - currentPosX) * settings.durationMove,
           'x',
           xToSvg(window.oldPosX),
           xToSvg(currentPosX)
@@ -988,7 +923,7 @@ ESVIJI.game = (function () {
             currentPosY + currentDirY
           ];
         switch (nextBall) {
-          case ESVIJI.settings.rockId:
+          case settings.ROCK:
             // A rock...
             if (currentDirX == -1) {
               // ...at our left, should now go down
@@ -996,7 +931,7 @@ ESVIJI.game = (function () {
               currentDirY = -1;
               animStackMove(
                 drawnCurrentBall,
-                (window.oldPosX - currentPosX) * ESVIJI.settings.durationMove,
+                (window.oldPosX - currentPosX) * settings.durationMove,
                 'x',
                 xToSvg(window.oldPosX),
                 xToSvg(currentPosX)
@@ -1016,7 +951,7 @@ ESVIJI.game = (function () {
               if (window.oldPosY != currentPosY) {
                 animStackMove(
                   drawnCurrentBall,
-                  (window.oldPosY - currentPosY) * ESVIJI.settings.durationMove,
+                  (window.oldPosY - currentPosY) * settings.durationMove,
                   'y',
                   yToSvg(window.oldPosY),
                   yToSvg(currentPosY)
@@ -1036,7 +971,7 @@ ESVIJI.game = (function () {
 
             break;
 
-          case ESVIJI.settings.emptyId:
+          case settings.EMPTY:
             // Nothing can stop us
             currentPosX += currentDirX;
             currentPosY += currentDirY;
@@ -1049,13 +984,11 @@ ESVIJI.game = (function () {
             let currentPosYBefore = currentPosY;
             currentPosX += currentDirX;
             currentPosY += currentDirY;
-            gameStatus.currentBalls[currentPosX][currentPosY] =
-              ESVIJI.settings.emptyId;
+            gameStatus.currentBalls[currentPosX][currentPosY] = settings.EMPTY;
             if (currentPosXBefore != window.oldPosX) {
               animStackMove(
                 drawnCurrentBall,
-                (window.oldPosX - currentPosXBefore) *
-                  ESVIJI.settings.durationMove,
+                (window.oldPosX - currentPosXBefore) * settings.durationMove,
                 'x',
                 xToSvg(window.oldPosX),
                 xToSvg(currentPosXBefore)
@@ -1064,8 +997,7 @@ ESVIJI.game = (function () {
             } else if (currentPosYBefore != window.oldPosY) {
               animStackMove(
                 drawnCurrentBall,
-                (window.oldPosY - currentPosYBefore) *
-                  ESVIJI.settings.durationMove,
+                (window.oldPosY - currentPosYBefore) * settings.durationMove,
                 'y',
                 yToSvg(window.oldPosY),
                 yToSvg(currentPosYBefore)
@@ -1084,7 +1016,7 @@ ESVIJI.game = (function () {
             if (currentPosX != window.oldPosX) {
               animStackMove(
                 drawnCurrentBall,
-                (window.oldPosX - currentPosX) * ESVIJI.settings.durationMove,
+                (window.oldPosX - currentPosX) * settings.durationMove,
                 'x',
                 xToSvg(window.oldPosX),
                 xToSvg(currentPosX)
@@ -1092,7 +1024,7 @@ ESVIJI.game = (function () {
             } else if (currentPosY != window.oldPosY) {
               animStackMove(
                 drawnCurrentBall,
-                (window.oldPosY - currentPosY) * ESVIJI.settings.durationMove,
+                (window.oldPosY - currentPosY) * settings.durationMove,
                 'y',
                 yToSvg(window.oldPosY),
                 yToSvg(currentPosY)
@@ -1132,7 +1064,7 @@ ESVIJI.game = (function () {
 
   function endOfTurn() {
     if (scoreThisTurn === 0) {
-      if (lastHitBall != ESVIJI.settings.rockId) {
+      if (lastHitBall != settings.ROCK) {
         removeLife();
       }
     } else {
@@ -1214,7 +1146,7 @@ ESVIJI.game = (function () {
       attributeName: 'opacity',
       to: '0',
       begin: 'anim' + lastStackedAnimation + '.end',
-      dur: ESVIJI.settings.durationMorph + 's',
+      dur: settings.durationMorph + 's',
       fill: 'freeze',
       id: 'anim' + (lastStackedAnimation + 1),
     });
@@ -1226,7 +1158,7 @@ ESVIJI.game = (function () {
       from: from,
       to: to,
       begin: 'anim' + lastStackedAnimation + '.end',
-      dur: ESVIJI.settings.durationMorph + 's',
+      dur: settings.durationMorph + 's',
       fill: 'freeze',
       id: 'anim' + (lastStackedAnimation + 2),
     });
@@ -1237,7 +1169,7 @@ ESVIJI.game = (function () {
       attributeName: 'opacity',
       to: '1',
       begin: 'anim' + lastStackedAnimation + '.end',
-      dur: ESVIJI.settings.durationMorph + 's',
+      dur: settings.durationMorph + 's',
       fill: 'freeze',
       id: 'anim' + (lastStackedAnimation + 3),
     });
@@ -1249,7 +1181,7 @@ ESVIJI.game = (function () {
       from: from,
       to: to,
       begin: 'anim' + lastStackedAnimation + '.end',
-      dur: ESVIJI.settings.durationMorph + 's',
+      dur: settings.durationMorph + 's',
       fill: 'freeze',
       id: 'anim' + (lastStackedAnimation + 4),
     });
@@ -1282,7 +1214,7 @@ ESVIJI.game = (function () {
       from: '0 ' + centerX + ' ' + centerY,
       to: '360 ' + centerX + ' ' + centerY,
       begin: begin,
-      dur: ESVIJI.settings.durationMove * 2 + 's',
+      dur: settings.durationMove * 2 + 's',
       fill: 'freeze',
       id: 'anim' + (lastStackedAnimation + 1),
     });
@@ -1301,7 +1233,7 @@ ESVIJI.game = (function () {
       attributeName: 'opacity',
       to: '0',
       begin: 'anim' + (lastStackedAnimation + 1) + '.begin',
-      dur: ESVIJI.settings.durationMove * 2 + 's',
+      dur: settings.durationMove * 2 + 's',
       fill: 'freeze',
       id: 'anim' + (lastStackedAnimation + 2),
     });
@@ -1340,17 +1272,17 @@ ESVIJI.game = (function () {
       aboveBalls = 0;
       for (var y = 1; y <= 6; y++) {
         // No need to check if there is a hole in the top line, no ball upper to make fall
-        if (gameStatus.currentBalls[x][y] === ESVIJI.settings.emptyId) {
+        if (gameStatus.currentBalls[x][y] === settings.EMPTY) {
           // There's a hole, let's see if there are balls above
           for (var z = y + 1; z <= 7; z++) {
             switch (gameStatus.currentBalls[x][z]) {
-              case ESVIJI.settings.rockId:
+              case settings.ROCK:
                 // It's a rock, we can bypass it
                 y = z;
                 z = 8;
                 break;
 
-              case ESVIJI.settings.emptyId:
+              case settings.EMPTY:
                 // It's empty
                 if (z === 7) {
                   // Only empty places, no need to test further this column
@@ -1365,11 +1297,11 @@ ESVIJI.game = (function () {
                 gameStatus.currentBalls[x][y] = gameStatus.currentBalls[x][z];
                 drawnCurrentBalls[x][y] = drawnCurrentBalls[x][z];
                 for (var a = y + 1; a <= z; a++) {
-                  gameStatus.currentBalls[x][a] = ESVIJI.settings.emptyId;
+                  gameStatus.currentBalls[x][a] = settings.EMPTY;
                   drawnCurrentBalls[x][a] = null;
                 }
 
-                let dur = ESVIJI.settings.durationMove * (z - y);
+                let dur = settings.durationMove * (z - y);
 
                 // Follow through and overlapping action:
                 // http://uxdesign.smashingmagazine.com/2012/10/30/motion-animation-new-mobile-ux-design-material/
@@ -1428,8 +1360,8 @@ ESVIJI.game = (function () {
     for (let x = 1; x <= 7; x++) {
       ballsUnder = 0;
       for (let y = 1; y <= 7; y++) {
-        if (gameStatus.currentBalls[x][y] != ESVIJI.settings.emptyId) {
-          dur = ESVIJI.settings.durationMove * (1 + ballsUnder / 3);
+        if (gameStatus.currentBalls[x][y] != settings.EMPTY) {
+          dur = settings.durationMove * (1 + ballsUnder / 3);
           if (lastStackedAnimation === 0) {
             animStackMove(
               drawnCurrentBalls[x][y],
@@ -1449,7 +1381,7 @@ ESVIJI.game = (function () {
             );
           }
 
-          drawnCurrentBalls[x][y] = ESVIJI.settings.emptyId;
+          drawnCurrentBalls[x][y] = settings.EMPTY;
           ballsUnder++;
         } else {
           ballsUnder = 0;
@@ -1474,43 +1406,41 @@ ESVIJI.game = (function () {
 
   function initBalls(thisLevel) {
     thisLevel = thisLevel || gameStatus.level;
-    nbBalls = ESVIJI.settings.levelBalls(thisLevel);
+    nbBalls = settings.levelBalls(thisLevel);
     gameStatus.currentBalls = [];
 
-    for (let x = 1; x <= ESVIJI.settings.board.xMax; x++) {
+    for (let x = 1; x <= settings.board.columnMax; x++) {
       gameStatus.currentBalls[x] = [];
-      for (let y = 1; y <= ESVIJI.settings.board.yMax; y++) {
+      for (let y = 1; y <= settings.board.rowMax; y++) {
         if (y - 7 > x) {
           // put the 'stair' rocks
-          gameStatus.currentBalls[x][y] = ESVIJI.settings.rockId;
+          gameStatus.currentBalls[x][y] = settings.ROCK;
         } else {
           if (
-            x <= ESVIJI.settings.levelColumns(thisLevel) &&
-            y <= ESVIJI.settings.levelRows(thisLevel)
+            x <= settings.levelColumns(thisLevel) &&
+            y <= settings.levelRows(thisLevel)
           ) {
             // a ball
             gameStatus.currentBalls[x][y] =
               1 + Math.floor(Math.random() * nbBalls);
           } else {
             // empty
-            gameStatus.currentBalls[x][y] = ESVIJI.settings.emptyId;
+            gameStatus.currentBalls[x][y] = settings.EMPTY;
           }
         }
       }
     }
 
     // add rocks
-    let nbRocks = ESVIJI.settings.levelRocks(thisLevel);
+    let nbRocks = settings.levelRocks(thisLevel);
     let positionedRocks = 0;
     let rockX;
     let rockY;
     while (positionedRocks < nbRocks) {
-      rockX =
-        1 + Math.floor(Math.random() * ESVIJI.settings.levelRows(thisLevel));
-      rockY =
-        1 + Math.floor(Math.random() * ESVIJI.settings.levelColumns(thisLevel));
-      if (gameStatus.currentBalls[rockX][rockY] !== ESVIJI.settings.rockId) {
-        gameStatus.currentBalls[rockX][rockY] = ESVIJI.settings.rockId;
+      rockX = 1 + Math.floor(Math.random() * settings.levelRows(thisLevel));
+      rockY = 1 + Math.floor(Math.random() * settings.levelColumns(thisLevel));
+      if (gameStatus.currentBalls[rockX][rockY] !== settings.ROCK) {
+        gameStatus.currentBalls[rockX][rockY] = settings.ROCK;
         positionedRocks++;
       }
     }
@@ -1578,18 +1508,18 @@ ESVIJI.game = (function () {
     for (let x = 1; x <= 7; x++) {
       drawnCurrentBalls[x] = [];
       for (let y = 1; y <= 7; y++) {
-        if (gameStatus.currentBalls[x][y] === ESVIJI.settings.emptyId) {
+        if (gameStatus.currentBalls[x][y] === settings.EMPTY) {
           drawnCurrentBalls[x][y] = null;
         } else {
           let ballX = xToSvg(x);
           let ballY = yToSvg(y);
-          if (gameStatus.currentBalls[x][y] === ESVIJI.settings.rockId) {
+          if (gameStatus.currentBalls[x][y] === settings.ROCK) {
             drawnCurrentBalls[x][y] = drawBall(ballX, ballY, 'rock');
           } else {
             drawnCurrentBalls[x][y] = drawBall(
               ballX,
               ballY,
-              ESVIJI.settings.balls[gameStatus.currentBalls[x][y] - 1]
+              `ball${gameStatus.currentBalls[x][y]}`
             );
           }
         }
@@ -1734,7 +1664,7 @@ ESVIJI.game = (function () {
 
   function addScore(scoreToAdd) {
     let oldScore = gameStatus.score;
-    gameStatus.score += ESVIJI.settings.points(scoreToAdd, gameStatus.level);
+    gameStatus.score += settings.points(scoreToAdd, gameStatus.level);
     increaseScore();
     $('#play .score').attr('class', 'score changeUp');
     window.setTimeout(function () {
@@ -1742,8 +1672,8 @@ ESVIJI.game = (function () {
     }, 1000);
 
     let hundreds =
-      Math.floor(gameStatus.score / ESVIJI.settings.extraLifePoints) -
-      Math.floor(oldScore / ESVIJI.settings.extraLifePoints);
+      Math.floor(gameStatus.score / settings.extraLifePoints) -
+      Math.floor(oldScore / settings.extraLifePoints);
     if (hundreds > 0) {
       addLives(hundreds);
     }
@@ -1777,7 +1707,7 @@ ESVIJI.game = (function () {
   }
 
   function yToSvg(y) {
-    return ESVIJI.settings.board.height - 32 * y - 6;
+    return settings.board.height - 32 * y - 6;
   }
 
   function svgToX(coordX) {
@@ -1785,13 +1715,11 @@ ESVIJI.game = (function () {
   }
 
   function svgToY(coordY) {
-    return Math.round((ESVIJI.settings.board.height - coordY - 6) / 32);
+    return Math.round((settings.board.height - coordY - 6) / 32);
   }
 
   function pixelsToSvgY(coordY) {
-    return (
-      ((coordY - boardOffsetY) * ESVIJI.settings.board.height) / boardHeight
-    );
+    return ((coordY - boardOffsetY) * settings.board.height) / boardHeight;
   }
 
   function playSoundEffect(type) {
