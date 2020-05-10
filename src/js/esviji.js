@@ -1,6 +1,6 @@
 // Load dependencies
 import $ from 'jquery';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 import Mousetrap from 'mousetrap';
 import store from 'store';
 var viewportUnitsBuggyfill = require('viewport-units-buggyfill');
@@ -48,7 +48,6 @@ ESVIJI.game = (function () {
   // Initial values
   var viewportWidth = 0;
   var viewportHeight = 0;
-  var boardWidth;
   var boardHeight;
   var boardOffsetY;
   var drawnCurrentBalls = [];
@@ -62,11 +61,9 @@ ESVIJI.game = (function () {
   var currentDirX = -1;
   var currentDirY = 0;
   var dragged = false;
-  var moveCount = 0;
   var cursorY = 0;
   var cursorMinY = 0;
   var cursorMaxY = 0;
-  var maxAvailableBalls = 0;
   var nbBalls = 0;
   var scoreThisTurn = 0;
   var lastHitBall = settings.ROCK;
@@ -186,7 +183,6 @@ ESVIJI.game = (function () {
     }
 
     cursorMinY = yToSvg(1);
-    maxAvailableBalls = ESVIJI.settings.balls.length;
     cursorMaxY = yToSvg(settings.board.rowMax);
 
     // Deal with localStore content that has been set when there was less data
@@ -392,10 +388,7 @@ ESVIJI.game = (function () {
 
     var boardElement = document.getElementById('board');
     var boardStyles = getComputedStyle(boardElement);
-
-    boardWidth = parseInt(boardStyles.width, 10);
     boardHeight = parseInt(boardStyles.height, 10);
-
     boardOffsetY = viewportHeight - boardHeight;
   }
 
@@ -757,7 +750,6 @@ ESVIJI.game = (function () {
       class: '',
     });
 
-    moveCount = 0;
     window.oldPosX = currentPosX;
     window.oldPosY = currentPosY;
 
@@ -856,7 +848,6 @@ ESVIJI.game = (function () {
         class: '',
       });
 
-      moveCount = 0;
       window.oldPosX = currentPosX;
       window.oldPosY = currentPosY;
 
@@ -873,7 +864,6 @@ ESVIJI.game = (function () {
   }
 
   function playUserChoice() {
-    moveCount++;
     if (currentPosY == 1 && currentDirY == -1) {
       // Against the floor, no more possible move
       if (window.oldPosY != 1) {
