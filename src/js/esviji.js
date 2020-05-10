@@ -646,6 +646,7 @@ ESVIJI.game = (function () {
           that.append(notPlayableAnim);
         });
 
+        playSoundEffect('soundLifeDown');
         notPlayableAnimMain.beginElement();
       } else {
         storeSet('gameStatus', gameStatus);
@@ -1057,6 +1058,7 @@ ESVIJI.game = (function () {
   function endOfTurn() {
     if (scoreThisTurn === 0) {
       if (lastHitBall != settings.ROCK) {
+        playSoundEffect('soundLifeDown');
         removeLife();
       }
     } else {
@@ -1591,7 +1593,6 @@ ESVIJI.game = (function () {
   function removeLife() {
     gameStatus.lives--;
     gameStatus.levelLostLives++;
-    playSoundEffect('soundLifeDown');
     drawLives();
     $('#play .lives').attr('class', 'lives changeDown');
     window.setTimeout(function () {
