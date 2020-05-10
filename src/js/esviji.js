@@ -5,36 +5,12 @@ import Mousetrap from 'mousetrap';
 import store from 'store';
 var viewportUnitsBuggyfill = require('viewport-units-buggyfill');
 
+// Load esviji modules
+import boardToText from './board-to-text.js';
 const debug = (message) => {
   if (process.env.NODE_ENV === 'development') {
     console.log('%c' + message, 'colo: blue; font-family: monospace;');
   }
-};
-
-const boardToText = function (board, ball = undefined) {
-  const rowMax = ESVIJI.settings.board.yMax;
-  const columnMax = ESVIJI.settings.board.xMax;
-  const items = ['⬛️', '➖', '🟠', '🟢', '🔵', '🟣', '🟤', '🔴'];
-  let textLines = [];
-  let textRow;
-  for (let row = 1; row <= rowMax; row++) {
-    textRow = rowMax - row;
-    textLines[textRow] = '';
-    for (let column = 1; column <= columnMax; column++) {
-      if (textRow <= 5 && column <= 5 - textRow) {
-        textLines[textRow] += items[0];
-      } else {
-        textLines[textRow] += items[board[column][row] + 1];
-      }
-    }
-    if (ball !== undefined && row === ESVIJI.settings.turn.posY) {
-      textLines[textRow] += items[ball + 1];
-    } else {
-      textLines[textRow] += items[1];
-    }
-  }
-
-  return '⬛️⬛️⬛️⬛️⬛️⬛️⬛️⬛️⬛️⬛️\n' + textLines.join('\n');
 };
 
 // UA sniff iOS Safari for viewport units issues
