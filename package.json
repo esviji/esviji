@@ -1,6 +1,6 @@
 {
   "name": "esviji",
-  "version": "2.5.4",
+  "version": "2.5.5",
   "description": "esviji is a colorful puzzle game where you have to fire a colored ball to destroy other balls of the same color. The game was inspired by multiple arcade games, including Puzzle Bobble / Bust-a-move and Arkanoid.",
   "main": "index.html",
   "repository": {
