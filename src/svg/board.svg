@@ -1,0 +1,85 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  id="board"
+  version="1.1"
+  baseProfile="basic"
+  viewBox="0 0 320 430"
+  width="100%"
+  height="100%"
+  preserveAspectRatio="xMidYMax meet"
+>
+  <symbol id="rock" viewBox="0 0 32 32" width="32" height="32">
+    <polygon points="0,0 0,32 32,32 32,0" stroke-width="0" fill="#444" />
+  </symbol>
+  <symbol
+    id="ball1"
+    viewBox="0 0 32 32"
+    width="32"
+    height="32"
+    class="ball"
+  >
+    <circle class="ball1" stroke-width="1" cx="16" cy="16" r="15" />
+    <text x="16" y="21">1</text>
+  </symbol>
+  <symbol
+    id="ball2"
+    viewBox="0 0 32 32"
+    width="32"
+    height="32"
+    class="ball"
+  >
+    <circle class="ball2" stroke-width="1" cx="16" cy="16" r="15" />
+    <text x="16" y="21">2</text>
+  </symbol>
+  <symbol
+    id="ball3"
+    viewBox="0 0 32 32"
+    width="32"
+    height="32"
+    class="ball"
+  >
+    <circle class="ball3" stroke-width="1" cx="16" cy="16" r="15" />
+    <text x="16" y="21">3</text>
+  </symbol>
+  <symbol
+    id="ball4"
+    viewBox="0 0 32 32"
+    width="32"
+    height="32"
+    class="ball"
+  >
+    <circle class="ball4" stroke-width="1" cx="16" cy="16" r="15" />
+    <text x="16" y="21">4</text>
+  </symbol>
+  <symbol
+    id="ball5"
+    viewBox="0 0 32 32"
+    width="32"
+    height="32"
+    class="ball"
+  >
+    <circle class="ball5" stroke-width="1" cx="16" cy="16" r="15" />
+    <text x="16" y="21">5</text>
+  </symbol>
+  <symbol
+    id="ball6"
+    viewBox="0 0 32 32"
+    width="32"
+    height="32"
+    class="ball"
+  >
+    <circle class="ball6" stroke-width="1" cx="16" cy="16" r="15" />
+    <text x="16" y="21">6</text>
+  </symbol>
+  <symbol id="spring" viewBox="0 0 32 32" width="32" height="32">
+    <path
+      d="M0,8 L0,24 L8,8 L8,24 L16,8 L16,24 L24,8 L24,24 L32,8 L32,24"
+    />
+  </symbol>
+  <g>
+    <path
+      class="playzone"
+      d="M6,424 L6,188 Q6,168 26,168 L38,168 L38,156 Q38,136 58,136 L70,136 L70,124 Q70,104 90,104 L102,104 L102,92 Q102,72 122,72 L134,72 L134,60 Q134,40 154,40 L166,40 L166,28 Q166,8 186,8 L312,8 L312,424"
+    />
+  </g>
+</svg>

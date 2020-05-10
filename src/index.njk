@@ -263,24 +263,7 @@
     <section id="home" aria-hidden="true">
       <header>
         <h1>{{ name }}</h1>
-        <svg class="logo" version="1.1" viewBox="0 0 176 176">
-          <circle class="ball3" stroke-width="2" cx="22" cy="22" r="20" />
-          <circle class="ball2" stroke-width="2" cx="66" cy="22" r="20" />
-          <circle class="ball4" stroke-width="2" cx="110" cy="22" r="20" />
-          <circle class="ball2" stroke-width="2" cx="154" cy="22" r="20" />
-          <circle class="ball1" stroke-width="2" cx="22" cy="66" r="20" />
-          <circle class="ball3" stroke-width="2" cx="66" cy="66" r="20" />
-          <circle class="ball6" stroke-width="2" cx="110" cy="66" r="20" />
-          <circle class="ball3" stroke-width="2" cx="154" cy="66" r="20" />
-          <circle class="ball3" stroke-width="2" cx="22" cy="110" r="20" />
-          <circle class="ball2" stroke-width="2" cx="66" cy="110" r="20" />
-          <circle class="ball4" stroke-width="2" cx="110" cy="110" r="20" />
-          <circle class="ball1" stroke-width="2" cx="154" cy="110" r="20" />
-          <circle class="ball2" stroke-width="2" cx="22" cy="154" r="20" />
-          <circle class="ball4" stroke-width="2" cx="66" cy="154" r="20" />
-          <circle class="ball1" stroke-width="2" cx="110" cy="154" r="20" />
-          <circle class="ball4" stroke-width="2" cx="154" cy="154" r="20" />
-        </svg>
+        {% include './svg/logo.svg' %}
       </header>
       <ul class="controls">
         <li>
@@ -293,12 +276,7 @@
         </li>
         <li>
           <a href="/scores" class="scores">
-            <svg viewBox="0 0 100 100">
-              <path
-                fill="#ccc"
-                d="M74.76 37.88c2.54-2.1 3.7-5.6 2.6-8.93-1.07-3.32-4.06-5.48-7.35-5.68.9-3.2-.3-6.7-3.1-8.75-2.8-2.06-6.5-2.04-9.3-.27C56.4 11.18 53.4 9 49.9 9c-3.48 0-6.46 2.18-7.66 5.24-2.78-1.76-6.46-1.78-9.3.28-2.82 2.05-3.95 5.56-3.13 8.75-3.2.2-6.2 2.36-7.3 5.7-1.1 3.3.1 6.8 2.6 8.9-2.5 2.1-3.7 5.6-2.6 8.93 1.1 3.32 4.1 5.48 7.38 5.68-.8 3.2.33 6.7 3.16 8.75s6.5 2.05 9.3.27c1.2 3.07 4.16 5.24 7.66 5.24s6.45-2.17 7.66-5.24c2.78 1.77 6.46 1.78 9.3-.27 2.8-2.06 3.94-5.56 3.1-8.75 3.3-.2 6.3-2.36 7.37-5.7 1.06-3.3-.1-6.8-2.6-8.9zM49.9 56.38c-10.2 0-18.5-8.3-18.5-18.5 0-10.22 8.3-18.5 18.5-18.5 10.23 0 18.5 8.28 18.5 18.5 0 10.2-8.27 18.5-18.5 18.5zm-16 7.85s3.26 1.36 7.25 0c0 0 2.53 4.3 7.26 4.3l-1.7 22.6-9.03-9.45H23.8l10.1-17.45zm31.74 0s-3.25 1.36-7.25 0c0 0-2.6 4.3-7.3 4.3l1.8 22.6 9-9.45h13.8L65.6 64.23zM49.9 23.3c-8.04 0-14.56 6.53-14.56 14.58 0 8.04 6.52 14.57 14.57 14.57 8.1 0 14.6-6.53 14.6-14.57 0-8.06-6.5-14.58-14.6-14.58zm5.5 22.5l-5.33-2.66-5.2 2.88.88-5.87-4.34-4.05 5.9-1 2.5-5.37L52.5 35l5.9.72-4.16 4.24 1.13 5.83z"
-              />
-            </svg>
+            {% include './svg/scores.svg' %}
             <span>scores</span>
           </a>
         </li>
@@ -315,17 +293,7 @@
         </li>
         <li>
           <a href="/about" class="about">
-            <svg viewBox="0 0 100 100">
-              <g transform="translate(5.715)" fill="#ccc">
-                <path
-                  d="M49.36 41.75V36.8h-13.2v5.08h3.05v18.27h-3v5.08h16.2v-5.08h-3.03z"
-                />
-                <circle cx="44.28" cy="28.55" r="5.08" />
-                <path
-                  d="M88.57 44.28C88.57 19.88 68.7 0 44.3 0 19.85 0-.02 19.87-.02 44.28c0 19.7 12.92 36.42 30.73 42.16L44.3 100l13.56-13.56C75.66 80.7 88.6 63.98 88.6 44.28zM44.3 77.14c-18.15 0-32.9-14.74-32.9-32.84 0-18.13 14.74-32.87 32.85-32.87s32.9 14.74 32.9 32.87c0 18.1-14.75 32.84-32.87 32.84z"
-                />
-              </g>
-            </svg>
+            {% include './svg/about.svg' %}
             <span>about</span>
           </a>
         </li>
@@ -337,21 +305,11 @@
         <div><span class="score">0</span></div>
         <ul>
           <li>
-            <svg class="icon heart" viewBox="0 0 100 100">
-              <path
-                fill="#ccc"
-                d="M71.02 2.8c-11.17 0-17.17 6.32-20.76 11.88C46.83 9.08 40.9 2.8 29.1 2.8 11.85 2.8.7 16.03.7 36.5c0 31.98 43.86 59.58 45.73 60.74 1.1.7 2.37 1.03 3.63 1.03 1.24 0 2.48-.33 3.58-1 1.87-1.15 45.78-28.33 45.78-60.78 0-20.5-11.15-33.7-28.4-33.7zM50.1 83.17C37.55 74.5 14.44 54.74 14.44 36.5c0-17.35 9.18-19.94 14.64-19.94 6.64 0 8.57 3.28 11.42 9.08 1.34 2.74 2.74 5.58 5.18 7.58 2.54 2.06 6.17 2.06 8.7 0 2.35-1.9 3.77-4.57 5.3-7.37 3.08-5.76 5.3-9.3 11.3-9.3 5.48 0 14.66 2.6 14.66 19.94.02 18.5-23.06 38.1-35.54 46.65z"
-              />
-            </svg>
+            {% include './svg/heart.svg' %}
             <span class="lives"></span>
           </li>
           <li>
-            <svg class="icon ladder" viewBox="0 0 100 100">
-              <path
-                fill="#ccc"
-                d="M59.94 97.9s-.92 0-1.36-.1l-1.66-.42c-1.33-.35-2.44-1.18-3.12-2.37-.7-1.16-.88-2.6-.52-3.92l1.92-6.98H26.4l-2.76 10.1c-.6 2.2-2.64 3.8-4.96 3.8-.44 0-.9-.04-1.32-.15l-1.66-.44c-1.32-.33-2.42-1.2-3.1-2.36-.7-1.2-.88-2.57-.52-3.9L35.16 5.88c.6-2.24 2.64-3.8 4.96-3.8.44 0 .9.06 1.33.17l1.65.45c1.32.34 2.43 1.2 3.1 2.38.7 1.18.88 2.43.52 3.75l-1.92 6.4h28.8l2.76-9.5C76.96 3.5 79 2 81.3 2c.46 0 .9.1 1.35.2l1.65.47c1.32.35 2.43 1.2 3.1 2.4.7 1.18.88 2.57.53 3.9l-23.06 85.2c-.6 2.23-2.4 3.72-4.93 3.72zm-1.6-24.86l4.5-16.97h-28.8L29.5 73.04h28.8zm7.63-28.87L70.47 28h-28.8l-4.5 16.17h28.8z"
-              />
-            </svg>
+            {% include './svg/ladder.svg' %}
             <span class="level"></span>
           </li>
         </ul>
@@ -359,99 +317,11 @@
       <ul class="controls">
         <li>
           <a href="/pause" class="pause">
-            <svg class="icon" viewBox="0 0 80 80">
-              <path
-                fill="#ccc"
-                d="M39.75 5.5C20.83 5.5 5.5 20.83 5.5 39.75S20.83 74 39.75 74 74 58.67 74 39.75 58.67 5.5 39.75 5.5zm0 64.5C23.05 70 9.5 56.46 9.5 39.75 9.5 23.05 23.04 9.5 39.75 9.5 56.45 9.5 70 23.04 70 39.75 70 56.45 56.46 70 39.75 70zm-2.62-17.62c0 2.34-1.9 4.24-4.26 4.24-2.34 0-4.24-1.9-4.24-4.24V28.75c0-2.35 1.9-4.25 4.25-4.25 2.34 0 4.24 1.9 4.24 4.25v23.63zm14 0c0 2.34-1.9 4.24-4.26 4.24-2.34 0-4.24-1.9-4.24-4.24V28.75c0-2.35 1.9-4.25 4.24-4.25 2.35 0 4.26 1.9 4.26 4.25v23.63z"
-              />
-            </svg>
+            {% include './svg/pause.svg' %}
           </a>
         </li>
       </ul>
-      <svg
-        id="board"
-        version="1.1"
-        baseProfile="basic"
-        viewBox="0 0 320 430"
-        width="100%"
-        height="100%"
-        preserveAspectRatio="xMidYMax meet"
-      >
-        <symbol id="rock" viewBox="0 0 32 32" width="32" height="32">
-          <polygon points="0,0 0,32 32,32 32,0" stroke-width="0" fill="#444" />
-        </symbol>
-        <symbol
-          id="ball1"
-          viewBox="0 0 32 32"
-          width="32"
-          height="32"
-          class="ball"
-        >
-          <circle class="ball1" stroke-width="1" cx="16" cy="16" r="15" />
-          <text x="16" y="21">1</text>
-        </symbol>
-        <symbol
-          id="ball2"
-          viewBox="0 0 32 32"
-          width="32"
-          height="32"
-          class="ball"
-        >
-          <circle class="ball2" stroke-width="1" cx="16" cy="16" r="15" />
-          <text x="16" y="21">2</text>
-        </symbol>
-        <symbol
-          id="ball3"
-          viewBox="0 0 32 32"
-          width="32"
-          height="32"
-          class="ball"
-        >
-          <circle class="ball3" stroke-width="1" cx="16" cy="16" r="15" />
-          <text x="16" y="21">3</text>
-        </symbol>
-        <symbol
-          id="ball4"
-          viewBox="0 0 32 32"
-          width="32"
-          height="32"
-          class="ball"
-        >
-          <circle class="ball4" stroke-width="1" cx="16" cy="16" r="15" />
-          <text x="16" y="21">4</text>
-        </symbol>
-        <symbol
-          id="ball5"
-          viewBox="0 0 32 32"
-          width="32"
-          height="32"
-          class="ball"
-        >
-          <circle class="ball5" stroke-width="1" cx="16" cy="16" r="15" />
-          <text x="16" y="21">5</text>
-        </symbol>
-        <symbol
-          id="ball6"
-          viewBox="0 0 32 32"
-          width="32"
-          height="32"
-          class="ball"
-        >
-          <circle class="ball6" stroke-width="1" cx="16" cy="16" r="15" />
-          <text x="16" y="21">6</text>
-        </symbol>
-        <symbol id="spring" viewBox="0 0 32 32" width="32" height="32">
-          <path
-            d="M0,8 L0,24 L8,8 L8,24 L16,8 L16,24 L24,8 L24,24 L32,8 L32,24"
-          />
-        </symbol>
-        <g>
-          <path
-            class="playzone"
-            d="M6,424 L6,188 Q6,168 26,168 L38,168 L38,156 Q38,136 58,136 L70,136 L70,124 Q70,104 90,104 L102,104 L102,92 Q102,72 122,72 L134,72 L134,60 Q134,40 154,40 L166,40 L166,28 Q166,8 186,8 L312,8 L312,424"
-          />
-        </g>
-      </svg>
+      {% include './svg/board.svg' %}
     </section>
     <section id="pause" aria-hidden="true">
       <h2>Game paused</h2>
@@ -550,38 +420,8 @@
           </p>
         </div>
         <p class="social">
-          <a href="https://twitter.com/esviji"
-            ><svg
-              width="3.5em"
-              height="3.5em"
-              viewBox="0 0 16 16"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              stroke-linejoin="round"
-              stroke-miterlimit="1.414"
-            >
-              <path
-                d="M16 3.038c-.59.26-1.22.437-1.885.517.677-.407 1.198-1.05 1.443-1.816-.634.375-1.337.648-2.085.795-.598-.638-1.45-1.036-2.396-1.036-1.812 0-3.282 1.468-3.282 3.28 0 .258.03.51.085.75C5.152 5.39 2.733 4.084 1.114 2.1.83 2.583.67 3.147.67 3.75c0 1.14.58 2.143 1.46 2.732-.538-.017-1.045-.165-1.487-.41v.04c0 1.59 1.13 2.918 2.633 3.22-.276.074-.566.114-.865.114-.21 0-.416-.02-.617-.058.418 1.304 1.63 2.253 3.067 2.28-1.124.88-2.54 1.404-4.077 1.404-.265 0-.526-.015-.783-.045 1.453.93 3.178 1.474 5.032 1.474 6.038 0 9.34-5 9.34-9.338 0-.143-.004-.284-.01-.425.64-.463 1.198-1.04 1.638-1.7z"
-                fill="#55acee"
-                fill-rule="nonzero"
-              /></svg
-          ></a>
-          <a href="https://facebook.com/esviji"
-            ><svg
-              width="3.5em"
-              height="3.5em"
-              viewBox="0 0 16 16"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              stroke-linejoin="round"
-              stroke-miterlimit="1.414"
-            >
-              <path
-                d="M15.117 0H.883C.395 0 0 .395 0 .883v14.234c0 .488.395.883.883.883h7.663V9.804H6.46V7.39h2.086V5.607c0-2.066 1.262-3.19 3.106-3.19.883 0 1.642.064 1.863.094v2.16h-1.28c-1 0-1.195.476-1.195 1.176v1.54h2.39l-.31 2.416h-2.08V16h4.077c.488 0 .883-.395.883-.883V.883C16 .395 15.605 0 15.117 0"
-                fill="#3b5998"
-                fill-rule="nonzero"
-              /></svg
-          ></a>
+          <a href="https://twitter.com/esviji">{% include './svg/twitter.svg' %}</a>
+          <a href="https://facebook.com/esviji">{% include './svg/facebook.svg' %}</a>
         </p>
       </div>
       <ul class="controls">

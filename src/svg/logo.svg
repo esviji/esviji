@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="logo" viewBox="0 0 176 176">
+  <circle cx="22" cy="22" r="20" class="ball3"/>
+  <circle cx="66" cy="22" r="20" class="ball2"/>
+  <circle cx="110" cy="22" r="20" class="ball4"/>
+  <circle cx="154" cy="22" r="20" class="ball2"/>
+  <circle cx="22" cy="66" r="20" class="ball1"/>
+  <circle cx="66" cy="66" r="20" class="ball3"/>
+  <circle cx="110" cy="66" r="20" class="ball6"/>
+  <circle cx="154" cy="66" r="20" class="ball3"/>
+  <circle cx="22" cy="110" r="20" class="ball3"/>
+  <circle cx="66" cy="110" r="20" class="ball2"/>
+  <circle cx="110" cy="110" r="20" class="ball4"/>
+  <circle cx="154" cy="110" r="20" class="ball1"/>
+  <circle cx="22" cy="154" r="20" class="ball2"/>
+  <circle cx="66" cy="154" r="20" class="ball4"/>
+  <circle cx="110" cy="154" r="20" class="ball1"/>
+  <circle cx="154" cy="154" r="20" class="ball4"/>
+</svg>
