@@ -8,6 +8,8 @@ var viewportUnitsBuggyfill = require('viewport-units-buggyfill');
 // Load esviji modules
 import settings from './settings.js';
 import boardToText from './board-to-text.js';
+import getValidBalls from './get-valid-balls.js';
+
 const debug = (message) => {
   if (process.env.NODE_ENV === 'development') {
     console.log('%c' + message, 'colo: blue; font-family: monospace;');
@@ -535,7 +537,7 @@ ESVIJI.game = (function () {
 
       initBalls();
       drawBalls();
-      getValidBalls();
+      setValidBalls();
       gameStatus.currentBall =
         validBalls[Math.floor(Math.random() * validBalls.length)];
     }
@@ -570,8 +572,8 @@ ESVIJI.game = (function () {
     currentPosY = settings.turn.posY;
     currentDirY = settings.turn.dirY;
     scoreThisTurn = 0;
-    getValidBalls();
     lastHitBall = settings.ROCK;
+    setValidBalls();
 
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
@@ -1521,57 +1523,16 @@ ESVIJI.game = (function () {
     $('#play use').remove();
   }
 
-  function getValidBalls() {
-    var x;
-    var y;
-    var dirX;
-    var dirY;
-    var found;
+  function setValidBalls() {
+    let theseValidBalls = getValidBalls(gameStatus.currentBalls);
+    validBalls = theseValidBalls.balls;
 
-    validBalls = [];
-
-    for (let yStart = 1; yStart <= 13; yStart++) {
-      x = 10;
-      y = yStart;
-      dirX = -1;
-      dirY = 0;
-      found = false;
-      while (!found) {
-        if (y == 1 && dirY == -1) {
-          found = true;
-        } else {
-          if (x == 1 && dirX == -1) {
-            dirX = 0;
-            dirY = -1;
-          } else {
-            let nextBall = gameStatus.currentBalls[x + dirX][y + dirY];
-            if (nextBall == ESVIJI.settings.rockId) {
-              if (dirX == -1) {
-                dirX = 0;
-                dirY = -1;
-              } else {
-                found = true;
-              }
-            } else {
-              if (nextBall == ESVIJI.settings.emptyId) {
-                x += dirX;
-                y += dirY;
-              } else {
-                drawnCurrentBalls[x + dirX][y + dirY].attr(
-                  'data-valid',
-                  'true'
-                );
-                if (validBalls.indexOf(nextBall) == -1) {
-                  validBalls.push(nextBall);
-                }
-
-                found = true;
-              }
-            }
-          }
-        }
-      }
-    }
+    theseValidBalls.positions.forEach((position) => {
+      drawnCurrentBalls[position.column][position.row].attr(
+        'data-valid',
+        'true'
+      );
+    });
   }
 
   function gameOver() {
