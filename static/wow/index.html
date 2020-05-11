@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>THIS is Responsive web game interface design!</title>
+    <title>esviji REALLY has a Responsive Web game interface!</title>
     <meta
       name="viewport"
       content="initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -34,7 +34,7 @@
       }
 
       iframe {
-        border: 2px solid #333;
+        border: 3px solid #333;
         margin: auto auto;
         width: 50vmin;
         height: 50vmin;
@@ -68,11 +68,15 @@
 
     <script>
       window.setInterval(function () {
-        document.getElementById('esviji').style.width =
-          10 + Math.random() * 80 + 'vmin';
         document.getElementById('esviji').style.height =
-          10 + Math.random() * 80 + 'vmin';
+          20 + Math.random() * 70 + 'vmin';
       }, 2000);
+      window.setTimeout(function () {
+        window.setInterval(function () {
+          document.getElementById('esviji').style.height =
+            20 + Math.random() * 70 + 'vmin';
+        }, 2000);
+      }, 1000);
     </script>
   </body>
 </html>
