@@ -1,6 +1,6 @@
 {
   "name": "esviji",
-  "version": "2.5.5",
+  "version": "2.5.6",
   "description": "esviji is a free colorful puzzle game where you have to fire a colored ball to destroy other balls of the same color. Some features: interface scaled to fit any viewport size and ratio without any visual loss, multiple interaction options (touch, mouse and keyboard), game persistence (close the game and resume it when you return), full off-line support.",
   "main": "index.html",
   "repository": {
