@@ -254,11 +254,21 @@
     </svg>
     <header id="description">
       <h1>{{ name }}</h1>
-      <p>{{ description }}</p>
-      <p class="icon">
-        <img src="img/esviji-logo-180.png" alt="esviji logo" />
+      <p class="logo">
+        {% include './svg/logo.svg' %}
       </p>
-      <p>Version {{ version }}</p>
+      <p>esviji is a free puzzle game where you have to fire a colored ball to destroy other balls of the same color.</p>
+      <p>The game was inspired by multiple arcade games, including Puzzle Bobble (aka Bust-a-move) and Arkanoid.</p>
+      <div class="features">
+        <p>Some features:</p>
+        <ul>
+          <li>Interface scaled to fit any viewport size and ratio without any visual loss</li>
+          <li>Multiple interaction options: touch, mouse and keyboard</li>
+          <li>Game persistence: close the game and resume it when you return</li>
+          <li>Full off-line support</li>
+        </ul>
+      </div>
+      <p class="version">Version {{ version }}</p>
     </header>
     <section id="home" aria-hidden="true">
       <header>

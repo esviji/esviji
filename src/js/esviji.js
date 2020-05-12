@@ -150,10 +150,9 @@ ESVIJI.game = (function () {
       }
 
       msg += '.</p>';
-
       msg +=
         '</div><p>Learn more about this game on <a href="https://esviji.com/">esviji.com</a>.</p>';
-      $('#description p.icon').before(msg);
+      window.document.querySelector('#description .features').innerHTML = msg;
       return;
     }
 

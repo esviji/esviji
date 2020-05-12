@@ -83,8 +83,10 @@ body {
   left: 0;
   right: 0;
   margin: 0;
-  padding: 1em;
+  padding: calc(1em + 3vw);
   overflow-y: scroll;
+
+  line-height: 1.3;
 
   // animate opacity
   opacity: 0;
@@ -98,20 +100,19 @@ body {
   h1 {
     font-size: 3em;
     text-align: center;
+    margin: 1rem 0;
   }
 
   h2,
-  p {
+  p,
+  li {
     font-family: sans-serif;
   }
 
-  p.icon {
-    text-align: center;
-
-    img {
-      max-width: 50%;
-      height: auto;
-    }
+  p.logo {
+    float: right;
+    width: 25%;
+    margin: 0 0 1em 1em;
   }
 
   a:link,
