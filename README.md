@@ -2,14 +2,16 @@
 
 # esviji
 
-## a puzzle game in which you have to destroy balls to gain points and progress through as much levels as you can
+## esviji is a free puzzle game where you have to fire a colored ball to destroy other balls of the same color
 
 <img src="https://raw.githubusercontent.com/esviji/esviji/master/src/img/esviji-screenshot.png" alt="Crazy blocks" width="180" align="right" />
 
-- Interface scalled to fit any viewport size and ratio without any visual loss
-- Multiple interaction options: keyboard, mouse & touch
-- Current game persistence: close your browser and resume your game when you return
-- Full off-line support
+Some features:
+
+- interface scaled to fit any viewport size and ratio without any visual loss
+- multiple interaction options: touch, mouse and keyboard
+- game persistence: close the game and resume it when you return
+- full off-line support
 
 This game came out of my mind 20 years ago thanks to the great platform that were [HP 48 calculators](http://en.wikipedia.org/wiki/HP-48_series) (I've had 3 of them). I loved playing Puzzle Bobble, Tetris and other casual game on my HP, but was also eager to develop my own game (a sily habit I have to develop games to discover new platforms/languages), and came with this idea of a kind of mashup of Puzzle Bobble and other games.
 
@@ -37,19 +39,18 @@ Aggregated analytics data is collected through Google Analytics and is only used
 ## Building blocks
 
 - JavaScript, with a little bit of jQuery
-- [Matthias](http://twitter.com/m4d_z)'s awesome [SVGEventListener polyfil](https://github.com/m4dz/SVGEventListener) for SVG animate events in webkit
 - [Craig Campbell](http://craig.is/)'s [mousetrap](http://craig.is/killing/mice) for keyboard controls
-- [Marcus Westin](http://twitter.com/marcuswestin)'s [store.js](https://github.com/marcuswestin/store.js) for localStorage wrapper
+- [Marcus Westin](https://twitter.com/marcuswestin)'s [store.js](https://github.com/marcuswestin/store.js) for localStorage wrapper
 - [GoldFire Studios](https://twitter.com/GoldFireStudios)'s [Howler.js](https://github.com/goldfire/howler.js) for sounds playing
-- [Cédric Pons Polo](https://twitter.com/cedricponspolo)'s awesome sound design. Check his other creations on [Panel Sonore](http://www.panel-sonore.com/)
+- [Cédric Pons Polo](https://twitter.com/cedricponspolo)'s awesome sound design
 
 ## Thanks a lot to…
 
-- [Jérémie](http://twitter.com/JeremiePat) for [inspiration about SVG](http://jeremie.patonnier.net/tag/SVG)'s [power](http://jeremie.patonnier.net/experiences/parisweb2011/animation.svg) and assistance finding great docs in [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/SVG)
-- [Karl](http://twitter.com/karlpro) for his kind assistance on Opera issues (some were real bugs, some were my own mistakes)
-- [Anthony](http://twitter.com/rik24d) for his kind assistance on Firefox issues (again, some were real bugs, some where MDN errors, some were my own mistakes)
-- [Matthias](http://twitter.com/m4d_z) for his SVG animate events polyfil
-- [Vincent](http://twitter.com/htmlzg) for the logo following [Firefox OS app icon design principles](http://www.mozilla.org/en-US/styleguide/products/firefoxos/icons/)
+- [Jérémie](https://twitter.com/JeremiePat) for [inspiration about SVG](http://jeremie.patonnier.net/tag/SVG)'s [power](http://jeremie.patonnier.net/experiences/parisweb2011/animation.svg) and assistance finding great docs in [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/SVG)
+- [Karl](https://www.la-grange.net/) for his kind assistance on Opera issues (some were real bugs, some were my own mistakes)
+- [Anthony](https://twitter.com/anthony_ricaud) for his kind assistance on Firefox issues (again, some were real bugs, some where MDN errors, some were my own mistakes)
+- [Matthias](https://twitter.com/m4d_z) for his SVG animate events polyfil
+- [Vincent](https://twitter.com/htmlvv) for the logo following Firefox OS app icon design principles (When Firefox OS still existed. 😥)
 
 ## To do
 
@@ -61,7 +62,7 @@ Feel free to fork, fix and [submit a pull requests](https://github.com/esviji/es
 
 [@necolas](https://github.com/necolas) wrote down [some good guidelines for contributing](https://github.com/necolas/issue-guidelines). Please keep these in mind when contributing to this project.
 
-Please use the ```.editorconfig``` file in order to set the right usage of tabs/spaces aso. in your editor. Visit [editorconfig.org](http://editorconfig.org/) for more information.
+Please use the `.editorconfig` file in order to set the right usage of tabs/spaces aso. in your editor. Visit [editorconfig.org](http://editorconfig.org/) for more information.
 
 ## License
 

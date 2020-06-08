@@ -577,6 +577,9 @@ ESVIJI.game = (function () {
     stackedAnimationToStart = 1;
     lastStackedAnimation = 0;
 
+    // The ball we morphed to sometimes isn't removed in endOfMove()
+    $('#morph').remove();
+
     if (validBalls.length === 0) {
       // no more valid ball, end of the turn
       // TODO: don't even draw it, maybe

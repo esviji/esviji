@@ -2,6 +2,10 @@
 
 ## v2.5.x
 
+### 2020-06-08 v2.5.7
+
+- [ENHANCEMENT] Remove the morphed ball in the beginning of a new turn because it sometimes isn't removed in endOfMove()
+
 ### 2020-05-03 v2.5.3
 
 - [ENHANCEMENT] Enhance Service Worker to precache all assets and deal with mp3, and log offline sessions in Google Analytics
