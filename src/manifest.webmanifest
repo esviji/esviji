@@ -1,6 +1,7 @@
 {
   "name": "esviji, a free puzzle game",
   "short_name": "esviji",
+  "description": "esviji is a free colorful puzzle game where you have to fire a colored ball to destroy other balls of the same color.",
   "lang": "en",
   "icons": [
     {
