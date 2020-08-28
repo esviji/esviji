@@ -17,6 +17,48 @@
       "purpose": "any maskable"
     }
   ],
+  "screenshots": [
+    {
+      "src": "https://esviji.com/assets/screenshots/v2/mobile/portrait/01-launch-screen.png",
+      "sizes": "750x1294",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://esviji.com/assets/screenshots/v2/mobile/portrait/02-easy-start.png",
+      "sizes": "750x1294",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://esviji.com/assets/screenshots/v2/mobile/portrait/03-a-lot-of-balls.png",
+      "sizes": "750x1294",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://esviji.com/assets/screenshots/v2/mobile/portrait/04-unbreakable-blocks.png",
+      "sizes": "750x1294",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://esviji.com/assets/screenshots/v2/mobile/portrait/05-crazy-blocks.png",
+      "sizes": "750x1294",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://esviji.com/assets/screenshots/v2/mobile/portrait/06-game-over.png",
+      "sizes": "750x1294",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://esviji.com/assets/screenshots/v2/mobile/landscape/04-unbreakable-blocks.png",
+      "sizes": "1334x750",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://esviji.com/assets/screenshots/v2/mobile/landscape/05-crazy-blocks.png",
+      "sizes": "1334x750",
+      "type": "image/jpeg"
+    }
+  ],
   "start_url": "/?utm_source=pwa&utm_medium=PWA&utm_campaign=play",
   "scope": "/",
   "display": "fullscreen",
