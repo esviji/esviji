@@ -24,7 +24,7 @@
     "build": "npm run clean && parcel build src/index.njk --public-url https://play.esviji.com && npm run sw"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-replace": "^2.3.4",
     "eslint": "7.14.0",
