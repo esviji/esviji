@@ -43,7 +43,7 @@
     "workbox-broadcast-update": "6.0.2",
     "workbox-cacheable-response": "6.0.0",
     "workbox-cli": "^5.1.4",
-    "workbox-core": "5.1.4",
+    "workbox-core": "6.0.2",
     "workbox-expiration": "6.0.0",
     "workbox-google-analytics": "5.1.4",
     "workbox-precaching": "6.0.0",
