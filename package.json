@@ -42,7 +42,7 @@
     "sass": "^1.32.0",
     "workbox-broadcast-update": "6.0.2",
     "workbox-cacheable-response": "6.0.2",
-    "workbox-cli": "^5.1.4",
+    "workbox-cli": "^6.1.0",
     "workbox-core": "6.0.2",
     "workbox-expiration": "6.0.2",
     "workbox-google-analytics": "6.0.2",
