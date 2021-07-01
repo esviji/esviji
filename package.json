@@ -36,7 +36,7 @@
     "parcel-plugin-static-files-copy": "^2.6.0",
     "prettier": "^2.3.0",
     "rimraf": "^3.0.2",
-    "rollup": "^2.50.5",
+    "rollup": "^2.52.6",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.34.0",
