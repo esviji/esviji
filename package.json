@@ -41,7 +41,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.45.2",
     "workbox-broadcast-update": "6.5.0",
-    "workbox-cacheable-response": "6.3.0",
+    "workbox-cacheable-response": "6.5.0",
     "workbox-cli": "^6.4.2",
     "workbox-core": "6.5.0",
     "workbox-expiration": "6.4.2",
