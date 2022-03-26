@@ -49,7 +49,7 @@
     "workbox-precaching": "6.4.2",
     "workbox-range-requests": "^6.1.5",
     "workbox-routing": "6.5.0",
-    "workbox-strategies": "6.4.2"
+    "workbox-strategies": "6.5.2"
   },
   "dependencies": {
     "howler": "^2.2.3",
