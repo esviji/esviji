@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "howler": "^2.2.3",
-    "jquery": "^3.6.0",
+    "jquery": "^3.6.1",
     "mousetrap": "^1.6.5",
     "store": "^2.0.12",
     "viewport-units-buggyfill": "^0.6.2"
