@@ -27,7 +27,7 @@
     "@babel/preset-env": "^7.18.10",
     "@rollup/plugin-node-resolve": "^14.1.0",
     "@rollup/plugin-replace": "^4.0.0",
-    "eslint": "8.23.0",
+    "eslint": "8.24.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
     "nunjucks": "^3.2.3",
