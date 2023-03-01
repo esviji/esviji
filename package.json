@@ -28,7 +28,7 @@
     "@rollup/plugin-node-resolve": "^14.1.0",
     "@rollup/plugin-replace": "^5.0.2",
     "eslint": "8.35.0",
-    "eslint-config-prettier": "8.5.0",
+    "eslint-config-prettier": "8.6.0",
     "eslint-plugin-prettier": "4.0.0",
     "nunjucks": "^3.2.3",
     "parcel-bundler": "^1.12.4",
