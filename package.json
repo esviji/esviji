@@ -34,7 +34,7 @@
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-nunjucks": "^2.2.0",
     "parcel-plugin-static-files-copy": "^2.6.0",
-    "prettier": "^2.8.7",
+    "prettier": "^2.8.8",
     "rimraf": "^4.1.2",
     "rollup": "^2.79.1",
     "rollup-plugin-babel": "^4.4.0",
