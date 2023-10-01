@@ -52,7 +52,7 @@
     "workbox-strategies": "7.0.0"
   },
   "dependencies": {
-    "howler": "^2.2.3",
+    "howler": "^2.2.4",
     "jquery": "^3.7.1",
     "mousetrap": "^1.6.5",
     "store": "^2.0.12",
