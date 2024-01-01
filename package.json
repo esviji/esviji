@@ -29,7 +29,7 @@
     "@rollup/plugin-replace": "^5.0.2",
     "eslint": "8.54.0",
     "eslint-config-prettier": "9.0.0",
-    "eslint-plugin-prettier": "5.0.1",
+    "eslint-plugin-prettier": "5.1.2",
     "nunjucks": "^3.2.4",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-nunjucks": "^2.2.0",
